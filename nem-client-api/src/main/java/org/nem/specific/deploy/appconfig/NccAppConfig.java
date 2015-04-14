@@ -1,12 +1,12 @@
-package org.nem.deploy.appconfig;
+package org.nem.specific.deploy.appconfig;
 
 import org.nem.core.connect.*;
 import org.nem.core.connect.client.AsyncNisConnector;
-import org.nem.core.deploy.*;
+import org.nem.deploy.*;
 import org.nem.core.metadata.ApplicationMetaData;
 import org.nem.core.model.NetworkInfos;
 import org.nem.core.time.TimeProvider;
-import org.nem.deploy.NccConfigurationPolicy;
+import org.nem.specific.deploy.NccConfigurationPolicy;
 import org.nem.ncc.*;
 import org.nem.ncc.addressbook.*;
 import org.nem.ncc.addressbook.storage.SecureAddressBookDescriptorFactory;

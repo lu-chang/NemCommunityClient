@@ -92,7 +92,7 @@ public class JarNodeLauncherTest {
 			expectedArguments.addAll(Arrays.asList(
 					"-cp",
 					"." + File.pathSeparator + "./*" + File.pathSeparator + "../libs/*",
-					"org.nem.core.deploy.CommonStarter"));
+					"org.nem.deploy.CommonStarter"));
 			Assert.assertThat(argumentsCaptor.getValue(), IsEqual.equalTo(expectedArguments));
 			Assert.assertThat(workingDirectoryCaptor.getValue().toString(), IsEqual.equalTo(expectedWorkingDirectory));
 		}

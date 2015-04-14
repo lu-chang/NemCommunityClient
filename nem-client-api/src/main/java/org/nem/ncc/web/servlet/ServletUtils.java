@@ -1,6 +1,6 @@
 package org.nem.ncc.web.servlet;
 
-import org.nem.core.deploy.CommonConfiguration;
+import org.nem.deploy.CommonConfiguration;
 import org.nem.ncc.NccConfiguration;
 
 /**

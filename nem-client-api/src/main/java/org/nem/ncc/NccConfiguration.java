@@ -1,7 +1,7 @@
 package org.nem.ncc;
 
 import org.apache.commons.io.IOUtils;
-import org.nem.core.deploy.CommonConfiguration;
+import org.nem.deploy.CommonConfiguration;
 import org.nem.core.model.NetworkInfo;
 import org.nem.core.node.NodeEndpoint;
 import org.nem.core.serialization.JsonSerializer;

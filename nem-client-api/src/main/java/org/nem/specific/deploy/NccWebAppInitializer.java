@@ -1,6 +1,6 @@
-package org.nem.deploy;
+package org.nem.specific.deploy;
 
-import org.nem.core.deploy.*;
+import org.nem.deploy.*;
 import org.nem.core.serialization.SimpleAccountLookup;
 import org.nem.ncc.controller.interceptors.*;
 import org.springframework.beans.BeansException;

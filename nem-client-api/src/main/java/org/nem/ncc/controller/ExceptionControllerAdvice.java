@@ -3,10 +3,11 @@ package org.nem.ncc.controller;
 import org.nem.core.connect.*;
 import org.nem.core.serialization.MissingRequiredPropertyException;
 import org.nem.core.time.TimeProvider;
+import org.nem.core.utils.HttpStatus;
 import org.nem.ncc.controller.interceptors.UnauthorizedAccessException;
 import org.nem.ncc.exceptions.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.*;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.ConnectException;
@@ -106,7 +107,7 @@ public class ExceptionControllerAdvice {
 		// treat all expected NCC exceptions as BAD_REQUEST
 		return new ResponseEntity<>(
 				new ErrorResponse(this.timeProvider.getCurrentTime(), code.toString(), code.value()),
-				HttpStatus.BAD_REQUEST);
+				org.springframework.http.HttpStatus.BAD_REQUEST);
 	}
 
 	/**
@@ -117,6 +118,7 @@ public class ExceptionControllerAdvice {
 	 * @return The response entity.
 	 */
 	private ResponseEntity<ErrorResponse> createResponse(final Exception e, final HttpStatus status) {
-		return new ResponseEntity<>(new ErrorResponse(this.timeProvider.getCurrentTime(), e, status), status);
+		return new ResponseEntity<>(new ErrorResponse(this.timeProvider.getCurrentTime(), e, status),
+				org.springframework.http.HttpStatus.valueOf(status.value()));
 	}
 }

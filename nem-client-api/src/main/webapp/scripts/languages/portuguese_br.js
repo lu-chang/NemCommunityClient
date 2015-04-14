@@ -47,7 +47,7 @@ define({
 			700: 'Falha na colheita. Geralmente esse problema está relacionado com o saldo de NEMs na conta. Para colheitar são necessários,  pelo menos, 1000 XEMs.',
 			701: 'O prazo final fornecido está no passado. O prazo limite deve estar dentro do período de um dia.',
 			702: 'O prazo final fornecido está no futuro. O prazo limite deve estar dentro do período de um dia.',
-			703: 'Your account does not have the right balance to make this transaction.',
+			703: 'A sua conta não tem o saldo suficiente para realizar essa transação.',
 			704: 'Texto muito longo. Por favor, reduza o tamanho da mensagem.',
 			705: 'O Hash de transação já existe no banco de dados, na lista de transações não confirmadas.',
 			706: 'A assinatura da transação não pôde ser verificada.',
@@ -55,11 +55,11 @@ define({
 			708: 'A data da ID de transação está muito no futuro.',
 			709: 'Conta desconhecida, Por favor, faça uma transação para conseguir uma chave pública.',
 			710: 'A transação foi rejeitada pois o cache está muito cheio. Aumentando a taxa de transação, aumenta a possibilidade dessa transação  ser aceita.',
-			730: 'Importance transfer transaction (delegated harvesting) conflicts with existing transaction.',
-			731: 'Delegated harvesting account has non zero balance and cannot be used.',
+			730: 'Transação de transferência de importância (Colheita delegada) conflita com uma transação existente.',
+			731: 'A conta de colheita segura não possue saldo igual a zero e não pode ser utilizada.',
 			732: 'Transferencia de importância foi rejeitada. Já existe uma operação de transferencia de importancia em andamento.',
-			733: 'Delegated harvesting is already active.',
-			734: 'Delegated harvesting is NOT active. Cannot deactivate.',
+			733: 'Colheita delegada já está ativa.',
+			734: 'Colheita delegada NÃO está ativa e não pode ser desativada.',
 			740: 'Não é permitido transação para contas Multisig.',
 			741: 'Assinatura Multisig rejeitada. A conta atual não é uma conta consignatária de uma conta tipo Multisig.',
 			742: 'Assinatura de transação de conta Multisig rejeitada. Transaçao Multisig associada não é reconhecida pela rede Nem.',
@@ -72,7 +72,7 @@ define({
 		common: {
 			success: 'Successo',
 			unknown: 'Status desconhecido',
-			unknownMessage: 'Ncc did not get response in a timely manner. Transaction might have been sent to the network.<br /><br />Please, check transactions before attempting to make it again.',
+			unknownMessage: 'Ncc não conseguiu resposta em tempo hábil. A transacção pode ter sido enviada para a rede.<br /><br />Por favor, cheque as transações antes de tentar de novo.',
 			appStatus: {
 				nccUnknown: 'Estado do NCC desconhecido',
 				nccUnavailable: 'NCC não inicializado',
@@ -128,7 +128,7 @@ define({
 				caption: 'ERRO {{1}}'
 			},
 			yikes: {
-				title: 'Yikes!',
+				title: 'Eita vidona!!!!!',
 				caption: 'Codigo de informação {{1}}'
 			},
 			confirmDefault: {
@@ -136,12 +136,12 @@ define({
 				no: 'Não'
 			},
 			initialTy: {
-				title: "WELCOME to NEM",
+				title: "Seja BEM VINDO ao Nem",
 				content: "<c>Sbhaqrq ba gur fgebat cevapvcyrf bs rtnyvgnevna naq rdhnyvgl va qvfgevohgvba, gur Arj Rpbabzl Zbirzrag, ARZ, unf abj svanyyl pbzr gb sehvgvba nsgre pybfr gb 14 zbaguf bs vagrafvir qrirybczrag. Va nqqvgvba gb 5 pber qrirybcref naq 7 pber znexrgref, jr unir n ubfg bs pbzzhavgl zrzoref jub unir urycrq hf va bar jnl be nabgure, jvgubhg jubz, guvf jbhyq arire unir pbzr gbtrgure fb jryy nf orvat bar bs gur srj pelcgb vavgvngvirf jvgu fhpu n ovt grnz. Fcrpvny zragvba vf tvira gb gur sbyybjvat:</c><ue/><c><o>Grpuavpny naq Znexrgvat vachg:</o><oe/> Nzl, naqzr, nirentrwbr, OenvaBsZnffrf, qmnezhfpu, RSSI, Rynan82, rexxv, servtrvfg, unccl4209, vafgnpnfu, wnqrqwnpx, XrivaYv, XxbgArz, xbbernz, Xelfgb, Ybv Gena, ylxn, zvkznfgre, ZeCbegZna, arzovg, akxbvy, bjba, Cnagure03, curebzbar, erabgrat.yv, evtry, FnhyTenl, funjayrnel, fbyvk, fgbar, guvyba, haibvqcy, munaxnvjra, mbngn87, 守望者, 攻陳τч酨鈊, 清风, 福泽天下</c><ue/><c><o>APP Hfre Vagresnpr genafyngvba:</o><oe/>ncrk, obrfgva, Punbf514, QVZXNMQF, svypurs, servtrvfg, Thyvire, vnzvavgabj06, Wnarn4cqn, xhccnynugv, Ypuneyrf, znegvfznegvf, zrff-yrybhpu, Cnenan, evtry, Funja, Fcvqre, 楊 輝彦</c><c><oe/>Va nqqvgvba gb gur nobir 67 grnz zrzoref, jr nyfb unir bgure zrzoref jub  pbagevohgrq, jurgure va grpuavpny, znexrgvat be fgerff grfgvat gur flfgrz qhevat gur nycun naq orgn cunfr. Jr jbhyq yvxr gb nqqvgvbanyyl gunax nyy gubfr vaqvivqhnyf abg yvfgrq urer naq gur terngre ARZ pbzzhavgl orpnhfr jvgubhg gurz, jr jbhyq unir abg rire pbzr fb sne.</c><ue/><c>Naq zbfg vzcbegnagyl<oe/><o>Gunax LBH!</o><oe/><oe/>Arj Rpbabzl fgnegf jvgu LBH!</c>"
 			},
 			initialBackup: {
-				title: "Welcome to NEM",
-				content: "You can create wallet backup from menu in upper right corner."
+				title: "Seja BEM VINDO ao Nem",
+				content: "Você pode criar um arquivo de back-up no menu a sua extrema direita, no lado superior da tela. Para sua segurança, realize um back-up!"
 			},
 			settings: {
 				title: 'Configurações',
@@ -251,7 +251,7 @@ define({
 				},
 				notBootedWarning: {
 					title: 'O nó não foi inicializado!',
-					message: 'O nó local precisa ser inicializado para fazer transações!'
+					message: 'O nó local precisa ser inicializado para poder realizar transações!'
 				},
 				bootingWarning: {
 					title: 'O Nó está sendo inicializado',
@@ -325,9 +325,9 @@ define({
 				boot: 'Inicializar',
 				booting: 'Inicializando...',
 				warning: 'Aviso de inicialização',
-				warningText: 'You\'re trying to boot a node <u>{{2}}</u><br/><br/>Booting remote node is currently impossible from within NCC.',
-				warningStatement: 'You have auto-boot set to true and you\'re using remote node {{3}}.<br/><br/>Booting remote node is currently impossible from within NCC',
-				warningQuestion: 'Você tem certeza que quer inicializar o nó <u>{{3}}</u> usando a chave privada da conta  {{1}} ({{2}} XEM)?<br><br> Isto revelará essa conta <span class="sublabelWarning">private key</span> para o nó: <u>{{3}}</u>.'
+				warningText: 'Você está tentando inicializar um nó <u>{{2}}</u><br/><br/>Inicializar um nó remoto é atualmente impossível com esse NCC.',
+				warningStatement: 'Seu auto-inicializar está indicando verdadeiro e você está utilizando um nó remoto {{3}}.<br/><br/>Inicializar um nó remoto é atualmente impossível com esse NCC',
+				warningQuestion: 'Você tem certeza que quer inicializar o nó <u>{{3}}</u> usando a chave privada da conta  {{1}} ({{2}} XEM)?<br><br> Isto revelará a <span class="sublabelWarning">chave privada</span> dessa conta  para o nó: <u>{{3}}</u>.'
 			},
 			closeWallet: {
 				title: 'Fechar carteira',
@@ -346,11 +346,11 @@ define({
 				message: 'Será exibido a chave privada dessa conta na tela, como texto. \nNo caso do seu sistema ter algum tipo de Malware, essa operação pode ser muito perigosa. \nVocê realmente tem certeza que quer exibir a chave privada?',
 				publicKey: 'Chave Pública',
 				privateKey: 'Chave Privada',
-				show: 'Show the key'
+				show: 'Mostrar a chave'
 			},
 			showRemotePrivateKey: {
-				title: 'Show Remote Account\'s PRIVATE Key',
-				message: 'This will display remote account\'s private key on the screen, as a text. In case of any malware present in the system, this might be hazardous operation. Are you sure you want to do that?',
+				title: 'Mostrar a chave PRIVADA da conta remota',
+			message: 'Será exibido a chave privada da conta remota na tela, como texto. No caso de qualquer tipo de infecção digital presente no sistema, essa ação poderá  ser perigosa. Você tem certeza que você quer mesmo fazer isso?',
 
 			},
 			addAccount: {
@@ -417,7 +417,7 @@ define({
 				message: 'Tem certeza que quer fechar o programa (NCC)?'
 			},
 			activateRemote: {
-				title: 'Activate Delegated Harvesting',
+				title: 'Ativar colheita delegada',
 				wallet: 'Carteira',
 				account: 'Conta',
 				password: 'Senha',
@@ -426,7 +426,7 @@ define({
 				warningText: 'A ativação leverá 6 houras (360 blocos). A ativação não vaiiniciar automaticamente a colheita.'
 			},
 			deactivateRemote: {
-				title: 'Deactivate Delegated Harvesting',
+				title: 'Desativar colheita delegada',
 				wallet: 'Carteira',
 				account: 'Conta',
 				password: 'Senha',
@@ -435,21 +435,21 @@ define({
 				warningText: 'A Desativação levará 6 houras (360 blocos).'
 			},
 			startRemote: {
-				title: 'Start Delegated Harvesting',
+				title: 'Começar colheita delegada',
 				wallet: 'Carteira',
 				account: 'Conta',
 				password: 'Senha',
 				start: 'Iniciar'
 			},
 			stopRemote: {
-				title: 'Stop Delegated Harvesting',
+				title: 'Parar colheita delegada',
 				wallet: 'Carteira',
 				account: 'Conta',
 				password: 'Senha',
 				stop: 'Parar'
 			},
 			logoutWarning: {
-				leavePage: "You're leaving your wallet. Remember that if you leave your wallet this way, some others may still be able to access your wallet from this computer. To prevent that from happening, please log out using the \"Close wallet\" menu item in the top-right dropdown menu before you close the browser tab or navigate away."
+				leavePage: "Você está saindo da carteira. \nSe você deixá-la assim, outras pessoas ainda poderão acessá-lá por esse computador. Para sair da conta, por favor, clique em \'Fechar carteira\' no menu superior direito, antes de você fechar a aba de seu navegador"
 			},
 			addContact: {
 				title: 'Adicionar contato',
@@ -493,27 +493,27 @@ define({
 						description: '<em>Segurança</em> baseada em forte criptografia para evitar roubo de moedas &amp; ativos.'
 					},
 					{
-						title: 'Remote NEM Infrastructure Server',
-						description: 'By using a remote NIS you don\'t have to synchronise the blockchain at start-up.',
+						title: 'NEM infraestrutura de servidores remotos',
+						description: 'Utilizando um NIS remotor, você não precisa sicronizar o blockchain na inicialização.',
 
 					},
 					{
-						title: 'Delegated harvesting',
-						description: 'With delegated harvesting you can harvest on remote NIS nodes!',
+						title: 'Colheita Delegada',
+						description: 'Com a colheita delegada, você pode colheitar de servidores NIS remotos!',
 
 					},
 					{
-						title: 'Multisignature transactions',
-						description: 'Secure your XEM and assets via in-blockchain multi-signature transactions.',
+						title: 'Transações de multi assinatura',
+						description: 'Assegure seu Xem e seus investimentos via transações de multi assinaturas do blockchain.',
 
 					},
 					{
-						title: 'Native language support',
-						description: 'NEM user interface supports multiple languages. See "Settings".'
+						title: 'Suporte a sua Linguagem nativa',
+						description: 'A interface do usuário do NEM suporta multiplas linguagens. Veja em "Opções".'
 					},
 					{
-						title: 'Got any questions or feedback ?',
-						description: '<a href="http://forum.ournem.com">forum.ournem.com</a> | #ournem on freenode.org | Telegram',
+						title: 'Voce tem alguma pergunta ou quer realizar um feedback ?',
+						description: '<a href="http://forum.ournem.com">forum.ournem.com</a> | #ournem no freenode.org | Telegram',
 
 					}
 				]
@@ -536,7 +536,7 @@ define({
 						title: 'O que é &#42;NIS?',
 						paragraphs: [
 							'Este componente é responsável por manter a nuvem <strong>NEM</strong> viva.',
-							'The more <strong>NIS</strong> there are in the network, the better the security.,',
+							'Quanto mais servidores<strong>NIS</strong>, melhor será a segurança da rede.',
 							'<strong>NIS</strong> é o ponto de acesso a nuvem <strong>NEM</strong> de servidores.'
 						],
 						legend: '<strong>&#42;NIS</strong> significa <strong>NEM Infraestrutura de Servidores</strong>'
@@ -567,8 +567,8 @@ define({
 				createRealAccountData: 'Criar dados da conta real',
 				verifyRealAccountData: 'Verificar dados da conta Verdadeira',
 				showPrivateKey: 'Mostrar a chave PRIVADA da conta',
-				showRemotePrivateKey: 'Show Remote Account\'s PRIVATE key',
-				viewDetails: 'View Account Details',
+				showRemotePrivateKey: 'Mostrar a chave PRIVADA da conta Remota',
+				viewDetails: 'Ver detalhes da conta',
 				addAccount: 'Adicionar uma conta existente',
 				changeAccountLabel: 'Renomear carteira',
 				setPrimary: 'Definir como conta primária',
@@ -607,14 +607,14 @@ define({
 				stop: 'Parar colheita local',
 				description: 'Importância para a nuvem de peers',
 				remoteHarvest: {
-					activate: 'Activate delegated harvesting',
-					activating: 'Activating delegated harvesting...',
-					active: 'Delegated harvesting is active',
-					deactivate: 'Deactivate delegated harvesting',
-					deactivating: 'Deactivating delegated harvesting...',
-					startRemoteHarvesting: 'Start delegated harvesting',
+					activate: 'Ativar colheita delegada',
+					activating: 'Ativando a colheita delegada...',
+					active: 'A colheita delegada está ativa',
+					deactivate: 'Desativar a colheita delegada',
+					deactivating: 'Desativando a colheita delegada...',
+					startRemoteHarvesting: 'Iniciar a colheita delegada',
 					remotelyHarvesting: 'Colheitando remotamente!',
-					stopRemoteHarvesting: 'Stop delegated harvesting'
+					stopRemoteHarvesting: 'Parar a colheita delegada'
 				}
 			},
 			transactions: {
@@ -710,8 +710,8 @@ define({
 				harvesting: 'Colheitando',
 				stop: 'Parar de colheitar',
 				remoteHarvest: {
-					startRemoteHarvesting: 'Start delegated harvesting',
-					stopRemoteHarvesting: 'Stop delegated harvesting'
+					startRemoteHarvesting: 'Iniciar a colheita delegada',
+					stopRemoteHarvesting: 'Parar a colheita delegada'
 				}
 			}
 		},

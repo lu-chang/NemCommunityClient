@@ -1,9 +1,9 @@
-package org.nem.deploy;
+package org.nem.specific.deploy;
 
 import org.hamcrest.core.*;
 import org.junit.*;
-import org.nem.core.deploy.CommonConfiguration;
-import org.nem.deploy.appconfig.NccAppConfig;
+import org.nem.deploy.CommonConfiguration;
+import org.nem.specific.deploy.appconfig.NccAppConfig;
 import org.nem.ncc.web.servlet.*;
 
 public class NccConfigurationPolicyTest {

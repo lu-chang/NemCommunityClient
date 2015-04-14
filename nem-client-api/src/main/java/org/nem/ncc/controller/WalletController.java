@@ -2,7 +2,7 @@ package org.nem.ncc.controller;
 
 import org.nem.core.serialization.*;
 import org.nem.core.utils.ExceptionUtils;
-import org.nem.deploy.OctetStream;
+import org.nem.specific.deploy.OctetStream;
 import org.nem.ncc.addressbook.*;
 import org.nem.ncc.controller.requests.WalletNamePasswordBag;
 import org.nem.ncc.controller.viewmodels.WalletViewModel;

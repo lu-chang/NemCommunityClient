@@ -1,4 +1,4 @@
-package org.nem.deploy;
+package org.nem.specific.deploy;
 
 import org.apache.commons.io.IOUtils;
 import org.nem.core.utils.ExceptionUtils;

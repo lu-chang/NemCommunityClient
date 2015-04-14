@@ -1,6 +1,6 @@
 define({
 	id: 'fi',
-	name: 'Suomi',
+	name: 'suomi',
 	texts: {
 		preferences: {
 			thousandSeparator: ' ',
@@ -55,16 +55,16 @@ define({
 			708: 'Siirron aikamerkintä on liian kaukana tulevaisuudessa.',
 			709: 'Tili on tuntematon. Tilin täytyy olla tehnyt ainakin yksi siirto (joko lähettäjänä tai vastaanottajana), jotta se voidaan tunnistaa verkossa.',
 			710: 'Siirtoa ei hyväksytty, koska siirtojen välimuisti on täynnä. Korkeampi palkkio parantaaa mahdollisuutta siirron hyväksymiseen.',
-			730: 'Merkityksen siirto (delegoitu louhinta) on ristiriidassa olemassa olevan siirron kanssa.',
-			731: 'Delegoidulla louhimistilillä ei ole saldoa, joten sitä ei voida käyttää.',
+			730: 'Merkityksen siirto (valtuutettu louhinta) on ristiriidassa olemassa olevan siirron kanssa.',
+			731: 'Valtuutetulla louhintatilillä ei ole saldoa, joten sitä ei voida käyttää.',
 			732: 'Siirtoa ei hyväksytty, viivästynyt siirto on vielä käynnissä.',
-			733: 'Delegoitu louhiminen on jo käytössä.',
-			734: 'Ei voida deaktivoida, koska delegoitu louhinta ei ole käytössä.',
+			733: 'Valtuutettu louhinta on jo käytössä.',
+			734: 'Ei voida deaktivoida, koska valtuutettu louhinta ei ole käytössä.',
 			740: 'Siirtoa ei sallita multisig-tilille.',
 			741: 'Multisig allekirjoitettu siirto hylättiin. Nykyinen tili ei ole multisig-tilin allekirjoittaja.',
 			742: 'Multisig allekirjoitettu siirto hylättiin. Allekirjoittajakumppania ei tunneta NEM verkossa.',
 			743: 'Multisig-tilin muutos hylätty. Yksi lisätty tili on jo allekirjoittaja.',
-			901: 'Offline moden käynnistyksessä tapahtui virhe.',
+			901: 'Offline-moden käynnistyksessä tapahtui virhe.',
 			1000: 'Private key ja public key eivät vastaa toisiaan.',
 			1001: 'Public key ja osoite eivät vastaa toisiaan.',
 			1002: 'Osoite ei kuulu varsinaiseen verkkoon.'
@@ -74,17 +74,17 @@ define({
 			unknown: 'Tuntematon tila',
 			unknownMessage: 'NCC ei saanut vastausta oikeassa ajassa. Siirto saattoi kuitenkin onnistua.<br /><br />Tarkista siirrot ennen kuin yrität siirtoa uudelleen.',
 			appStatus: {
-				nccUnknown: 'NCC tila tuntematon.',
+				nccUnknown: 'NCC:n tila on tuntematon.',
 				nccUnavailable: 'NCC ei ole käytettävissä.',
 				nccStarting: 'NCC on käynnistymässä...',
-				nisUnknown: 'NIS tila on tuntematon',
+				nisUnknown: 'NIS:n tila on tuntematon',
 				nisUnavailable: 'NIS ei ole käytettävissä',
 				nisStarting: 'NIS on käynnistymässä...',
-				notBooted: 'NIS on käynnistettävä uudelleen. Avaa lompakkosi ja käynnistä local node uudelleen popup-valikosta, jotta voit muuttaa auto-boot asetuksia. ',
+				notBooted: 'NIS on käynnistettävä uudelleen. Avaa lompakkosi ja käynnistä local node uudelleen popup-valikosta, jotta voit muuttaa auto-boot asetuksia.',
 				loading: 'Ladataan lohkoja tietokannasta, lohkossa:',
 				booting: 'NIS on käynnistymässä uudelleen...',
 				nisInfoNotAvailable: 'NIS info ei ole vielä käytettävissä. Yritetään hakea NIS infoa...',
-				synchronizing: 'NIS synkronointi on käynnissä. Lohko {{1}}, {{2}} takana.',
+				synchronizing: 'NIS:n synkronointi on käynnissä. Lohko {{1}}, {{2}} takana.',
 				daysBehind: {
 					0: 'Vähemmän, kuin yksi päivä.',
 					1: 'Yksi päivä',
@@ -136,12 +136,12 @@ define({
 				no: 'Ei'
 			},
 			initialTy: {
-				title: "WELCOME to NEM",
+				title: "TERVETULOA NEM:iin",
 				content: "<c>Sbhaqrq ba gur fgebat cevapvcyrf bs rtnyvgnevna naq rdhnyvgl va qvfgevohgvba, gur Arj Rpbabzl Zbirzrag, ARZ, unf abj svanyyl pbzr gb sehvgvba nsgre pybfr gb 14 zbaguf bs vagrafvir qrirybczrag. Va nqqvgvba gb 5 pber qrirybcref naq 7 pber znexrgref, jr unir n ubfg bs pbzzhavgl zrzoref jub unir urycrq hf va bar jnl be nabgure, jvgubhg jubz, guvf jbhyq arire unir pbzr gbtrgure fb jryy nf orvat bar bs gur srj pelcgb vavgvngvirf jvgu fhpu n ovt grnz. Fcrpvny zragvba vf tvira gb gur sbyybjvat:</c><ue/><c><o>Grpuavpny naq Znexrgvat vachg:</o><oe/> Nzl, naqzr, nirentrwbr, OenvaBsZnffrf, qmnezhfpu, RSSI, Rynan82, rexxv, servtrvfg, unccl4209, vafgnpnfu, wnqrqwnpx, XrivaYv, XxbgArz, xbbernz, Xelfgb, Ybv Gena, ylxn, zvkznfgre, ZeCbegZna, arzovg, akxbvy, bjba, Cnagure03, curebzbar, erabgrat.yv, evtry, FnhyTenl, funjayrnel, fbyvk, fgbar, guvyba, haibvqcy, munaxnvjra, mbngn87, 守望者, 攻陳τч酨鈊, 清风, 福泽天下</c><ue/><c><o>APP Hfre Vagresnpr genafyngvba:</o><oe/>ncrk, obrfgva, Punbf514, QVZXNMQF, svypurs, servtrvfg, Thyvire, vnzvavgabj06, Wnarn4cqn, xhccnynugv, Ypuneyrf, znegvfznegvf, zrff-yrybhpu, Cnenan, evtry, Funja, Fcvqre, 楊 輝彦</c><c><oe/>Va nqqvgvba gb gur nobir 67 grnz zrzoref, jr nyfb unir bgure zrzoref jub  pbagevohgrq, jurgure va grpuavpny, znexrgvat be fgerff grfgvat gur flfgrz qhevat gur nycun naq orgn cunfr. Jr jbhyq yvxr gb nqqvgvbanyyl gunax nyy gubfr vaqvivqhnyf abg yvfgrq urer naq gur terngre ARZ pbzzhavgl orpnhfr jvgubhg gurz, jr jbhyq unir abg rire pbzr fb sne.</c><ue/><c>Naq zbfg vzcbegnagyl<oe/><o>Gunax LBH!</o><oe/><oe/>Arj Rpbabzl fgnegf jvgu LBH!</c>"
 			},
 			initialBackup: {
-				title: "Welcome to NEM",
-				content: "You can create wallet backup from menu in upper right corner."
+				title: "Tervetuloa NEM:iin",
+				content: "Voit tehdä lompakostasi varmuuskopion oikean ylänurkan valikossa."
 			},
 			settings: {
 				title: 'Asetukset',
@@ -160,7 +160,7 @@ define({
 				},
 				autoBoot: {
 					tabTitle: 'Auto-boot',
-					name: 'Node nimi',
+					name: 'Noden nimi',
 					account: 'Tili',
 					primaryAccount: 'Ensisijainen tili',
 					auto: 'Automaattinen uudelleenkäynnistys, kun lompakko on avattu'
@@ -229,7 +229,7 @@ define({
 				encrypt: 'Salaa viesti',
 				fee: 'Palkkio',
 				multisigFee: 'Multisig-palkkio',
-				feeValidation: 'Palkkio ei voi minimipalkkiota pienempi.',
+				feeValidation: 'Palkkio ei voi olla minimipalkkiota pienempi.',
 				useMinimumFee: 'Käytä minimipalkkiota',
 				password: 'Salasana',
 				passwordValidation: 'Salasanakenttä ei voi olla tyhjä',
@@ -417,16 +417,16 @@ define({
 				message: 'Haluatko varmasti sulkea NEM Community Client -sovelluksen?'
 			},
 			activateRemote: {
-				title: 'Aktivoi delegoitu louhinta',
+				title: 'Aktivoi valtuutettu louhinta',
 				wallet: 'Lompakko',
 				account: 'Tili',
 				password: 'Lompakon salasana',
 				activate: 'Aktivoi',
 				warning: 'Varoitus',
-				warningText: 'Aktivointi kestää 6 tuntia (360 lohkoa). Aktivointi EI aloita louhimista automaattisesti.'
+				warningText: 'Aktivointi kestää 6 tuntia (360 lohkoa). Aktivointi EI aloita louhintaa automaattisesti.'
 			},
 			deactivateRemote: {
-				title: 'Deaktivoi delegoitu louhinta',
+				title: 'Deaktivoi valtuutettu louhinta',
 				wallet: 'Lompakko',
 				account: 'Tili',
 				password: 'Lompakon salasana',
@@ -435,14 +435,14 @@ define({
 				warningText: 'Deaktivointi kestää 6 tuntia (360 lohkoa).'
 			},
 			startRemote: {
-				title: 'Aloita delegoitu louhinta',
+				title: 'Käynnistä valtuutettu louhinta',
 				wallet: 'Lompakko',
 				account: 'Tili',
 				password: 'Lompakon salasana',
 				start: 'Käynnistä'
 			},
 			stopRemote: {
-				title: 'Lopeta delegoitu louhinta',
+				title: 'Lopeta valtuutettu louhinta',
 				wallet: 'Lompakko',
 				account: 'Tili',
 				password: 'Lompakon salasana',
@@ -493,26 +493,26 @@ define({
 						description: '<em>Lompakon turvallisuus</em> on erittäin tärkeää varkauksien välttämiseksi.'
 					},
 					{
-						title: 'Remote NEM Infrastructure Server',
-						description: 'By using a remote NIS you don\'t have to synchronise the blockchain at start-up.',
+						title: 'Etä-NIS-palvelin',
+						description: 'Käyttämällä etä-NIS-palvelinta sinun ei tarvitse synkronoida lohkoketjua käynnistyksen yhteydessä.',
 
 					},
 					{
-						title: 'Delegated harvesting',
-						description: 'With delegated harvesting you can harvest on remote NIS nodes!',
+						title: 'Valtuutettu louhinta',
+						description: 'Valtuutetulla louhinnalla voit louhia etä-NIS-palvelinten kautta!',
 
 					},
 					{
-						title: 'Multisignature transactions',
-						description: 'Secure your XEM and assets via in-blockchain multi-signature transactions.',
+						title: 'Usean allekirjoituksen siirrot',
+						description: 'Turvaa XEM-valuuttasi ja muu omaisuutesi usean allekirjoituksen siirroilla lohkoketjussa.',
 
 					},
 					{
-						title: 'Native language support',
-						description: 'NEM user interface supports multiple languages. See "Settings".'
+						title: 'Kielten tuki',
+						description: 'NEM:n käyttöliittymä tukee monia eri kieliä. Katso "Asetukset".'
 					},
 					{
-						title: 'Got any questions or feedback ?',
+						title: 'Onko sinulla lisää kysyttävää tai muuta palautetta?',
 						description: '<a href="http://forum.ournem.com">forum.ournem.com</a> | #ournem on freenode.org | Telegram',
 
 					}
@@ -593,7 +593,7 @@ define({
 				'Asetukset',
 				'Sulje ohjelma'
 			],
-			bootNodeWarning: 'Local node täytyy käynnistää uudelleen, että saat kaikki NCC:n ominaisuudet käyttöön.'
+			bootNodeWarning: 'Local node täytyy käynnistää uudelleen, jotta saat kaikki NCC:n ominaisuudet käyttöösi.'
 		},
 		dashboard: {
 			assets: {
@@ -607,14 +607,14 @@ define({
 				stop: 'Lopeta paikallinen louhinta',
 				description: 'Tilin merkitys NEM-cloud -palvelussa',
 				remoteHarvest: {
-					activate: 'Aktivoi delegoitu louhinta',
-					activating: 'Aktivoidaan delegoitua louhintaa...',
-					active: 'Delegoitu louhinta on aktiivinen',
-					deactivate: 'Deaktivoi delegoitu louhinta',
-					deactivating: 'Deaktivoidaan delegoitua louhintaa...',
-					startRemoteHarvesting: 'Aloita delegoitu louhinta',
+					activate: 'Aktivoi valtuutettu louhinta',
+					activating: 'Aktivoidaan valtuutettua louhintaa...',
+					active: 'Valtuutettu louhinta on aktiivinen',
+					deactivate: 'Deaktivoi valtuutettu louhinta',
+					deactivating: 'Deaktivoidaan valtuutettua louhintaa...',
+					startRemoteHarvesting: 'Aloita valtuutettu louhinta',
 					remotelyHarvesting: 'Etälouhinta',
-					stopRemoteHarvesting: 'Lopeta delegoitu louhiminen'
+					stopRemoteHarvesting: 'Lopeta valtuutettu louhinta'
 				}
 			},
 			transactions: {
@@ -710,8 +710,8 @@ define({
 				harvesting: 'Louhinta ',
 				stop: 'Lopeta paikallinen louhinta ',
 				remoteHarvest: {
-					startRemoteHarvesting: 'Aloita delegoitu louhinta',
-					stopRemoteHarvesting: 'Lopeta delegoitu louhinta'
+					startRemoteHarvesting: 'Aloita valtuutettu louhinta',
+					stopRemoteHarvesting: 'Lopeta valtuutettu louhinta'
 				}
 			}
 		},

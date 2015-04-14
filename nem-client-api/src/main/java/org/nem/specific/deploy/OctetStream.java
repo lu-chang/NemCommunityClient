@@ -1,4 +1,4 @@
-package org.nem.deploy;
+package org.nem.specific.deploy;
 
 /**
  * Represents an octet stream.

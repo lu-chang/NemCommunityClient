@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.nem.monitor</groupId>
     <artifactId>nem-monitor</artifactId>
-    <version>0.6.25-BETA</version>
+    <version>0.6.27-BETA</version>
     <name>NEM Monitor</name>
 
     <organization>
@@ -26,25 +26,21 @@
         <nem-certificate-password>nem-start-201404</nem-certificate-password>
         <nem-code-base>http://bob.nem.ninja/webstart</nem-code-base>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <nemcore.version>0.6.25-BETA</nemcore.version>
+        <nemcore.version>0.6.27-BETA</nemcore.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.nem.deploy</groupId>
+            <artifactId>nem-deploy</artifactId>
+            <version>${nemcore.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>org.nem.core</groupId>
             <artifactId>nem-core</artifactId>
             <version>${nemcore.version}</version>
         </dependency>
-
-        <!--
-        <dependency>
-            <groupId>javax.jnlp</groupId>
-            <artifactId>jnlp-api</artifactId>
-            <version>1.8</version>
-            <scope>system</scope>
-            <systemPath>${java.home}/lib/javaws.jar</systemPath>
-        </dependency>
-        -->
 
         <dependency>
             <groupId>net.minidev</groupId>
@@ -59,11 +55,6 @@
         </dependency>
 
         <!-- commons -->
-        <dependency>
-            <groupId>commons-cli</groupId>
-            <artifactId>commons-cli</artifactId>
-            <version>1.2</version>
-        </dependency>
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
@@ -91,21 +82,6 @@
             <artifactId>httpasyncclient</artifactId>
             <version>4.0.2</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>4.3.6</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpcore</artifactId>
-            <version>4.3.3</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpcore-nio</artifactId>
-            <version>4.3.3</version>
-        </dependency>
 
         <!-- test related -->
         <dependency>
@@ -127,18 +103,6 @@
             <plugins>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>webstart-maven-plugin</artifactId>
-                    <version>1.0-beta-6</version>
-                    <dependencies>
-                        <dependency>
-                            <groupId>org.codehaus.mojo</groupId>
-                            <artifactId>keytool-api-1.7</artifactId>
-                            <version>1.4</version>
-                        </dependency>
-                    </dependencies>
-                </plugin>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
                     <artifactId>sonar-maven-plugin</artifactId>
                     <version>2.2</version>
                 </plugin>
@@ -146,16 +110,6 @@
                     <groupId>org.jacoco</groupId>
                     <artifactId>jacoco-maven-plugin</artifactId>
                     <version>0.7.1.201405082137</version>
-                </plugin>
-                <plugin>
-                    <groupId>com.googlecode.velocity-maven-plugin</groupId>
-                    <artifactId>velocity-maven-plugin</artifactId>
-                    <version>1.0.0</version>
-                </plugin>
-                <plugin>
-                    <groupId>com.google.code.maven-replacer-plugin</groupId>
-                    <artifactId>replacer</artifactId>
-                    <version>1.5.3</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -165,6 +119,27 @@
             </resource>
         </resources>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.8</version>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/monitorlibs</outputDirectory>
+                            <overWriteReleases>false</overWriteReleases>
+                            <overWriteSnapshots>false</overWriteSnapshots>
+                            <overWriteIfNewer>true</overWriteIfNewer>
+                            <includeScope>runtime</includeScope>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -197,86 +172,6 @@
                     <compilerArgument>-Xlint:unchecked</compilerArgument>
                 </configuration>
             </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.9.1</version>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>webstart-maven-plugin</artifactId>
-                <!-- ************************************************** -->
-                <!-- Generate WebStart JNLP file with signed JARs -->
-                <!-- ************************************************** -->
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>jnlp</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <excludeTransitive>false</excludeTransitive>
-                    <jnlp>
-                        <inputTemplate>nem-monitor.vm</inputTemplate>
-                        <outputFile>nem-monitor.jnlp</outputFile>
-                        <mainClass>org.nem.monitor.NemMonitor</mainClass>
-                        <allPermissions/>
-                    </jnlp>
-                    <libPath>monitorjars</libPath>
-                    <resourcesDirectory>${project.basedir}/src/main/site</resourcesDirectory>
-                    <workDirectory>${project.basedir}/site</workDirectory>
-                    <dependencies>
-                        <excludes/>
-                    </dependencies>
-                    <updateManifestEntries>
-                        <Permissions>all-permissions</Permissions>
-                        <Codebase>${nem-code-base}</Codebase>
-                        <Application-Name>${project.name}</Application-Name>
-                        <Trusted-Only>true</Trusted-Only>
-                        <Implementation-Build>${project.version}</Implementation-Build>
-                        <Implementation-Vendor>NEM - New Economy Movement</Implementation-Vendor>
-                    </updateManifestEntries>
-
-                    <unsignAlreadySignedJars>true</unsignAlreadySignedJars>
-                    <sign>
-                        <keystore>${nem-certificate-store}</keystore>
-                        <alias>nem-cert</alias>
-                        <storepass>${nem-certificate-password}</storepass>
-                        <keypass>${nem-certificate-password}</keypass>
-                        <verify>true</verify>
-                    </sign>
-                    <gzip>true</gzip>
-                    <outputJarVersions>true</outputJarVersions>
-                    <verbose>true</verbose>
-                </configuration>
-            </plugin>
-            <plugin>
-                <!-- ************************************************** -->
-                <!-- Adjust JNLP progress entry -->
-                <!-- ************************************************** -->
-                <groupId>com.google.code.maven-replacer-plugin</groupId>
-                <artifactId>replacer</artifactId>
-                <executions>
-                    <execution>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>replace</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <file>site/nem-monitor.jnlp</file>
-                    <replacements>
-                        <replacement>
-                            <token>nem-client-download.jar" version="${project.version}"</token>
-                            <value>nem-client-download.jar" version="${project.version}" download="progress"</value>
-                        </replacement>
-                    </replacements>
-                </configuration>
-            </plugin>
-
         </plugins>
     </build>
     <url>${nem-code-base}</url>

@@ -1,4 +1,4 @@
-package org.nem.deploy;
+package org.nem.specific.deploy;
 
 import org.hamcrest.core.IsEqual;
 import org.junit.*;

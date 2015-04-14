@@ -27,7 +27,7 @@ Running NCC Locally
 
 In order to run the client with full functionality, a NEM Infrastructure Server (NIS) instance should be running on the local machine.
 
-The NCC client can be started by running the org.nem.core.deploy.CommonStarter class.
+The NCC client can be started by running the org.nem.deploy.CommonStarter class.
 
 For debugging purposes, it is recommended to turn off WebStart functionality by setting nem.isWebStart to false in the config.properties file.
 

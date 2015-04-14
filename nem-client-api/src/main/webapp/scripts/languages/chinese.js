@@ -26,7 +26,7 @@ define({
 			124: '您提供的地址簿密码有误。',
 			125: '未输入地址簿密码。',
 			127: '地址簿中不含此地址。',
-			128: 'The address provided is not valid.',
+			128: '您提供的地址不正确。',
 			129: '同名地址簿已存在，请选择一个新的地址簿名。',
 			130: '地址簿中已包含此地址。',
 			131: '地址簿名与目录重名。',
@@ -47,7 +47,7 @@ define({
 			700: '所提供的帐户不满足收获的基本要求。主要原因可能是金额不足，账户中至少有1000 XEM才能开始收获。',
 			701: '所提供的截止日期过早。必须输入1天以内的日期作为截止日期。',
 			702: '所提供的截止日期过晚。必须输入1天以内的日期作为截止日期。',
-			703: 'Your account does not have the right balance to make this transaction.',
+			703: '您的账户余额不足，无法发起该交互。',
 			704: '提供消息的文本太大，无法通过XEM发送。请减少消息的长度。',
 			705: '数据库或交易清单中已经存在此交易的hash值。',
 			706: '无法验证本次交易的签名。',
@@ -55,11 +55,11 @@ define({
 			708: '此交易ID的时间戳不合法，时间过晚。',
 			709: '该帐户未知。一个帐户需要至少完成一个交易（作为发件人或收件人）才能被网络公知。',
 			710: '交互缓存耗尽，交互被拒绝。网络繁忙时高手续费优先处理。 ',
-			730: 'Importance transfer transaction (delegated harvesting) conflicts with existing transaction.',
-			731: 'Delegated harvesting account has non zero balance and cannot be used.',
+			730: '重要性传输交互 (委托收获) 与现有交互冲突。',
+			731: '申请委托收获的账户具有非0余额，无法开启。',
 			732: '重要性传输被拒绝，已有等待中重要性传输操作。 ',
-			733: 'Delegated harvesting is already active.',
-			734: 'Delegated harvesting is NOT active. Cannot deactivate.',
+			733: '委托收获已激活。',
+			734: '委托收获未被激活，无法取消激活。',
 			740: '多重签名账号不可发起交互。',
 			741: '多重签名签名交互被拒绝。当前账户不是此多重签名交互的合法共同签署人账号。',
 			742: '多重签名签名交互被拒绝。相关多重签名交互在NEM网络中未公知。',
@@ -72,7 +72,7 @@ define({
 		common: {
 			success: '成功',
 			unknown: '未知状态',
-			unknownMessage: 'Ncc did not get response in a timely manner. Transaction might have been sent to the network.<br /><br />Please, check transactions before attempting to make it again.',
+			unknownMessage: 'NCC未按时获得回复。交互可能已经发送到网络中。 <br /><br />请在重新创建交互前检查确认。',
 			appStatus: {
 				nccUnknown: 'NCC 状态未知',
 				nccUnavailable: 'NCC 不可用',
@@ -128,20 +128,20 @@ define({
 				caption: '错误 {{1}}'
 			},
 			yikes: {
-				title: 'Yikes!',
-				caption: 'info code {{1}}'
+				title: '异常!',
+				caption: '信息码 {{1}}'
 			},
 			confirmDefault: {
 				yes: '是',
 				no: '否'
 			},
 			initialTy: {
-				title: "WELCOME to NEM",
+				title: "欢迎来到NEM",
 				content: "<c>Sbhaqrq ba gur fgebat cevapvcyrf bs rtnyvgnevna naq rdhnyvgl va qvfgevohgvba, gur Arj Rpbabzl Zbirzrag, ARZ, unf abj svanyyl pbzr gb sehvgvba nsgre pybfr gb 14 zbaguf bs vagrafvir qrirybczrag. Va nqqvgvba gb 5 pber qrirybcref naq 7 pber znexrgref, jr unir n ubfg bs pbzzhavgl zrzoref jub unir urycrq hf va bar jnl be nabgure, jvgubhg jubz, guvf jbhyq arire unir pbzr gbtrgure fb jryy nf orvat bar bs gur srj pelcgb vavgvngvirf jvgu fhpu n ovt grnz. Fcrpvny zragvba vf tvira gb gur sbyybjvat:</c><ue/><c><o>Grpuavpny naq Znexrgvat vachg:</o><oe/> Nzl, naqzr, nirentrwbr, OenvaBsZnffrf, qmnezhfpu, RSSI, Rynan82, rexxv, servtrvfg, unccl4209, vafgnpnfu, wnqrqwnpx, XrivaYv, XxbgArz, xbbernz, Xelfgb, Ybv Gena, ylxn, zvkznfgre, ZeCbegZna, arzovg, akxbvy, bjba, Cnagure03, curebzbar, erabgrat.yv, evtry, FnhyTenl, funjayrnel, fbyvk, fgbar, guvyba, haibvqcy, munaxnvjra, mbngn87, 守望者, 攻陳τч酨鈊, 清风, 福泽天下</c><ue/><c><o>APP Hfre Vagresnpr genafyngvba:</o><oe/>ncrk, obrfgva, Punbf514, QVZXNMQF, svypurs, servtrvfg, Thyvire, vnzvavgabj06, Wnarn4cqn, xhccnynugv, Ypuneyrf, znegvfznegvf, zrff-yrybhpu, Cnenan, evtry, Funja, Fcvqre, 楊 輝彦</c><c><oe/>Va nqqvgvba gb gur nobir 67 grnz zrzoref, jr nyfb unir bgure zrzoref jub  pbagevohgrq, jurgure va grpuavpny, znexrgvat be fgerff grfgvat gur flfgrz qhevat gur nycun naq orgn cunfr. Jr jbhyq yvxr gb nqqvgvbanyyl gunax nyy gubfr vaqvivqhnyf abg yvfgrq urer naq gur terngre ARZ pbzzhavgl orpnhfr jvgubhg gurz, jr jbhyq unir abg rire pbzr fb sne.</c><ue/><c>Naq zbfg vzcbegnagyl<oe/><o>Gunax LBH!</o><oe/><oe/>Arj Rpbabzl fgnegf jvgu LBH!</c>"
 			},
 			initialBackup: {
-				title: "Welcome to NEM",
-				content: "You can create wallet backup from menu in upper right corner."
+				title: "欢迎来到NEM",
+				content: "您可在点击右上方的菜单创建钱包备份。"
 			},
 			settings: {
 				title: '设置',
@@ -185,7 +185,7 @@ define({
 					total: '总额',
 
 				},
-				warning: 'Multisig account is on the list of cosignatories. This will result in locking down the account cutting off access to the fund. Most likely you <b>DO NOT</b> want to do that.'
+				warning: '多重签名账户本身不可以作为共同签署人。这样做会把账户彻底锁死无法发出交互。估计您<b>不会</b>想要这么做。'
 			},
 			signMultisig: {
 				title: '签署多重签名交互',
@@ -324,9 +324,9 @@ define({
 				node: '节点名称',
 				boot: '启用',
 				booting: '正在启用...',
-				warning: 'Boot node warning',
-				warningText: 'You\'re trying to boot a node <u>{{2}}</u><br/><br/>Booting remote node is currently impossible from within NCC.',
-				warningStatement: 'You have auto-boot set to true and you\'re using remote node {{3}}.<br/><br/>Booting remote node is currently impossible from within NCC',
+				warning: '启用节点警告',
+				warningText: '您正在试图启用一个远程节点<u>{{2}}</u><br/><br/>从NCC启用远程节点当前无法实现。',
+				warningStatement: '您已设置自动启用，且正在使用远程节点：{{3}}。<br/><br/>从NCC启用远程节点当前无法实现。',
 				warningQuestion: '您确定要使用账户{{1}} ({{2}}） XEM 的私钥启用节点<u>{{3}}</u>?<br><br>这会对 <u>{{3}}</u>这台NIS暴露您的 <span class="sublabelWarning">私钥</span>。'
 			},
 			closeWallet: {
@@ -349,8 +349,8 @@ define({
 				show: '显示私钥'
 			},
 			showRemotePrivateKey: {
-				title: 'Show Remote Account\'s PRIVATE Key',
-				message: 'This will display remote account\'s private key on the screen, as a text. In case of any malware present in the system, this might be hazardous operation. Are you sure you want to do that?',
+				title: '显示远程账号的私钥',
+				message: '该操作会把远程账户的私钥输出在屏幕中，如果执行中有恶意软件存在，该操作有暴露私钥的风险，您确认要这样做吗？',
 
 			},
 			addAccount: {
@@ -422,11 +422,11 @@ define({
 				account: '帐户',
 				password: '钱包密码',
 				activate: '激活',
-				warning: 'Warning',
+				warning: '警告',
 				warningText: '激活会花费6小时的时间 (360块)。激活操作并不会开启收获。'
 			},
 			deactivateRemote: {
-				title: 'Deactivate Delegated Harvesting',
+				title: '取消激活委托收获',
 				wallet: '钱包',
 				account: '帐户',
 				password: '钱包密码',
@@ -435,21 +435,21 @@ define({
 				warningText: '解除激活会花费6小时的时间 (360块)。'
 			},
 			startRemote: {
-				title: 'Start Delegated Harvesting',
+				title: '开启委托收获',
 				wallet: '钱包',
 				account: '帐户',
 				password: '钱包密码',
 				start: '开始'
 			},
 			stopRemote: {
-				title: 'Stop Delegated Harvesting',
+				title: '停止委托收获',
 				wallet: '钱包',
 				account: '帐户',
 				password: '钱包密码',
 				stop: '停止'
 			},
 			logoutWarning: {
-				leavePage: "You're leaving your wallet. Remember that if you leave your wallet this way, some others may still be able to access your wallet from this computer. To prevent that from happening, please log out using the \"Close wallet\" menu item in the top-right dropdown menu before you close the browser tab or navigate away."
+				leavePage: "您正在退出钱包。请注意能登陆本机的用户仍然可以访问该钱包，为确保无人可登录钱包，请在关闭浏览器之前点击右上方的下拉菜单执行\"关闭钱包\"菜单项。"
 			},
 			addContact: {
 				title: '新增联系人',
@@ -493,26 +493,26 @@ define({
 						description: '为避免XEM被盗，加密是<em>安全</em>的有效保证 &amp;。'
 					},
 					{
-						title: 'Remote NEM Infrastructure Server',
-						description: 'By using a remote NIS you don\'t have to synchronise the blockchain at start-up.',
+						title: '远程NEM基础设施服务',
+						description: '使用一个远程NIS服务，您可以避免从零开始同步块链。',
 
 					},
 					{
-						title: 'Delegated harvesting',
-						description: 'With delegated harvesting you can harvest on remote NIS nodes!',
+						title: '委托收获',
+						description: '使用委托收获，您可以在远程节点上执行收获!',
 
 					},
 					{
-						title: 'Multisignature transactions',
-						description: 'Secure your XEM and assets via in-blockchain multi-signature transactions.',
+						title: '多重签名交互',
+						description: '使用块链内置的多重签名交互保障您的XEM和资产安全。',
 
 					},
 					{
-						title: 'Native language support',
-						description: 'NEM user interface supports multiple languages. See "Settings".'
+						title: '多语言支持',
+						description: 'NEM用户界面支持多语言，请查看“设置"。',
 					},
 					{
-						title: 'Got any questions or feedback ?',
+						title: '有任何问题或反馈？',
 						description: '<a href="http://forum.ournem.com">forum.ournem.com</a> | #ournem on freenode.org | Telegram',
 
 					}
@@ -536,7 +536,7 @@ define({
 						title: '什么是&#42;NIS?',
 						paragraphs: [
 							'负责保持<strong>NEM</strong>云存活.',
-							'The more <strong>NIS</strong> there are in the network, the better the security.,',
+							'网络中存在越多的<strong>NIS</strong>节点，NEM的安全性就越高,',
 							'<strong>NIS</strong> 是 <strong>NEM</strong> 云的接入点。'
 						],
 						legend: '<strong>&#42;NIS</strong> 是 <strong>NEM基础架构服务</strong>的缩写'
@@ -566,9 +566,9 @@ define({
 				createAccount: '创建新帐号',
 				createRealAccountData: '创建真实账户信息',
 				verifyRealAccountData: '确认真实账户信息',
-				showPrivateKey: 'Show Account\'s PRIVATE key',
-				showRemotePrivateKey: 'Show Remote Account\'s PRIVATE key',
-				viewDetails: 'View Account Details',
+				showPrivateKey: '显示账户私钥',
+				showRemotePrivateKey: '显示远程账户私钥',
+				viewDetails: '查看账户细节',
 				addAccount: '添加一个现有帐户',
 				changeAccountLabel: '更改帐户标识',
 				setPrimary: '设为主帐户',
@@ -577,8 +577,8 @@ define({
 				closeWallet: '关闭钱包',
 				closeProgram: '关闭程序',
 				copyClipboard: '复制地址至剪贴板',
-				copyDisabled: 'Copying an address requires flash',
-				convertMultisig: 'Convert other account to multisig'
+				copyDisabled: '复制地址需要flash支持',
+				convertMultisig: '转换其他账户到多重签名'
 			},
 			nav: [
 				'仪表板',
@@ -607,14 +607,14 @@ define({
 				stop: '停止收获',
 				description: 'NEM帐户重要性(PoI)',
 				remoteHarvest: {
-					activate: 'Activate delegated harvesting',
-					activating: 'Activating delegated harvesting...',
-					active: 'Delegated harvesting is active',
-					deactivate: 'Deactivate delegated harvesting',
-					deactivating: 'Deactivating delegated harvesting...',
-					startRemoteHarvesting: 'Start delegated harvesting',
+					activate: '激活委托收获',
+					activating: '正在激活委托收获...',
+					active: '委托收获已激活',
+					deactivate: '取消激活委托收获',
+					deactivating: '委托收获激活取消中...',
+					startRemoteHarvesting: '开启委托收获',
 					remotelyHarvesting: '远程收获',
-					stopRemoteHarvesting: 'Stop delegated harvesting'
+					stopRemoteHarvesting: '停止委托收获'
 				}
 			},
 			transactions: {
@@ -624,7 +624,7 @@ define({
 				balance: '目前余额',
 				loading: '加载中的余额',
 				accountCosignatories: '多重签名账户',
-				accountCosignatoriesView: 'view cosignatories',
+				accountCosignatoriesView: '查看共同签署人',
 				vestedBalance: '账户当前余额',
 				syncStatus: '(现区块{{1}}{{#2}} : 估计{{3}}落后{{/2}}天)',
 				notSynced: 'NIS可能尚未完成同步。',
@@ -710,8 +710,8 @@ define({
 				harvesting: '正在收获',
 				stop: '停止收获',
 				remoteHarvest: {
-					startRemoteHarvesting: 'Start delegated harvesting',
-					stopRemoteHarvesting: 'Stop delegated harvesting'
+					startRemoteHarvesting: '开启委托收获',
+					stopRemoteHarvesting: '停止委托收获'
 				}
 			}
 		},

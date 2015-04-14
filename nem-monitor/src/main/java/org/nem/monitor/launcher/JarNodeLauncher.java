@@ -45,7 +45,7 @@ public class JarNodeLauncher implements NodeLauncher {
 		arguments.addAll(Arrays.asList(
 				"-cp",
 				Arrays.asList(".", "./*", "../libs/*").stream().collect(Collectors.joining(File.pathSeparator)),
-				"org.nem.core.deploy.CommonStarter"));
+				"org.nem.deploy.CommonStarter"));
 		ExceptionUtils.propagateVoid(() -> {
 			this.launcher.launch(arguments, directory.toFile());
 		});
