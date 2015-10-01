@@ -414,4 +414,209 @@ changed texts.landing.carousel.items.[1].description
 	  to: 'By using a remote NIS you don\'t have to synchronise the blockchain at start-up.'
 	 was: '<em>Сигурността на портфейла </em> е най важна за предотвратяването на кражба на XEM монети и активи.'
 
+-----changed texts.modals.sendNem.successMessage
+	from: 'Transaction has been sent successfully! <br><span class="dimmed">tx hash {{1}}</span>'
+	  to: 'Your transaction has been sent successfully! <br><br>Transaction hash: {{1}}'
+	 was: 'Транзакцията беше изпратена успешно!'
+
+translated texts.common.multisigFee
+	    from: 'Multisig fee'
+	      to: 'Мултисигнатурна такса'
+	based on: texts.modals.sendNem.multisigFee
+
+translated texts.common.useMinimumFee
+	    from: 'Use minimum fee'
+	      to: 'Ползвай минималната такса'
+	based on: texts.modals.sendNem.useMinimumFee
+
+translated texts.common.feeValidation
+	    from: 'Fee must not be less than the minimum fee'
+	      to: 'Таксата не трябва да бъде по малка от минималната такса'
+	based on: texts.modals.sendNem.feeValidation
+
+translated texts.common.cancelButton
+	    from: 'Cancel'
+	      to: 'Отмени'
+	based on: texts.modals.sendNem.txConfirm.cancel
+
+translated texts.common.sendButton
+	    from: 'Send'
+	      to: 'Изпрати'
+	based on: texts.modals.sendNem.send
+
+translated texts.common.account
+	    from: 'Account'
+	      to: 'Акаунт'
+	based on: texts.modals.stopRemote.account
+
+translated texts.common.thisAccount
+	    from: 'This account'
+	      to: 'Този акаунт'
+	based on: texts.modals.sendNem.thisAccount
+
+translated texts.common.warning
+	    from: 'Warning'
+	      to: 'Предупреждение'
+	based on: texts.modals.deactivateDelegated.warning
+
+translated texts.transactionTypes.[5]
+	    from: 'MULTISIG TRANSACTION'
+	      to: 'МУЛТИСИГНАТУРНА ТРАНЗАКЦИЯ'
+	based on: texts.transactionTypes.[3]
+
+translated texts.transactionTypes.[6]
+	    from: 'MULTISIG TRANSACTION'
+	      to: 'МУЛТИСИГНАТУРНА ТРАНЗАКЦИЯ'
+	based on: texts.transactionTypes.[3]
+
+translated texts.dashboard.importance.remoteHarvest.title
+	    from: 'Delegated harvesting'
+	      to: 'Delegated harvesting'
+	based on: texts.landing.carousel.items.[2].title
+
+-----translated texts.transactionTypes.20
+	    from: 'TRANSFER TRANSACTION'
+	      to: 'ПРЕХВЪРЛИ ТРАНЗАКЦИЯТА'
+	based on: texts.transactionTypes.[0]
+
+translated texts.transactionTypes.21
+	    from: 'IMPORTANCE TRANSFER'
+	      to: 'ВАЖНО ПРЕХВЪРЛЯНЕ'
+	based on: texts.transactionTypes.[1]
+
+translated texts.transactionTypes.22
+	    from: 'MODIFICATION OF MULTISIG ACCOUNT'
+	      to: 'МОДИФИКАЦИЯ НА МУЛТИСИГНАТУРНИЯ АКАУНТ'
+	based on: texts.transactionTypes.[2]
+
+translated texts.transactionTypes.40
+	    from: 'MULTISIG SIGNATURE'
+	      to: 'MULTISIG SIGNATURE'
+	based on: texts.transactionTypes.[4]
+
+translated texts.transactionTypes.50
+	    from: 'MULTISIG TRANSACTION'
+	      to: 'МУЛТИСИГНАТУРНА ТРАНЗАКЦИЯ'
+	based on: texts.transactionTypes.[6]
+
+translated texts.transactionTypes.51
+	    from: 'MULTISIG TRANSACTION'
+	      to: 'МУЛТИСИГНАТУРНА ТРАНЗАКЦИЯ'
+	based on: texts.transactionTypes.[6]
+
+translated texts.transactionTypes.52
+	    from: 'MULTISIG TRANSACTION'
+	      to: 'МУЛТИСИГНАТУРНА ТРАНЗАКЦИЯ'
+	based on: texts.transactionTypes.[6]
+
+-----translated texts.faults.1203
+	    from: 'The provided deadline is in the past. The deadline must be provided within a 1 day period.'
+	      to: 'Предоставеният срок е в миналото. Срокът трябва да бъде предоставен в рамките на 1-дневен период.'
+	based on: texts.faults.701
+
+translated texts.faults.1204
+	    from: 'The provided deadline is too far in the future. The deadline must be within one day time period.'
+	      to: 'Предоставеният срок е твърде далеч в бъдещето. Срокът трябва да бъде в рамките на еднодневен период от време.'
+	based on: texts.faults.702
+
+translated texts.faults.1205
+	    from: 'Your account does not have the right balance to make this transaction.'
+	      to: 'Вашият акаунт няма правилния баланс за да се извърши тази транзакция. '
+	based on: texts.faults.703
+
+translated texts.faults.1206
+	    from: 'The provided message text is too large to be sent. Please try to reduce the length of the message.'
+	      to: 'Предоставеното съобщение е прекалено голямо за да бъде изпратено.Моля опитайте да съкратите дължината на съобщението ,което искате да изпратите.'
+	based on: texts.faults.704
+
+translated texts.faults.1207
+	    from: 'The transaction hash already exists in the database or in the list of unconfirmed transactions.'
+	      to: 'Транзакцията вече съществува в базата данни или в листа на непотвърдените транзакции.'
+	based on: texts.faults.705
+
+translated texts.faults.1208
+	    from: 'The signature of the transaction could not be verified.'
+	      to: 'Подписът на сделката не може да бъде проверен.'
+	based on: texts.faults.706
+
+translated texts.faults.1209
+	    from: 'The time stamp of the transaction is too far in the past.'
+	      to: 'Времевата отметка на транзакцията е много далеч в миналото.'
+	based on: texts.faults.707
+
+translated texts.faults.1210
+	    from: 'The time stamp of the transaction is too far in the future.'
+	      to: 'Времевата отметка на транзакцията е много далеч в бъдещето.'
+	based on: texts.faults.708
+
+translated texts.faults.1219
+	    from: 'The transaction was rejected because the transaction cache is too full. A higher fee improves the chance that the transaction gets accepted.'
+	      to: 'Транзакцията беше отхвърлена защото кеша на транзакциите е препълнен.По голямата такса увеличава шанса транзакцията да бъде приета.'
+	based on: texts.faults.710
+
+translated texts.faults.1262
+	    from: 'Delegated harvesting account has non zero balance and cannot be used.'
+	      to: 'Делегирания генериращ акаунт няма нулев баланс и не може да бъде използван.'
+	based on: texts.faults.731
+
+translated texts.faults.1263
+	    from: 'Importance transfer rejected. There is already pending importance transfer operation.'
+	      to: 'Важният трансфер е отхвърлен.Вече съществува чакаща важна трансфер операция.'
+	based on: texts.faults.732
+
+translated texts.faults.1264
+	    from: 'Delegated harvesting is already active.'
+	      to: 'Делегираното генериране е вече активно.'
+	based on: texts.faults.733
+
+translated texts.faults.1265
+	    from: 'Delegated harvesting is NOT active. Cannot deactivate.'
+	      to: 'Делегираното генериране НЕ е активно.Не може да се деактивира.'
+	based on: texts.faults.734
+
+translated texts.faults.1266
+	    from: 'Importance transfer transaction (delegated harvesting) conflicts with existing transaction.'
+	      to: 'Важната трансфер транзакция (делегирано генериране)е в конфликт със съществуващата транзакция.'
+	based on: texts.faults.730
+
+translated texts.faults.1271
+	    from: 'Multisig signature transaction rejected. Current account is not a cosignatory of a multisig account.'
+	      to: 'Мултисигнатурния подпис на транзакцията е отхвърлен.Този акаунт не е косигнатурен на мултисигнатурния акаунт.'
+	based on: texts.faults.741
+
+translated texts.faults.1273
+	    from: 'Multisig signature transaction rejected. Associated multisig transaction is not known to NEM network'
+	      to: 'Мултисигнатурния подпис на транзакцията е отхвърлен.Асоциираната мултисигнатурна транзакция е неизвестна за NEM мрежата.'
+	based on: texts.faults.742
+
+translated texts.faults.1274
+	    from: 'Transaction is not allowed for multisig account.'
+	      to: 'Транзакцията не е позволена за мултисигнатурен акаунт.'
+	based on: texts.faults.740
+
+translated texts.faults.1275
+	    from: 'Multisig account modification rejected. One of added accounts is already a cosignatory.'
+	      to: 'Модификацията на мултисигнатурния акаунт е отхвърлена.Един от добавените акаунти е вече косигнатурен.'
+	based on: texts.faults.743
+
+translated texts.faults.1321
+	    from: 'The account is unknown. An account needs to be part of at least one transaction (sender or recipient) to be known to the network.'
+	      to: 'Неизвестен акаунт. Акаунта трябва да е част от поне една транзакция (входяща или изходяща) за да бъде разпознат от мрежата.'
+	based on: texts.faults.709
+
+translated texts.transactionTypes.53
+	    from: 'MULTISIG TRANSACTION'
+	      to: 'МУЛТИСИГНАТУРНА ТРАНЗАКЦИЯ'
+	based on: texts.transactionTypes.52
+
+translated texts.transactionTypes.54
+	    from: 'MULTISIG TRANSACTION'
+	      to: 'МУЛТИСИГНАТУРНА ТРАНЗАКЦИЯ'
+	based on: texts.transactionTypes.52
+
+translated texts.transactionTypes.55
+	    from: 'MULTISIG TRANSACTION'
+	      to: 'МУЛТИСИГНАТУРНА ТРАНЗАКЦИЯ'
+	based on: texts.transactionTypes.52
+
 -----

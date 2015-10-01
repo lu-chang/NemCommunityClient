@@ -11,6 +11,7 @@ public class PartialTransferInformationRequest {
 	private final Address recipientAddress;
 	private final Amount amount;
 	private final String message;
+	private final boolean hexMessage;
 	private final boolean shouldEncrypt;
 
 	/**
@@ -20,10 +21,12 @@ public class PartialTransferInformationRequest {
 			final Address recipientAddress,
 			final Amount amount,
 			final String message,
+			final boolean hexMessage,
 			final boolean shouldEncrypt) {
 		this.recipientAddress = recipientAddress;
 		this.amount = amount;
 		this.message = message;
+		this.hexMessage = hexMessage;
 		this.shouldEncrypt = shouldEncrypt;
 	}
 
@@ -36,6 +39,8 @@ public class PartialTransferInformationRequest {
 		this.recipientAddress = Address.readFromOptional(deserializer, "recipient", AddressEncoding.COMPRESSED);
 		this.amount = Amount.readFromOptional(deserializer, "amount");
 		this.message = deserializer.readOptionalString("message");
+		final Integer hexMessage = deserializer.readOptionalInt("hexMessage");
+		this.hexMessage = null != hexMessage && 0 != hexMessage;
 
 		final Integer shouldEncrypt = deserializer.readOptionalInt("encrypt");
 		this.shouldEncrypt = null != shouldEncrypt && 0 != shouldEncrypt;
@@ -66,6 +71,15 @@ public class PartialTransferInformationRequest {
 	 */
 	public Amount getAmount() {
 		return this.amount;
+	}
+
+	/**
+	 * Gets a value indicating whether message is in hex or not.
+	 *
+	 * @return true if the payload is in hex.
+	 */
+	public boolean isHexMessage() {
+		return this.hexMessage;
 	}
 
 	/**

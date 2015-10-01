@@ -14,48 +14,40 @@
 			<li class="tile tile--importance" data-row="1" data-col="2" data-sizex="2" data-sizey="1">
 				<article>
 					<h1 class="tile-title">{{texts.dashboard.importance.title}}</h1>
-					{{#activeAccount.remoteStatus === 'INACTIVE'}}
-						<button type="button" class="importanceTile-activateButton" on-click="activateRemoteHarvesting">{{texts.dashboard.importance.remoteHarvest.activate}}</button>
-					{{/}}
-					{{#activeAccount.remoteStatus === 'ACTIVATING'}}
-						<button type="button" disabled class="importanceTile-activateButton">{{texts.dashboard.importance.remoteHarvest.activating}}</button>
-					{{/}}
-					{{#activeAccount.remoteStatus === 'ACTIVE'}}
-						<button class="importanceTile-activateButton hoverTarget" on-click="deactivateRemoteHarvesting">
-							<span class="hideOnHover">
-								{{texts.dashboard.importance.remoteHarvest.active}}
-							</span>
-							<span class="showOnHover">
-								{{texts.dashboard.importance.remoteHarvest.deactivate}}
-							</span>
-						</button>
-					{{/}}
-					{{#activeAccount.remoteStatus === 'DEACTIVATING'}}
-						<button type="button" disabled class="importanceTile-activateButton">{{texts.dashboard.importance.remoteHarvest.deactivating}}</button>
-					{{/}}
 
-					<div class="importanceTile-harvest">
+                    <button type="button" class="importanceTile-activateButton icon-link" on-click="openActivateDelegated()">{{texts.dashboard.importance.remoteHarvest.title}}</button>
+                    {{#activeAccount.remoteStatus === 'ACTIVATING'}}
+                    <span class="importanceTile-activateStatus icon-clock">{{texts.dashboard.importance.remoteHarvest.activating}}</span>
+                    {{/}}
+                    {{#activeAccount.remoteStatus === 'DEACTIVATING'}}
+                    <span class="importanceTile-activateStatus icon-clock">{{texts.dashboard.importance.remoteHarvest.deactivating}}</span>
+                    {{/}}
+                    {{#activeAccount.remoteStatus === 'ACTIVE'}}
+                    <span class="importanceTile-activateStatus">{{texts.dashboard.importance.remoteHarvest.active}}</span>
+                    {{/}}
+
+                    <div class="importanceTile-harvest">
 						{{#if activeAccount.remoteStatus === 'ACTIVE'}}
 							{{#if walletPage.remoteUnlocked}}
-								<button type="button" class="importanceTile-harvestButton importanceTile-harvestButton--harvesting icon-pause" on-click="stopRemoteHarvesting" disabled="{{walletPage.harvestButtonProcessing}}">
+								<button type="button" class="importanceTile-harvestButton importanceTile-harvestButton--harvesting icon-pause-circled" on-click="stopRemoteHarvesting" disabled="{{walletPage.harvestButtonProcessing}}">
 									{{texts.dashboard.importance.remoteHarvest.stopRemoteHarvesting}}
 								</button>
 							{{else}}
-								<button type="button" class="importanceTile-harvestButton importanceTile-harvestButton--notHarvesting icon-play" on-click="startRemoteHarvesting" disabled="{{walletPage.harvestButtonProcessing}}">{{texts.dashboard.importance.remoteHarvest.startRemoteHarvesting}}</button>
+								<button type="button" class="importanceTile-harvestButton importanceTile-harvestButton--notHarvesting icon-play-circled" on-click="startRemoteHarvesting" disabled="{{walletPage.harvestButtonProcessing}}">{{texts.dashboard.importance.remoteHarvest.startRemoteHarvesting}}</button>
 							{{/if}}
 						{{else}}
 							{{#if status.lostConnection || nisUnavailable || activeAccount.status === 'UNKNOWN'}}
-								<button type="button" class="importanceTile-harvestButton icon-question-circle" disabled>
+								<button type="button" class="importanceTile-harvestButton icon-help-circled" disabled>
 									<span>{{texts.dashboard.importance.unknown}}</span>
 								</button>
 							{{else}}
 								{{#if activeAccount.status === 'LOCKED'}}
-									<button type="button" class="importanceTile-harvestButton importanceTile-harvestButton--notHarvesting icon-play" on-click="startHarvesting" disabled="{{walletPage.harvestButtonProcessing}}">
+									<button type="button" class="importanceTile-harvestButton importanceTile-harvestButton--notHarvesting icon-play-circled" on-click="startHarvesting" disabled="{{walletPage.harvestButtonProcessing}}">
 										<span>{{texts.dashboard.importance.start}}</span>
 									</button>
 								{{/if}}
 								{{#if activeAccount.status === 'UNLOCKED'}}
-									<button type="button" class="importanceTile-harvestButton importanceTile-harvestButton--harvesting icon-pause" on-click="stopHarvesting" disabled="{{walletPage.harvestButtonProcessing}}">
+									<button type="button" class="importanceTile-harvestButton importanceTile-harvestButton--harvesting icon-pause-circled" on-click="stopHarvesting" disabled="{{walletPage.harvestButtonProcessing}}">
 										{{texts.dashboard.importance.stop}}
 									</button>
 								{{/if}}
@@ -77,7 +69,8 @@
 			<li class="tile tile--transactions" data-row="2" data-col="1" data-sizex="3" data-sizey="2">
 				<article>
 					<h1 class="tile-title" on-click="redirect:'transactions', {{params}}">{{texts.dashboard.transactions.title}}</h1>
-					<button type="button" class="transactionsTile-sendNemButton icon-paper-plane" disabled="{{sendNemDisabled}}" on-click="openSendNem()">{{texts.dashboard.transactions.sendNem}}</button>
+					<button type="button" class="transactionsTile-sendNemButton icon-paper-plane-empty" disabled="{{sendNemDisabled}}" on-click="openSendNem()">{{texts.dashboard.transactions.sendNem}}</button>
+                    <button type="button" class="transactionsTile-convertMultisigButton icon-magic" disabled="{{sendNemDisabled}}" on-click="openConvertMultisig()">{{texts.wallet.actions.convertMultisig}}</button>
 					<div class="transactionsTile-overview">
 						<h1 class="transactionsTile-balanceLabel">{{texts.dashboard.transactions.balance}}
                             {{#activeAccount.isMultisig}}
@@ -104,138 +97,81 @@
 							<th class="txList-header txList-col--date">{{texts.dashboard.transactions.columns.1}}</th>
 							<th class="txList-header txList-col--sender">{{texts.dashboard.transactions.columns.2}}</th>
 							<th class="txList-header txList-col--message">{{texts.dashboard.transactions.columns.3}}</th>
+                            <th class="txList-header txList-col--amount">{{texts.dashboard.transactions.columns.8}} <span class="dimmed">(XEM)</span></th>
 							<th class="txList-header txList-col--encrypted">{{texts.dashboard.transactions.columns.4}}</th>
 							<th class="txList-header">{{texts.dashboard.transactions.columns.5}}</th>
 							<th class="txList-header txList-col--confirmations">{{texts.dashboard.transactions.columns.6}}</th>
 							<th class="txList-header txList-col--fee">{{texts.dashboard.transactions.columns.7}} <span class="dimmed">(XEM)</span></th>
-							<th class="txList-header txList-col--amount">{{texts.dashboard.transactions.columns.8}} <span class="dimmed">(XEM)</span></th>
 						</tr>
 						{{#each activeAccount.transactions:i}}
 							{{#if i < 4}}
 								<tr>
-									{{#if .confirmed}}
-										{{#if (.mainType === TransactionType.Importance_Transfer || .mainType === TransactionType.Aggregate_Modification)}}
-											{{#if (.mainType === TransactionType.Importance_Transfer)}}
-												<td class="txList-cell txList-col--type txList-col--type--incoming icon-out" title="{{texts.transactionDirections.importance}}" on-mouseover="registerToolTip">{{#.isMultisig}}M{{/}}</td>
-											{{else}}
-												<td class="txList-cell txList-col--type encryptedIcon icon-attachment" title="{{texts.transactionDirections.modification}}" on-mouseover="registerToolTip">{{#.isMultisig}}M{{/}}</td>
-											{{/if}}
-										{{else}}
-                                            {{#if (.isSelf || .isOutgoing || .isIncoming)}}
-                                                {{#.isSelf}}
-                                                    <td class="txList-cell txList-col--type icon-self" title="{{texts.transactionDirections.self}}" on-mouseover="registerToolTip">{{#.isMultisig}}M{{/}}</td>
-                                                {{/}}
-                                                {{#.isOutgoing}}
-                                                    <td class="txList-cell txList-col--type txList-col--type--outgoing icon-minus" title="{{texts.transactionDirections.outgoing}}" on-mouseover="registerToolTip">{{#.isMultisig}}M{{/}}</td>
-                                                {{/}}
-                                                {{#.isIncoming}}
-                                                    <td class="txList-cell txList-col--type txList-col--type--incoming icon-plus" title="{{texts.transactionDirections.incoming}}" on-mouseover="registerToolTip">{{#.isMultisig}}M{{/}}</td>
-                                                {{/}}
-                                            {{else}}
-                                                {{! NOTE: mind it's a .type not .mainType }}
-                                                {{#if (.type === TransactionType.Multisig_Transfer)}}
-                                                    <td class="txList-cell txList-col--type encryptedIcon" title="">{{#.isMultisig}}M{{/}}</td>
-                                                {{/if}}
-                                            {{/if}}
-										{{/if}}
-                                    {{else}}
-                                    	<td class="txList-cell txList-col--type txList-col--type--pending icon-clock" title="{{texts.transactionDirections.pending}}" on-mouseover="registerToolTip">{{#.isMultisig}}M{{/}}</td>
+                                    {{#if (.type === TransactionType.Transfer || .type === TransactionType.Multisig_Transfer)}}
+                                    {{>transferTransactionLinePartial}}
                                     {{/if}}
 
-									<td class="txList-cell txList-col--date">{{.formattedDate}}</td>
-                                    {{#if (.isSelf || .isOutgoing || .isIncoming || .mainType === TransactionType.Aggregate_Modification)}}
-                                        {{#if (.isSelf || .isOutgoing)}}
-                                            <td class="txList-cell txList-col--sender" title="{{formattedRecipient}}" on-mouseover="registerToolTip">
-                                                <a class="hyperlink--default" href="javascript:;" on-click="viewAccount(.recipient)">
-                                                    {{#if privateLabels[.recipient]}}
-                                                        {{privateLabels[.recipient]}}
-                                                    {{else}}
-                                                        {{.formattedRecipient}}
-                                                    {{/if}}
-                                                </a>
-                                            </td>
-                                        {{/if}}
-                                        {{#if (.isIncoming || .mainType === TransactionType.Aggregate_Modification)}}
-                                            <td class="txList-cell txList-col--sender" title="{{formattedSender}}" on-mouseover="registerToolTip">
-                                                <a class="hyperlink--default" href="javascript:;" on-click="viewAccount(.sender)">
-                                                    {{#if privateLabels[.sender]}}
-                                                        {{privateLabels[.sender]}}
-                                                    {{else}}
-                                                        {{.formattedSender}}
-                                                    {{/if}}
-                                                </a>
-                                            </td>
-                                        {{/if}}
-                                    {{else}}
-                                        {{#if (.type === TransactionType.Multisig_Transfer)}}
-                                        <td class="txList-cell txList-col--sender" title="{{formattedRecipient}}" on-mouseover="registerToolTip">
-                                            <a class="hyperlink--default" href="javascript:;" on-click="viewAccount(.recipient)">
-                                                {{#if privateLabels[.recipient]}}
-                                                {{privateLabels[.recipient]}}
-                                                {{else}}
-                                                {{.formattedRecipient}}
-                                                {{/if}}
-                                            </a>
-                                        </td>
-                                        {{/if}}
+                                    {{#if (.type === TransactionType.Importance_Transfer || .type === TransactionType.Multisig_Importance_Transfer)}}
+                                    {{>importanceTransferLinePartial}}
                                     {{/if}}
-									<td class="txList-cell txList-col--message" title="{{.message}}" on-mouseover="registerToolTip">
-										{{#if .isMultisig}}
-											<span style='font-style:italic;'>{{.cosignatoriesCount}}</span>
-										{{else}}
-											{{#if .message}}
-												{{.message}}
-											{{else}}
-												<span class="dimmed">{{texts.dashboard.transactions.noMessage}}</span>
-											{{/if}}
-										{{/if}}
-									</td>
-									<td class="txList-cell txList-col--encrypted encryptedIcon">
-										{{#.encrypted}}
-											<span class="icon-lock" title="{{texts.dashboard.transactions.encrypted}}" on-mouseover="registerToolTip"></span>
-										{{/}}
-									</td>
-									<td class="txList-cell txList-col--details">
-										<a class="hyperlink--default" href="javascript:;" on-click="viewTransaction(.)">{{texts.dashboard.transactions.view}}</a>
-									</td>
-									<td class="txList-col--confirmations">
-										{{#if .confirmed}}
-											{{#if blockchainHeight}}
-												{{blockchainHeight - .blockHeight + 1}}
-											{{else}}
-												{{texts.dashboard.transactions.confirmationsUnknown}}
-											{{/if}}
-										{{else}}
-											{{texts.dashboard.transactions.pending}}
-										{{/if}}
-									</td>
-                                    <td class="txList-cell txList-col--fee">
-										{{#if .isMultisig}}
-											n/a
-										{{else}}
-											{{#.isOutgoing || .isSelf}}-{{/}}{{{formattedFee}}}
-										{{/if}}
-									</td>
-                                    <td class="txList-cell txList-col--amount">
-										{{#if .isMultisig}}
-											{{#if .requiresSignature}}
-												<button type="button" class="transactionsTile-signMultisigButton icon-paper-plane" disabled="{{nisUnavailable}}" on-click="openSignMultisig(.)">{{texts.dashboard.transactions.signMultisig}}</button>
-											{{else}}
-												see details
-											{{/if}}
-										{{else}}
-											{{#.isSelf}}&plusmn;{{/}}
-											{{#.isOutgoing}}-{{/}}
-											{{#.isIncoming}}+{{/}}
-											{{{formattedAmount}}}
-										{{/if}}
+
+                                    {{#if (.type === TransactionType.Aggregate_Modification || .type === TransactionType.Multisig_Aggregate_Modification)}}
+                                    {{>aggregateModificationLinePartial}}
+                                    {{/if}}
+
+                                    {{#if (.type === TransactionType.Provision_Namespace || .type === TransactionType.Multisig_Provision_Namespace)}}
+                                    {{>provisionNamespaceLinePartial}}
+                                    {{/if}}
+
+                                    {{#if (.type === TransactionType.Mosaic_Creation || .type === TransactionType.Multisig_Mosaic_Creation)}}
+                                    {{>mosaicCreationLinePartial}}
+                                    {{/if}}
+
+                                    {{#if (.type === TransactionType.Mosaic_Supply || .type === TransactionType.Multisig_Mosaic_Supply)}}
+                                    {{>mosaicSupplyLinePartial}}
+                                    {{/if}}
+
+                                    <td class="txList-cell txList-col--encrypted encryptedIcon">
+                                        {{#.encrypted}}
+                                        <span class="icon-lock" title="{{texts.dashboard.transactions.encrypted}}" on-mouseover="registerToolTip"></span>
+                                        {{/}}
                                     </td>
-								</tr>
+
+                                    {{! FIELD DETAILS }}
+                                    <td class="txList-cell txList-col--details">
+                                        <a class="hyperlink--default" href="javascript:;" on-click="viewTransaction(.)">{{texts.dashboard.transactions.view}}</a>
+                                    </td>
+
+                                    {{! FIELD CONFIRMATIONS }}
+                                    <td class="txList-col--confirmations">
+                                        {{#if .confirmed}}
+                                            {{#if blockchainHeight}}
+                                                {{blockchainHeight - .blockHeight + 1}}
+                                            {{else}}
+                                                {{texts.dashboard.transactions.confirmationsUnknown}}
+                                            {{/if}}
+                                        {{else}}
+                                            {{texts.dashboard.transactions.pending}}
+                                        {{/if}}
+                                    </td>
+
+                                    {{! FIELD FEES }}
+                                    <td class="txList-cell txList-col--fee">
+                                        {{#if .isMultisig}}
+                                            {{#if .confirmed}}
+                                                {{{multisig.formattedTotalFees}}}
+                                            {{else}}
+                                                n/a
+                                            {{/if}}
+                                        {{else}}
+                                            {{#.isOutgoing || .isSelf}}-{{/}}{{{formattedFee}}}
+                                        {{/if}}
+                                    </td>
+                                </tr>
 							{{/if}}
 						{{/each}}
 					</table>
 					{{#if activeAccount.transactions.length > 4 }}
-						<p class="txList-seeAll"><a href="javascript:;" on-click="redirect:'transactions'">{{texts.dashboard.transactions.seeAll}} <span class="txList-seeAll-arrow icon-arrow-right"></span></a></p>
+						<p class="txList-seeAll"><a href="javascript:;" on-click="redirect:'transactions'">{{texts.dashboard.transactions.seeAll}} <span class="txList-seeAll-arrow icon-right-dir"></span></a></p>
 					{{/if}}
 					{{^activeAccount.transactions}}
 						<p class="txList-noRecords">{{texts.dashboard.transactions.noTransactions}}</p>
@@ -263,7 +199,7 @@
 			</li>
 			<li class="tile tile-messages" data-row="5" data-col="3" data-sizex="1" data-sizey="1">
 				<article>
-					<h1 class="icon-envelope tile-title" title="{{texts.dashboard.messages.titleTooltip}}" on-mouseover="registerToolTip"></h1>
+					<h1 class="icon-mail tile-title" title="{{texts.dashboard.messages.titleTooltip}}" on-mouseover="registerToolTip"></h1>
 					<!--/*<div class="message-preview">
 						<div class="viewport">
 							<ul class="overview">
@@ -372,7 +308,7 @@
 			</li>*/-->
 			<li class="tile tile-news" data-row="4" data-col="3" data-sizex="1" data-sizey="1">
 				<article>
-					<h1 class="icon-sound tile-title" title="{{texts.dashboard.news.titleTooltip}}" on-mouseover="registerToolTip"></h1>
+					<h1 class="icon-megaphone tile-title" title="{{texts.dashboard.news.titleTooltip}}" on-mouseover="registerToolTip"></h1>
 					<div class="news-preview">
 						<div class="viewport">
                             <!--

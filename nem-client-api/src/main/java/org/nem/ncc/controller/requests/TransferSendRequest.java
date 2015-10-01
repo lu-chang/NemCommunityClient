@@ -7,7 +7,7 @@ import org.nem.ncc.wallet.*;
 
 /**
  * A request containing all information necessary to create a transfer.
- * TODO 20150131 J-G: why does this class need to know about multisig?
+ * The UX uses this request for both transfer and multisig transfer requests.
  */
 public class TransferSendRequest {
 	private final WalletName walletName;
@@ -16,12 +16,14 @@ public class TransferSendRequest {
 	private final Address recipientAddress;
 	private final Amount amount;
 	private final String message;
+	private final boolean hexMessage;
 	private final boolean shouldEncrypt;
 	private final int hoursDue;
 	private final WalletPassword password;
 	private final Amount fee;
 	private final Amount multisigFee;
 	private final int type;
+	private final int version;
 
 	/**
 	 * Creates a new transfer send request.
@@ -33,24 +35,28 @@ public class TransferSendRequest {
 			final Address recipientAddress,
 			final Amount amount,
 			final String message,
+			final boolean hexMessage,
 			final boolean shouldEncrypt,
 			final int hoursDue,
 			final WalletPassword password,
 			final Amount fee,
 			final Amount multisigFee,
-			final int type) {
+			final int type,
+			final int version) {
 		this.walletName = walletName;
 		this.multisigAddress = multisigAddress;
 		this.senderAddress = senderAddress;
 		this.recipientAddress = recipientAddress;
 		this.amount = amount;
 		this.message = message;
+		this.hexMessage = hexMessage;
 		this.shouldEncrypt = shouldEncrypt;
 		this.hoursDue = hoursDue;
 		this.password = password;
 		this.fee = fee;
 		this.multisigFee = multisigFee;
 		this.type = type;
+		this.version = version;
 	}
 
 	/**
@@ -66,11 +72,13 @@ public class TransferSendRequest {
 		this.recipientAddress = Address.readFrom(deserializer, "recipient");
 		this.amount = Amount.readFrom(deserializer, "amount");
 		this.message = deserializer.readOptionalString("message");
+		this.hexMessage = 0 != deserializer.readInt("hexMessage");
 		this.shouldEncrypt = 0 != deserializer.readInt("encrypt");
 		this.hoursDue = deserializer.readInt("hoursDue");
 		this.password = WalletPassword.readFrom(deserializer, "password");
 		this.fee = Amount.readFrom(deserializer, "fee");
 		this.multisigFee = Amount.readFrom(deserializer, "multisigFee");
+		this.version = deserializer.readInt("version");
 	}
 
 	/**
@@ -92,13 +100,20 @@ public class TransferSendRequest {
 	}
 
 	/**
-	 * Gets the type of transfer.
+	 * Gets the transfer type.
 	 *
-	 * @return The type of transfer (multisig or normal).
+	 * @return The transfer type (multisig or normal).
 	 */
 	public int getType() {
 		return this.type;
 	}
+
+	/**
+	 * Gets the transfer version.
+	 *
+	 * @return The transfer version.
+	 */
+	public int getVersion() { return this.version; }
 
 	/**
 	 * Gets the sender account id.
@@ -134,6 +149,15 @@ public class TransferSendRequest {
 	 */
 	public Amount getAmount() {
 		return this.amount;
+	}
+
+	/**
+	 * Gets a value indicating whether message is in hex or not.
+	 *
+	 * @return true if the payload is in hex.
+	 */
+	public boolean isHexMessage() {
+		return this.hexMessage;
 	}
 
 	/**

@@ -3,7 +3,7 @@
 		<section class="listingPage">
 			<div class="listingPage-head">
 				<h1 class="listingPage-title">{{texts.transactions.title}}</h1>
-				<button type="button" class="listingPage-mainButton transactionsPage-sendNemButton icon-paper-plane" disabled="{{nisUnavailable}}" on-click="openSendNem()">{{texts.transactions.sendNem}}</button>
+				<button type="button" class="listingPage-mainButton transactionsPage-sendNemButton icon-paper-plane-empty" disabled="{{sendNemDisabled}}"  on-click="openSendNem()">{{texts.transactions.sendNem}}</button>
 				<div class="listingPage-searchArea">
 					<div class="listingPage-search">
 						<input class="listingPage-searchTextbox" type="text" />
@@ -44,133 +44,77 @@
 								<th class="txList-header txList-col--date">{{texts.transactions.table.columns.1}}</th>
 								<th class="txList-header txList-col--sender">{{texts.transactions.table.columns.2}}</th>
 								<th class="txList-header txList-col--message">{{texts.transactions.table.columns.3}}</th>
+                                <th class="txList-header txList-col--amount transactionsPage-rightMost">{{texts.transactions.table.columns.8}} <span class="dimmed">(XEM)</span></th>
 								<th class="txList-header txList-col--encrypted encryptedIcon">{{texts.transactions.table.columns.4}}</th>
 								<th class="txList-header">{{texts.transactions.table.columns.5}}</th>
 								<th class="txList-header txList-col--confirmations">{{texts.transactions.table.columns.6}}</th>
 								<th class="txList-header txList-col--fee">{{texts.transactions.table.columns.7}} <span class="dimmed">(XEM)</span></th>
-								<th class="txList-header txList-col--amount transactionsPage-rightMost">{{texts.transactions.table.columns.8}} <span class="dimmed">(XEM)</span></th>
 							</tr>
 						</thead>
 						<tbody>
 							{{#each transactions.filtered}}
 								<tr class="txList-row">
-									{{#if .confirmed}}
-										{{#if (.mainType === TransactionType.Importance_Transfer || .mainType === TransactionType.Aggregate_Modification)}}
-                                            {{#if (.mainType === TransactionType.Importance_Transfer)}}
-                                                <td class="txList-cell txList-col--type transactionsPage-leftMost txList-col--type--incoming icon-out" title="{{texts.transactionDirections.importance}}" on-mouseover="registerToolTip">{{#.isMultisig}}M{{/}}</td>
-                                            {{else}}
-                                                <td class="txList-cell txList-col--type transactionsPage-leftMost encryptedIcon icon-attachment" title="{{texts.transactionDirections.modification}}" on-mouseover="registerToolTip">{{#.isMultisig}}M{{/}}</td>
-                                            {{/if}}
-										{{else}}
-                                            {{#if (.isSelf || .isOutgoing || .isIncoming)}}
-                                                {{#.isSelf}}
-                                                    <td class="txList-cell txList-col--type transactionsPage-leftMost icon-self" title="{{texts.transactionDirections.self}}" on-mouseover="registerToolTip">{{#.isMultisig}}M{{/}}</td>
-                                                {{/}}
-                                                {{#.isOutgoing}}
-                                                    <td class="txList-cell txList-col--type txList-col--type--outgoing transactionsPage-leftMost icon-minus" title="{{texts.transactionDirections.outgoing}}" on-mouseover="registerToolTip">{{#.isMultisig}}M{{/}}</td>
-                                                {{/}}
-                                                {{#.isIncoming}}
-                                                    <td class="txList-cell txList-col--type txList-col--type--incoming transactionsPage-leftMost icon-plus" title="{{texts.transactionDirections.incoming}}" on-mouseover="registerToolTip">{{#.isMultisig}}M{{/}}</td>
-                                                {{/}}
-                                            {{else}}
-                                                {{! NOTE: mind it's a .type not .mainType }}
-                                                {{#if (.type === TransactionType.Multisig_Transfer)}}
-                                                    <td class="txList-cell txList-col--type encryptedIcon transactionsPage-leftMost" title="">{{#.isMultisig}}M{{/}}</td>
-                                                {{/if}}
-                                            {{/if}}
-										{{/if}}
-                                    {{else}}
-                                    	<td class="txList-cell txList-col--type txList-col--type--pending icon-clock" title="{{texts.transactionDirections.pending}}" on-mouseover="registerToolTip">{{#.isMultisig}}M{{/}}</td>
+                                    {{#if (.type === TransactionType.Transfer || .type === TransactionType.Multisig_Transfer)}}
+                                    {{>transferTransactionLinePartial}}
                                     {{/if}}
 
-									<td class="txList-cell txList-col--date">{{.formattedDate}}</td>
-                                    {{#if (.isSelf || .isOutgoing || .isIncoming || .mainType === TransactionType.Aggregate_Modification)}}
-                                        {{#if (.isSelf || .isOutgoing)}}
-                                            <td class="txList-cell txList-col--sender" title="{{formattedRecipient}}" on-mouseover="registerToolTip">
-                                                <a class="hyperlink--default" href="javascript:;" on-click="viewAccount(.recipient)">
-                                                    {{#if privateLabels[.recipient]}}
-                                                        {{privateLabels[.recipient]}}
-                                                    {{else}}
-                                                        {{.formattedRecipient}}
-                                                    {{/if}}
-                                                </a>
-                                            </td>
-                                        {{/if}}
-                                        {{#if (.isIncoming || .mainType === TransactionType.Aggregate_Modification)}}
-                                            <td class="txList-cell txList-col--sender" title="{{formattedSender}}" on-mouseover="registerToolTip">
-                                                <a class="hyperlink--default" href="javascript:;" on-click="viewAccount(.sender)">
-                                                    {{#if privateLabels[.sender]}}
-                                                        {{privateLabels[.sender]}}
-                                                    {{else}}
-                                                        {{.formattedSender}}
-                                                    {{/if}}
-                                                </a>
-                                            </td>
-                                        {{/if}}
-                                    {{else}}
-                                        {{#if (.type === TransactionType.Multisig_Transfer)}}
-                                            <td class="txList-cell txList-col--sender" title="{{formattedRecipient}}" on-mouseover="registerToolTip">
-                                                <a class="hyperlink--default" href="javascript:;" on-click="viewAccount(.recipient)">
-                                                    {{#if privateLabels[.recipient]}}
-                                                    {{privateLabels[.recipient]}}
-                                                    {{else}}
-                                                    {{.formattedRecipient}}
-                                                    {{/if}}
-                                                </a>
-                                            </td>
-                                        {{/if}}
+                                    {{#if (.type === TransactionType.Importance_Transfer || .type === TransactionType.Multisig_Importance_Transfer)}}
+                                    {{>importanceTransferLinePartial}}
                                     {{/if}}
-									<td class="txList-cell txList-col--message" title="{{.message}}" on-mouseover="registerToolTip">
-										{{#if .isMultisig}}
-											<span style='font-style:italic;'>{{.cosignatoriesCount}}</span>
-										{{else}}
-											{{#if .message}}
-												{{.message}}
-											{{else}}
-												<span class="dimmed">{{texts.transactions.table.noMessage}}</span>
-											{{/if}}
-										{{/if}}
-									</td>
+
+                                    {{#if (.type === TransactionType.Aggregate_Modification || .type === TransactionType.Multisig_Aggregate_Modification)}}
+                                    {{>aggregateModificationLinePartial}}
+                                    {{/if}}
+
+                                    {{#if (.type === TransactionType.Provision_Namespace || .type === TransactionType.Multisig_Provision_Namespace)}}
+                                    {{>provisionNamespaceLinePartial}}
+                                    {{/if}}
+
+                                    {{#if (.type === TransactionType.Mosaic_Creation || .type === TransactionType.Multisig_Mosaic_Creation)}}
+                                    {{>mosaicCreationLinePartial}}
+                                    {{/if}}
+
+                                    {{#if (.type === TransactionType.Mosaic_Supply || .type === TransactionType.Multisig_Mosaic_Supply)}}
+                                    {{>mosaicSupplyLinePartial}}
+                                    {{/if}}
+
 									<td class="txList-cell txList-col--encrypted encryptedIcon">
 										{{#.encrypted}}
 											<span class="icon-lock" title="{{texts.transactions.table.encrypted}}" on-mouseover="registerToolTip"></span>
 										{{/}}
 									</td>
+
+                                    {{! FIELD DETAILS }}
 									<td class="txList-cell txList-col--details">
 										<a class="hyperlink--default" href="javascript:;" on-click="viewTransaction(.)">{{texts.transactions.table.view}}</a>
 									</td>
-									<td class="txList-cell txList-col--confirmations">
-										{{#if .confirmed}}											
+
+                                    {{! FIELD CONFIRMATIONS }}
+                                    <td class="txList-col--confirmations">
+										{{#if .confirmed}}
 											{{#if blockchainHeight}}
 												{{blockchainHeight - .blockHeight + 1}}
 											{{else}}
-												{{texts.transactions.table.confirmationsUnknown}}
+												{{texts.dashboard.transactions.confirmationsUnknown}}
 											{{/if}}
 										{{else}}
-											{{texts.transactions.table.pending}}
+											{{texts.dashboard.transactions.pending}}
 										{{/if}}
 									</td>
-                                    <td class="txList-cell txList-col--fee">
+
+                                    {{! FIELD FEES }}
+                                    <td class="txList-cell txList-col--fee transactionsPage-rightMost">
 										{{#if .isMultisig}}
-											n/a
+                                            {{#if .confirmed}}
+                                                {{{multisig.formattedTotalFees}}}
+                                            {{else}}
+                                                n/a
+                                            {{/if}}
 										{{else}}
 											{{#.isOutgoing || .isSelf}}-{{/}}{{{formattedFee}}}
 										{{/if}}
 									</td>
-                                    <td class="txList-cell txList-col--amount transactionsPage-rightMost">
-										{{#if .isMultisig}}
-											{{#if .requiresSignature}}
-												<button type="button" class="transactionsTile-signMultisigButton icon-paper-plane" disabled="{{nisUnavailable}}" on-click="openSignMultisig(.)">{{texts.dashboard.transactions.signMultisig}}</button>
-											{{else}}
-												see details
-											{{/if}}
-										{{else}}
-											{{#.isSelf}}&plusmn;{{/}}
-											{{#.isOutgoing}}-{{/}}
-											{{#.isIncoming}}+{{/}}
-											{{{formattedAmount}}}
-										{{/if}}
-                                    </td>
+
 								</tr>
 							{{/each}}
 						</tbody>

@@ -44,30 +44,31 @@ define({
 			601: 'Tento uzel je již nabútován. Další pokus bútovat NIS není možný.',
 			602: 'Almost ready. NEM Infrastructure Server is currently loading blocks. Wallet will be functional when db is fully loaded.',
 			699: 'Maximum number of harvesters allowed on server has been reached.',
-			700: 'Daný účet nesplňuje základní kritéria pro zahájení sklizně. Většinou se tento problém týká nedostatečního množství Nemů na účtu. Sklizeň začíná s minimální hodnotou 1000 NEM.',
-			701: 'Zadaný termín se nachází v minulosti. Termín musí být zadán do období 1 den.',
-			702: 'Zadaný termín se nachází v příliš daleké budoucnosti. Termín musí být zadán do období 1 den.',
-			703: 'Your account does not have the right balance to make this transaction.',
-			704: 'Množství textu vaší zprávy převyšuje limit zpráv posílaných přes NEM. Prosím, pokuste se snížit množství textu ve zprávě, kterou chcete odeslat.',
-			705: 'Hash převodu již existuje v databáze, alebo v zozname nepotvrzených převodů.',
-			706: 'Podpis převodu nemůže být ověřen.',
-			707: 'Časový údaj převodu se nachází v příliš daleké minulosti.',
-			708: 'Časový údaj převodu se nachází v příliš daleké budoucnosti.',
-			709: 'Účet je neznámý. Účet musí být součástí alespoň jednoho převodu (odesílatel nebo příjemce), aby mohl být rozpoznán síťov.',
-			710: 'The transaction was rejected because the transaction cache is too full. A higher fee improves the chance that the transaction gets accepted.',
-			730: 'Importance transfer transaction (delegated harvesting) conflicts with existing transaction.',
-			731: 'Delegated harvesting account has non zero balance and cannot be used.',
-			732: 'Importance transfer rejected. There is already pending importance transfer operation.',
-			733: 'Delegated harvesting is already active.',
-			734: 'Delegated harvesting is NOT active. Cannot deactivate.',
-			740: 'Transaction is not allowed for multisig account.',
-			741: 'Multisig signature transaction rejected. Current account is not a cosignatory of a multisig account.',
-			742: 'Multisig signature transaction rejected. Associated multisig transaction is not known to NEM network',
-			743: 'Multisig account modification rejected. One of added accounts is already a cosignatory.',
+			700: 'Daný účet nesplňuje základní kritéria pro zahájení sklizně. Většinou se tento problém týká nedostatečního množství Nemů na účtu. Sklizeň začíná s minimální hodnotou 10000 vested NEM.',
 			901: 'Při nastavování offline módu se vyskytla chyba.',
 			1000: 'The private key and the public key you have provided mismatch.',
 			1001: 'The public key and the address you have provided mismatch.',
-			1002: 'The address does not belong to the main network.'
+			1002: 'The address does not belong to the main network.',
+			1203: 'Zadaný termín se nachází v minulosti. Termín musí být zadán do období 1 den.',
+			1204: 'Zadaný termín se nachází v příliš daleké budoucnosti. Termín musí být zadán do období 1 den.',
+			1205: 'Your account does not have the right balance to make this transaction.',
+			1206: 'Množství textu vaší zprávy převyšuje limit zpráv posílaných přes NEM. Prosím, pokuste se snížit množství textu ve zprávě, kterou chcete odeslat.',
+			1207: 'Hash převodu již existuje v databáze, alebo v zozname nepotvrzených převodů.',
+			1208: 'Podpis převodu nemůže být ověřen.',
+			1209: 'Časový údaj převodu se nachází v příliš daleké minulosti.',
+			1210: 'Časový údaj převodu se nachází v příliš daleké budoucnosti.',
+			1219: 'The transaction was rejected because the transaction cache is too full. A higher fee improves the chance that the transaction gets accepted.',
+			1262: 'Delegated harvesting account has non zero balance and cannot be used.',
+			1263: 'Importance transfer rejected. There is already pending importance transfer operation.',
+			1264: 'Delegated harvesting is already active.',
+			1265: 'Delegated harvesting is NOT active. Cannot deactivate.',
+			1266: 'Importance transfer transaction (delegated harvesting) conflicts with existing transaction.',
+			1271: 'Multisig signature transaction rejected. Current account is not a cosignatory of a multisig account.',
+			1273: 'Multisig signature transaction rejected. Associated multisig transaction is not known to NEM network',
+			1274: 'Transaction is not allowed for multisig account.',
+			1275: 'Multisig account modification rejected. One of added accounts is already a cosignatory.',
+			1321: 'Účet je neznámý. Účet musí být součástí alespoň jednoho převodu (odesílatel nebo příjemce), aby mohl být rozpoznán síťov.',
+
 		},
 		common: {
 			success: 'Úspěch',
@@ -101,26 +102,51 @@ define({
 			publicLabel: 'Public label',
 			noCharge: 'Current account will <b>NOT</b> be charged any fees, multisig account covers them',
 			fee: 'Poplatek',
+			multisigFee: 'Multisig fee',
+			useMinimumFee: 'Use minimum fee',
+			feeValidation: 'Fee must not be less than the minimum fee',
 			justUse: 'Just use',
 			dueBy: 'Due by',
+			minutes: 'minute(s)',
 			hours: 'hour(s)',
 			hoursDue: 'Due by (hours)',
 			hoursDueExplanation: 'If the transaction isn\'t included by the deadline, it is rejected.',
-			closeButton: 'Close'
+			closeButton: 'Close',
+			cancelButton: 'Cancel',
+			sendButton: 'Odeslat',
+			account: 'Account',
+			thisAccount: 'This account',
+			warning: 'Warning',
+			newBuild: 'NEW BUILD',
+			newBuildNumber: 'There is new build {{1}} available for download. Check <a class="hyperlink--default", href="http://blog.nem.io">blog.nem.io</a> for details',
+
 		},
-		transactionTypes: [
-			'TRANSFER TRANSACTION',
-			'IMPORTANCE TRANSFER',
-			'MODIFICATION OF MULTISIG ACCOUNT',
-			'MULTISIG TRANSACTION'
-		],
+		transactionTypes: {
+			20: 'TRANSFER TRANSACTION',
+			21: 'IMPORTANCE TRANSFER',
+			22: 'MODIFICATION OF MULTISIG ACCOUNT',
+			23: 'PROVISION NAMESPACE',
+			24: 'MOSAIC CREATION',
+			25: 'MOSAIC SUPPLY',
+			40: 'MULTISIG SIGNATURE',
+			50: 'MULTISIG TRANSACTION',
+			51: 'MULTISIG TRANSACTION',
+			52: 'MULTISIG TRANSACTION',
+			53: 'MULTISIG TRANSACTION',
+			54: 'MULTISIG TRANSACTION',
+			55: 'MULTISIG TRANSACTION',
+
+		},
 		transactionDirections: {
 			pending: 'Pending transaction',
 			outgoing: 'Outgoing transaction',
 			incoming: 'Incoming transaction',
 			self: 'Self transaction',
 			importance: 'Importance transaction',
-			modification: 'Aggregate Modification of Multisig'
+			modification: 'Aggregate Modification of Multisig',
+			provision: 'Provision Namespace',
+			mosaicCreation: 'Mosaic Creation',
+			mosaicSupply: 'Mosaic Supply'
 		},
 		modals: {
 			error: {
@@ -161,12 +187,17 @@ define({
 				autoBoot: {
 					tabTitle: 'Auto-boot',
 					name: 'Node name',
-					account: 'Account',
 					primaryAccount: 'Primary account',
 					auto: 'Auto boot when a wallet is opened'
 				},
 				save: 'Save',
 				saveSuccess: 'Settings have been saved successfully'
+			},
+			signToken: {
+				title: "Sign a token using account",
+				label: "Token (url, string, anything)",
+				signature: "Signed token",
+				sign: "Sign"
 			},
 			multisig: {
 				title: 'Convert account to multisig',
@@ -175,17 +206,18 @@ define({
 				labelDesc: 'This account is labeled as {{1}}',
 				nullLabelDesc: 'This account doesn\'t have a label',
 				addCosignatory: '+ Add Cosignatory',
-				cancel: 'Cancel',
 				convert: 'Convert',
-				fee: 'Fee',
-				feeValidation: 'Fee must not be less than the minimum fee',
-				useMinimumFee: 'Use minimum fee',
 				txConfirm: {
 					title: 'Confirm Conversion to Multisig Account',
 					total: 'Total',
 
 				},
-				warning: 'Multisig account is on the list of cosignatories. This will result in locking down the account cutting off access to the fund. Most likely you <b>DO NOT</b> want to do that.'
+				warning: 'Multisig account is on the list of cosignatories. This will result in locking down the account cutting off access to the fund. Most likely you <b>DO NOT</b> want to do that.',
+				minCosignatoriesDefaultLabel: 'Use default cosignatories number',
+				minCosignatoriesRelativeLabel: 'relative change',
+				minCosignatoriesLabel: 'Minimum number of cosignatories',
+				minCosignatoriesZero: 'Using zero would cause all cosignatories to be required',
+				minCosignatoriesOverflow: 'Specified number is larger than number of cosignatories'
 			},
 			signMultisig: {
 				title: 'Sign multisig transaction',
@@ -199,15 +231,8 @@ define({
 				multisigFees: 'Multisig Fees',
 				multisigTotal: 'Total',
 				sender: 'Cosignatory',
-				fee: 'Fee',
-				feeValidation: 'Fee must not be less than the minimum fee',
-				useMinimumFee: 'Use minimum fee',
-				password: 'Password',
 				passwordValidation: 'Password must not be blank',
-				send: 'Send',
-				cancel: 'Cancel',
 				sending: 'Sending...',
-				successMessage: 'Transaction has been sent successfully!',
 				txConfirm: {
 					title: 'Confirm Multisig Transaction',
 					message: 'Message',
@@ -227,16 +252,8 @@ define({
 				recipientValidation: 'Account addresses must be 40 characters long excluding dashes',
 				message: 'Zpráva',
 				encrypt: 'Šifrována zpráva',
-				fee: 'Poplatek',
-				multisigFee: 'Multisig fee',
-				feeValidation: 'Fee must not be less than the minimum fee',
-				useMinimumFee: 'Use minimum fee',
-				password: 'Heslo',
-				passwordValidation: 'Password must not be blank',
-				send: 'Odeslat',
-				cancel: 'Cancel',
 				sending: 'Odesílání...',
-				successMessage: 'Převod bol vykonán úspěšne!',
+				successMessage: 'Your transaction has been sent successfully! <br><br>Transaction hash: {{1}}',
 				txConfirm: {
 					title: 'Confirm Transaction',
 					amount: 'Amount',
@@ -245,7 +262,6 @@ define({
 					message: 'Message',
 					encrypted: 'Message is encrypted',
 					noMessage: 'No message',
-					cancel: 'Cancel',
 					confirm: 'Confirm',
 					sending: 'Sending...'
 				},
@@ -296,14 +312,25 @@ define({
 				confirmations: 'Potvrzení',
 				confirmationsUnknown: 'Unknown',
 				amount: 'Množství',
-				fee: 'Poplatek',
 				innerFee: 'Inner Fee',
 				multisigFees: 'Multisig Fees',
-				cosignatory: 'Cosignatory'
+				cosignatory: 'Cosignatory',
+				namespace: 'Namespace',
+				rentalFee: 'Rental fee',
+				mosaicName: 'Mosaic Name',
+				description: 'Description',
+				propertiesLabel: 'Properties',
+				properties: {
+					divisibility: 'Divisibility',
+					quantity: 'Maximal quantity',
+					mutablequantity: 'Is quantity mutable',
+					transferable: 'Is transferable'
+				},
+				supplyType: 'Supply type',
+				supplyAmount: 'Supply amount'
 			},
 			accountDetails: {
 				title: 'Account details',
-				address: 'Address',
 				label: 'Label',
 				noLabel: 'No label',
 				add: 'Add to address book',
@@ -313,8 +340,7 @@ define({
 				importance: 'Importance',
 				publicKey: 'Public key',
 				noPublicKey: 'No public key',
-				harvestedBlocks: 'Harvested blocks',
-				close: 'Close'
+				harvestedBlocks: 'Harvested blocks'
 			},
 			bootLocalNode: {
 				title: 'Bútovat lokální uzel',
@@ -337,7 +363,6 @@ define({
 				title: 'Vytvořit nový účet',
 				label: 'Soukromý název',
 				wallet: 'Peněženka',
-				password: 'Heslo peněženky',
 				successMessage: 'Účet {{1}} {{#2}}({{2}}){{/2}} byl vytvořen!',
 				create: 'Vytvořit'
 			},
@@ -357,7 +382,6 @@ define({
 				title: 'Přidat již existujíci účet',
 				privateKey: 'Soukromý klíč k účtu',
 				wallet: 'Peněženka',
-				password: 'Heslo peněženky',
 				successMessage: 'Účet {{1}} {{#2}}({{2}}){{/2}} byl přidán!',
 				add: 'Přidať',
 				label: 'Název'
@@ -367,7 +391,6 @@ define({
 				account: 'Vybrat účet jako hlavní',
 				noLabel: '<span class=\'null\'>&lt;Žiadny název&gt;</span>',
 				wallet: 'Peněženka',
-				password: 'Heslo peněženky',
 				successMessage: 'Účet {{1}} {{#2}}({{2}}){{/2}} byl nastaven jako hlavní!',
 				set: 'Nastavit jako hlavní'
 			},
@@ -375,7 +398,6 @@ define({
 				title: 'Změna názvu peněženky',
 				wallet: 'Současný název peněženky',
 				newName: 'Nový název peněženky',
-				password: 'Heslo peněženky',
 				successMessage: 'Název peněženky byl úspěšně změněn z <em>{{1}}</em> na <em>{{2}}</em>',
 				change: 'Změniť'
 			},
@@ -394,16 +416,13 @@ define({
 				title: 'Změnit název účtu ',
 				label: 'Název účtu',
 				wallet: 'Peněženka',
-				password: 'Heslo peněženky',
 				successMessage: 'Účet {{1}} se nyní jmenuje {{2}}',
 				change: 'Změnit'
 			},
 			removeAccount: {
 				title: 'Odstranit účet',
-				account: 'Account',
 				label: 'Název účtu',
 				wallet: 'Peněženka',
-				password: 'Heslo peněženky',
 				warning: 'Prosím ujistěte se, že na vašem účtu již nejsou žádné NEMů, jinak budou ztraceny navždy.',
 				successMessage: 'Účet {{1}} {{#2}}({{2}}){{/2}} byl odstranen!',
 				remove: 'Odstranit'
@@ -416,36 +435,29 @@ define({
 				title: 'Zavřít program',
 				message: 'Opravdu chcete zavřít NEM Community Client?'
 			},
-			activateRemote: {
+			activateDelegated: {
 				title: 'Activate Delegated Harvesting',
 				wallet: 'Wallet',
-				account: 'Account',
-				password: 'Wallet\'s password',
 				activate: 'Activate',
-				warning: 'Warning',
-				warningText: 'Activation will take 6 hours (360 blocks). Activation will NOT start harvesting automatically.'
+				warningText: 'Activation will take 6 hours (360 blocks). Activation will NOT start harvesting automatically.',
+				delegatedAccount: 'Delegated account public key',
+				builtIn: 'built into the wallet',
+
 			},
-			deactivateRemote: {
+			deactivateDelegated: {
 				title: 'Deactivate Delegated Harvesting',
 				wallet: 'Wallet',
-				account: 'Account',
-				password: 'Wallet\'s password',
 				deactivate: 'Deactivate',
-				warning: 'Warning',
 				warningText: 'Deactivation will take 6 hours (360 blocks).'
 			},
 			startRemote: {
 				title: 'Start Delegated Harvesting',
 				wallet: 'Wallet',
-				account: 'Account',
-				password: 'Wallet\'s password',
 				start: 'Start'
 			},
 			stopRemote: {
 				title: 'Stop Delegated Harvesting',
 				wallet: 'Wallet',
-				account: 'Account',
-				password: 'Wallet\'s password',
 				stop: 'Stop'
 			},
 			logoutWarning: {
@@ -607,6 +619,7 @@ define({
 				stop: 'Zastavit žatvu',
 				description: 'Význam účtu pro cloud NEMu',
 				remoteHarvest: {
+					title: 'Delegated harvesting',
 					activate: 'Activate delegated harvesting',
 					activating: 'Activating delegated harvesting...',
 					active: 'Delegated harvesting is active',
@@ -614,7 +627,9 @@ define({
 					deactivating: 'Deactivating delegated harvesting...',
 					startRemoteHarvesting: 'Start delegated harvesting',
 					remotelyHarvesting: 'Remotely harvesting',
-					stopRemoteHarvesting: 'Stop delegated harvesting'
+					stopRemoteHarvesting: 'Stop delegated harvesting',
+					multisigInfo: 'Activation or deactivation of a delegated harvesting for a multisig account must be done from one of cosignatory accounts',
+
 				}
 			},
 			transactions: {

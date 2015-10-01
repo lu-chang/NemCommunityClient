@@ -1,9 +1,13 @@
 package org.nem.ncc.services;
 
+import org.apache.commons.io.IOUtils;
+import org.nem.core.utils.ExceptionUtils;
 import org.nem.ncc.addressbook.*;
 import org.nem.ncc.addressbook.storage.*;
 import org.nem.ncc.exceptions.NccException;
+import org.nem.ncc.storable.entity.storage.StorableEntityReadMode;
 
+import java.io.*;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
@@ -104,5 +108,16 @@ public class DefaultAddressBookServices implements AddressBookServices {
 			this.addressBooks.remove(originalPair.getName());
 			originalAddressBookDescriptor.delete();
 		}
+	}
+
+	@Override
+	public void copyTo(final AddressBookNamePasswordPair pair, final OutputStream outputStream) {
+		final AddressBookDescriptor descriptor = this.descriptorFactory.openExisting(pair, new AddressBookFileExtension());
+
+		ExceptionUtils.propagateVoid(() -> {
+			try (InputStream inputStream = descriptor.openRead(StorableEntityReadMode.Raw)) {
+				IOUtils.copy(inputStream, outputStream);
+			}
+		});
 	}
 }

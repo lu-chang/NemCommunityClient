@@ -33,6 +33,11 @@ public class SecureWalletDescriptor
 	}
 
 	@Override
+	public String getWalletLocation() {
+		return this.getDescriptor().getWalletLocation();
+	}
+
+	@Override
 	protected StorableEntityStorageException getException(final int value, final Exception ex) {
 		return null == ex ? new WalletStorageException(value) : new WalletStorageException(value, ex);
 	}

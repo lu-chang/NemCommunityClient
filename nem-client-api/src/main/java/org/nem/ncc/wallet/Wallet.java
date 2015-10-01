@@ -16,42 +16,42 @@ public interface Wallet extends SerializableEntity {
 	 *
 	 * @return The wallet name.
 	 */
-	public WalletName getName();
+	WalletName getName();
 
 	/**
 	 * Gets the primary account.
 	 *
 	 * @return The primary account.
 	 */
-	public WalletAccount getPrimaryAccount();
+	WalletAccount getPrimaryAccount();
 
 	/**
 	 * Gets a copy of the other accounts.
 	 *
 	 * @return The other accounts.
 	 */
-	public List<WalletAccount> getOtherAccounts();
+	List<WalletAccount> getOtherAccounts();
 
 	/**
 	 * Adds an additional account to this wallet.
 	 *
 	 * @param account The other account.
 	 */
-	public void addOtherAccount(final WalletAccount account);
+	void addOtherAccount(final WalletAccount account);
 
 	/**
 	 * Sets the primary account.
 	 *
 	 * @param address The address of the desired primary account.
 	 */
-	public void setPrimaryAccount(final Address address);
+	void setPrimaryAccount(final Address address);
 
 	/**
 	 * Removes an account from this wallet.
 	 *
 	 * @param address The address of the account to remove.
 	 */
-	public void removeAccount(final Address address);
+	void removeAccount(final Address address);
 
 	/**
 	 * Gets the private key associated with an account in this wallet.
@@ -59,7 +59,7 @@ public interface Wallet extends SerializableEntity {
 	 * @param address The account address.
 	 * @return The account private key.
 	 */
-	public PrivateKey getAccountPrivateKey(final Address address);
+	PrivateKey getAccountPrivateKey(final Address address);
 
 	/**
 	 * Tries to get the wallet account associated with the specified address.
@@ -67,5 +67,5 @@ public interface Wallet extends SerializableEntity {
 	 * @param address The account address.
 	 * @return The wallet account or null if the account is not in this wallet.
 	 */
-	public WalletAccount tryGetWalletAccount(final Address address);
+	WalletAccount tryGetWalletAccount(final Address address);
 }

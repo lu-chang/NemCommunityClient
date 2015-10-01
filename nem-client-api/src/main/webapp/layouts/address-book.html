@@ -17,10 +17,10 @@
 						<thead>
 							<tr class="txList-row addressBook-row">
 								<th class="sortable
-								 {{#if (contactsSort_formattedAddress===1)}}icon-arrow-up{{else}}icon-arrow-down{{/if}}{{#if (contactsSortColumn !== 'formattedAddress')}}-light{{/if}}
+								 {{#if (contactsSort_formattedAddress===1)}}icon-up-open{{else}}icon-down-open{{/if}} {{#if (contactsSortColumn !== 'formattedAddress')}}sort-inactive{{/if}}
 								 txList-header txList-col--address addressBook-leftMost" on-tap='sort:formattedAddress'>{{texts.addressBook.table.columns.0}}</th>
 								<th class="sortable
-								{{#if (contactsSort_privateLabel===1)}}icon-arrow-up{{else}}icon-arrow-down{{/if}}{{#if (contactsSortColumn !== 'privateLabel')}}-light{{/if}}
+								{{#if (contactsSort_privateLabel===1)}}icon-up-open{{else}}icon-down-open{{/if}} {{#if (contactsSortColumn !== 'privateLabel')}}sort-inactive{{/if}}
 								txList-header txList-col--label"  on-tap='sort:privateLabel'>{{texts.addressBook.table.columns.1}}</th>
 								<th class="sortable txList-header txList-col--actions addressBook-rightMost"></th>
 							</tr>

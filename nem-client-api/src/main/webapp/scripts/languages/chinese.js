@@ -44,30 +44,31 @@ define({
 			601: 'NIS节点已启用，无法重复启用。',
 			602: 'NEM基础设施服务（NIS）当前正在加载数据，数据完全加载后钱包将可用。',
 			699: '此服务器已达最大收获人数。',
-			700: '所提供的帐户不满足收获的基本要求。主要原因可能是金额不足，账户中至少有1000 XEM才能开始收获。',
-			701: '所提供的截止日期过早。必须输入1天以内的日期作为截止日期。',
-			702: '所提供的截止日期过晚。必须输入1天以内的日期作为截止日期。',
-			703: '您的账户余额不足，无法发起该交互。',
-			704: '提供消息的文本太大，无法通过XEM发送。请减少消息的长度。',
-			705: '数据库或交易清单中已经存在此交易的hash值。',
-			706: '无法验证本次交易的签名。',
-			707: '此交易ID的时间戳不合法，时间过早。',
-			708: '此交易ID的时间戳不合法，时间过晚。',
-			709: '该帐户未知。一个帐户需要至少完成一个交易（作为发件人或收件人）才能被网络公知。',
-			710: '交互缓存耗尽，交互被拒绝。网络繁忙时高手续费优先处理。 ',
-			730: '重要性传输交互 (委托收获) 与现有交互冲突。',
-			731: '申请委托收获的账户具有非0余额，无法开启。',
-			732: '重要性传输被拒绝，已有等待中重要性传输操作。 ',
-			733: '委托收获已激活。',
-			734: '委托收获未被激活，无法取消激活。',
-			740: '多重签名账号不可发起交互。',
-			741: '多重签名签名交互被拒绝。当前账户不是此多重签名交互的合法共同签署人账号。',
-			742: '多重签名签名交互被拒绝。相关多重签名交互在NEM网络中未公知。',
-			743: '多重签名账户变更被拒绝。一个待加入账号已是共同签署人。',
+			700: '所提供的帐户不满足收获的基本要求。主要原因可能是金额不足，账户中至少有10000 vested XEM才能开始收获。',
 			901: '设置离线模式发生错误。',
 			1000: '您所提供的密钥公钥与私钥不对应。',
 			1001: '您所提供的公钥和地址不对应。',
-			1002: '网络中无法找到改地址。'
+			1002: '网络中无法找到改地址。',
+			1203: '所提供的截止日期过早。必须输入1天以内的日期作为截止日期。',
+			1204: '所提供的截止日期过晚。必须输入1天以内的日期作为截止日期。',
+			1205: '您的账户余额不足，无法发起该交互。',
+			1206: '提供消息的文本太大，无法通过XEM发送。请减少消息的长度。',
+			1207: '数据库或交易清单中已经存在此交易的hash值。',
+			1208: '无法验证本次交易的签名。',
+			1209: '此交易ID的时间戳不合法，时间过早。',
+			1210: '此交易ID的时间戳不合法，时间过晚。',
+			1219: '交互缓存耗尽，交互被拒绝。网络繁忙时高手续费优先处理。 ',
+			1262: '申请委托收获的账户具有非0余额，无法开启。',
+			1263: '重要性传输被拒绝，已有等待中重要性传输操作。 ',
+			1264: '委托收获已激活。',
+			1265: '委托收获未被激活，无法取消激活。',
+			1266: '重要性传输交互 (委托收获) 与现有交互冲突。',
+			1271: '多重签名签名交互被拒绝。当前账户不是此多重签名交互的合法共同签署人账号。',
+			1273: '多重签名签名交互被拒绝。相关多重签名交互在NEM网络中未公知。',
+			1274: '多重签名账号不可发起交互。',
+			1275: '多重签名账户变更被拒绝。一个待加入账号已是共同签署人。',
+			1321: '该帐户未知。一个帐户需要至少完成一个交易（作为发件人或收件人）才能被网络公知。',
+
 		},
 		common: {
 			success: '成功',
@@ -101,26 +102,51 @@ define({
 			publicLabel: '公共标签',
 			noCharge: '当前账号<b>不会</b>支付相关费用，费用由多重签名账号支付。',
 			fee: '费用',
+			multisigFee: '多重签名费用',
+			useMinimumFee: '支付最小费用',
+			feeValidation: '无效费用值，必须填入等于或高于最小费用的值。',
 			justUse: 'Just use',
 			dueBy: '限期',
+			minutes: 'minute(s)',
 			hours: '小时数',
 			hoursDue: '到期小时数',
 			hoursDueExplanation: '如果交互未在截止时间之前完成，它会被拒绝。',
-			closeButton: '关闭'
+			closeButton: '关闭',
+			cancelButton: '取消',
+			sendButton: '发送',
+			account: '帐户',
+			thisAccount: '本账户',
+			warning: '警告',
+			newBuild: 'NEW BUILD',
+			newBuildNumber: 'There is new build {{1}} available for download. Check <a class="hyperlink--default", href="http://blog.nem.io">blog.nem.io</a> for details',
+
 		},
-		transactionTypes: [
-			'传输交互',
-			'重要性传输',
-			'多重签名账户变更',
-			'多重签名交互'
-		],
+		transactionTypes: {
+			20: '传输交互',
+			21: '重要性传输',
+			22: '多重签名账户变更',
+			23: 'PROVISION NAMESPACE',
+			24: 'MOSAIC CREATION',
+			25: 'MOSAIC SUPPLY',
+			40: 'MULTISIG SIGNATURE',
+			50: '多重签名交互',
+			51: '多重签名交互',
+			52: '多重签名交互',
+			53: '多重签名交互',
+			54: '多重签名交互',
+			55: '多重签名交互',
+
+		},
 		transactionDirections: {
 			pending: '等待中交互',
 			outgoing: '发送交互',
 			incoming: '接受交互',
 			self: '自我交互',
 			importance: '重要性交互',
-			modification: '多重签名账户协同变更'
+			modification: '多重签名账户协同变更',
+			provision: 'Provision Namespace',
+			mosaicCreation: 'Mosaic Creation',
+			mosaicSupply: 'Mosaic Supply'
 		},
 		modals: {
 			error: {
@@ -161,12 +187,17 @@ define({
 				autoBoot: {
 					tabTitle: '自动启用',
 					name: '节点名',
-					account: '帐户',
 					primaryAccount: '主帐户',
 					auto: '开启钱包时自动启用'
 				},
 				save: '保存',
 				saveSuccess: '设置保存成功'
+			},
+			signToken: {
+				title: "Sign a token using account",
+				label: "Token (url, string, anything)",
+				signature: "Signed token",
+				sign: "Sign"
 			},
 			multisig: {
 				title: '转换为多重签名账号',
@@ -175,17 +206,18 @@ define({
 				labelDesc: '账户标签为 {{1}}',
 				nullLabelDesc: '该账户未设置标签',
 				addCosignatory: '+ 添加共同签署人',
-				cancel: '取消',
 				convert: '转换',
-				fee: '费用',
-				feeValidation: '必须支付比最小值高的费用',
-				useMinimumFee: '使用最小费用',
 				txConfirm: {
 					title: '确认转换至多重签名账户',
 					total: '总额',
 
 				},
-				warning: '多重签名账户本身不可以作为共同签署人。这样做会把账户彻底锁死无法发出交互。估计您<b>不会</b>想要这么做。'
+				warning: '多重签名账户本身不可以作为共同签署人。这样做会把账户彻底锁死无法发出交互。估计您<b>不会</b>想要这么做。',
+				minCosignatoriesDefaultLabel: 'Use default cosignatories number',
+				minCosignatoriesRelativeLabel: 'relative change',
+				minCosignatoriesLabel: 'Minimum number of cosignatories',
+				minCosignatoriesZero: 'Using zero would cause all cosignatories to be required',
+				minCosignatoriesOverflow: 'Specified number is larger than number of cosignatories'
 			},
 			signMultisig: {
 				title: '签署多重签名交互',
@@ -199,15 +231,8 @@ define({
 				multisigFees: '多重签名费用',
 				multisigTotal: '总额',
 				sender: '共同签署人',
-				fee: '费用',
-				feeValidation: '费用必须高于最小费用',
-				useMinimumFee: '使用最小费用',
-				password: '密码',
 				passwordValidation: '密码不可为空',
-				send: '发送',
-				cancel: '取消',
 				sending: '发送中...',
-				successMessage: '交互已成功发出！',
 				txConfirm: {
 					title: '确认多重签名交互',
 					message: '信息',
@@ -227,16 +252,8 @@ define({
 				recipientValidation: '账户地址长度必须为40个字符（含符号）',
 				message: '信息',
 				encrypt: '加密',
-				fee: '费用',
-				multisigFee: '多重签名费用',
-				feeValidation: '无效费用值，必须填入等于或高于最小费用的值。',
-				useMinimumFee: '支付最小费用',
-				password: '密码',
-				passwordValidation: '密码不可为空',
-				send: '发送',
-				cancel: '取消',
 				sending: '正在发送...',
-				successMessage: '交易发送成功!',
+				successMessage: 'Your transaction has been sent successfully! <br><br>Transaction hash: {{1}}',
 				txConfirm: {
 					title: '确认交易',
 					amount: '金额',
@@ -245,7 +262,6 @@ define({
 					message: '信息',
 					encrypted: '信息已加密',
 					noMessage: '未发送信息',
-					cancel: '取消',
 					confirm: '确认',
 					sending: '正在发送中...'
 				},
@@ -296,14 +312,25 @@ define({
 				confirmations: '确认',
 				confirmationsUnknown: '未知',
 				amount: '金额',
-				fee: '费用',
 				innerFee: '内部费用',
 				multisigFees: '多重签名费用',
-				cosignatory: '共同签署人'
+				cosignatory: '共同签署人',
+				namespace: 'Namespace',
+				rentalFee: 'Rental fee',
+				mosaicName: 'Mosaic Name',
+				description: 'Description',
+				propertiesLabel: 'Properties',
+				properties: {
+					divisibility: 'Divisibility',
+					quantity: 'Maximal quantity',
+					mutablequantity: 'Is quantity mutable',
+					transferable: 'Is transferable'
+				},
+				supplyType: 'Supply type',
+				supplyAmount: 'Supply amount'
 			},
 			accountDetails: {
 				title: '账户细节',
-				address: '地址',
 				label: '标签',
 				noLabel: '无标签',
 				add: '添加到地址簿',
@@ -313,8 +340,7 @@ define({
 				importance: '重要性',
 				publicKey: '公钥',
 				noPublicKey: '无公钥',
-				harvestedBlocks: '已收获块',
-				close: '关闭'
+				harvestedBlocks: '已收获块'
 			},
 			bootLocalNode: {
 				title: '启用本地节点',
@@ -337,7 +363,6 @@ define({
 				title: '创建新帐号',
 				label: '标识',
 				wallet: '钱包',
-				password: '钱包的密码',
 				successMessage: '帐号 {{1}} {{#2}}({{2}}){{/2}} 已创建!',
 				create: '创建'
 			},
@@ -357,7 +382,6 @@ define({
 				title: '添加一个现有帐户',
 				privateKey: '帐户的私钥',
 				wallet: '钱包',
-				password: '钱包的密码',
 				successMessage: '帐户 {{1}} {{#2}}({{2}}){{/2}} 已被添加到钱包!',
 				add: '添加',
 				label: '标识'
@@ -367,7 +391,6 @@ define({
 				account: '帐户被设置为主账户',
 				noLabel: '<span class=\'null\'>&lt;无标识&gt;</span>',
 				wallet: '钱包',
-				password: '钱包的密码',
 				successMessage: '帐户 {{1}} {{#2}}({{2}}){{/2}} 被设置为主账户!',
 				set: '设置为主账户'
 			},
@@ -375,7 +398,6 @@ define({
 				title: '修改钱包名',
 				wallet: '当前钱包名',
 				newName: '新钱包名',
-				password: '钱包密码',
 				successMessage: '钱包名称已成功从<em>{{1}}</em>变更为<em>{{2}}</em>',
 				change: '修改'
 			},
@@ -394,16 +416,13 @@ define({
 				title: '更改帐户标识',
 				label: '帐户标识',
 				wallet: '帐户',
-				password: '钱包密码',
 				successMessage: '帐户{{1}}现在的标识是{{2}}',
 				change: '修改'
 			},
 			removeAccount: {
 				title: '删除帐户',
-				account: '帐户',
 				label: '帐户标识',
 				wallet: '钱包',
-				password: '钱包密码',
 				warning: '在你删除帐户前请确保您的帐户无剩余MEM，一经删除余额将无法恢复',
 				successMessage: '帐户 {{1}} {{#2}}({{2}}){{/2}} 被删除了!',
 				remove: '删除'
@@ -416,36 +435,29 @@ define({
 				title: '关闭程序',
 				message: '您确定要关闭NEM社区客户端?'
 			},
-			activateRemote: {
+			activateDelegated: {
 				title: 'Activate Delegated Harvesting',
 				wallet: '钱包',
-				account: '帐户',
-				password: '钱包密码',
 				activate: '激活',
-				warning: '警告',
-				warningText: '激活会花费6小时的时间 (360块)。激活操作并不会开启收获。'
+				warningText: '激活会花费6小时的时间 (360块)。激活操作并不会开启收获。',
+				delegatedAccount: 'Delegated account public key',
+				builtIn: 'built into the wallet',
+
 			},
-			deactivateRemote: {
+			deactivateDelegated: {
 				title: '取消激活委托收获',
 				wallet: '钱包',
-				account: '帐户',
-				password: '钱包密码',
 				deactivate: '停止激活',
-				warning: '警告',
 				warningText: '解除激活会花费6小时的时间 (360块)。'
 			},
 			startRemote: {
 				title: '开启委托收获',
 				wallet: '钱包',
-				account: '帐户',
-				password: '钱包密码',
 				start: '开始'
 			},
 			stopRemote: {
 				title: '停止委托收获',
 				wallet: '钱包',
-				account: '帐户',
-				password: '钱包密码',
 				stop: '停止'
 			},
 			logoutWarning: {
@@ -509,7 +521,7 @@ define({
 					},
 					{
 						title: '多语言支持',
-						description: 'NEM用户界面支持多语言，请查看“设置"。',
+						description: 'NEM用户界面支持多语言，请查看“设置"。'
 					},
 					{
 						title: '有任何问题或反馈？',
@@ -607,6 +619,7 @@ define({
 				stop: '停止收获',
 				description: 'NEM帐户重要性(PoI)',
 				remoteHarvest: {
+					title: '委托收获',
 					activate: '激活委托收获',
 					activating: '正在激活委托收获...',
 					active: '委托收获已激活',
@@ -614,7 +627,9 @@ define({
 					deactivating: '委托收获激活取消中...',
 					startRemoteHarvesting: '开启委托收获',
 					remotelyHarvesting: '远程收获',
-					stopRemoteHarvesting: '停止委托收获'
+					stopRemoteHarvesting: '停止委托收获',
+					multisigInfo: 'Activation or deactivation of a delegated harvesting for a multisig account must be done from one of cosignatory accounts',
+
 				}
 			},
 			transactions: {

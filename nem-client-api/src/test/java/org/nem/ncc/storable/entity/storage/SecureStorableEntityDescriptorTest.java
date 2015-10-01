@@ -58,6 +58,35 @@ public abstract class SecureStorableEntityDescriptorTest<
 				this.getExceptionValue(StorableEntityStorageException.Code.STORABLE_ENTITY_COULD_NOT_BE_READ.value()));
 	}
 
+	@Test
+	public void openReadWithReadModeDecodeDelegatesToOpenRead() throws IOException {
+		// Arrange:
+		final TestContext context = new TestContext("pwd");
+		final ByteArrayInputStream memoryStream = new ByteArrayInputStream(this.createEncryptedPayload("pwd"));
+		context.mockRead(memoryStream);
+
+		// Act:
+		context.secureDescriptor.openRead(StorableEntityReadMode.Decode);
+
+		// Assert:
+		Mockito.verify(context.secureDescriptor, Mockito.times(1)).openRead();
+	}
+
+	@Test
+	public void openReadWithReadModeRawDelegatesToFileDescriptorOpenRead() throws IOException {
+		// Arrange:
+		final TestContext context = new TestContext("pwd");
+		final ByteArrayInputStream memoryStream = new ByteArrayInputStream(this.createEncryptedPayload("pwd"));
+		context.mockRead(memoryStream);
+
+		// Act:
+		context.secureDescriptor.openRead(StorableEntityReadMode.Raw);
+
+		// Assert:
+		Mockito.verify(context.descriptor, Mockito.times(1)).openRead();
+		Mockito.verify(context.secureDescriptor, Mockito.never()).openRead();
+	}
+
 	//endregion
 
 	//region openWrite
@@ -140,7 +169,7 @@ public abstract class SecureStorableEntityDescriptorTest<
 	private void createSecureDescriptor(final TestContext context) {
 		final TEntityDescriptor descriptor = this.createDescriptor();
 		context.setDescriptor(descriptor);
-		context.setSecureDescriptor(this.createSecureDescriptor(descriptor, context.getPassword()));
+		context.setSecureDescriptor(Mockito.spy(this.createSecureDescriptor(descriptor, context.getPassword())));
 	}
 
 	protected class TestContext {

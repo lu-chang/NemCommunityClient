@@ -463,4 +463,209 @@ changed texts.landing.carousel.items.[1].description
 	  to: 'By using a remote NIS you don\'t have to synchronise the blockchain at start-up.'
 	 was: '<em>Saugumas</em> yra labai svarbus, tam kad išvengti XEM vagysčių &amp; assets.'
 
+-----changed texts.modals.sendNem.successMessage
+	from: 'Transaction has been sent successfully! <br><span class="dimmed">tx hash {{1}}</span>'
+	  to: 'Your transaction has been sent successfully! <br><br>Transaction hash: {{1}}'
+	 was: 'Transakcija išsiųsta sėkmingai!'
+
+translated texts.common.multisigFee
+	    from: 'Multisig fee'
+	      to: 'Multisig fee'
+	based on: texts.modals.sendNem.multisigFee
+
+translated texts.common.useMinimumFee
+	    from: 'Use minimum fee'
+	      to: 'Naudoti minimalų mokestį.'
+	based on: texts.modals.sendNem.useMinimumFee
+
+translated texts.common.feeValidation
+	    from: 'Fee must not be less than the minimum fee'
+	      to: 'Mokestis turi būti ne mažesnis kaip minimalus.'
+	based on: texts.modals.sendNem.feeValidation
+
+translated texts.common.cancelButton
+	    from: 'Cancel'
+	      to: 'Nutraukti'
+	based on: texts.modals.sendNem.txConfirm.cancel
+
+translated texts.common.sendButton
+	    from: 'Send'
+	      to: 'Siųsti'
+	based on: texts.modals.sendNem.send
+
+translated texts.common.account
+	    from: 'Account'
+	      to: 'Sąskaita'
+	based on: texts.modals.stopRemote.account
+
+translated texts.common.thisAccount
+	    from: 'This account'
+	      to: 'Ši sąskaita'
+	based on: texts.modals.sendNem.thisAccount
+
+translated texts.common.warning
+	    from: 'Warning'
+	      to: 'Warning'
+	based on: texts.modals.deactivateDelegated.warning
+
+translated texts.transactionTypes.[5]
+	    from: 'MULTISIG TRANSACTION'
+	      to: 'MULTISIG TRANSAKCIJA'
+	based on: texts.transactionTypes.[3]
+
+translated texts.transactionTypes.[6]
+	    from: 'MULTISIG TRANSACTION'
+	      to: 'MULTISIG TRANSAKCIJA'
+	based on: texts.transactionTypes.[3]
+
+translated texts.dashboard.importance.remoteHarvest.title
+	    from: 'Delegated harvesting'
+	      to: 'Delegated harvesting'
+	based on: texts.landing.carousel.items.[2].title
+
+-----translated texts.transactionTypes.20
+	    from: 'TRANSFER TRANSACTION'
+	      to: 'PERVEDIMO TRANSAKCIJA'
+	based on: texts.transactionTypes.[0]
+
+translated texts.transactionTypes.21
+	    from: 'IMPORTANCE TRANSFER'
+	      to: '\'SVARBUMO\' PERKĖLIMAS'
+	based on: texts.transactionTypes.[1]
+
+translated texts.transactionTypes.22
+	    from: 'MODIFICATION OF MULTISIG ACCOUNT'
+	      to: 'MULTISIG SĄSKAITOS MODIFIKACIJA'
+	based on: texts.transactionTypes.[2]
+
+translated texts.transactionTypes.40
+	    from: 'MULTISIG SIGNATURE'
+	      to: 'MULTISIG SIGNATURE'
+	based on: texts.transactionTypes.[4]
+
+translated texts.transactionTypes.50
+	    from: 'MULTISIG TRANSACTION'
+	      to: 'MULTISIG TRANSAKCIJA'
+	based on: texts.transactionTypes.[6]
+
+translated texts.transactionTypes.51
+	    from: 'MULTISIG TRANSACTION'
+	      to: 'MULTISIG TRANSAKCIJA'
+	based on: texts.transactionTypes.[6]
+
+translated texts.transactionTypes.52
+	    from: 'MULTISIG TRANSACTION'
+	      to: 'MULTISIG TRANSAKCIJA'
+	based on: texts.transactionTypes.[6]
+
+-----translated texts.faults.1203
+	    from: 'The provided deadline is in the past. The deadline must be provided within a 1 day period.'
+	      to: 'Pateiktas galutinis terminas yra praeityje. Galutinis terminas turi būti 1 dienos bėgyje.'
+	based on: texts.faults.701
+
+translated texts.faults.1204
+	    from: 'The provided deadline is too far in the future. The deadline must be within one day time period.'
+	      to: 'Pateiktas galutinis terminas yra per toli ateityje. Galutinis terminas turi būti ne daugiau kaip viena diena.'
+	based on: texts.faults.702
+
+translated texts.faults.1205
+	    from: 'Your account does not have the right balance to make this transaction.'
+	      to: 'Your account does not have the right balance to make this transaction.'
+	based on: texts.faults.703
+
+translated texts.faults.1206
+	    from: 'The provided message text is too large to be sent. Please try to reduce the length of the message.'
+	      to: 'Pateikta žinutė yra per didelė, kad ją išsiųsti. Prašome sutrumpinti žinutę, kurią Jūs norite išsiųsti.'
+	based on: texts.faults.704
+
+translated texts.faults.1207
+	    from: 'The transaction hash already exists in the database or in the list of unconfirmed transactions.'
+	      to: 'Transakcijos \'hash\' jau yra duomenų bazėje arba nepatvirtintų transakcijų sąraše.'
+	based on: texts.faults.705
+
+translated texts.faults.1208
+	    from: 'The signature of the transaction could not be verified.'
+	      to: 'Transakcijos parašas negali būti patikrintas.'
+	based on: texts.faults.706
+
+translated texts.faults.1209
+	    from: 'The time stamp of the transaction is too far in the past.'
+	      to: 'Transakcijos laiko žymė yra per toli praeityje.'
+	based on: texts.faults.707
+
+translated texts.faults.1210
+	    from: 'The time stamp of the transaction is too far in the future.'
+	      to: 'Transakcijos laiko žymė yra per toli ateityje.'
+	based on: texts.faults.708
+
+translated texts.faults.1219
+	    from: 'The transaction was rejected because the transaction cache is too full. A higher fee improves the chance that the transaction gets accepted.'
+	      to: 'Transakcija buvo atmesta, nes transakcijų kiekis bloke viršijo leistiną kiekį. Didesnis transakcijos mokestis padidina šansus, kad transakcija būtų priimta.'
+	based on: texts.faults.710
+
+translated texts.faults.1262
+	    from: 'Delegated harvesting account has non zero balance and cannot be used.'
+	      to: 'Delegated harvesting account has non zero balance and cannot be used.'
+	based on: texts.faults.731
+
+translated texts.faults.1263
+	    from: 'Importance transfer rejected. There is already pending importance transfer operation.'
+	      to: '\'Svarbumo\' perkėlimas atmestas. Jau yra atliekama \'svarbumo\' perkėlimo operacija.'
+	based on: texts.faults.732
+
+translated texts.faults.1264
+	    from: 'Delegated harvesting is already active.'
+	      to: 'Delegated harvesting is already active.'
+	based on: texts.faults.733
+
+translated texts.faults.1265
+	    from: 'Delegated harvesting is NOT active. Cannot deactivate.'
+	      to: 'Delegated harvesting is NOT active. Cannot deactivate.'
+	based on: texts.faults.734
+
+translated texts.faults.1266
+	    from: 'Importance transfer transaction (delegated harvesting) conflicts with existing transaction.'
+	      to: 'Importance transfer transaction (delegated harvesting) conflicts with existing transaction.'
+	based on: texts.faults.730
+
+translated texts.faults.1271
+	    from: 'Multisig signature transaction rejected. Current account is not a cosignatory of a multisig account.'
+	      to: 'Multisig parašo transakcija atmesta. Esama sąskaita neturi parašo teisės multisig sąskaitai. '
+	based on: texts.faults.741
+
+translated texts.faults.1273
+	    from: 'Multisig signature transaction rejected. Associated multisig transaction is not known to NEM network'
+	      to: 'Multisig parašo transakcija atmesta. Susijusi multisig transakcija yra nežinoma NEM tinklui.'
+	based on: texts.faults.742
+
+translated texts.faults.1274
+	    from: 'Transaction is not allowed for multisig account.'
+	      to: 'Transakcija neleidžiama multisig sąskaitai.'
+	based on: texts.faults.740
+
+translated texts.faults.1275
+	    from: 'Multisig account modification rejected. One of added accounts is already a cosignatory.'
+	      to: 'Multisig sąskaitos modifikacija atmesta. Viena iš pridėtų sąskaitų jau turi parašo teisę.'
+	based on: texts.faults.743
+
+translated texts.faults.1321
+	    from: 'The account is unknown. An account needs to be part of at least one transaction (sender or recipient) to be known to the network.'
+	      to: 'Sąskaita nežinoma. Sąskaita turi turėti bent vieną transakciją (siuntimo ar gavimo), kad būtų žinoma tinkle.'
+	based on: texts.faults.709
+
+translated texts.transactionTypes.53
+	    from: 'MULTISIG TRANSACTION'
+	      to: 'MULTISIG TRANSAKCIJA'
+	based on: texts.transactionTypes.52
+
+translated texts.transactionTypes.54
+	    from: 'MULTISIG TRANSACTION'
+	      to: 'MULTISIG TRANSAKCIJA'
+	based on: texts.transactionTypes.52
+
+translated texts.transactionTypes.55
+	    from: 'MULTISIG TRANSACTION'
+	      to: 'MULTISIG TRANSAKCIJA'
+	based on: texts.transactionTypes.52
+
 -----

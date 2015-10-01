@@ -14,7 +14,7 @@ public interface WalletDescriptorFactory {
 	 * @param fileExtension The wallet file extension.
 	 * @return The descriptor.
 	 */
-	public WalletDescriptor createNew(final WalletNamePasswordPair pair, final WalletFileExtension fileExtension);
+	WalletDescriptor createNew(final WalletNamePasswordPair pair, final WalletFileExtension fileExtension);
 
 	/**
 	 * Opens a wallet descriptor corresponding to en existing wallet.
@@ -23,5 +23,5 @@ public interface WalletDescriptorFactory {
 	 * @param fileExtension The wallet file extension.
 	 * @return The descriptor.
 	 */
-	public WalletDescriptor openExisting(final WalletNamePasswordPair pair, final WalletFileExtension fileExtension);
+	WalletDescriptor openExisting(final WalletNamePasswordPair pair, final WalletFileExtension fileExtension);
 }

@@ -1,7 +1,8 @@
 package org.nem.ncc.controller;
 
-import org.nem.core.crypto.KeyPair;
+import org.nem.core.crypto.*;
 import org.nem.core.model.*;
+import org.nem.core.utils.HexEncoder;
 import org.nem.ncc.addressbook.*;
 import org.nem.ncc.controller.requests.WalletNamePasswordBag;
 import org.nem.ncc.controller.viewmodels.*;
@@ -83,6 +84,22 @@ public class WalletAccountController {
 		final Wallet wallet = this.walletServices.open(bag);
 		wallet.removeAccount(bag.getAccountAddress());
 		return this.walletMapper.toViewModel(wallet);
+	}
+
+	/**
+	 * Signs the token specified by the request.
+	 *
+	 * @param bag The request parameters.
+	 * @return Details about the account.
+	 */
+	@RequestMapping(value = "/wallet/account/signToken", method = RequestMethod.POST)
+	public SignatureViewModel signToken(@RequestBody final WalletNamePasswordBag bag) {
+		final WalletAccount account = this.getAccount(bag);
+		final Signer signer = new Signer(new KeyPair(account.getPrivateKey()));
+		// TODO 20150528 J-G: i think you forgot to checkin getToken
+		// > also you might want to use StringEncoder instead of HexEncoder ?
+		final Signature signature = signer.sign(HexEncoder.getBytes(bag.getToken()));
+		return new SignatureViewModel(signature);
 	}
 
 	/**

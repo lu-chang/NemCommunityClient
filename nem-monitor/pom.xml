@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.nem.monitor</groupId>
     <artifactId>nem-monitor</artifactId>
-    <version>0.6.27-BETA</version>
+    <version>0.6.56-BETA</version>
     <name>NEM Monitor</name>
 
     <organization>
@@ -26,19 +26,27 @@
         <nem-certificate-password>nem-start-201404</nem-certificate-password>
         <nem-code-base>http://bob.nem.ninja/webstart</nem-code-base>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <nemcore.version>0.6.27-BETA</nemcore.version>
+        <nemcore.version>0.6.56-BETA</nemcore.version>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.nem.deploy</groupId>
-            <artifactId>nem-deploy</artifactId>
-            <version>${nemcore.version}</version>
-        </dependency>
-
+        <!-- nem -->
         <dependency>
             <groupId>org.nem.core</groupId>
             <artifactId>nem-core</artifactId>
+            <version>${nemcore.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.nem.core</groupId>
+            <artifactId>nem-core</artifactId>
+            <version>${project.version}</version>
+            <type>test-jar</type>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.nem.deploy</groupId>
+            <artifactId>nem-deploy</artifactId>
             <version>${nemcore.version}</version>
         </dependency>
 

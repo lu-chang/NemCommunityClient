@@ -1,6 +1,6 @@
 package org.nem.monitor.config;
 
-import org.nem.deploy.NemProperties;
+import org.nem.core.model.NemProperties;
 import org.nem.core.utils.ExceptionUtils;
 
 import java.io.InputStream;

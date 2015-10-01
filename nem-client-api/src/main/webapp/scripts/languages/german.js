@@ -45,29 +45,30 @@ define({
 			602: 'Fast fertig! NEM Infrastructure Server (NIS) lädt gerade die Blöcke. Die Brieftasche ist einsatzbereit, wenn alle Blöcke geladen sind.',
 			699: 'Die maximale Anzahl an Harvestern, die auf diesem Server erlaubt ist, ist erreicht.',
 			700: 'Das angegebene Konto erfüllt nicht die Grundkriterien, um Blöcke zu erzeugen. Um Blöcke erzeugen zu können, muss der zur Ernte verwendbare Anteil deines Kontostands mindestens 10.000 XEM betragen.',
-			701: 'Das angegebene Verfallsdatum liegt in der Vergangenheit. Das Verfallsdatum muss in einem Zeitraum von einem Tag liegen.',
-			702: 'Das angegebene Verfallsdatum liegt zu weit in der Zukunft. Das Verfallsdatum muss in einem Zeitraum von einem Tag liegen.',
-			703: 'Der Kontostand reicht nicht aus, um diese Transaktion durchzuführen.',
-			704: 'Die eingegebene Nachricht ist zu lang. Bitte reduziere die Länge der Nachricht, um sie versenden zu können.',
-			705: 'Der Transaktionshash existiert bereits in der Datenbank oder in der Liste der ausstehenden Transaktionen.',
-			706: 'Die Signatur der Transaktion konnte nicht verifiziert werden.',
-			707: 'Der Zeitstempel der Transaktion liegt zu weit in der Vergangenheit.',
-			708: 'Der Zeitstempel der Transaktion liegt zu weit in der Zukunft.',
-			709: 'Das Konto ist unbekannt. Ein Konto muss mindestens einmal als Absender oder Empfänger in einer Transaktion auftreten, um dem Netzwerk bekannt zu sein.',
-			710: 'Die Transaktion wurde abgelehnt, weil gerade zu viele Transaktionen gesendet werden. Eine höhere Gebühr erhöht die Chance, dass die Transaktion akzeptiert wird.',
-			730: 'Die Wichtigkeitsübertragung (für die delegierte Ernte) steht im Konflikt mit einer anderen Wichtigkeitsübertragung.',
-			731: 'Das Konto, welches für die delegierte Ernte benutzt werden soll, hat einen Kontostand größer als Null und kann daher nicht verwendet werden.',
-			732: 'Übertragung der Wichtigkeit abgelehnt, da es noch eine ausstehende Übertragung gibt.',
-			733: 'Die delegierte Ernte ist bereits freigeschaltet.',
-			734: 'Die delegierte Ernte ist bereits deaktiviert.',
-			740: 'Diese Transaktion ist für ein Multisig-Konto nicht erlaubt.',
-			741: 'Multisig-Signierung abgelehnt. Das aktuelle Konto ist kein Mitsignierer eines Multisig-Kontos.',
-			742: 'Multisig-Signierung abgelehnt. Die zu signierende Multisig-Transaktion existiert nicht.',
-			743: 'Änderung des Multisig-Kontos abgelehnt. Eines der hinzugefügten Konten ist schon Mitsignierer.',
 			901: 'Es ist ein Fehler beim Übergang zum Offlinemodus aufgetreten.',
 			1000: 'Der eingegebene private Schlüssel passt nicht zum eingegebenen öffentlichen Schlüssel.',
 			1001: 'Der eingegebene öffentliche Schlüssel passt nicht zur eingegebenen Adresse.',
-			1002: 'Die Adresse gehört nicht zum Hauptnetzwerk.'
+			1002: 'Die Adresse gehört nicht zum Hauptnetzwerk.',
+			1203: 'Das angegebene Verfallsdatum liegt in der Vergangenheit. Das Verfallsdatum muss in einem Zeitraum von einem Tag liegen.',
+			1204: 'Das angegebene Verfallsdatum liegt zu weit in der Zukunft. Das Verfallsdatum muss in einem Zeitraum von einem Tag liegen.',
+			1205: 'Der Kontostand reicht nicht aus, um diese Transaktion durchzuführen.',
+			1206: 'Die eingegebene Nachricht ist zu lang. Bitte reduziere die Länge der Nachricht, um sie versenden zu können.',
+			1207: 'Der Transaktionshash existiert bereits in der Datenbank oder in der Liste der ausstehenden Transaktionen.',
+			1208: 'Die Signatur der Transaktion konnte nicht verifiziert werden.',
+			1209: 'Der Zeitstempel der Transaktion liegt zu weit in der Vergangenheit.',
+			1210: 'Der Zeitstempel der Transaktion liegt zu weit in der Zukunft.',
+			1219: 'Die Transaktion wurde abgelehnt, weil gerade zu viele Transaktionen gesendet werden. Eine höhere Gebühr erhöht die Chance, dass die Transaktion akzeptiert wird.',
+			1262: 'Das Konto, welches für die delegierte Ernte benutzt werden soll, hat einen Kontostand größer als Null und kann daher nicht verwendet werden.',
+			1263: 'Übertragung der Wichtigkeit abgelehnt, da es noch eine ausstehende Übertragung gibt.',
+			1264: 'Die delegierte Ernte ist bereits freigeschaltet.',
+			1265: 'Die delegierte Ernte ist bereits deaktiviert.',
+			1266: 'Die Wichtigkeitsübertragung (für die delegierte Ernte) steht im Konflikt mit einer anderen Wichtigkeitsübertragung.',
+			1271: 'Multisig-Signierung abgelehnt. Das aktuelle Konto ist kein Mitsignierer eines Multisig-Kontos.',
+			1273: 'Multisig-Signierung abgelehnt. Die zu signierende Multisig-Transaktion existiert nicht.',
+			1274: 'Diese Transaktion ist für ein Multisig-Konto nicht erlaubt.',
+			1275: 'Änderung des Multisig-Kontos abgelehnt. Eines der hinzugefügten Konten ist schon Mitsignierer.',
+			1321: 'Das Konto ist unbekannt. Ein Konto muss mindestens einmal als Absender oder Empfänger in einer Transaktion auftreten, um dem Netzwerk bekannt zu sein.',
+
 		},
 		common: {
 			success: 'Erfolg',
@@ -101,26 +102,51 @@ define({
 			publicLabel: 'Öffentliche Bezeichnung',
 			noCharge: 'Das Konto wird <b>NICHT</b> mit Gebühren belastet. Das Multisig-Konto zahlt die Gebühren.',
 			fee: 'Gebühr',
+			multisigFee: 'Signierungs-Gebühr',
+			useMinimumFee: 'Benutze Mindestgebühr',
+			feeValidation: 'Die Gebühr darf die Mindestgebühr nicht unterschreiten',
 			justUse: 'Just use',
 			dueBy: 'Verfällt in',
+			minutes: 'minute(s)',
 			hours: 'Stunde(n)',
 			hoursDue: 'Verfällt in (Stunden)',
 			hoursDueExplanation: 'Falls die Transaktion von der NEM Cloud nicht innerhalb der hier eingestellten Zeit akzeptiert wird, wird sie endgültig abgelehnt.',
-			closeButton: 'Schließen'
+			closeButton: 'Schließen',
+			cancelButton: 'Abbrechen',
+			sendButton: 'Senden',
+			account: 'Adresse des Kontos',
+			thisAccount: 'Dieses Konto',
+			warning: 'Achtung',
+			newBuild: 'NEW BUILD',
+			newBuildNumber: 'There is new build {{1}} available for download. Check <a class="hyperlink--default", href="http://blog.nem.io">blog.nem.io</a> for details',
+
 		},
-		transactionTypes: [
-			'XEM-Überweisung',
-			'Wichtigkeitsübertragung',
-			'Multisig-Konto-Modifikation',
-			'Multisig-Überweisung'
-		],
+		transactionTypes: {
+			20: 'XEM-Überweisung',
+			21: 'Wichtigkeitsübertragung',
+			22: 'Multisig-Konto-Modifikation',
+			23: 'PROVISION NAMESPACE',
+			24: 'MOSAIC CREATION',
+			25: 'MOSAIC SUPPLY',
+			40: 'MULTISIG SIGNATURE',
+			50: 'Multisig-Überweisung',
+			51: 'Multisig-Überweisung',
+			52: 'Multisig-Überweisung',
+			53: 'Multisig-Überweisung',
+			54: 'Multisig-Überweisung',
+			55: 'Multisig-Überweisung',
+
+		},
 		transactionDirections: {
 			pending: 'Ausstehende Transaktion',
 			outgoing: 'Ausgehende Transaktion',
 			incoming: 'Eingehende Transaktion',
 			self: 'Transaktion zu sich selbst',
 			importance: 'Wichtigkeitsübertragung',
-			modification: 'Multisig-Konto-Modifikation'
+			modification: 'Multisig-Konto-Modifikation',
+			provision: 'Provision Namespace',
+			mosaicCreation: 'Mosaic Creation',
+			mosaicSupply: 'Mosaic Supply'
 		},
 		modals: {
 			error: {
@@ -161,12 +187,17 @@ define({
 				autoBoot: {
 					tabTitle: 'Auto-boot',
 					name: 'Name des NIS',
-					account: 'Konto',
 					primaryAccount: 'Hauptkonto',
 					auto: 'Automatisch booten beim Öffnen der Brieftasche'
 				},
 				save: 'Speichern',
 				saveSuccess: 'Die Einstellungen wurden erfolgreich gespeichert'
+			},
+			signToken: {
+				title: "Sign a token using account",
+				label: "Token (url, string, anything)",
+				signature: "Signed token",
+				sign: "Sign"
 			},
 			multisig: {
 				title: 'In Multisig-Konto umwandeln',
@@ -175,17 +206,18 @@ define({
 				labelDesc: 'Die Bezeichnung des Kontos ist {{1}}',
 				nullLabelDesc: 'Dieses Konto hat keine Bezeichnung',
 				addCosignatory: '+ Mitsignierer hinzufügen',
-				cancel: 'Abbrechen',
 				convert: 'Umwandeln',
-				fee: 'Gebühr',
-				feeValidation: 'Die Gebühr darf die Mindestgebühr nicht unterschreiten',
-				useMinimumFee: 'Benutze Mindestgebühr',
 				txConfirm: {
 					title: 'Umwandlung in Multisig-Konto bestätigen',
 					total: 'Insgesamt',
 
 				},
-				warning: 'Das Multisig-Konto ist selbst in der Liste der Mitsignierer. Das bedeutet, dass über das Vermögen auf diesem Konto nicht mehr verfügt werden kann. Es ist höchstwahrscheinlich, dass du das <b>NICHT</b> tun möchtest.'
+				warning: 'Das Multisig-Konto ist selbst in der Liste der Mitsignierer. Das bedeutet, dass über das Vermögen auf diesem Konto nicht mehr verfügt werden kann. Es ist höchstwahrscheinlich, dass du das <b>NICHT</b> tun möchtest.',
+				minCosignatoriesDefaultLabel: 'Use default cosignatories number',
+				minCosignatoriesRelativeLabel: 'relative change',
+				minCosignatoriesLabel: 'Minimum number of cosignatories',
+				minCosignatoriesZero: 'Using zero would cause all cosignatories to be required',
+				minCosignatoriesOverflow: 'Specified number is larger than number of cosignatories'
 			},
 			signMultisig: {
 				title: 'Multisig-Transaktion signieren',
@@ -199,15 +231,8 @@ define({
 				multisigFees: 'Signierungs-Gebühr',
 				multisigTotal: 'Insgesamt',
 				sender: 'Mitsignierer',
-				fee: 'Gebühr',
-				feeValidation: 'Die Gebühr darf die Mindestgebühr nicht unterschreiten',
-				useMinimumFee: 'Benutze Mindestgebühr',
-				password: 'Passwort der Brieftasche',
 				passwordValidation: 'Das Passwort darf nicht leer sein',
-				send: 'Senden',
-				cancel: 'Abbrechen',
 				sending: 'Sende...',
-				successMessage: 'Die Transaktion wurde erfolgreich gesendet!',
 				txConfirm: {
 					title: 'Multisig-Transaktion bestätigen',
 					message: 'Nachricht',
@@ -227,16 +252,8 @@ define({
 				recipientValidation: 'Adressen müssen eine Länge von 40 Zeichen (ohne Bindestriche) haben',
 				message: 'Nachricht',
 				encrypt: 'Nachricht verschlüsseln',
-				fee: 'Gebühr',
-				multisigFee: 'Signierungs-Gebühr',
-				feeValidation: 'Die Gebühr darf die Mindestgebühr nicht unterschreiten',
-				useMinimumFee: 'Benutze Mindestgebühr',
-				password: 'Passwort der Brieftasche',
-				passwordValidation: 'Das Passwort darf nicht leer sein',
-				send: 'Senden',
-				cancel: 'Abbrechen',
 				sending: 'Sende...',
-				successMessage: 'Die Transaktion wurde erfolgreich gesendet!',
+				successMessage: 'Your transaction has been sent successfully! <br><br>Transaction hash: {{1}}',
 				txConfirm: {
 					title: 'Transaktion bestätigen',
 					amount: 'Betrag',
@@ -245,7 +262,6 @@ define({
 					message: 'Nachricht',
 					encrypted: 'Nachricht ist verschlüsselt',
 					noMessage: 'Keine Nachricht',
-					cancel: 'Abbrechen',
 					confirm: 'Bestätigen',
 					sending: 'Sende...'
 				},
@@ -296,14 +312,25 @@ define({
 				confirmations: 'Bestätigungen',
 				confirmationsUnknown: 'Unbekannt',
 				amount: 'Betrag',
-				fee: 'Gebühr',
 				innerFee: 'Gebühr',
 				multisigFees: 'Signierungs-Gebühren',
-				cosignatory: 'Mitsignierer'
+				cosignatory: 'Mitsignierer',
+				namespace: 'Namespace',
+				rentalFee: 'Rental fee',
+				mosaicName: 'Mosaic Name',
+				description: 'Description',
+				propertiesLabel: 'Properties',
+				properties: {
+					divisibility: 'Divisibility',
+					quantity: 'Maximal quantity',
+					mutablequantity: 'Is quantity mutable',
+					transferable: 'Is transferable'
+				},
+				supplyType: 'Supply type',
+				supplyAmount: 'Supply amount'
 			},
 			accountDetails: {
 				title: 'Kontodetails',
-				address: 'Adresse',
 				label: 'Eigene Bezeichnung',
 				noLabel: 'Keine Bezeichnung',
 				add: 'Zum Adressbuch hinzufügen',
@@ -313,8 +340,7 @@ define({
 				importance: 'Wichtigkeit',
 				publicKey: 'Öffentlicher Schlüssel',
 				noPublicKey: 'Öffentlicher Schlüssel unbekannt',
-				harvestedBlocks: 'Geerntete Böcke',
-				close: 'Schließen'
+				harvestedBlocks: 'Geerntete Böcke'
 			},
 			bootLocalNode: {
 				title: 'NIS booten',
@@ -337,7 +363,6 @@ define({
 				title: 'Neues Konto anlegen',
 				label: 'Eigene Bezeichnung',
 				wallet: 'Zugehörige Brieftasche',
-				password: 'Passwort der Brieftasche',
 				successMessage: 'Das Konto {{1}} {{#2}}({{2}}){{/2}} wurde angelegt!',
 				create: 'Anlegen'
 			},
@@ -357,7 +382,6 @@ define({
 				title: 'Ein existierendes Konto hinzufügen',
 				privateKey: 'Privater Schlüssel des Kontos',
 				wallet: 'Zugehörige Brieftasche',
-				password: 'Passwort der Brieftasche',
 				successMessage: 'Das Konto {{1}} {{#2}}({{2}}){{/2}} wurde zur Brieftasche hinzugefügt!',
 				add: 'Hinzufügen',
 				label: 'Eigene Bezeichnung'
@@ -367,7 +391,6 @@ define({
 				account: 'Adresse des Kontos, welches das Hauptkonto werden soll',
 				noLabel: '<span class=\'null\'><Keine Bezeichnung></span>',
 				wallet: 'Zugehörige Brieftasche',
-				password: 'Passwort der Brieftasche',
 				successMessage: 'Das Konto {{1}} {{#2}}({{2}}){{/2}} wurde als Hauptkonto festgelegt!',
 				set: 'Als Hauptkonto festlegen'
 			},
@@ -375,7 +398,6 @@ define({
 				title: 'Namen der Brieftasche ändern',
 				wallet: 'Aktueller Name der Brieftasche',
 				newName: 'Neuer Name der Brieftasche',
-				password: 'Passwort der Brieftasche',
 				successMessage: 'Der Name der Brieftasche wurde erfolgreich von <em>{{1}}</em> in <em>{{2}}</em> geändert.',
 				change: 'Ändern'
 			},
@@ -394,16 +416,13 @@ define({
 				title: 'Bezeichnung des Kontos ändern',
 				label: 'Neue Bezeichnung des Kontos',
 				wallet: 'Zugehörige Brieftasche',
-				password: 'Passwort der Brieftasche',
 				successMessage: 'Das Konto {{1}} hat jetzt die Bezeichnung {{2}}',
 				change: 'Ändern'
 			},
 			removeAccount: {
 				title: 'Konto entfernen',
-				account: 'Konto',
 				label: 'Bezeichnung des Kontos',
 				wallet: 'Zugehörige Brieftasche',
-				password: 'Passwort der Brieftasche',
 				warning: 'Stelle bitte sicher, dass das Konto leer ist, bevor du es entfernst. Ohne Backup des privaten Schlüssels ist der Betrag sonst unwiederbringlich verloren.',
 				successMessage: 'Das Konto {{1}} {{#2}}({{2}}){{/2}} wurde entfernt!',
 				remove: 'Entfernen'
@@ -416,36 +435,29 @@ define({
 				title: 'Programm schließen',
 				message: 'Bist Du sicher, dass Du den NEM Community Client schließen möchtest?'
 			},
-			activateRemote: {
+			activateDelegated: {
 				title: 'Delegierte Ernte freischalten',
 				wallet: 'Zugehörige Brieftasche',
-				account: 'Adresse des Kontos',
-				password: 'Passwort der Bieftasche',
 				activate: 'Freischalten',
-				warning: 'Achtung',
-				warningText: 'Das Freischalten der delegierten Ernte dauert ca. 6 Stunden (360 Blöcke) und kostet eine Gebühr. Nachdem die delegierte Ernte freigeschaltet ist, wird sie nicht automatisch gestartet!'
+				warningText: 'Das Freischalten der delegierten Ernte dauert ca. 6 Stunden (360 Blöcke) und kostet eine Gebühr. Nachdem die delegierte Ernte freigeschaltet ist, wird sie nicht automatisch gestartet!',
+				delegatedAccount: 'Delegated account public key',
+				builtIn: 'built into the wallet',
+
 			},
-			deactivateRemote: {
+			deactivateDelegated: {
 				title: 'Delegierte Ernte deaktivieren',
 				wallet: 'Zugehörige Brieftasche',
-				account: 'Adresse des Kontos',
-				password: 'Passwort der Bieftasche',
 				deactivate: 'Deaktivieren',
-				warning: 'Achtung',
 				warningText: 'Die Deaktivierung der delegierten Ernte dauert ca. 6 Stunden (360 Blöcke) und kostet eine Gebühr.'
 			},
 			startRemote: {
 				title: 'Delegierte Ernte starten',
 				wallet: 'Zugehörige Brieftasche',
-				account: 'Adresse des Kontos',
-				password: 'Passwort der Brieftasche',
 				start: 'Starten'
 			},
 			stopRemote: {
 				title: 'Delegierte Ernte beenden',
 				wallet: 'Zugehörige Brieftasche',
-				account: 'Adresse des Kontos',
-				password: 'Passwort der Brieftasche',
 				stop: 'Beenden'
 			},
 			logoutWarning: {
@@ -607,6 +619,7 @@ define({
 				stop: 'Ernte beenden',
 				description: 'Wichtigkeit des Kontos für die NEM Cloud',
 				remoteHarvest: {
+					title: 'Delegierte Ernte',
 					activate: 'Delegierte Ernte freischalten',
 					activating: 'Delegierte Ernte wird freigeschaltet...',
 					active: 'Delegierte Ernte ist freigeschaltet',
@@ -614,7 +627,9 @@ define({
 					deactivating: 'Delegierte Ernte wird deaktiviert...',
 					startRemoteHarvesting: 'Delegierte Ernte starten',
 					remotelyHarvesting: 'Delegierte Ernte',
-					stopRemoteHarvesting: 'Delegierte Ernte beenden'
+					stopRemoteHarvesting: 'Delegierte Ernte beenden',
+					multisigInfo: 'Activation or deactivation of a delegated harvesting for a multisig account must be done from one of cosignatory accounts',
+
 				}
 			},
 			transactions: {

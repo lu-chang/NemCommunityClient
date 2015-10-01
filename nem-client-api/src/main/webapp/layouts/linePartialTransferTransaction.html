@@ -1,0 +1,80 @@
+{{! FIELD ICON }}
+
+{{#if .confirmed}}
+    {{#if (.isSelf)}}
+        <td class="txList-cell txList-col--type icon-ccw" title="{{texts.transactionDirections.self}}" on-mouseover="registerToolTip">{{#.isMultisig}}M{{/}}</td>
+    {{elseif (.isOutgoing)}}
+        <td class="txList-cell txList-col--type txList-col--type--outgoing icon-minus-circled" title="{{texts.transactionDirections.outgoing}}" on-mouseover="registerToolTip">{{#.isMultisig}}M{{/}}</td>
+    {{elseif (.isIncoming)}}
+        <td class="txList-cell txList-col--type txList-col--type--incoming icon-plus-circled" title="{{texts.transactionDirections.incoming}}" on-mouseover="registerToolTip">{{#.isMultisig}}M{{/}}</td>
+    {{else}}
+        {{! IF IT'S NOT ONE OF THE ABOVE, IT HAS TO BE MULTISIG AND WE WEREN'T ABLE TO TELL THE DIRECTION }}
+        {{! THAT MEANS THIS IS A COSIGNATORY, AND WE CAN SHOW IT AS NEUTRAL }}
+        <td class="txList-cell txList-col--type neutral icon-minus-circled" title="">{{#.isMultisig}}M{{/}}</td>
+    {{/if}}
+{{else}}
+	<td class="txList-cell txList-col--type txList-col--type--pending icon-clock" title="{{texts.transactionDirections.pending}}" on-mouseover="registerToolTip">{{#.isMultisig}}M{{/}}</td>
+{{/if}}
+
+{{! FIELD DATE }}
+<td class="txList-cell txList-col--date">{{.formattedDate}}</td>
+
+{{! FIELD SENDER OR RECIPIENT }}
+{{#if (.isSelf || .isOutgoing)}}
+    <td class="txList-cell txList-col--sender" title="{{.real.formattedRecipient}}" on-mouseover="registerToolTip">
+        <a class="hyperlink--default" href="javascript:;" on-click="viewAccount(.real.recipient)">
+            {{#if privateLabels[.real.recipient]}}
+                {{privateLabels[.real.recipient]}}
+            {{else}}
+                {{.real.formattedRecipient}}
+            {{/if}}
+        </a>
+    </td>
+{{! else it's either incoming, or it's a multisig, so show sender }}
+{{else}}
+    <td class="txList-cell txList-col--sender" title="{{.real.formattedSender}}" on-mouseover="registerToolTip">
+        <a class="hyperlink--default" href="javascript:;" on-click="viewAccount(.real.sender)">
+            {{#if privateLabels[.real.sender]}}
+                {{privateLabels[.real.sender]}}
+            {{else}}
+                {{.real.formattedSender}}
+            {{/if}}
+        </a>
+    </td>
+{{/if}}
+
+{{! FIELD MESSAGE }}
+{{#if .isMultisig}}
+<td class="txList-cell txList-col--message" title="{{.message}}" on-mouseover="registerToolTip">
+	<span style='font-style:italic;'>{{.cosignatoriesCount}}</span>
+</td>
+{{else}}
+{{! not a multisig, so it's ok to address it via .message }}
+<td class="txList-cell txList-col--message" title="{{.message}}" on-mouseover="registerToolTip">
+	{{#if .message}}
+	    {{.message}}
+	{{else}}
+	    <span class="dimmed">{{texts.dashboard.transactions.noMessage}}</span>
+	{{/if}}
+</td>
+{{/if}}
+
+
+{{! FIELD AMOUNT }}
+<td class="txList-cell txList-col--amount">
+{{#if (.isMultisig && .requiresSignature)}}
+		<button type="button" class="transactionsTile-signMultisigButton icon-paper-plane-empty" disabled="{{nisUnavailable}}" on-click="openSignMultisig(.)">{{texts.dashboard.transactions.signMultisig}}</button>
+{{else}}
+    {{! as explained at the top of this partial, last else, covers multisig case}}
+    {{#if (.isSelf)}} &plusmn;
+    {{elseif (.isOutgoing)}} -
+    {{elseif (.isIncoming)}} +
+    {{else}} -
+    {{/if}}
+	{{{formattedAmount}}}
+
+    {{# .real.mosaics.length}}
+        + #{{.real.mosaics.length}} mosaic(s)
+    {{/}}
+{{/if}}
+</td>

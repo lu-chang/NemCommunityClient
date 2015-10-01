@@ -44,30 +44,31 @@ define({
 			601: 'Il nodo NIS locale è già avviato; non è possibile avviarlo nuovamente.',
 			602: 'Almost ready. NEM Infrastructure Server is currently loading blocks. Wallet will be functional when db is fully loaded.',
 			699: 'E\' stato raggiunto il numero massimo di indirizzi che generano blocchi.',
-			700: 'L\'indirizzo indicato non soddisfa i criteri minimi per generare blocchi. Per poter generare blocchi è necessario disporre di almeno 1000 XEM',
-			701: 'Il termine massimo indicato è nel passato. Dovrebbe invece essere nelle prossime 24 ore.',
-			702: 'Il termine massimo indicato è troppo lontano nel futuro. Dovrebbe invece essere nelle prossime 24 ore.',
-			703: 'Your account does not have the right balance to make this transaction.',
-			704: 'Il messaggio inserito è troppo grande. Riduci la dimensione del testo.',
-			705: 'La firma della transazione è già presente nel database delle transazioni non ancora confermate.',
-			706: 'Errore nella verifica della firma della transazione.',
-			707: 'La marca temporale della transazione è troppo lontana nel passato.',
-			708: 'La marca temporale della transazione è troppo lontana nel futuro.',
-			709: 'Indirizzo sconosciuto. Un indirizzo deve comparire in almeno una transazione (come mittente o come destinatario) per essere noto alla rete.',
-			710: 'La transazione è stata annullata in quanto la lista delle transazioni in attesa è piena. Commissioni maggiori possono migliorare la probabilità che la transazione venga accettata.',
-			730: 'Importance transfer transaction (delegated harvesting) conflicts with existing transaction.',
-			731: 'Delegated harvesting account has non zero balance and cannot be used.',
-			732: 'Trasferimento di importanza annullato. C\'è già una transazione di questo tipo in corso.',
-			733: 'Delegated harvesting is already active.',
-			734: 'Delegated harvesting is NOT active. Cannot deactivate.',
-			740: 'Tipo di transazione non consentita per indirizzi a firma multipla.',
-			741: 'Transazione rifiutata. L\'indirizzo non è uno dei cofirmatari.',
-			742: 'Transazione rifiutata. La definizione dei cofirmatari non è nota alla rete NEM.',
-			743: 'Modifica rifiutata. Uno dei cofirmatari da aggiungere è già un cofirmatario.',
+			700: 'L\'indirizzo indicato non soddisfa i criteri minimi per generare blocchi. Per poter generare blocchi è necessario disporre di almeno 10000 vested XEM',
 			901: 'Errore nella modalità fuori rete.',
 			1000: 'Mancata corrispondenza tra chiave privata e chiave pubblica.',
 			1001: 'Mancata corrispondenza tra chiave pubblica ed indirizzo.',
-			1002: 'L\'indirizzo non appartiene alla rete NEM principale'
+			1002: 'L\'indirizzo non appartiene alla rete NEM principale',
+			1203: 'Il termine massimo indicato è nel passato. Dovrebbe invece essere nelle prossime 24 ore.',
+			1204: 'Il termine massimo indicato è troppo lontano nel futuro. Dovrebbe invece essere nelle prossime 24 ore.',
+			1205: 'Your account does not have the right balance to make this transaction.',
+			1206: 'Il messaggio inserito è troppo grande. Riduci la dimensione del testo.',
+			1207: 'La firma della transazione è già presente nel database delle transazioni non ancora confermate.',
+			1208: 'Errore nella verifica della firma della transazione.',
+			1209: 'La marca temporale della transazione è troppo lontana nel passato.',
+			1210: 'La marca temporale della transazione è troppo lontana nel futuro.',
+			1219: 'La transazione è stata annullata in quanto la lista delle transazioni in attesa è piena. Commissioni maggiori possono migliorare la probabilità che la transazione venga accettata.',
+			1262: 'Delegated harvesting account has non zero balance and cannot be used.',
+			1263: 'Trasferimento di importanza annullato. C\'è già una transazione di questo tipo in corso.',
+			1264: 'Delegated harvesting is already active.',
+			1265: 'Delegated harvesting is NOT active. Cannot deactivate.',
+			1266: 'Importance transfer transaction (delegated harvesting) conflicts with existing transaction.',
+			1271: 'Transazione rifiutata. L\'indirizzo non è uno dei cofirmatari.',
+			1273: 'Transazione rifiutata. La definizione dei cofirmatari non è nota alla rete NEM.',
+			1274: 'Tipo di transazione non consentita per indirizzi a firma multipla.',
+			1275: 'Modifica rifiutata. Uno dei cofirmatari da aggiungere è già un cofirmatario.',
+			1321: 'Indirizzo sconosciuto. Un indirizzo deve comparire in almeno una transazione (come mittente o come destinatario) per essere noto alla rete.',
+
 		},
 		common: {
 			success: 'Operazione completata',
@@ -101,26 +102,51 @@ define({
 			publicLabel: 'Nome pubblico',
 			noCharge: 'L\'indirizzo <b>NON</b> deve pagare commissioni, verranno coperte dall\'indirizzo cointestato.',
 			fee: 'Commissioni',
+			multisigFee: 'Commissione multifirma',
+			useMinimumFee: 'Usa commissioni minime',
+			feeValidation: 'Le commissioni non possono essere inferiori al minimo previsto',
 			justUse: 'Just use',
 			dueBy: 'Tempo massimo',
+			minutes: 'minute(s)',
 			hours: 'ore',
 			hoursDue: 'Tempo massimo (ore)',
 			hoursDueExplanation: 'If the transaction isn\'t included by the deadline, it is rejected.',
-			closeButton: 'Close'
+			closeButton: 'Close',
+			cancelButton: 'Annulla',
+			sendButton: 'Invia',
+			account: 'Indirizzo',
+			thisAccount: 'Questo indirizzo',
+			warning: 'Warning',
+			newBuild: 'NEW BUILD',
+			newBuildNumber: 'There is new build {{1}} available for download. Check <a class="hyperlink--default", href="http://blog.nem.io">blog.nem.io</a> for details',
+
 		},
-		transactionTypes: [
-			'TRASFERIMENTO FONDI',
-			'TRASFERIMENTO IMPORTANZA',
-			'MODIFICA INDIRIZZO MULTIFIRMATO',
-			'TRANSAZIONE MULTIFIRMA'
-		],
+		transactionTypes: {
+			20: 'TRASFERIMENTO FONDI',
+			21: 'TRASFERIMENTO IMPORTANZA',
+			22: 'MODIFICA INDIRIZZO MULTIFIRMATO',
+			23: 'PROVISION NAMESPACE',
+			24: 'MOSAIC CREATION',
+			25: 'MOSAIC SUPPLY',
+			40: 'MULTISIG SIGNATURE',
+			50: 'TRANSAZIONE MULTIFIRMA',
+			51: 'TRANSAZIONE MULTIFIRMA',
+			52: 'TRANSAZIONE MULTIFIRMA',
+			53: 'TRANSAZIONE MULTIFIRMA',
+			54: 'TRANSAZIONE MULTIFIRMA',
+			55: 'TRANSAZIONE MULTIFIRMA',
+
+		},
 		transactionDirections: {
 			pending: 'Transazione in attesa',
 			outgoing: 'Transazione in uscita',
 			incoming: 'Transazione in entrata',
 			self: 'Transazione a te stesso',
 			importance: 'Trasferimento di importanza',
-			modification: 'Modifica cofirmatari'
+			modification: 'Modifica cofirmatari',
+			provision: 'Provision Namespace',
+			mosaicCreation: 'Mosaic Creation',
+			mosaicSupply: 'Mosaic Supply'
 		},
 		modals: {
 			error: {
@@ -161,12 +187,17 @@ define({
 				autoBoot: {
 					tabTitle: 'Auto-avvio',
 					name: 'Nome del nodo',
-					account: 'Indirizzo',
 					primaryAccount: 'Indirizzo principale',
 					auto: 'Auto avvia quando il portafoglio viene aperto'
 				},
 				save: 'Salva',
 				saveSuccess: 'Impostazioni salvate con successo'
+			},
+			signToken: {
+				title: "Sign a token using account",
+				label: "Token (url, string, anything)",
+				signature: "Signed token",
+				sign: "Sign"
 			},
 			multisig: {
 				title: 'Trasforma indirizzo in indirizzo multifirma',
@@ -175,17 +206,18 @@ define({
 				labelDesc: 'Questo indirizzo è denominato {{1}}',
 				nullLabelDesc: 'Questo indirizzo non ha un nome',
 				addCosignatory: '+ Aggiungi cofirmatario',
-				cancel: 'Annulla',
 				convert: 'Trasforma',
-				fee: 'Commissioni',
-				feeValidation: 'Le commissioni non devono essere inferiori al minimo previsto',
-				useMinimumFee: 'Utilizza commissioni minime',
 				txConfirm: {
 					title: 'Conferma la trasformazione in indirizzo multifirma',
 					total: 'Totale',
 
 				},
-				warning: 'L\'indirizzo multifirma è nella lista dei cofirmatari. Questo porterebbe all\'impossibilità di accesso ai fondi. Probabilmente <b>non è</b> questo quello che vuoi.'
+				warning: 'L\'indirizzo multifirma è nella lista dei cofirmatari. Questo porterebbe all\'impossibilità di accesso ai fondi. Probabilmente <b>non è</b> questo quello che vuoi.',
+				minCosignatoriesDefaultLabel: 'Use default cosignatories number',
+				minCosignatoriesRelativeLabel: 'relative change',
+				minCosignatoriesLabel: 'Minimum number of cosignatories',
+				minCosignatoriesZero: 'Using zero would cause all cosignatories to be required',
+				minCosignatoriesOverflow: 'Specified number is larger than number of cosignatories'
 			},
 			signMultisig: {
 				title: 'Aggiungi firma alla trasazione multifirma',
@@ -199,15 +231,8 @@ define({
 				multisigFees: 'Commissioni per multifirma',
 				multisigTotal: 'Totale',
 				sender: 'Cofirmatario',
-				fee: 'Commissioni',
-				feeValidation: 'Le commissioni non devono essere inferiori al minimo previsto',
-				useMinimumFee: 'Utilizza commissioni minime',
-				password: 'Password',
 				passwordValidation: 'La password non può essere vuota',
-				send: 'Invia',
-				cancel: 'Annulla',
 				sending: 'Invio in corso...',
-				successMessage: 'Transazione inserita con successo!',
 				txConfirm: {
 					title: 'Conferma transazione multifirma',
 					message: 'Messaggio',
@@ -227,16 +252,8 @@ define({
 				recipientValidation: 'L\'indirizzo deve essere composto di 40 caratteri trattini esclusi',
 				message: 'Messaggio',
 				encrypt: 'Cifra il mesaggio',
-				fee: 'Commissioni',
-				multisigFee: 'Commissione multifirma',
-				feeValidation: 'Le commissioni non possono essere inferiori al minimo previsto',
-				useMinimumFee: 'Usa commissioni minime',
-				password: 'Password',
-				passwordValidation: 'La password non può essere vuota',
-				send: 'Invia',
-				cancel: 'Annulla',
 				sending: 'Invio in corso...',
-				successMessage: 'Transazione inserita con successo!',
+				successMessage: 'Your transaction has been sent successfully! <br><br>Transaction hash: {{1}}',
 				txConfirm: {
 					title: 'Conferma transazione',
 					amount: 'Importo',
@@ -245,7 +262,6 @@ define({
 					message: 'Messaggio',
 					encrypted: 'Cifra messaggio',
 					noMessage: 'Nessun messaggio',
-					cancel: 'Annulla',
 					confirm: 'Conferma',
 					sending: 'Invio in corso...'
 				},
@@ -296,14 +312,25 @@ define({
 				confirmations: 'Conferme',
 				confirmationsUnknown: 'Sconosciuto',
 				amount: 'Importo',
-				fee: 'Commissioni',
 				innerFee: 'Commissioni interne',
 				multisigFees: 'Commissioni multifirma',
-				cosignatory: 'Cofirmatario'
+				cosignatory: 'Cofirmatario',
+				namespace: 'Namespace',
+				rentalFee: 'Rental fee',
+				mosaicName: 'Mosaic Name',
+				description: 'Description',
+				propertiesLabel: 'Properties',
+				properties: {
+					divisibility: 'Divisibility',
+					quantity: 'Maximal quantity',
+					mutablequantity: 'Is quantity mutable',
+					transferable: 'Is transferable'
+				},
+				supplyType: 'Supply type',
+				supplyAmount: 'Supply amount'
 			},
 			accountDetails: {
 				title: 'Informazioni sull\'indirizzo',
-				address: 'Indirizzo',
 				label: 'Nome',
 				noLabel: 'Nessun nome',
 				add: 'Aggiungi alla rubrica',
@@ -313,8 +340,7 @@ define({
 				importance: 'Importanza',
 				publicKey: 'Chiave pubblica',
 				noPublicKey: 'Nessuna chiave pubblica',
-				harvestedBlocks: 'Blocchi generati',
-				close: 'Chiudi'
+				harvestedBlocks: 'Blocchi generati'
 			},
 			bootLocalNode: {
 				title: 'Avvia nodo locale',
@@ -337,7 +363,6 @@ define({
 				title: 'Creazione nuovo indirizzo',
 				label: 'Nome privato',
 				wallet: 'Portafoglio',
-				password: 'Password del portafoglio',
 				successMessage: 'L\'indirizzo {{1}} {{#2}}({{2}}){{/2}} è stato creato!',
 				create: 'Crea'
 			},
@@ -357,7 +382,6 @@ define({
 				title: 'Aggiunta indirizzo esistente',
 				privateKey: 'Chiave privata',
 				wallet: 'Portafoglio',
-				password: 'Password del portafoglio',
 				successMessage: 'L\'indirizzo {{1}} {{#2}}({{2}}){{/2}} è stato aggiunto al portafoglio!',
 				add: 'Aggiungi',
 				label: 'Nome'
@@ -367,7 +391,6 @@ define({
 				account: 'Indirizzo da rendere principale',
 				noLabel: '<span class=\'null\'>&lt;Senza nome&gt;</span>',
 				wallet: 'Portafoglio',
-				password: 'Password del portafoglio',
 				successMessage: 'L\'indirizzo {{1}} {{#2}}({{2}}){{/2}} è il principale',
 				set: 'Imposta come principale'
 			},
@@ -375,7 +398,6 @@ define({
 				title: 'Modifica nome del portafoglio',
 				wallet: 'Nome attuale del portafoglio',
 				newName: 'Nuovo nome del portafoglio',
-				password: 'Password del portafoglio',
 				successMessage: 'Il portafoglio è stato rinominato da <em>{{1}}</em> in <em>{{2}}</em>',
 				change: 'Modifica'
 			},
@@ -394,16 +416,13 @@ define({
 				title: 'Modifica nome dell\'indirizzo',
 				label: 'Nome dell\'indirizzo',
 				wallet: 'Portafoglio',
-				password: 'Password del portafoglio',
 				successMessage: 'L\'indirizzo {{1}} è ora denominato {{2}}',
 				change: 'Modifica'
 			},
 			removeAccount: {
 				title: 'Cancellazione indirizzo',
-				account: 'Indirizzo',
 				label: 'Nome dell\'indirizzo',
 				wallet: 'Portafoglio',
-				password: 'Password del portafoglio',
 				warning: 'Assicurati che l\'indirizzo non contenga alcun NEM prima di eliminarlo oppure questi saranno definitivamente persi.',
 				successMessage: 'L\'indirizzo {{1}} {{#2}}({{2}}){{/2}} è stato eliminato!',
 				remove: 'Elimina'
@@ -416,36 +435,29 @@ define({
 				title: 'Arresto NCC',
 				message: 'Sei sicuro di voler arrestare NEM Community Client?'
 			},
-			activateRemote: {
+			activateDelegated: {
 				title: 'Activate Delegated Harvesting',
 				wallet: 'Portafoglio',
-				account: 'Indirizzo',
-				password: 'Password del portafoglio',
 				activate: 'Attiva',
-				warning: 'Warning',
-				warningText: 'Activation will take 6 hours (360 blocks). Activation will NOT start harvesting automatically.'
+				warningText: 'Activation will take 6 hours (360 blocks). Activation will NOT start harvesting automatically.',
+				delegatedAccount: 'Delegated account public key',
+				builtIn: 'built into the wallet',
+
 			},
-			deactivateRemote: {
+			deactivateDelegated: {
 				title: 'Deactivate Delegated Harvesting',
 				wallet: 'Portafoglio',
-				account: 'Indirizzo',
-				password: 'Password del portafoglio',
 				deactivate: 'Disattiva',
-				warning: 'Warning',
 				warningText: 'Deactivation will take 6 hours (360 blocks).'
 			},
 			startRemote: {
 				title: 'Start Delegated Harvesting',
 				wallet: 'Portafoglio',
-				account: 'Indirizzo',
-				password: 'Password del portafoglio',
 				start: 'Avvia'
 			},
 			stopRemote: {
 				title: 'Stop Delegated Harvesting',
 				wallet: 'Portafoglio',
-				account: 'Indirizzo',
-				password: 'Password del portafoglio',
 				stop: 'Ferma'
 			},
 			logoutWarning: {
@@ -607,6 +619,7 @@ define({
 				stop: 'Ferma generazione blocchi',
 				description: 'importanza dell\'indirizzo nella rete NEM',
 				remoteHarvest: {
+					title: 'Delegated harvesting',
 					activate: 'Activate delegated harvesting',
 					activating: 'Activating delegated harvesting...',
 					active: 'Delegated harvesting is active',
@@ -614,7 +627,9 @@ define({
 					deactivating: 'Deactivating delegated harvesting...',
 					startRemoteHarvesting: 'Start delegated harvesting',
 					remotelyHarvesting: 'Generazione blocchi sicura in corso',
-					stopRemoteHarvesting: 'Stop delegated harvesting'
+					stopRemoteHarvesting: 'Stop delegated harvesting',
+					multisigInfo: 'Activation or deactivation of a delegated harvesting for a multisig account must be done from one of cosignatory accounts',
+
 				}
 			},
 			transactions: {

@@ -12,7 +12,7 @@ public class StorableEntityStorageException extends NccException {
 	/**
 	 * Storable entity storage exception codes.
 	 */
-	public static enum Code implements ValueBasedEnum {
+	public enum Code implements ValueBasedEnum {
 		/**
 		 * The specified storable entity file does not exist.
 		 */
@@ -68,7 +68,7 @@ public class StorableEntityStorageException extends NccException {
 
 		private final int value;
 
-		private Code(final int value) {
+		Code(final int value) {
 			this.value = value;
 		}
 

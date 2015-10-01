@@ -13,12 +13,12 @@ public interface AccountsRepository {
 	 *
 	 * @param accounts The accounts to save.
 	 */
-	public void save(final Collection<AccountInfo> accounts);
+	void save(final Collection<AccountInfo> accounts);
 
 	/**
 	 * Loads all accounts.
 	 *
 	 * @return The accounts.
 	 */
-	public Collection<AccountInfo> load();
+	Collection<AccountInfo> load();
 }

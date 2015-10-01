@@ -463,4 +463,209 @@ changed texts.landing.carousel.items.[1].description
 	  to: 'By using a remote NIS you don\'t have to synchronise the blockchain at start-up.'
 	 was: '<em>Segurança</em> baseada em forte criptografia para evitar roubo de moedas &amp; ativos.'
 
+-----changed texts.modals.sendNem.successMessage
+	from: 'Transaction has been sent successfully! <br><span class="dimmed">tx hash {{1}}</span>'
+	  to: 'Your transaction has been sent successfully! <br><br>Transaction hash: {{1}}'
+	 was: 'A transação foi enviada!'
+
+translated texts.common.multisigFee
+	    from: 'Multisig fee'
+	      to: 'Taxa Multisig'
+	based on: texts.modals.sendNem.multisigFee
+
+translated texts.common.useMinimumFee
+	    from: 'Use minimum fee'
+	      to: 'Usar taxa minima'
+	based on: texts.modals.sendNem.useMinimumFee
+
+translated texts.common.feeValidation
+	    from: 'Fee must not be less than the minimum fee'
+	      to: 'A taxa de transação não deve ser inferior a taxa mínima'
+	based on: texts.modals.sendNem.feeValidation
+
+translated texts.common.cancelButton
+	    from: 'Cancel'
+	      to: 'Cancelar'
+	based on: texts.modals.sendNem.txConfirm.cancel
+
+translated texts.common.sendButton
+	    from: 'Send'
+	      to: 'Enviar'
+	based on: texts.modals.sendNem.send
+
+translated texts.common.account
+	    from: 'Account'
+	      to: 'Conta'
+	based on: texts.modals.stopRemote.account
+
+translated texts.common.thisAccount
+	    from: 'This account'
+	      to: 'Esta conta'
+	based on: texts.modals.sendNem.thisAccount
+
+translated texts.common.warning
+	    from: 'Warning'
+	      to: 'Aviso'
+	based on: texts.modals.deactivateDelegated.warning
+
+translated texts.transactionTypes.[5]
+	    from: 'MULTISIG TRANSACTION'
+	      to: 'TRANSAÇÃO MULTISIG'
+	based on: texts.transactionTypes.[3]
+
+translated texts.transactionTypes.[6]
+	    from: 'MULTISIG TRANSACTION'
+	      to: 'TRANSAÇÃO MULTISIG'
+	based on: texts.transactionTypes.[3]
+
+translated texts.dashboard.importance.remoteHarvest.title
+	    from: 'Delegated harvesting'
+	      to: 'Colheita Delegada'
+	based on: texts.landing.carousel.items.[2].title
+
+-----translated texts.transactionTypes.20
+	    from: 'TRANSFER TRANSACTION'
+	      to: 'TRANSAÇÕES DE VALORES'
+	based on: texts.transactionTypes.[0]
+
+translated texts.transactionTypes.21
+	    from: 'IMPORTANCE TRANSFER'
+	      to: 'ITRANSFERENCIAS DE IMPORTANCIA'
+	based on: texts.transactionTypes.[1]
+
+translated texts.transactionTypes.22
+	    from: 'MODIFICATION OF MULTISIG ACCOUNT'
+	      to: 'MODIFICAÇÃO DE UMA CONTA MULTISIG'
+	based on: texts.transactionTypes.[2]
+
+translated texts.transactionTypes.40
+	    from: 'MULTISIG SIGNATURE'
+	      to: 'MULTISIG SIGNATURE'
+	based on: texts.transactionTypes.[4]
+
+translated texts.transactionTypes.50
+	    from: 'MULTISIG TRANSACTION'
+	      to: 'TRANSAÇÃO MULTISIG'
+	based on: texts.transactionTypes.[6]
+
+translated texts.transactionTypes.51
+	    from: 'MULTISIG TRANSACTION'
+	      to: 'TRANSAÇÃO MULTISIG'
+	based on: texts.transactionTypes.[6]
+
+translated texts.transactionTypes.52
+	    from: 'MULTISIG TRANSACTION'
+	      to: 'TRANSAÇÃO MULTISIG'
+	based on: texts.transactionTypes.[6]
+
+-----translated texts.faults.1203
+	    from: 'The provided deadline is in the past. The deadline must be provided within a 1 day period.'
+	      to: 'O prazo final fornecido está no passado. O prazo limite deve estar dentro do período de um dia.'
+	based on: texts.faults.701
+
+translated texts.faults.1204
+	    from: 'The provided deadline is too far in the future. The deadline must be within one day time period.'
+	      to: 'O prazo final fornecido está no futuro. O prazo limite deve estar dentro do período de um dia.'
+	based on: texts.faults.702
+
+translated texts.faults.1205
+	    from: 'Your account does not have the right balance to make this transaction.'
+	      to: 'A sua conta não tem o saldo suficiente para realizar essa transação.'
+	based on: texts.faults.703
+
+translated texts.faults.1206
+	    from: 'The provided message text is too large to be sent. Please try to reduce the length of the message.'
+	      to: 'Texto muito longo. Por favor, reduza o tamanho da mensagem.'
+	based on: texts.faults.704
+
+translated texts.faults.1207
+	    from: 'The transaction hash already exists in the database or in the list of unconfirmed transactions.'
+	      to: 'O Hash de transação já existe no banco de dados, na lista de transações não confirmadas.'
+	based on: texts.faults.705
+
+translated texts.faults.1208
+	    from: 'The signature of the transaction could not be verified.'
+	      to: 'A assinatura da transação não pôde ser verificada.'
+	based on: texts.faults.706
+
+translated texts.faults.1209
+	    from: 'The time stamp of the transaction is too far in the past.'
+	      to: 'A data da ID de transação está muito no passado.'
+	based on: texts.faults.707
+
+translated texts.faults.1210
+	    from: 'The time stamp of the transaction is too far in the future.'
+	      to: 'A data da ID de transação está muito no futuro.'
+	based on: texts.faults.708
+
+translated texts.faults.1219
+	    from: 'The transaction was rejected because the transaction cache is too full. A higher fee improves the chance that the transaction gets accepted.'
+	      to: 'A transação foi rejeitada pois o cache está muito cheio. Aumentando a taxa de transação, aumenta a possibilidade dessa transação  ser aceita.'
+	based on: texts.faults.710
+
+translated texts.faults.1262
+	    from: 'Delegated harvesting account has non zero balance and cannot be used.'
+	      to: 'A conta de colheita segura não possue saldo igual a zero e não pode ser utilizada.'
+	based on: texts.faults.731
+
+translated texts.faults.1263
+	    from: 'Importance transfer rejected. There is already pending importance transfer operation.'
+	      to: 'Transferencia de importância foi rejeitada. Já existe uma operação de transferencia de importancia em andamento.'
+	based on: texts.faults.732
+
+translated texts.faults.1264
+	    from: 'Delegated harvesting is already active.'
+	      to: 'Colheita delegada já está ativa.'
+	based on: texts.faults.733
+
+translated texts.faults.1265
+	    from: 'Delegated harvesting is NOT active. Cannot deactivate.'
+	      to: 'Colheita delegada NÃO está ativa e não pode ser desativada.'
+	based on: texts.faults.734
+
+translated texts.faults.1266
+	    from: 'Importance transfer transaction (delegated harvesting) conflicts with existing transaction.'
+	      to: 'Transação de transferência de importância (Colheita delegada) conflita com uma transação existente.'
+	based on: texts.faults.730
+
+translated texts.faults.1271
+	    from: 'Multisig signature transaction rejected. Current account is not a cosignatory of a multisig account.'
+	      to: 'Assinatura Multisig rejeitada. A conta atual não é uma conta consignatária de uma conta tipo Multisig.'
+	based on: texts.faults.741
+
+translated texts.faults.1273
+	    from: 'Multisig signature transaction rejected. Associated multisig transaction is not known to NEM network'
+	      to: 'Assinatura de transação de conta Multisig rejeitada. Transaçao Multisig associada não é reconhecida pela rede Nem.'
+	based on: texts.faults.742
+
+translated texts.faults.1274
+	    from: 'Transaction is not allowed for multisig account.'
+	      to: 'Não é permitido transação para contas Multisig.'
+	based on: texts.faults.740
+
+translated texts.faults.1275
+	    from: 'Multisig account modification rejected. One of added accounts is already a cosignatory.'
+	      to: 'Modificação de conta do tipo Multisig foi rejeitada. Uma das contas adicionadas já é consignatária.'
+	based on: texts.faults.743
+
+translated texts.faults.1321
+	    from: 'The account is unknown. An account needs to be part of at least one transaction (sender or recipient) to be known to the network.'
+	      to: 'Conta desconhecida, Por favor, faça uma transação para conseguir uma chave pública.'
+	based on: texts.faults.709
+
+translated texts.transactionTypes.53
+	    from: 'MULTISIG TRANSACTION'
+	      to: 'TRANSAÇÃO MULTISIG'
+	based on: texts.transactionTypes.52
+
+translated texts.transactionTypes.54
+	    from: 'MULTISIG TRANSACTION'
+	      to: 'TRANSAÇÃO MULTISIG'
+	based on: texts.transactionTypes.52
+
+translated texts.transactionTypes.55
+	    from: 'MULTISIG TRANSACTION'
+	      to: 'TRANSAÇÃO MULTISIG'
+	based on: texts.transactionTypes.52
+
 -----

@@ -154,6 +154,26 @@ public abstract class StorableEntityFileDescriptorTest<
 				this.getExceptionValue(StorableEntityStorageException.Code.STORABLE_ENTITY_COULD_NOT_BE_READ.value()));
 	}
 
+	@Test
+	public void openReadThrowsIfModeIsNotRaw() {
+		// Arrange:
+		final TEntityFileDescriptor descriptor = this.createDescriptor(TEST_FILE);
+
+		// Act + Assert:
+		ExceptionAssert.assertThrows(v -> descriptor.openRead(StorableEntityReadMode.Decode), IllegalArgumentException.class);
+	}
+
+	@Test
+	public void openReadWithReadModeDelegatesToOpenRead() throws IOException {
+		// Arrange:
+		final TEntityFileDescriptor descriptor = Mockito.spy(this.createDescriptor(TEST_FILE));
+
+		// Act + Assert:
+		try (final InputStream is = descriptor.openRead(StorableEntityReadMode.Raw)) {
+			Mockito.verify(descriptor, Mockito.times(1)).openRead();
+		}
+	}
+
 	//endregion
 
 	//region openWrite
@@ -255,6 +275,19 @@ public abstract class StorableEntityFileDescriptorTest<
 	}
 
 	//endregion
+
+	@Test
+	public void getStorableEntityLocationReturnsAbsolutePathToStorableEntity() {
+		// Arrange:
+		final File file = new File(Paths.get(TEST_FILE_DIRECTORY.toString(), "blah").toString(), "foo.bar");
+		final TEntityFileDescriptor descriptor = this.createDescriptor(file);
+
+		// Act:
+		final String path = descriptor.getStorableEntityLocation();
+
+		// Assert:
+		Assert.assertThat(path, IsEqual.equalTo(file.getAbsolutePath()));
+	}
 
 	protected abstract TEntityFileDescriptor createDescriptor(final File file);
 

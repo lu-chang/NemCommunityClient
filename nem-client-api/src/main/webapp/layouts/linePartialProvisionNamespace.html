@@ -1,0 +1,34 @@
+{{! FIELD ICON }}
+{{#if .confirmed}}
+    <td class="txList-cell txList-col--type neutral icon-fork" title="{{texts.transactionDirections.provision}}" on-mouseover="registerToolTip">{{#.isMultisig}}M{{/}}</td>
+{{else}}
+	<td class="txList-cell txList-col--type txList-col--type--pending icon-clock" title="{{texts.transactionDirections.pending}}" on-mouseover="registerToolTip">{{#.isMultisig}}M{{/}}</td>
+{{/if}}
+
+{{! FIELD DATE }}
+<td class="txList-cell txList-col--date">{{.formattedDate}}</td>
+
+{{! FIELD SENDER OR RECIPIENT }}
+<td class="txList-cell txList-col--sender" title="{{.real.formattedSender}}" on-mouseover="registerToolTip">
+    <a class="hyperlink--default" href="javascript:;" on-click="viewAccount(.real.rentalFeeSink)">
+        {{#if privateLabels[.real.rentalFeeSink]}}
+            {{privateLabels[.real.rentalFeeSink]}}
+        {{else}}
+            {{.real.formattedRentalFeeSink}}
+        {{/if}}
+    </a>
+</td>
+
+{{! FIELD MESSAGE }}
+<td class="txList-cell txList-col--message" title="{{.real.namespace}}" on-mouseover="registerToolTip">
+	{{.real.namespace}}
+</td>
+
+{{! FIELD AMOUNT }}
+<td class="txList-cell txList-col--amount">
+{{#if (.isMultisig && .requiresSignature)}}
+    <button type="button" class="transactionsTile-signMultisigButton icon-paper-plane-empty" disabled="{{nisUnavailable}}" on-click="openSignMultisig(.)">{{texts.dashboard.transactions.signMultisig}}</button>
+{{else}}
+	-{{{formattedAmount}}}
+{{/if}}
+</td>

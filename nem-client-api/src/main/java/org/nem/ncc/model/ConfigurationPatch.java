@@ -54,7 +54,7 @@ public class ConfigurationPatch {
 	 * @return The first start variable.
 	 */
 	public Integer getFirstStart() {
-		return firstStart;
+		return this.firstStart;
 	}
 
 	/**
@@ -100,7 +100,7 @@ public class ConfigurationPatch {
 	 *
 	 * @param deserializer The deserializer.
 	 */
-	public void deserialize(final Deserializer deserializer, boolean remoteIsOptional) {
+	public void deserialize(final Deserializer deserializer, final boolean remoteIsOptional) {
 		this.setLanguage(deserializer.readString("language"));
 		if (remoteIsOptional) {
 			this.setNisEndpoint(deserializer.readOptionalObject("remoteServer", NodeEndpoint::new));

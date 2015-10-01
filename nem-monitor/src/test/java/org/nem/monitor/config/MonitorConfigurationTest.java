@@ -2,7 +2,7 @@ package org.nem.monitor.config;
 
 import org.hamcrest.core.IsEqual;
 import org.junit.*;
-import org.nem.monitor.test.*;
+import org.nem.core.test.*;
 
 import java.nio.file.Paths;
 import java.util.*;

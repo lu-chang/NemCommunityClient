@@ -91,7 +91,7 @@ public class AccountServices {
 		final String queryString = formatIdQueryString(address, null);
 		final Deserializer deserializer = this.nisConnector.get(NisApiId.NIS_REST_ACCOUNT_UNCONFIRMED, queryString);
 		return deserializer.readObjectArray("data", UnconfirmedTransactionMetaDataPair::new).stream()
-				.map(UnconfirmedTransactionMetaDataPair::getTransaction)
+				.map(UnconfirmedTransactionMetaDataPair::getEntity)
 				.sorted((lhs, rhs) -> -1 * lhs.getTimeStamp().compareTo(rhs.getTimeStamp()))
 				.collect(Collectors.toList());
 	}

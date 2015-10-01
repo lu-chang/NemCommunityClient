@@ -1,111 +1,7 @@
 "use strict";
 
 define(['jquery', 'ncc', 'NccLayout', 'Utils', 'TransactionType', 'filesaver'], function($, ncc, NccLayout, Utils, TransactionType, FileSaver) {
-	var showKey = function(title, message, requestPath) {
-		var self = this;
-		var wallet = ncc.get('wallet.wallet');
-		var account = ncc.get('activeAccount.address');
-		var accountLabel = ncc.get('privateLabels')[account];
-
-		// 1st modal
-		ncc.showInputForm(ncc.get(title), ncc.get(message),
-			[
-				{
-					name: 'wallet',
-					type: 'text',
-					readonly: true,
-					unimportant: true,
-					label: {
-						// reuse string
-						content: ncc.get('texts.modals.createAccount.wallet')
-					}
-				},
-				{
-					name: 'account',
-					type: 'text',
-					readonly: true,
-					unimportant: true,
-					label: {
-						content: ncc.get('texts.common.address')
-					},
-					sublabel: accountLabel ?
-					{
-						content: accountLabel
-					} :
-					{
-						// reuse string
-						content: ncc.get('texts.modals.bootLocalNode.noLabel'),
-						nullContent: true
-					}
-				},
-				{
-					name: 'password',
-					type: 'password',
-					label: {
-						content: ncc.get('texts.common.password')
-					}
-				}
-			],
-			{
-				wallet: wallet,
-				account: Utils.format.address.format(account),
-			},
-			function(values, closeModal) {
-				var values = {
-					wallet: values.wallet,
-					account: account,
-					password: values.password
-				};
-				ncc.postRequest(requestPath, values, function(data) {
-					console.log(data);
-
-					// 2st modal - call results
-					ncc.showInputForm(
-						ncc.get(title),
-						ncc.get(message),
-						[
-							{
-								name: 'address',
-								type: 'text',
-								readonly: true,
-								label: {
-									content: ncc.get('texts.common.address')
-								}
-							},
-							{
-								name: 'publicKey',
-								type: 'textarea',
-								readonly: true,
-								label: {
-									content: ncc.get('texts.modals.showPrivateKey.publicKey')
-								}
-							},
-							{
-								name: 'privateKey',
-								type: 'textarea',
-								readonly: true,
-								label: {
-									content: ncc.get('texts.modals.showPrivateKey.privateKey')
-								}
-							}
-						],
-						{
-							address: Utils.format.address.format(data.address),
-							publicKey: data.publicKey,
-							privateKey: data.privateKey
-						},
-						function(values, closeModal) {
-							closeModal();
-						},
-						ncc.get('texts.common.closeButton')
-					);
-				});
-			},
-			ncc.get('texts.modals.showPrivateKey.show')
-		);
-	}
-
-    return $.extend(true, {}, NccLayout, {
+	return $.extend(true, {}, NccLayout, {
         name: 'wallet',
         template: 'rv!layout/wallet',
         initOnce: function() {
@@ -122,7 +18,7 @@ define(['jquery', 'ncc', 'NccLayout', 'Utils', 'TransactionType', 'filesaver'], 
                 if (!wallet) wallet = ncc.get('wallet.wallet');
 
                 ncc.postRequest('wallet/info', { wallet: wallet }, function(data) {
-                    ncc.set('wallet', Utils.processWallet(data));
+                    Utils.processWallet(data);
                 }, null, silent);
 
                 ncc.refreshAddressBook(wallet, silent);
@@ -224,6 +120,9 @@ define(['jquery', 'ncc', 'NccLayout', 'Utils', 'TransactionType', 'filesaver'], 
                         type: 'text',
                         label: {
                             content: ncc.get('texts.modals.bootLocalNode.node')
+                        },
+                        isValid: function() {
+                            return Utils.valid.notEmpty(this.get("values")['nodeName']);
                         }
                     }
                 ];
@@ -232,7 +131,8 @@ define(['jquery', 'ncc', 'NccLayout', 'Utils', 'TransactionType', 'filesaver'], 
                     fields,
                     {
                         account: Utils.format.address.format(account),
-                        wallet: wallet
+                        wallet: wallet,
+                        nodeName: wallet + "'s node"
                     },
                     function(values, closeModal) {
                         var self = this;
@@ -266,6 +166,75 @@ define(['jquery', 'ncc', 'NccLayout', 'Utils', 'TransactionType', 'filesaver'], 
                 );
             };
 
+            ncc.openActivateDelegated = function() {
+                var account = ncc.get('activeAccount');
+                if (ncc.get('nodeBooted')) {
+                    if (account.isMultisig) {
+                        ncc.showMessage(ncc.get('texts.common.warning'), ncc.get('texts.dashboard.importance.remoteHarvest.multisigInfo'));
+                    } else {
+                        var modifiableAccounts = {};
+                        account.multisigAccounts.forEach(function (e){ modifiableAccounts[e.address] = true; });
+                        modifiableAccounts[account.address] = true;
+
+                        var walletAccounts = ncc.get('allAccounts');
+                        var accountsToActivate = walletAccounts.filter(function (a){ return (a.address in modifiableAccounts) && (a.remoteStatus === 'INACTIVE');});
+                        var accountsToDeactivate = walletAccounts.filter(function (a){ return (a.address in modifiableAccounts) && (a.remoteStatus === 'ACTIVE');});
+
+                        var showDeactivateDialog = function() {
+                            var m = ncc.getModal('deactivateDelegated');
+                            m.set('activation', false);
+                            m.set('availAccounts', accountsToDeactivate);
+                            m.open();
+                        };
+                        var showActivateDialog = function() {
+                            var m = ncc.getModal('activateDelegated');
+                            m.set('activation', true);
+                            m.set('availAccounts', accountsToActivate);
+                            m.open();
+                        };
+
+                        if (accountsToActivate.length != 0 && accountsToDeactivate.length != 0) {
+                            this.showConfirmation(ncc.get('texts.dashboard.importance.remoteHarvest.title'), '',
+                                {
+                                    activate: function() {
+                                        showActivateDialog();
+                                    },
+                                    deactivate: function() {
+                                        showDeactivateDialog();
+                                    }
+                                },
+                                [
+                                    {
+                                        action: 'activate',
+                                        label: ncc.get('texts.dashboard.importance.remoteHarvest.activate') + " (" + accountsToActivate.length +")",
+                                        actionType: 'primary'
+                                    },
+                                    {
+                                        action: 'deactivate',
+                                        label: ncc.get('texts.dashboard.importance.remoteHarvest.deactivate') +  " (" + accountsToDeactivate.length +")",
+                                        actionType: 'primary'
+                                    }
+                                ],
+                                'modal--wide'
+                            );
+                        } else if (accountsToActivate.length != 0) {
+                            showActivateDialog();
+
+                        } else if (accountsToDeactivate.length != 0) {
+                            showDeactivateDialog();
+                        }
+                    }
+                } else if (ncc.get('loadingDb')) {
+                    ncc.showMessage(ncc.get('texts.modals.sendNem.loadingWarning.title'), ncc.get('texts.faults.602'));
+                } else if (ncc.get('nodeBooting')) {
+                    ncc.showMessage(ncc.get('texts.modals.sendNem.bootingWarning.title'), ncc.get('texts.modals.sendNem.bootingWarning.message'));
+                } else {
+                    ncc.showMessage(ncc.get('texts.modals.sendNem.notBootedWarning.title'), ncc.get('texts.modals.sendNem.notBootedWarning.message'), function() {
+                        ncc.showBootModal();
+                    });
+                }
+            },
+
             ncc.openSendNem = function(recipient) {
                 if (ncc.get('nodeBooted')) {
                     var m = ncc.getModal('sendNem');
@@ -284,6 +253,13 @@ define(['jquery', 'ncc', 'NccLayout', 'Utils', 'TransactionType', 'filesaver'], 
                     });
                 }
             },
+
+            ncc.openConvertMultisig = function() {
+                var m = ncc.getModal('convertMultisig');
+                var Fork_1_Height = (ncc.get('activeAccount.address')[0] === 'T') ? 90000 : 199800;
+                m.set('isAfterMofNFork', ncc.get('blockchainHeight') > Fork_1_Height);
+                m.open();
+            }
 
             ncc.openSignMultisig = function(transaction) {
                 if (ncc.get('nodeBooted')) {
@@ -310,11 +286,15 @@ define(['jquery', 'ncc', 'NccLayout', 'Utils', 'TransactionType', 'filesaver'], 
 
             ncc.viewAccount = function(address) {
                 ncc.postRequest(
-                    'account/find', 
+                    'account/find',
                     {account: Utils.format.address.restore(address)},
                     function(data) {
+                        var walletAccount = ncc.get('allAccounts').filter(function (a){ return (a.address == address);});
                         var m = ncc.getModal('accountDetails');
                         m.set('account', data);
+                        if (walletAccount.length > 0) {
+                            m.set('account.wallet', walletAccount[0]);
+                        }
                         m.open();
                     });
             };
@@ -336,6 +316,9 @@ define(['jquery', 'ncc', 'NccLayout', 'Utils', 'TransactionType', 'filesaver'], 
                             type: 'text',
                             label: {
                                 content: ncc.get('texts.common.address')
+                            },
+                            isValid: function() {
+                                return Utils.valid.address(this.get("values")['address']);
                             }
                         },
                         {
@@ -343,6 +326,9 @@ define(['jquery', 'ncc', 'NccLayout', 'Utils', 'TransactionType', 'filesaver'], 
                             type: 'text',
                             label: {
                                 content: ncc.get('texts.common.privateLabel')
+                            },
+                            isValid: function() {
+                                return Utils.valid.notEmpty(this.get("values")['privateLabel']);
                             }
                         },
                         {
@@ -350,6 +336,9 @@ define(['jquery', 'ncc', 'NccLayout', 'Utils', 'TransactionType', 'filesaver'], 
                             type: 'password',
                             label: {
                                 content: ncc.get('texts.common.password')
+                            },
+                            isValid: function() {
+                                return Utils.valid.notEmpty(this.get("values")['password']);
                             }
                         },
                     ],
@@ -387,6 +376,9 @@ define(['jquery', 'ncc', 'NccLayout', 'Utils', 'TransactionType', 'filesaver'], 
                             type: 'text',
                             label: {
                                 content: ncc.get('texts.common.address')
+                            },
+                            isValid: function() {
+                                return Utils.valid.address(this.get("values")['address']);
                             }
                         },
                         {
@@ -394,6 +386,9 @@ define(['jquery', 'ncc', 'NccLayout', 'Utils', 'TransactionType', 'filesaver'], 
                             type: 'text',
                             label: {
                                 content: ncc.get('texts.common.privateLabel')
+                            },
+                            isValid: function() {
+                                return Utils.valid.notEmpty(this.get("values")['privateLabel']);
                             }
                         },
                         {
@@ -401,6 +396,9 @@ define(['jquery', 'ncc', 'NccLayout', 'Utils', 'TransactionType', 'filesaver'], 
                             type: 'password',
                             label: {
                                 content: ncc.get('texts.common.password')
+                            },
+                            isValid: function() {
+                                return Utils.valid.notEmpty(this.get("values")['password']);
                             }
                         },
                     ],
@@ -446,6 +444,9 @@ define(['jquery', 'ncc', 'NccLayout', 'Utils', 'TransactionType', 'filesaver'], 
                             type: 'password',
                             label: {
                                 content: ncc.get('texts.common.password')
+                            },
+                            isValid: function() {
+                                return Utils.valid.notEmpty(this.get("values")['password']);
                             }
                         },
                     ],
@@ -608,6 +609,9 @@ define(['jquery', 'ncc', 'NccLayout', 'Utils', 'TransactionType', 'filesaver'], 
                                 type: 'text',
                                 label: {
                                     content: ncc.get('texts.modals.createAccount.label')
+                                },
+                                isValid: function() {
+                                    return Utils.valid.notEmpty(this.get("values")['label']);
                                 }
                             },
                             {
@@ -623,7 +627,10 @@ define(['jquery', 'ncc', 'NccLayout', 'Utils', 'TransactionType', 'filesaver'], 
                                 name: 'password', 
                                 type: 'password',
                                 label: {
-                                    content: ncc.get('texts.modals.createAccount.password')
+                                    content: ncc.get('texts.common.password')
+                                },
+                                isValid: function() {
+                                    return Utils.valid.notEmpty(this.get("values")['password']);
                                 }
                             }
                         ],
@@ -655,14 +662,9 @@ define(['jquery', 'ncc', 'NccLayout', 'Utils', 'TransactionType', 'filesaver'], 
                         ncc.get('texts.modals.createAccount.create')
                     );
                 },
-                showPrivateKey: function() {
-                	showKey('texts.modals.showPrivateKey.title', 'texts.modals.showPrivateKey.message', 'wallet/account/reveal');
-                },
-                showRemotePrivateKey: function() {
-                	showKey('texts.modals.showRemotePrivateKey.title', 'texts.modals.showRemotePrivateKey.message', 'wallet/account/remote/reveal');
-                },
                 addAccount: function() {
                     var wallet = ncc.get('wallet.wallet');
+
                     ncc.showInputForm(ncc.get('texts.modals.addAccount.title'), '',
                         [
                             {
@@ -670,6 +672,9 @@ define(['jquery', 'ncc', 'NccLayout', 'Utils', 'TransactionType', 'filesaver'], 
                                 type: 'text',
                                 label: {
                                     content: ncc.get('texts.modals.addAccount.privateKey')
+                                },
+                                isValid: function() {
+                                    return Utils.valid.privateKey(this.get("values")['accountKey']);
                                 }
                             },
                             {
@@ -677,6 +682,9 @@ define(['jquery', 'ncc', 'NccLayout', 'Utils', 'TransactionType', 'filesaver'], 
                                 type: 'text',
                                 label: {
                                     content: ncc.get('texts.modals.addAccount.label')
+                                },
+                                isValid: function() {
+                                    return Utils.valid.notEmpty(this.get("values")['label']);
                                 }
                             },
                             {
@@ -692,7 +700,10 @@ define(['jquery', 'ncc', 'NccLayout', 'Utils', 'TransactionType', 'filesaver'], 
                                 name: 'password', 
                                 type: 'password',
                                 label: {
-                                    content: ncc.get('texts.modals.addAccount.password')
+                                    content: ncc.get('texts.common.password')
+                                },
+                                isValid: function() {
+                                    return Utils.valid.notEmpty(this.get("values")['password']);
                                 }
                             }
                         ],
@@ -760,7 +771,10 @@ define(['jquery', 'ncc', 'NccLayout', 'Utils', 'TransactionType', 'filesaver'], 
                                 name: 'password', 
                                 type: 'password',
                                 label: {
-                                    content: ncc.get('texts.modals.setPrimary.password')
+                                    content: ncc.get('texts.common.password')
+                                },
+                                isValid: function() {
+                                    return Utils.valid.notEmpty(this.get("values")['password']);
                                 }
                             }
                         ],
@@ -772,7 +786,7 @@ define(['jquery', 'ncc', 'NccLayout', 'Utils', 'TransactionType', 'filesaver'], 
                             values.account = account;
                             ncc.postRequest('wallet/account/primary', values, function(data) {
                                 ncc.showMessage(ncc.get('texts.common.success'), ncc.fill(ncc.get('texts.modals.setPrimary.successMessage'), Utils.format.address.format(account), accountLabel));
-                                ncc.set('wallet', Utils.processWallet(data));
+                                Utils.processWallet(data);
                                 closeModal();
                             });
                         },
@@ -800,13 +814,19 @@ define(['jquery', 'ncc', 'NccLayout', 'Utils', 'TransactionType', 'filesaver'], 
                                 type: 'text',
                                 label: {
                                     content: ncc.get('texts.modals.changeWalletName.newName')
+                                },
+                                isValid: function() {
+                                    return Utils.valid.walletName(this.get("values")['newName']);
                                 }
                             },
                             {
                                 name: 'password', 
                                 type: 'password',
                                 label: {
-                                    content: ncc.get('texts.modals.changeWalletName.password')
+                                    content: ncc.get('texts.common.password')
+                                },
+                                isValid: function() {
+                                    return Utils.valid.notEmpty(this.get("values")['password']);
                                 }
                             }
                         ],
@@ -850,6 +870,9 @@ define(['jquery', 'ncc', 'NccLayout', 'Utils', 'TransactionType', 'filesaver'], 
                                 type: 'password',
                                 label: {
                                     content: ncc.get('texts.modals.changeWalletPassword.password')
+                                },
+                                isValid: function() {
+                                    return Utils.valid.notEmpty(this.get("values")['password']);
                                 }
                             },
                             {
@@ -857,6 +880,11 @@ define(['jquery', 'ncc', 'NccLayout', 'Utils', 'TransactionType', 'filesaver'], 
                                 type: 'password',
                                 label: {
                                     content: ncc.get('texts.modals.changeWalletPassword.newPassword')
+                                },
+                                isValid: function() {
+                                    var newWalletPass = this.get("values")['newPassword'];
+                                    var confirmWalletPass = this.get("values")['confirmPassword'];
+                                    return !!newWalletPass && (!confirmWalletPass || newWalletPass === confirmWalletPass);
                                 }
                             },
                             {
@@ -864,6 +892,11 @@ define(['jquery', 'ncc', 'NccLayout', 'Utils', 'TransactionType', 'filesaver'], 
                                 type: 'password',
                                 label: {
                                     content: ncc.get('texts.modals.changeWalletPassword.confirmPassword')
+                                },
+                                isValid: function() {
+                                    var newWalletPass = this.get("values")['newPassword'];
+                                    var confirmWalletPass = this.get("values")['confirmPassword'];
+                                    return !!confirmWalletPass && (!newWalletPass || newWalletPass === confirmWalletPass);
                                 }
                             }
                         ],
@@ -889,6 +922,35 @@ define(['jquery', 'ncc', 'NccLayout', 'Utils', 'TransactionType', 'filesaver'], 
                     var address = ncc.get('activeAccount.address');
                     ncc.viewAccount(address);
                 },
+                copyClipboardHtml: function(e,address)
+                {
+                	// copyDisabled means FLASH copying is disabled and we should go on with html one
+                    if (! ncc.get('walletPage.copyDisabled')) {
+                        return;
+                    }
+                    ncc.showInputForm(ncc.get('texts.wallet.actions.copyClipboard'), 'Press Ctrl+C/⌘+C to copy',
+                        [
+                            {
+                                name: 'copyAddress',
+                                type: 'text',
+                                readonly: true,
+                                unimportant: true,
+                                label: {
+                                    content: ncc.get('texts.common.address')
+                                }
+                            }
+                        ],
+                        {
+                            copyAddress: address
+                        },
+                        function(values, closeModal) {
+                            closeModal();
+                        },
+                        ncc.get('texts.common.closeButton')
+                    );
+                    $('#copyAddress').focus();
+                    $('#copyAddress').select();
+                },
                 changeAccountLabel: function() {
                     var wallet = ncc.get('wallet.wallet');
                     var address = ncc.get('activeAccount.address');
@@ -900,6 +962,9 @@ define(['jquery', 'ncc', 'NccLayout', 'Utils', 'TransactionType', 'filesaver'], 
                                 type: 'text',
                                 label: {
                                     content: ncc.get('texts.modals.changeAccountLabel.label')
+                                },
+                                isValid: function() {
+                                    return Utils.valid.notEmpty(this.get("values")['privateLabel']);
                                 }
                             },
                             {
@@ -915,7 +980,10 @@ define(['jquery', 'ncc', 'NccLayout', 'Utils', 'TransactionType', 'filesaver'], 
                                 name: 'password', 
                                 type: 'password',
                                 label: {
-                                    content: ncc.get('texts.modals.changeAccountLabel.password')
+                                    content: ncc.get('texts.common.password')
+                                },
+                                isValid: function() {
+                                    return Utils.valid.notEmpty(this.get("values")['password']);
                                 }
                             }
                         ],
@@ -952,7 +1020,7 @@ define(['jquery', 'ncc', 'NccLayout', 'Utils', 'TransactionType', 'filesaver'], 
                                 readonly: true,
                                 unimportant: true,
                                 label: {
-                                    content: ncc.get('texts.modals.removeAccount.account')
+                                    content: ncc.get('texts.common.account')
                                 }
                             },
                             {
@@ -977,7 +1045,10 @@ define(['jquery', 'ncc', 'NccLayout', 'Utils', 'TransactionType', 'filesaver'], 
                                 name: 'password', 
                                 type: 'password',
                                 label: {
-                                    content: ncc.get('texts.modals.removeAccount.password')
+                                    content: ncc.get('texts.common.password')
+                                },
+                                isValid: function() {
+                                    return Utils.valid.notEmpty(this.get("values")['password']);
                                 }
                             }
                         ],
@@ -994,7 +1065,7 @@ define(['jquery', 'ncc', 'NccLayout', 'Utils', 'TransactionType', 'filesaver'], 
                                     ncc.get('texts.common.success'), 
                                     ncc.fill(ncc.get('texts.modals.removeAccount.successMessage'), Utils.format.address.format(account), accountLabel)
                                 );
-                                ncc.set('wallet', Utils.processWallet(data));
+                                Utils.processWallet(data);
                                 ncc.fire('switchAccount', null, data.primaryAccount.address);
                                 closeModal();
                             });
@@ -1058,7 +1129,10 @@ define(['jquery', 'ncc', 'NccLayout', 'Utils', 'TransactionType', 'filesaver'], 
                                 name: 'password', 
                                 type: 'password',
                                 label: {
-                                    content: ncc.get('texts.modals.startRemote.password')
+                                    content: ncc.get('texts.common.password')
+                                },
+                                isValid: function() {
+                                    return Utils.valid.notEmpty(this.get("values")['password']);
                                 }
                             },
                             {
@@ -1067,7 +1141,7 @@ define(['jquery', 'ncc', 'NccLayout', 'Utils', 'TransactionType', 'filesaver'], 
                                 readonly: true,
                                 unimportant: true,
                                 label: {
-                                    content: ncc.get('texts.modals.startRemote.account')
+                                    content: ncc.get('texts.common.account')
                                 }
                             }
                         ],
@@ -1105,7 +1179,10 @@ define(['jquery', 'ncc', 'NccLayout', 'Utils', 'TransactionType', 'filesaver'], 
                                 name: 'password', 
                                 type: 'password',
                                 label: {
-                                    content: ncc.get('texts.modals.stopRemote.password')
+                                    content: ncc.get('texts.common.password')
+                                },
+                                isValid: function() {
+                                    return Utils.valid.notEmpty(this.get("values")['password']);
                                 }
                             },
                             {
@@ -1114,7 +1191,7 @@ define(['jquery', 'ncc', 'NccLayout', 'Utils', 'TransactionType', 'filesaver'], 
                                 readonly: true,
                                 unimportant: true,
                                 label: {
-                                    content: ncc.get('texts.modals.stopRemote.account')
+                                    content: ncc.get('texts.common.account')
                                 }
                             }
                         ],
@@ -1144,7 +1221,7 @@ define(['jquery', 'ncc', 'NccLayout', 'Utils', 'TransactionType', 'filesaver'], 
                 if (ncc.get('settings.firstStart') === 0) {
                     ncc.showMessage(
                         ncc.get('texts.modals.initialTy.title'),
-                        ncc.get('texts.modals.initialTy.content').replace(/[a-zA-Z]/g,function(c){return String.fromCharCode((c<="Z"?90:122)>=(c=c.charCodeAt(0)+13)?c:c-26);}),
+                        ncc.get('texts.modals.initialTy.content'),
                         function() {
                             ncc.showMessage(
                                 ncc.get('texts.modals.initialBackup.title'),

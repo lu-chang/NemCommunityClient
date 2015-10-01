@@ -36,11 +36,15 @@ public class JarFileServlet extends DefaultServlet {
 			return null;
 		}
 
-		final URL url = this.getClass().getClassLoader().getResource(resourceStr);
+		final String relativeResource = "web/" + resourceStr;
+		final ClassLoader classLoader = this.getClass().getClassLoader();
+		URL url = classLoader.getResource(relativeResource);
 		if (url == null) {
-			LOGGER.severe(String.format("Resource not found: <%s>, mapping to welcome page.", resourceStr));
-
-			return null;
+			url = classLoader.getResource(resourceStr);
+			if (url == null) {
+				LOGGER.severe(String.format("Resource not found: <%s>, mapping to welcome page.", resourceStr));
+				return null;
+			}
 		}
 
 		final Resource r = Resource.newResource(url);

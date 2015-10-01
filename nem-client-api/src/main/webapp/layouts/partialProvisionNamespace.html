@@ -1,0 +1,19 @@
+{{#transaction}}
+    <tr>
+        <td class="table-cell table-cell--label">
+            {{texts.modals.transactionDetails.namespace}}
+        </td>
+        <td class="table-cell table-cell--content">
+            {{.real.namespace}}
+        </td>
+    </tr>
+
+    <tr>
+        <td class="table-cell table-cell--label">
+            {{texts.modals.transactionDetails.rentalFee}}
+        </td>
+        <td class="table-cell table-cell--content">
+            {{{.formattedAmount}}}
+        </td>
+    </tr>
+{{/}}

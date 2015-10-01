@@ -44,30 +44,31 @@ define({
 			601: 'NIS नोड पहले से बूट हो चुकी हे. NIS बूट करने के लिए एक दूसरा प्रयास संभव नहीं है.',
 			602: 'लगभग तैयार...NIS ब्लॉक्स लोड कर रहा है. डेटाबेस केे पूरी तरह से लोड होन केे बाद ही आप वॉलेट का पूरी तरह से इस्तेमाल कर सकते हैं.',
 			699: 'सर्वर पर अनुमति हारवेस्टर्स की अधिकतम संख्या तक पहुंच गया है.',
-			700: 'प्रदान किया गया अकाउंट हार्वेस्टिंग के लिए बुनियादी मानदंडों को पूरा नहीं करता है. मुख्य रूप से यह अकाउंट के अंदर XEM की राशि से संबंधित है. हार्वेस्टिंग के लिए कम से कम 1000 XEM की ज़रूरत हे और पहले ट्रांजैक्शन के बाद एक दिन की प्रतीक्षा करनी पड़ती है.',
-			701: 'प्रदान की गई समय सीमा अतीत में है. समय सीमा 1 दिन की अवधि के अंदर प्रदान की जानी चाहिए.',
-			702: 'प्रदान की गई समय सीमा भविष्य में बहुत दूर है. समय सीमा 1 दिन की अवधि के अंदर प्रदान की जानी चाहिए.',
-			703: 'Your account does not have the right balance to make this transaction.',
-			704: 'प्रदान की गई मेसेज टेक्स्ट NEM के माध्यम से भेजने के लिए बहुत बड़ी है. कृपया अपने मेसेज की लंबाई कम करने का प्रयास करें.',
-			705: 'ट्रांजैक्शन हैश पहले से ही डेटाबेस या अपुष्ट ट्रांजैक्शन सूची में मौजूद है.',
-			706: 'ट्रांजैक्शन हस्ताक्षर का जांच नही किया जा सका है.',
-			707: 'ट्रांजैक्शन ID का समय बहुत दूर अतीत में हे.',
-			708: 'ट्रांजैक्शन ID का समय बहुत दूर भविष्य में हे.',
-			709: 'यह अकाउंट अज्ञात है. नेटवर्क को अकाउंट को पहचानने के लिए अकाउंट में कम से कम एक ट्रांजैक्शन (सेनडर/रेसिपईयेंट) का शामिल होना ज़रूरी होता है.',
-			710: 'ट्रांजैक्शन को अस्वीकार कर दिया गया है क्योंकि ट्रांजैक्शन कैश अनुमति से ज़्यादा भर गया है. एक उच्च फ़ीस ट्रांजैक्शन के स्वीकार होने के मौके बेहतर बनाता है.',
-			730: 'Importance transfer transaction (delegated harvesting) conflicts with existing transaction.',
-			731: 'Delegated harvesting account has non zero balance and cannot be used.',
-			732: 'इंपॉर्टेन्स ट्रान्सफर खारिज कर दिया गया है. एक अपूर्ण इंपॉर्टेन्स ट्रान्सफर ऑपरेशन पहले से ही है.',
-			733: 'Delegated harvesting is already active.',
-			734: 'Delegated harvesting is NOT active. Cannot deactivate.',
-			740: 'Multisig अकाउंट के लिए ट्रांजैक्शन की अनुमति नहीं है.',
-			741: 'Multisig हस्ताक्षर ट्रांजैक्शन को अस्वीकार कर दिया गया है. यह अकाउंट Multisig अकाउंट की cosignatory नहीं है.',
-			742: 'Multisig हस्ताक्षर ट्रांजैक्शन को अस्वीकार कर दिया गया है. एसोसिएटेड Multisig ट्रांजैक्शन NEM नेटवर्क के लिए अज्ञात है.',
-			743: 'Multisig अकाउंट परिवर्तन को खारिज कर दिया गया है. जोड़े गये अकाउंट्स में से एक अकाउंट पहले से ही cosignatory है.',
+			700: 'प्रदान किया गया अकाउंट हार्वेस्टिंग के लिए बुनियादी मानदंडों को पूरा नहीं करता है. मुख्य रूप से यह अकाउंट के अंदर XEM की राशि से संबंधित है. हार्वेस्टिंग के लिए कम से कम 10 000 XEM की ज़रूरत हे और पहले ट्रांजैक्शन के बाद एक दिन की प्रतीक्षा करनी पड़ती है.',
 			901: 'ऑफलाइन मोड की स्थापना करने में त्रुटि आई है.',
 			1000: 'आपके द्वारा प्रदान की गई Private Key और Public Key मैच नहीं कर रहीं है.',
 			1001: 'आपके द्वारा प्रदान की गई Public key और Address मैच नहीं कर रहीं है.',
-			1002: 'यह अड्रेस मुख्य NEM नेटवर्क से संबंधित नहीं है.'
+			1002: 'यह अड्रेस मुख्य NEM नेटवर्क से संबंधित नहीं है.',
+			1203: 'प्रदान की गई समय सीमा अतीत में है. समय सीमा 1 दिन की अवधि के अंदर प्रदान की जानी चाहिए.',
+			1204: 'प्रदान की गई समय सीमा भविष्य में बहुत दूर है. समय सीमा 1 दिन की अवधि के अंदर प्रदान की जानी चाहिए.',
+			1205: 'Your account does not have the right balance to make this transaction.',
+			1206: 'प्रदान की गई मेसेज टेक्स्ट NEM के माध्यम से भेजने के लिए बहुत बड़ी है. कृपया अपने मेसेज की लंबाई कम करने का प्रयास करें.',
+			1207: 'ट्रांजैक्शन हैश पहले से ही डेटाबेस या अपुष्ट ट्रांजैक्शन सूची में मौजूद है.',
+			1208: 'ट्रांजैक्शन हस्ताक्षर का जांच नही किया जा सका है.',
+			1209: 'ट्रांजैक्शन ID का समय बहुत दूर अतीत में हे.',
+			1210: 'ट्रांजैक्शन ID का समय बहुत दूर भविष्य में हे.',
+			1219: 'ट्रांजैक्शन को अस्वीकार कर दिया गया है क्योंकि ट्रांजैक्शन कैश अनुमति से ज़्यादा भर गया है. एक उच्च फ़ीस ट्रांजैक्शन के स्वीकार होने के मौके बेहतर बनाता है.',
+			1262: 'Delegated harvesting account has non zero balance and cannot be used.',
+			1263: 'इंपॉर्टेन्स ट्रान्सफर खारिज कर दिया गया है. एक अपूर्ण इंपॉर्टेन्स ट्रान्सफर ऑपरेशन पहले से ही है.',
+			1264: 'Delegated harvesting is already active.',
+			1265: 'Delegated harvesting is NOT active. Cannot deactivate.',
+			1266: 'Importance transfer transaction (delegated harvesting) conflicts with existing transaction.',
+			1271: 'Multisig हस्ताक्षर ट्रांजैक्शन को अस्वीकार कर दिया गया है. यह अकाउंट Multisig अकाउंट की cosignatory नहीं है.',
+			1273: 'Multisig हस्ताक्षर ट्रांजैक्शन को अस्वीकार कर दिया गया है. एसोसिएटेड Multisig ट्रांजैक्शन NEM नेटवर्क के लिए अज्ञात है.',
+			1274: 'Multisig अकाउंट के लिए ट्रांजैक्शन की अनुमति नहीं है.',
+			1275: 'Multisig अकाउंट परिवर्तन को खारिज कर दिया गया है. जोड़े गये अकाउंट्स में से एक अकाउंट पहले से ही cosignatory है.',
+			1321: 'यह अकाउंट अज्ञात है. नेटवर्क को अकाउंट को पहचानने के लिए अकाउंट में कम से कम एक ट्रांजैक्शन (सेनडर/रेसिपईयेंट) का शामिल होना ज़रूरी होता है.',
+
 		},
 		common: {
 			success: 'सफलता',
@@ -101,26 +102,51 @@ define({
 			publicLabel: 'Public label',
 			noCharge: 'करेंट अकाउंट से कोई फ़ीस <b> नहीं </ b > लिया जाएगा. Multisig अकाउंट में उन्हें शामिल किया गया है.',
 			fee: 'Fee',
+			multisigFee: 'Multisig फ़ीस',
+			useMinimumFee: 'न्यूनतम फ़ीस का प्रयोग करें.',
+			feeValidation: 'फ़ीस \'न्यूनतम फ़ीस\' से कम नहीं होना चाहिए.',
 			justUse: 'महज प्रयोग करें',
 			dueBy: 'Due by',
+			minutes: 'minute(s)',
 			hours: 'hour(s)',
 			hoursDue: 'Hours due',
 			hoursDueExplanation: 'If the transaction isn\'t included by the deadline, it is rejected.',
-			closeButton: 'Close'
+			closeButton: 'Close',
+			cancelButton: 'Cancel',
+			sendButton: 'भेजें',
+			account: 'अकाउंट',
+			thisAccount: 'This account',
+			warning: 'Warning',
+			newBuild: 'NEW BUILD',
+			newBuildNumber: 'There is new build {{1}} available for download. Check <a class="hyperlink--default", href="http://blog.nem.io">blog.nem.io</a> for details',
+
 		},
-		transactionTypes: [
-			'ट्रान्सफर ट्रांजैक्शन',
-			'इंपॉर्टेन्स ट्रान्सफर',
-			'Multisig अकाउंट में परिवर्तन',
-			'MULTISIG ट्रांजैक्शन'
-		],
+		transactionTypes: {
+			20: 'ट्रान्सफर ट्रांजैक्शन',
+			21: 'इंपॉर्टेन्स ट्रान्सफर',
+			22: 'Multisig अकाउंट में परिवर्तन',
+			23: 'PROVISION NAMESPACE',
+			24: 'MOSAIC CREATION',
+			25: 'MOSAIC SUPPLY',
+			40: 'MULTISIG SIGNATURE',
+			50: 'MULTISIG ट्रांजैक्शन',
+			51: 'MULTISIG ट्रांजैक्शन',
+			52: 'MULTISIG ट्रांजैक्शन',
+			53: 'MULTISIG ट्रांजैक्शन',
+			54: 'MULTISIG ट्रांजैक्शन',
+			55: 'MULTISIG ट्रांजैक्शन',
+
+		},
 		transactionDirections: {
 			pending: 'Pending transaction',
 			outgoing: 'Outgoing transaction',
 			incoming: 'Incoming transaction',
 			self: 'Self transaction',
 			importance: 'Importance transaction',
-			modification: 'Aggregate Modification of Multisig'
+			modification: 'Aggregate Modification of Multisig',
+			provision: 'Provision Namespace',
+			mosaicCreation: 'Mosaic Creation',
+			mosaicSupply: 'Mosaic Supply'
 		},
 		modals: {
 			error: {
@@ -161,12 +187,17 @@ define({
 				autoBoot: {
 					tabTitle: 'ऑटो-बूट',
 					name: 'नोड नेम',
-					account: 'अकाउंट',
 					primaryAccount: 'प्राइमरी अकाउंट',
 					auto: 'वॉलेट खोलने पर ऑटो-बूट करें.'
 				},
 				save: 'Save',
 				saveSuccess: 'सेटिंग्स सफलतापूर्वक बचा लिया गया है.'
+			},
+			signToken: {
+				title: "Sign a token using account",
+				label: "Token (url, string, anything)",
+				signature: "Signed token",
+				sign: "Sign"
 			},
 			multisig: {
 				title: 'अकाउंट को Multisig अकाउंट में परिवर्तित करें',
@@ -175,17 +206,18 @@ define({
 				labelDesc: 'इस अकाउंट का लेबल {{1}} हे',
 				nullLabelDesc: 'इस अकाउंट का लेबल मौजूद नही हे',
 				addCosignatory: '+ Cosignatory जोड़ें',
-				cancel: 'Cancel',
 				convert: 'परिवर्तित करें',
-				fee: 'फ़ीस',
-				feeValidation: 'फ़ीस \'न्यूनतम फ़ीस\' से कम नहीं होना चाहिए.',
-				useMinimumFee: 'न्यूनतम फ़ीस का प्रयोग करें',
 				txConfirm: {
 					title: 'Multisig अकाउंट में परिवर्तन की पुष्टि करें.',
 					total: 'Total',
 
 				},
-				warning: 'Multisig अकाउंट cosignatories की सूची में है.</b>इससे आपका अकाउंट लॉक हो जाएगा और आप अपने सारे XEM गंवा देंगें. कृपया Multisig अकाउंट को cosignatories की सूची में से हटाए</b>.'
+				warning: 'Multisig अकाउंट cosignatories की सूची में है.</b>इससे आपका अकाउंट लॉक हो जाएगा और आप अपने सारे XEM गंवा देंगें. कृपया Multisig अकाउंट को cosignatories की सूची में से हटाए</b>.',
+				minCosignatoriesDefaultLabel: 'Use default cosignatories number',
+				minCosignatoriesRelativeLabel: 'relative change',
+				minCosignatoriesLabel: 'Minimum number of cosignatories',
+				minCosignatoriesZero: 'Using zero would cause all cosignatories to be required',
+				minCosignatoriesOverflow: 'Specified number is larger than number of cosignatories'
 			},
 			signMultisig: {
 				title: 'Sign multisig transaction',
@@ -199,15 +231,8 @@ define({
 				multisigFees: 'Multisig फ़ीस',
 				multisigTotal: 'Total',
 				sender: 'Cosignatory',
-				fee: 'फ़ीस',
-				feeValidation: 'फ़ीस \'न्यूनतम फ़ीस\' से कम नहीं होना चाहिए.',
-				useMinimumFee: 'न्यूनतम फ़ीस का प्रयोग करें.',
-				password: 'पासवर्ड',
 				passwordValidation: 'पासवर्ड खाली नहीं होना चाहिए.',
-				send: 'भेजें',
-				cancel: 'Cancel',
 				sending: 'भेजा जा रहा है...',
-				successMessage: 'ट्रांजैक्शन सफलतापूर्वक भेज दिया गया है',
 				txConfirm: {
 					title: 'Multisig ट्रांजैक्शन की पुष्टि करें',
 					message: 'मेसेज',
@@ -227,16 +252,8 @@ define({
 				recipientValidation: 'अकाउंट अड्रेसस \'-\' को छोड़कर 40 चरित्र लंबे होना चाहिए',
 				message: 'मेसेज',
 				encrypt: 'एन्क्रिप्टेड मेसेज',
-				fee: 'फ़ीस',
-				multisigFee: 'Multisig फ़ीस',
-				feeValidation: 'फ़ीस \'न्यूनतम फ़ीस\' से कम नहीं होना चाहिए.',
-				useMinimumFee: 'न्यूनतम फ़ीस का प्रयोग करें.',
-				password: 'पासवर्ड',
-				passwordValidation: 'पासवर्ड खाली नहीं होना चाहिए.',
-				send: 'भेजें',
-				cancel: 'Cancel',
 				sending: 'भेजा जा रहा है...',
-				successMessage: 'ट्रांजैक्शन सफलतापूर्वक भेज दिया गया है',
+				successMessage: 'Your transaction has been sent successfully! <br><br>Transaction hash: {{1}}',
 				txConfirm: {
 					title: 'ट्रांजैक्शन की पुष्टि करें',
 					amount: 'अमाउंट',
@@ -245,7 +262,6 @@ define({
 					message: 'मेसेज',
 					encrypted: 'मेसेज एन्क्रिप्टेड है',
 					noMessage: 'नो मेसेज',
-					cancel: 'Cancel',
 					confirm: 'Confirm',
 					sending: 'भेजा जा रहा है...'
 				},
@@ -296,14 +312,25 @@ define({
 				confirmations: 'कन्फर्मेशन्स',
 				confirmationsUnknown: 'Unknown',
 				amount: 'अमाउंट',
-				fee: 'फ़ीस',
 				innerFee: 'इनर फ़ीस',
 				multisigFees: 'Multisig फ़ीस',
-				cosignatory: 'Cosignatory'
+				cosignatory: 'Cosignatory',
+				namespace: 'Namespace',
+				rentalFee: 'Rental fee',
+				mosaicName: 'Mosaic Name',
+				description: 'Description',
+				propertiesLabel: 'Properties',
+				properties: {
+					divisibility: 'Divisibility',
+					quantity: 'Maximal quantity',
+					mutablequantity: 'Is quantity mutable',
+					transferable: 'Is transferable'
+				},
+				supplyType: 'Supply type',
+				supplyAmount: 'Supply amount'
 			},
 			accountDetails: {
 				title: 'Account details',
-				address: 'अड्रेस',
 				label: 'लेबल',
 				noLabel: 'नो लेबल',
 				add: 'अड्रेस बुक में जोड़ें',
@@ -313,8 +340,7 @@ define({
 				importance: 'Importance',
 				publicKey: 'Public key',
 				noPublicKey: 'No public key',
-				harvestedBlocks: 'हारवेस्टेड ब्लॉक्स',
-				close: 'Close'
+				harvestedBlocks: 'हारवेस्टेड ब्लॉक्स'
 			},
 			bootLocalNode: {
 				title: 'लोकल नोड बूट कीजिए',
@@ -337,7 +363,6 @@ define({
 				title: 'नया अकाउंट बनाएँ',
 				label: 'निजी लेबल',
 				wallet: 'वॉलेट',
-				password: 'वॉलेट का पासवर्ड',
 				successMessage: 'अकाउंट {{1}} {{#2}}({{2}}){{/2}} बना दिया गया है!',
 				create: 'बनाएँ'
 			},
@@ -357,7 +382,6 @@ define({
 				title: 'कोई मौजूदा अकाउंट जोड़ें',
 				privateKey: 'अकाउंट का Private Key',
 				wallet: 'वॉलेट',
-				password: 'वॉलेट का पासवर्ड',
 				successMessage: 'अकाउंट {{1}} {{#2}}({{2}}){{/2}} वॉलेट में जोड़ दिया गया है!',
 				add: 'जोड़ें',
 				label: 'लेबल'
@@ -367,7 +391,6 @@ define({
 				account: 'प्राइमरी स्थापित होने वाला अकाउंट',
 				noLabel: '<span class=\'null\'>&lt;No label&gt;</span>',
 				wallet: 'वॉलेट',
-				password: 'वॉलेट का पासवर्ड',
 				successMessage: 'अकाउंट {{1}} {{#2}}({{2}}){{/2}} प्राइमरी सेट हो चुका है!',
 				set: 'प्राइमरी सेट करें'
 			},
@@ -375,7 +398,6 @@ define({
 				title: 'वॉलेट का नाम बदलें',
 				wallet: 'मौजूदा वॉलेट का नाम',
 				newName: 'नये वॉलेट का नाम',
-				password: 'वॉलेट का पासवर्ड ',
 				successMessage: 'वॉलेट का नाम <em>{{1}}</em> से <em>{{2}}</em> सफलतापूर्वक बदल दिया गया है',
 				change: 'बदलें'
 			},
@@ -394,16 +416,13 @@ define({
 				title: 'अकाउंट लेबल बदल',
 				label: 'अकाउंट लेबल',
 				wallet: 'वॉलेट',
-				password: 'वॉलेट का पासवर्ड',
 				successMessage: 'अकाउंट {{1}} अब {{2}} के रूप में चिह्नित है',
 				change: 'बदलें'
 			},
 			removeAccount: {
 				title: 'Remove account',
-				account: 'अकाउंट',
 				label: 'अकाउंट लेबल',
 				wallet: 'वॉलेट',
-				password: 'वॉलेट का पासवर्ड',
 				warning: 'कृपया हटाने से पहले यह सुनिश्चित करें कि अकाउंट में कोई भी XEM ना हो, अथवा वे हमेशा के लिए खो जाएँगे.',
 				successMessage: 'अकाउंट {{1}} {{# 2}} ({{2}}) {{/ 2}} हटा दिया गया है!',
 				remove: 'हटाएँ'
@@ -416,36 +435,29 @@ define({
 				title: 'Close program',
 				message: 'क्या आप NEM समुदाय क्लाइंट को बंद करना चाहते हैं?'
 			},
-			activateRemote: {
+			activateDelegated: {
 				title: 'Activate Delegated Harvesting',
 				wallet: 'वॉलेट',
-				account: 'अकाउंट',
-				password: 'वॉलेट का पासवर्ड',
 				activate: 'सक्रिय करें',
-				warning: 'Warning',
-				warningText: 'Activation will take 6 hours (360 blocks). Activation will NOT start harvesting automatically.'
+				warningText: 'Activation will take 6 hours (360 blocks). Activation will NOT start harvesting automatically.',
+				delegatedAccount: 'Delegated account public key',
+				builtIn: 'built into the wallet',
+
 			},
-			deactivateRemote: {
+			deactivateDelegated: {
 				title: 'Deactivate Delegated Harvesting',
 				wallet: 'वॉलेट',
-				account: 'अकाउंट',
-				password: 'वॉलेट का पासवर्ड',
 				deactivate: 'निष्क्रिय करें',
-				warning: 'Warning',
 				warningText: 'Deactivation will take 6 hours (360 blocks).'
 			},
 			startRemote: {
 				title: 'Start Delegated Harvesting',
 				wallet: 'वॉलेट',
-				account: 'अकाउंट',
-				password: 'वॉलेट का पासवर्ड',
 				start: 'सक्रिय करें'
 			},
 			stopRemote: {
 				title: 'Stop Delegated Harvesting',
 				wallet: 'वॉलेट',
-				account: 'अकाउंट',
-				password: 'वॉलेट का पासवर्ड',
 				stop: 'निष्क्रिय करें'
 			},
 			logoutWarning: {
@@ -607,6 +619,7 @@ define({
 				stop: 'स्टॉप हार्वेस्टिंग',
 				description: 'NEM क्लाउड के लिए अकाउंट का महत्व',
 				remoteHarvest: {
+					title: 'Delegated harvesting',
 					activate: 'Activate delegated harvesting',
 					activating: 'Activating delegated harvesting...',
 					active: 'Delegated harvesting is active',
@@ -614,7 +627,9 @@ define({
 					deactivating: 'Deactivating delegated harvesting...',
 					startRemoteHarvesting: 'Start delegated harvesting',
 					remotelyHarvesting: 'रीमोट हार्वेस्टिंग चल रही है',
-					stopRemoteHarvesting: 'Stop delegated harvesting'
+					stopRemoteHarvesting: 'Stop delegated harvesting',
+					multisigInfo: 'Activation or deactivation of a delegated harvesting for a multisig account must be done from one of cosignatory accounts',
+
 				}
 			},
 			transactions: {

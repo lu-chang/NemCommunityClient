@@ -18,7 +18,7 @@ public interface PrimaryNisConnector {
 	 *
 	 * @return true if a NIS instance is accessible
 	 */
-	public boolean isConnected();
+	boolean isConnected();
 
 	/**
 	 * Gets a response from the specified NIS relative url path.
@@ -27,7 +27,7 @@ public interface PrimaryNisConnector {
 	 * @param query The get query string or null.
 	 * @return The result.
 	 */
-	public Deserializer get(final NisApiId apiId, final String query);
+	Deserializer get(final NisApiId apiId, final String query);
 
 	/**
 	 * Forwards a synchronous request to the primary NIS node.
@@ -35,7 +35,7 @@ public interface PrimaryNisConnector {
 	 * @param request The request to forward.
 	 * @return The result.
 	 */
-	public <T> T forward(final Function<NodeEndpoint, CompletableFuture<T>> request);
+	<T> T forward(final Function<NodeEndpoint, CompletableFuture<T>> request);
 
 	/**
 	 * Forwards an asynchronous request to the primary NIS node.
@@ -43,7 +43,7 @@ public interface PrimaryNisConnector {
 	 * @param request The request to forward.
 	 * @return The result.
 	 */
-	public <T> CompletableFuture<T> forwardAsync(final Function<NodeEndpoint, CompletableFuture<T>> request);
+	<T> CompletableFuture<T> forwardAsync(final Function<NodeEndpoint, CompletableFuture<T>> request);
 
 	/**
 	 * Posts a request to the specified NIS relative url path.
@@ -52,7 +52,7 @@ public interface PrimaryNisConnector {
 	 * @param postRequest The request data.
 	 * @return The result.
 	 */
-	public Deserializer post(final NisApiId apiId, final HttpPostRequest postRequest);
+	Deserializer post(final NisApiId apiId, final HttpPostRequest postRequest);
 
 	/**
 	 * Posts a request to the specified NIS relative url path.
@@ -60,5 +60,5 @@ public interface PrimaryNisConnector {
 	 * @param apiId The api to call.
 	 * @param postRequest The request data.
 	 */
-	public void voidPost(final NisApiId apiId, final HttpPostRequest postRequest);
+	void voidPost(final NisApiId apiId, final HttpPostRequest postRequest);
 }

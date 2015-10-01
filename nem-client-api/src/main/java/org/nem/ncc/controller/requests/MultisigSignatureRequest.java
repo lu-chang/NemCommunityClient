@@ -7,9 +7,7 @@ import org.nem.core.serialization.Deserializer;
 import org.nem.ncc.wallet.*;
 
 /**
- * A request containing all information necessary to create a transfer.
- * TODO 20150131 J-G: fix comments referring to transfer [send request]
- * TODO 20150131 J-G: a few basic tests
+ * A request containing all information necessary to create a signature transaction.
  */
 public class MultisigSignatureRequest {
 	private final WalletName walletName;
@@ -21,7 +19,15 @@ public class MultisigSignatureRequest {
 	private final Amount fee;
 
 	/**
-	 * Creates a new transfer send request.
+	 * Creates a new multisig signature request.
+	 *
+	 * @param walletName The wallet name.
+	 * @param password The wallet password.
+	 * @param senderAddress The sender address.
+	 * @param multisigAddress The multisig address
+	 * @param innerTransactionHash The inner transaction hash.
+	 * @param hoursDue The number of hours for the transaction to be valid.
+	 * @param fee The fee.
 	 */
 	public MultisigSignatureRequest(
 			final WalletName walletName,
@@ -41,7 +47,7 @@ public class MultisigSignatureRequest {
 	}
 
 	/**
-	 * Deserializes a transfer send request.
+	 * Deserializes a multisig signature request.
 	 *
 	 * @param deserializer The deserializer.
 	 */

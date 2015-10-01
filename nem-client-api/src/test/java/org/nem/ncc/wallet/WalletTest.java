@@ -84,7 +84,7 @@ public abstract class WalletTest {
 
 		// Act:
 		assertThrowsWalletException(
-				v -> this.createWallet(new WalletName("bar"), account, Arrays.asList(account)),
+				v -> this.createWallet(new WalletName("bar"), account, Collections.singletonList(account)),
 				WalletException.Code.WALLET_ALREADY_CONTAINS_ACCOUNT);
 	}
 
@@ -108,8 +108,8 @@ public abstract class WalletTest {
 		final List<Consumer<Void>> consumers = Arrays.asList(
 				v -> this.createWallet(null, new WalletAccount()),
 				v -> this.createWallet(new WalletName("bar"), null),
-				v -> this.createWallet(null, new WalletAccount(), Arrays.asList()),
-				v -> this.createWallet(new WalletName("bar"), null, Arrays.asList()),
+				v -> this.createWallet(null, new WalletAccount(), Collections.emptyList()),
+				v -> this.createWallet(new WalletName("bar"), null, Collections.emptyList()),
 				v -> this.createWallet(new WalletName("bar"), new WalletAccount(), null));
 
 		// Act:

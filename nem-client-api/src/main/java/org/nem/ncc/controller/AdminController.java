@@ -1,22 +1,18 @@
 package org.nem.ncc.controller;
 
-import org.nem.deploy.CommonStarter;
 import org.nem.core.model.NemStatus;
 import org.nem.core.model.ncc.NemRequestResult;
 import org.nem.core.serialization.SerializableEntity;
+import org.nem.deploy.CommonStarter;
 import org.nem.ncc.cache.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.logging.Logger;
 
 /**
  * REST controller dealing with administrative functions.
  */
 @RestController
 public class AdminController {
-	private final static Logger LOGGER = Logger.getLogger(AdminController.class.getName());
-	private final static long SHUTDOWN_DELAY = 200;
 	private final AccountsFileRepository repository;
 	private final NccAccountCache accountCache;
 	private final CommonStarter commonStarter;

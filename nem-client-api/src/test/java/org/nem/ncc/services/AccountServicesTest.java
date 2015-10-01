@@ -24,7 +24,7 @@ public class AccountServicesTest {
 		final TestContext context = new TestContext();
 		final AccountMetaDataPair originalPair = new AccountMetaDataPair(
 				Utils.createAccountInfoFromAddress(Address.fromEncoded("FOO")),
-				new AccountMetaData(AccountStatus.UNLOCKED, AccountRemoteStatus.INACTIVE, Arrays.asList(), Arrays.asList()));
+				new AccountMetaData(AccountStatus.UNLOCKED, AccountRemoteStatus.INACTIVE, Collections.emptyList(), Collections.emptyList()));
 
 		Mockito.when(context.connector.get(NisApiId.NIS_REST_ACCOUNT_LOOK_UP, "address=FOO"))
 				.thenReturn(serialize(originalPair));
@@ -34,7 +34,7 @@ public class AccountServicesTest {
 
 		// Assert:
 		Mockito.verify(context.connector, Mockito.times(1)).get(NisApiId.NIS_REST_ACCOUNT_LOOK_UP, "address=FOO");
-		Assert.assertThat(pair.getAccount().getAddress(), IsEqual.equalTo(Address.fromEncoded("FOO")));
+		Assert.assertThat(pair.getEntity().getAddress(), IsEqual.equalTo(Address.fromEncoded("FOO")));
 		Assert.assertThat(pair.getMetaData().getStatus(), IsEqual.equalTo(AccountStatus.UNLOCKED));
 	}
 
@@ -48,7 +48,7 @@ public class AccountServicesTest {
 		final List<AccountMetaDataPair> pairs = getAccountMetaDataPairs(context, address);
 		// Assert:
 		Mockito.verify(context.connector, Mockito.times(1)).post(Mockito.eq(NisApiId.NIS_REST_ACCOUNT_BATCH_LOOK_UP), Mockito.any());
-		Assert.assertThat(pairs.get(0).getAccount().getAddress(), IsEqual.equalTo(address));
+		Assert.assertThat(pairs.get(0).getEntity().getAddress(), IsEqual.equalTo(address));
 		Assert.assertThat(pairs.get(0).getMetaData().getStatus(), IsEqual.equalTo(AccountStatus.UNLOCKED));
 	}
 
@@ -71,11 +71,11 @@ public class AccountServicesTest {
 		// Arrange:
 		final AccountMetaDataPair originalPair = new AccountMetaDataPair(
 				Utils.createAccountInfoFromAddress(requestAddress),
-				new AccountMetaData(AccountStatus.UNLOCKED, AccountRemoteStatus.INACTIVE, Arrays.asList(), Arrays.asList()));
-		final Collection<SerializableAccountId> requests = Arrays.asList(new SerializableAccountId(requestAddress));
+				new AccountMetaData(AccountStatus.UNLOCKED, AccountRemoteStatus.INACTIVE, Collections.emptyList(), Collections.emptyList()));
+		final Collection<SerializableAccountId> requests = Collections.singletonList(new SerializableAccountId(requestAddress));
 
 		Mockito.when(context.connector.post(Mockito.eq(NisApiId.NIS_REST_ACCOUNT_BATCH_LOOK_UP), Mockito.any()))
-				.thenReturn(serialize(new SerializableList<>(Arrays.asList(originalPair))));
+				.thenReturn(serialize(new SerializableList<>(Collections.singletonList(originalPair))));
 
 		// Act:
 		return context.services.getAccountMetaDataPairs(requests).stream().collect(Collectors.toList());
@@ -104,7 +104,7 @@ public class AccountServicesTest {
 		// Assert:
 		Mockito.verify(context.connector, Mockito.times(1)).get(nisApiId, expectedQueryString);
 		Assert.assertThat(
-				pairs.stream().map(p -> p.getTransaction().getFee()).collect(Collectors.toList()),
+				pairs.stream().map(p -> p.getEntity().getFee()).collect(Collectors.toList()),
 				IsEqual.equalTo(Arrays.asList(Amount.fromNem(124), Amount.fromNem(572), Amount.fromNem(323))));
 		Assert.assertThat(
 				pairs.stream().map(p -> p.getMetaData().getHeight()).collect(Collectors.toList()),

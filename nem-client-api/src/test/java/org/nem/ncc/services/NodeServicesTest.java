@@ -105,7 +105,7 @@ public class NodeServicesTest {
 		final Collection<Node> nodes = context.services.getNodesAsync(endpoints).join();
 
 		// Assert:
-		Assert.assertThat(nodes, IsEquivalent.equivalentTo(Arrays.asList(originalNodes.get(1))));
+		Assert.assertThat(nodes, IsEquivalent.equivalentTo(Collections.singletonList(originalNodes.get(1))));
 		context.verifyNumNodeInfoRequests(3);
 		for (final Node node : originalNodes) {
 			context.verifySingleNodeInfoRequest(node.getEndpoint());

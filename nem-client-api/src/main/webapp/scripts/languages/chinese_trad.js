@@ -44,30 +44,31 @@ define({
 			601: 'NIS節點已啟動。無法啟動第二个NIS節點。',
 			602: 'Cannot perform any operations until db is fully loaded.',
 			699: 'Maximum number of harvesters allowed on server has been reached.',
-			700: '所提供的賬戶無法满足收割的（條件）基本標準。必須至少有10.000 XEM才能開始收割。',
-			701: '所提供的截止日期已过期。截止日期必須在1天之内提供。',
-			702: '所提供的截止日期超過有效期限。截止時間必須在一天之內。',
-			703: 'Your account does not have the right balance to make this transaction.',
-			704: '提供的消息文本超過容許上限，無法通过NEM發送。請减少要發送消息的內容。',
-			705: '資料庫，或未確認交易列表，已經存在此交易的散列值。',
-			706: '無法驗證本次交易的簽名。',
-			707: '此交易的ID已失效。',
-			708: '此交易的ID時間戳超過有效期限。',
-			709: '未知的賬戶。一个賬戶需要至少執行一个交易（作為發件人或收件人）才能在網路公開。',
-			710: 'The transaction was rejected because the transaction cache is too full. A higher fee improves the chance that the transaction gets accepted.',
-			730: 'Importance transfer transaction (delegated harvesting) conflicts with existing transaction.',
-			731: 'Delegated harvesting account has non zero balance and cannot be used.',
-			732: 'Importance transfer rejected. There is already pending importance transfer operation.',
-			733: 'Delegated harvesting is already active.',
-			734: 'Delegated harvesting is NOT active. Cannot deactivate.',
-			740: 'Transaction is not allowed for multisig account.',
-			741: 'Multisig signature transaction rejected. Current account is not a cosignatory of a multisig account.',
-			742: 'Multisig signature transaction rejected. Associated multisig transaction is not known to NEM network',
-			743: 'Multisig account modification rejected. One of added accounts is already a cosignatory.',
+			700: '所提供的賬戶無法满足收割的（條件）基本標準。必須至少有10.000 vested XEM才能開始收割。',
 			901: 'There was an error setting up offline mode.',
 			1000: "The private key and the public key you have provided mismatch.",
 			1001: 'The public key and the address you have provided mismatch.',
-			1002: 'The address does not belong to the main network.'
+			1002: 'The address does not belong to the main network.',
+			1203: '所提供的截止日期已过期。截止日期必須在1天之内提供。',
+			1204: '所提供的截止日期超過有效期限。截止時間必須在一天之內。',
+			1205: 'Your account does not have the right balance to make this transaction.',
+			1206: '提供的消息文本超過容許上限，無法通过NEM發送。請减少要發送消息的內容。',
+			1207: '資料庫，或未確認交易列表，已經存在此交易的散列值。',
+			1208: '無法驗證本次交易的簽名。',
+			1209: '此交易的ID已失效。',
+			1210: '此交易的ID時間戳超過有效期限。',
+			1219: 'The transaction was rejected because the transaction cache is too full. A higher fee improves the chance that the transaction gets accepted.',
+			1262: 'Delegated harvesting account has non zero balance and cannot be used.',
+			1263: 'Importance transfer rejected. There is already pending importance transfer operation.',
+			1264: 'Delegated harvesting is already active.',
+			1265: 'Delegated harvesting is NOT active. Cannot deactivate.',
+			1266: 'Importance transfer transaction (delegated harvesting) conflicts with existing transaction.',
+			1271: 'Multisig signature transaction rejected. Current account is not a cosignatory of a multisig account.',
+			1273: 'Multisig signature transaction rejected. Associated multisig transaction is not known to NEM network',
+			1274: 'Transaction is not allowed for multisig account.',
+			1275: 'Multisig account modification rejected. One of added accounts is already a cosignatory.',
+			1321: '未知的賬戶。一个賬戶需要至少執行一个交易（作為發件人或收件人）才能在網路公開。',
+
 		},
 		common: {
 			success: '成功',
@@ -101,26 +102,51 @@ define({
 			publicLabel: 'Public label',
 			noCharge: 'Current account will <b>NOT</b> be charged any fees, multisig account covers them',
 			fee: '費',
+			multisigFee: 'Multisig fee',
+			useMinimumFee: 'Use minimum fee',
+			feeValidation: 'Fee must not be less than the minimum fee',
 			justUse: 'Just use',
 			dueBy: 'Due by',
+			minutes: 'minute(s)',
 			hours: 'hour(s)',
 			hoursDue: 'Due by (hours)',
 			hoursDueExplanation: 'If the transaction isn\'t included by the deadline, it is rejected.',
-			closeButton: 'Close'
+			closeButton: 'Close',
+			cancelButton: 'Cancel',
+			sendButton: '發送',
+			account: 'Account',
+			thisAccount: 'This account',
+			warning: 'Warning',
+			newBuild: 'NEW BUILD',
+			newBuildNumber: 'There is new build {{1}} available for download. Check <a class="hyperlink--default", href="http://blog.nem.io">blog.nem.io</a> for details',
+
 		},
-		transactionTypes: [
-			'TRANSFER TRANSACTION',
-			'IMPORTANCE TRANSFER',
-			'MODIFICATION OF MULTISIG ACCOUNT',
-			'MULTISIG TRANSACTION'
-		],
+		transactionTypes: {
+			20: 'TRANSFER TRANSACTION',
+			21: 'IMPORTANCE TRANSFER',
+			22: 'MODIFICATION OF MULTISIG ACCOUNT',
+			23: 'PROVISION NAMESPACE',
+			24: 'MOSAIC CREATION',
+			25: 'MOSAIC SUPPLY',
+			40: 'MULTISIG SIGNATURE',
+			50: 'MULTISIG TRANSACTION',
+			51: 'MULTISIG TRANSACTION',
+			52: 'MULTISIG TRANSACTION',
+			53: 'MULTISIG TRANSACTION',
+			54: 'MULTISIG TRANSACTION',
+			55: 'MULTISIG TRANSACTION',
+
+		},
 		transactionDirections: {
 			pending: '交易待處理中',
 			outgoing: '交易發送中',
 			incoming: '交易接收中',
 			self: '自我交易',
 			importance: 'Importance transaction',
-			modification: 'Aggregate Modification of Multisig'
+			modification: 'Aggregate Modification of Multisig',
+			provision: 'Provision Namespace',
+			mosaicCreation: 'Mosaic Creation',
+			mosaicSupply: 'Mosaic Supply'
 		},
 		modals: {
 			error: {
@@ -161,12 +187,17 @@ define({
 				autoBoot: {
 					tabTitle: 'Auto-boot',
 					name: 'Node name',
-					account: 'Account',
 					primaryAccount: 'Primary Account',
 					auto: 'Auto boot when a wallet is opened'
 				},
 				save: 'Save',
 				saveSuccess: 'Settings have been saved successfully'
+			},
+			signToken: {
+				title: "Sign a token using account",
+				label: "Token (url, string, anything)",
+				signature: "Signed token",
+				sign: "Sign"
 			},
 			multisig: {
 				title: 'Convert account to multisig',
@@ -175,17 +206,18 @@ define({
 				labelDesc: '此賬戶被標記為 <strong>{{1}}</strong>',
 				nullLabelDesc: "此賬戶没有標記",
 				addCosignatory: '+ Add Cosignatory',
-				cancel: 'Cancel',
 				convert: 'Convert',
-				fee: '費',
-				feeValidation: 'Fee must not be less than the minimum fee',
-				useMinimumFee: 'Use minimum fee',
 				txConfirm: {
 					title: 'Confirm Conversion to Multisig Account',
 					total: 'Total',
 
 				},
-				warning: 'Multisig account is on the list of cosignatories. This will result in locking down the account cutting off access to the fund. Most likely you <b>DO NOT</b> want to do that.'
+				warning: 'Multisig account is on the list of cosignatories. This will result in locking down the account cutting off access to the fund. Most likely you <b>DO NOT</b> want to do that.',
+				minCosignatoriesDefaultLabel: 'Use default cosignatories number',
+				minCosignatoriesRelativeLabel: 'relative change',
+				minCosignatoriesLabel: 'Minimum number of cosignatories',
+				minCosignatoriesZero: 'Using zero would cause all cosignatories to be required',
+				minCosignatoriesOverflow: 'Specified number is larger than number of cosignatories'
 			},
 			signMultisig: {
 				title: 'Sign multisig transaction',
@@ -199,15 +231,8 @@ define({
 				multisigFees: 'Multisig Fees',
 				multisigTotal: 'Total',
 				sender: 'Cosignatory',
-				fee: '費',
-				feeValidation: 'Fee must not be less than the minimum fee',
-				useMinimumFee: 'Use minimum fee',
-				password: '密碼',
 				passwordValidation: 'Password must not be blank',
-				send: '發送',
-				cancel: 'Cancel',
 				sending: 'Sending...',
-				successMessage: '交易成功!',
 				txConfirm: {
 					title: 'Confirm Multisig Transaction',
 					message: '留言',
@@ -227,16 +252,8 @@ define({
 				recipientValidation: 'Account addresses must be 40 character long excluding dashes',
 				message: '信息',
 				encrypt: '加密信息',
-				fee: '費',
-				multisigFee: 'Multisig fee',
-				feeValidation: 'Fee must not be less than the minimum fee',
-				useMinimumFee: 'Use minimum fee',
-				password: '密碼',
-				passwordValidation: 'Password must not be blank',
-				send: '發送',
-				cancel: 'Cancel',
 				sending: '發送...',
-				successMessage: '交易成功!',
+				successMessage: 'Your transaction has been sent successfully! <br><br>Transaction hash: {{1}}',
 				txConfirm: {
 					title: 'Confirm Transaction',
 					amount: 'Amount',
@@ -245,7 +262,6 @@ define({
 					message: 'Message',
 					encrypted: 'Message is encrypted',
 					noMessage: 'No message',
-					cancel: 'Cancel',
 					confirm: 'Confirm',
 					sending: 'Sending...'
 				},
@@ -296,14 +312,25 @@ define({
 				confirmations: '確認',
 				confirmationsUnknown: 'Unknown',
 				amount: '金額',
-				fee: '費',
 				innerFee: 'Inner Fee',
 				multisigFees: 'Multisig Fees',
-				cosignatory: 'Cosignatory'
+				cosignatory: 'Cosignatory',
+				namespace: 'Namespace',
+				rentalFee: 'Rental fee',
+				mosaicName: 'Mosaic Name',
+				description: 'Description',
+				propertiesLabel: 'Properties',
+				properties: {
+					divisibility: 'Divisibility',
+					quantity: 'Maximal quantity',
+					mutablequantity: 'Is quantity mutable',
+					transferable: 'Is transferable'
+				},
+				supplyType: 'Supply type',
+				supplyAmount: 'Supply amount'
 			},
 			accountDetails: {
 				title: "Account details",
-				address: "Address",
 				label: "Label",
 				noLabel: "No label",
 				add: "Add to address book",
@@ -313,8 +340,7 @@ define({
 				importance: "Importance",
 				publicKey: "Public key",
 				noPublicKey: "No public key",
-				harvestedBlocks: "Harvested blocks",
-				close: "Close"
+				harvestedBlocks: "Harvested blocks"
 			},
 			bootLocalNode: {
 				title: '啟動本地節點',
@@ -337,7 +363,6 @@ define({
 				title: '創建新賬號',
 				label: '私人標識',
 				wallet: '錢包',
-				password: '錢包的密碼',
 				successMessage: '賬號 {{1}} {{#2}}({{2}}){{/2}} 已創建!',
 				create: '創建'
 			},
@@ -357,7 +382,6 @@ define({
 				title: '添加一个現有賬號',
 				privateKey: '賬號的私鑰',
 				wallet: '錢包',
-				password: "錢包的密碼",
 				successMessage: '賬號 {{1}} {{#2}}({{2}}){{/2}} 已被添加到錢包!',
 				add: '添加',
 				label: '標識'
@@ -367,7 +391,6 @@ define({
 				account: '賬號被設置為主賬戶',
 				noLabel: '<span class="null">&lt;物標識&gt;</span>',
 				wallet: '錢包',
-				password: "錢包的密碼",
 				successMessage: '賬戶 {{1}} {{#2}}({{2}}){{/2}} 被設置為主賬戶!',
 				set: '設置為主賬戶'
 			},
@@ -375,7 +398,6 @@ define({
 				title: '改錢包名',
 				wallet: '当前錢包名',
 				newName: '新錢包名',
-				password: "錢包密碼",
 				successMessage: '錢包名称已變更成功從<em>{{1}}</em>到<em>{{2}}</em>',
 				change: '改'
 			},
@@ -394,16 +416,13 @@ define({
 				title: '更改賬戶標識',
 				label: '賬戶標識',
 				wallet: '賬戶',
-				password: "錢包密碼",
 				successMessage: '賬戶{{1}}現在的標識是{{2}}',
 				change: '改'
 			},
 			removeAccount: {
 				title: '删除賬戶',
-				account: 'Account',
 				label: '賬戶標識',
 				wallet: '钱包',
-				password: "錢包密碼",
 				warning: '在你删除賬戶前請確認您的賬戶的MEM為零，否則会被永遠失去了',
 				successMessage: '賬戶 {{1}} {{#2}}({{2}}){{/2}} 被删除了!',
 				remove: '删除'
@@ -416,36 +435,29 @@ define({
 				title: '關閉程序',
 				message: '您確定要關閉NEM社區客戶端?'
 			},
-			activateRemote: {
+			activateDelegated: {
 				title: 'Activate Delegated Harvesting',
 				wallet: 'Wallet',
-				account: 'Account',
-				password: "Wallet's password",
 				activate: 'Activate',
-				warning: 'Warning',
-				warningText: 'Activation will take 6 hours (360 blocks). Activation will NOT start harvesting automatically.'
+				warningText: 'Activation will take 6 hours (360 blocks). Activation will NOT start harvesting automatically.',
+				delegatedAccount: 'Delegated account public key',
+				builtIn: 'built into the wallet',
+
 			},
-			deactivateRemote: {
+			deactivateDelegated: {
 				title: 'Deactivate Delegated Harvesting',
 				wallet: 'Wallet',
-				account: 'Account',
-				password: "Wallet's password",
 				deactivate: 'Deactivate',
-				warning: 'Warning',
 				warningText: 'Deactivation will take 6 hours (360 blocks).'
 			},
 			startRemote: {
 				title: 'Start Delegated Harvesting',
 				wallet: 'Wallet',
-				account: 'Account',
-				password: "Wallet's password",
 				start: 'Start'
 			},
 			stopRemote: {
 				title: 'Stop Delegated Harvesting',
 				wallet: 'Wallet',
-				account: 'Account',
-				password: "Wallet's password",
 				stop: 'Stop'
 			},
 			logoutWarning: {
@@ -607,6 +619,7 @@ define({
 				stop: '停止收割',
 				description: 'NEM雲賬戶的重要',
 				remoteHarvest: {
+					title: 'Delegated harvesting',
 					activate: 'Activate delegated harvesting',
 					activating: 'Activating delegated harvesting...',
 					active: 'Delegated harvesting is active',
@@ -614,7 +627,9 @@ define({
 					deactivating: 'Deactivating delegated harvesting...',
 					startRemoteHarvesting: 'Start delegated harvesting',
 					remotelyHarvesting: 'Remotely harvesting',
-					stopRemoteHarvesting: 'Stop delegated harvesting'
+					stopRemoteHarvesting: 'Stop delegated harvesting',
+					multisigInfo: 'Activation or deactivation of a delegated harvesting for a multisig account must be done from one of cosignatory accounts',
+
 				}
 			},
 			transactions: {

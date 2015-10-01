@@ -18,7 +18,7 @@ public interface StorableEntityRepository<
 	 * @param descriptor The output descriptor.
 	 * @param storableEntity The storable entity.
 	 */
-	public void save(final TEntityDescriptor descriptor, final TEntity storableEntity);
+	void save(final TEntityDescriptor descriptor, final TEntity storableEntity);
 
 	/**
 	 * Loads a storable entity from the specified descriptor.
@@ -26,5 +26,5 @@ public interface StorableEntityRepository<
 	 * @param descriptor The input descriptor.
 	 * @return The storable entity.
 	 */
-	public TEntity load(final TEntityDescriptor descriptor);
+	TEntity load(final TEntityDescriptor descriptor);
 }

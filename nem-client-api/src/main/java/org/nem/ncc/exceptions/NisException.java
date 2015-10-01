@@ -4,10 +4,10 @@ import org.nem.core.connect.ErrorResponse;
 import org.nem.core.model.ncc.NemRequestResult;
 
 import java.util.*;
+import java.util.regex.Pattern;
 
 /**
  * A NIS-originating exception.
- * TODO 20150115 J-G: we need to map NIS -> NCC code more automatically :)
  */
 public class NisException extends NccException {
 	/**
@@ -42,103 +42,7 @@ public class NisException extends NccException {
 		/**
 		 * The account is ineligible for foraging.
 		 */
-		HARVESTING_INELIGIBLE(700),
-
-		/**
-		 * The transaction was rejected because its deadline has passed.
-		 */
-		TRANSACTION_REJECTED_PAST_DEADLINE(701),
-
-		/**
-		 * The transaction was rejected because its deadline is too far in the future.
-		 */
-		TRANSACTION_REJECTED_FUTURE_DEADLINE(702),
-
-		/**
-		 * The transaction was rejected because the sender had an insufficient balance.
-		 */
-		TRANSACTION_REJECTED_INSUFFICIENT_BALANCE(703),
-
-		/**
-		 * The transaction was rejected because the associated message is too large.
-		 */
-		TRANSACTION_REJECTED_MESSAGE_TOO_LARGE(704),
-
-		/**
-		 * The transaction was rejected because it has already been submitted.
-		 */
-		TRANSACTION_REJECTED_HASH_EXISTS(705),
-
-		/**
-		 * The transaction was rejected because it is not verifiable.
-		 */
-		TRANSACTION_REJECTED_NOT_VERIFIABLE(706),
-
-		/**
-		 * The transaction was rejected because its timestamp is too far in the past.
-		 */
-		TRANSACTION_REJECTED_NOT_TIMESTAMP_TOO_FAR_IN_PAST(707),
-
-		/**
-		 * The transaction was rejected because its timestamp is too far in the future.
-		 */
-		TRANSACTION_REJECTED_NOT_TIMESTAMP_TOO_FAR_IN_FUTURE(708),
-
-		/**
-		 * The transaction was rejected because one of the accounts was unknown.
-		 */
-		TRANSACTION_REJECTED_UNKNOWN_ACCOUNT(709),
-
-		/**
-		 * The transaction was rejected because the transaction cache is too full.
-		 */
-		TRANSACTION_REJECTED_CACHE_TOO_FULL(710),
-
-		/**
-		 * The transaction was rejected because one of the accounts was unknown.
-		 * note: shouldn't happen in UI
-		 */
-		TRANSACTION_REJECTED_CONFLICTING_IMPORTANCE_TRANSFER(730),
-
-		/**
-		 * Importance transfer transaction was rejected because destination account had non-zero balance.
-		 */
-		TRANSACTION_REJECTED_DESTINATION_ACCOUNT_NON_EMPTY(731),
-
-		/**
-		 * Importance transfer transaction was rejected cause there is already importance transfer in progress.
-		 */
-		TRANSACTION_REJECTED_IMPORTANCE_TRANSFER_IN_PROGRESS(732),
-
-		/**
-		 * Importance transfer transaction was rejected cause importance transfer is active.
-		 */
-		TRANSACTION_REJECTED_IMPORTANCE_TRANSFER_IS_ACTIVE(733),
-
-		/**
-		 * Importance transfer transaction was rejected cause importance transfer is NOT active.
-		 */
-		TRANSACTION_REJECTED_IMPORTANCE_TRANSFER_NOT_ACTIVE(734),
-
-		/**
-		 * Transaction was rejected cause multisig account cannot perform such transactions.
-		 */
-		TRANSACTION_REJECTED_NOT_ALLOWED_FOR_MULTISIG(740),
-
-		/**
-		 * Multisig signature transaction rejected cause account is not a cosignatory of multisig account.
-		 */
-		MULTISIG_SIGNATURE_REJECTED_NOT_A_COSIGNER(741),
-
-		/**
-		 * Multisig signature rejected cause associated multisig transaction does not exist.
-		 */
-		MULTISIG_SIGNATURE_REJECTED_NO_MATCHING_MULTISIG_TRANSACTION(742),
-
-		/**
-		 * Multisig account modification rejected one of added accounts is already a cosignatory.
-		 */
-		MULTISIG_REJECTED_ALREADY_A_COSIGNER(743);
+		HARVESTING_INELIGIBLE(700);
 
 		private final int value;
 
@@ -152,53 +56,31 @@ public class NisException extends NccException {
 		}
 
 		// note: commented errors will never be shown in NCC UI
-		private static final Map<String, Code> NIS_ERROR_MAP = new HashMap<String, Code>() {
+		private static final Map<String, ValueBasedEnum> NIS_ERROR_MAP = new HashMap<String, ValueBasedEnum>() {
 			{
-				// GENERAL
-				this.put("FAILURE_SERVER_LIMIT", HARVESTING_LIMIT_HIT);
-				this.put("FAILURE_HARVESTING_INELIGIBLE", HARVESTING_INELIGIBLE);
-				this.put("FAILURE_PAST_DEADLINE", TRANSACTION_REJECTED_PAST_DEADLINE);
-				this.put("FAILURE_FUTURE_DEADLINE", TRANSACTION_REJECTED_FUTURE_DEADLINE);
-				this.put("FAILURE_INSUFFICIENT_BALANCE", TRANSACTION_REJECTED_INSUFFICIENT_BALANCE);
-				this.put("FAILURE_MESSAGE_TOO_LARGE", TRANSACTION_REJECTED_MESSAGE_TOO_LARGE);
-				this.put("FAILURE_HASH_EXISTS", TRANSACTION_REJECTED_HASH_EXISTS);
-				this.put("FAILURE_SIGNATURE_NOT_VERIFIABLE", TRANSACTION_REJECTED_NOT_VERIFIABLE);
-				this.put("FAILURE_TIMESTAMP_TOO_FAR_IN_PAST", TRANSACTION_REJECTED_NOT_TIMESTAMP_TOO_FAR_IN_PAST);
-				this.put("FAILURE_TIMESTAMP_TOO_FAR_IN_FUTURE", TRANSACTION_REJECTED_NOT_TIMESTAMP_TOO_FAR_IN_FUTURE);
-				this.put("FAILURE_UNKNOWN_ACCOUNT", TRANSACTION_REJECTED_UNKNOWN_ACCOUNT);
-				this.put("FAILURE_TRANSACTION_CACHE_TOO_FULL", TRANSACTION_REJECTED_CACHE_TOO_FULL);
-				//this.put("FAILURE_ENTITY_UNUSABLE", );
-				//this.put("FAILURE_CHAIN_SCORE_INFERIOR", );
-				//this.put("FAILURE_CHAIN_INVALID", );
-
 				// ILLEGAL STATE
 				this.put("NIS_ILLEGAL_STATE_ALREADY_BOOTED", NODE_ALREADY_BOOTED);
 				this.put("NIS_ILLEGAL_STATE_LOADING_CHAIN", NODE_LOADING_DB);
 				this.put("NIS_ILLEGAL_STATE_NOT_BOOTED", NODE_NOT_BOOTED);
 
-				// IMPORTANCE TRANSFERS
-				this.put("FAILURE_CONFLICTING_IMPORTANCE_TRANSFER", TRANSACTION_REJECTED_CONFLICTING_IMPORTANCE_TRANSFER);
-				//this.put("FAILURE_TOO_MANY_TRANSACTIONS", );
-				//this.put("FAILURE_SELF_SIGNED_TRANSACTION", );
-				this.put("FAILURE_DESTINATION_ACCOUNT_HAS_NONZERO_BALANCE", TRANSACTION_REJECTED_DESTINATION_ACCOUNT_NON_EMPTY);
-				this.put("FAILURE_IMPORTANCE_TRANSFER_IN_PROGRESS", TRANSACTION_REJECTED_IMPORTANCE_TRANSFER_IN_PROGRESS);
-				this.put("FAILURE_IMPORTANCE_TRANSFER_NEEDS_TO_BE_DEACTIVATED", TRANSACTION_REJECTED_IMPORTANCE_TRANSFER_IS_ACTIVE);
-				this.put("FAILURE_IMPORTANCE_TRANSFER_IS_NOT_ACTIVE", TRANSACTION_REJECTED_IMPORTANCE_TRANSFER_NOT_ACTIVE);
+				// HARVESTING RELATED
+				// "FAILURE_HARVESTING_BLOCKED",
+				this.put("FAILURE_SERVER_LIMIT", HARVESTING_LIMIT_HIT);
+				this.put("FAILURE_HARVESTING_INELIGIBLE", HARVESTING_INELIGIBLE);
 
-				// MULTISIG RELATED
-				this.put("FAILURE_TRANSACTION_NOT_ALLOWED_FOR_MULTISIG", TRANSACTION_REJECTED_NOT_ALLOWED_FOR_MULTISIG);
-				this.put("FAILURE_MULTISIG_NOT_A_COSIGNER", MULTISIG_SIGNATURE_REJECTED_NOT_A_COSIGNER);
-				//this.put("FAILURE_MULTISIG_INVALID_COSIGNERS", );
-				this.put("FAILURE_MULTISIG_NO_MATCHING_MULTISIG", MULTISIG_SIGNATURE_REJECTED_NO_MATCHING_MULTISIG_TRANSACTION);
-				this.put("FAILURE_MULTISIG_ALREADY_A_COSIGNER", MULTISIG_REJECTED_ALREADY_A_COSIGNER);
-				//this.put("FAILURE_MULTISIG_MISMATCHED_SIGNATURE", );
+				// nis transaction validation errors
+				final Pattern name = Pattern.compile("^TRANSACTION_REJECTED_");
+				for (final NisValidationException e : NisValidationException.values()) {
+					final String nisName = name.matcher(e.toString()).replaceFirst("FAILURE_");
+					this.put(nisName, e);
+				}
 			}
 		};
 
 		/**
 		 * Gets the NIS code corresponding to a NIS message.
 		 */
-		public static Code fromMessage(final String message) {
+		public static ValueBasedEnum fromMessage(final String message) {
 			return NIS_ERROR_MAP.getOrDefault(message, UNEXPECTED_ERROR);
 		}
 	}

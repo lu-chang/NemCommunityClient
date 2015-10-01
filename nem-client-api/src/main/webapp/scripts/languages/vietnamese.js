@@ -44,30 +44,31 @@ define({
 			601: 'NIS node đã được boot rồi. Không thể boot NIS thêm một lần nữa.',
 			602: 'Almost ready. NEM Infrastructure Server is currently loading blocks. Wallet will be functional when db is fully loaded.',
 			699: 'Maximum number of harvesters allowed on server has been reached.',
-			700: 'Tài khoản được cung cấp không thoả mãn các tiêu chí cơ bản để được thu hoạch. Phần lớn liên quan tới lượng XEM có trong tài khoản. Việc thu hoạch có thể bắt đầu với ít nhất 1000 XEM.',
-			701: 'Deadline được cung cấp đã trôi qua.',
-			702: 'Deadline được cung cấp quá xa trong tương lai.',
-			703: 'Your account does not have the right balance to make this transaction.',
-			704: 'Đoạn thông điệp được cung cấp quá lớn để gửi qua NEM. Hãy cố gắng giảm độ dài của thông điệp mà bạn gửi.',
-			705: 'Hash của giao dịch đã tồn tại trong cơ sở dữ liệu hoặc trong danh sách những giao dịch chưa được xác nhận.',
-			706: 'Không thể xác nhận chữ ký của giao dịch.',
-			707: 'Mốc thời gian của giao dịch quá xa trong quá khứ.',
-			708: 'Mốc thời gian của giao dịch quá xa về tương lai.',
-			709: 'Tài khoản không được biết đến. Một tài khoản cần phải tham gia vào ít nhất một giao dịch (là người gửi hoặc người nhận) để được mạng lưới biết đến.',
-			710: 'The transaction was rejected because the transaction cache is too full. A higher fee improves the chance that the transaction gets accepted.',
-			730: 'Importance transfer transaction (delegated harvesting) conflicts with existing transaction.',
-			731: 'Delegated harvesting account has non zero balance and cannot be used.',
-			732: 'Importance transfer rejected. There is already pending importance transfer operation.',
-			733: 'Delegated harvesting is already active.',
-			734: 'Delegated harvesting is NOT active. Cannot deactivate.',
-			740: 'Transaction is not allowed for multisig account.',
-			741: 'Multisig signature transaction rejected. Current account is not a cosignatory of a multisig account.',
-			742: 'Multisig signature transaction rejected. Associated multisig transaction is not known to NEM network',
-			743: 'Multisig account modification rejected. One of added accounts is already a cosignatory.',
+			700: 'Tài khoản được cung cấp không thoả mãn các tiêu chí cơ bản để được thu hoạch. Phần lớn liên quan tới lượng XEM có trong tài khoản. Việc thu hoạch có thể bắt đầu với ít nhất 10000 vested XEM.',
 			901: 'Đã xảy ra lỗi trong lúc cài đặt chế độ offline.',
 			1000: 'Khoá bí mật và khoá công khai mà bạn vừa cung cấp không khớp với nhau.',
 			1001: 'Khoá công khai và địa chỉ mà bạn vừa cung cấp không khớp với nhau.',
-			1002: 'Địa chỉ không thuộc về mạng lưới chính.'
+			1002: 'Địa chỉ không thuộc về mạng lưới chính.',
+			1203: 'Deadline được cung cấp đã trôi qua.',
+			1204: 'Deadline được cung cấp quá xa trong tương lai.',
+			1205: 'Your account does not have the right balance to make this transaction.',
+			1206: 'Đoạn thông điệp được cung cấp quá lớn để gửi qua NEM. Hãy cố gắng giảm độ dài của thông điệp mà bạn gửi.',
+			1207: 'Hash của giao dịch đã tồn tại trong cơ sở dữ liệu hoặc trong danh sách những giao dịch chưa được xác nhận.',
+			1208: 'Không thể xác nhận chữ ký của giao dịch.',
+			1209: 'Mốc thời gian của giao dịch quá xa trong quá khứ.',
+			1210: 'Mốc thời gian của giao dịch quá xa về tương lai.',
+			1219: 'The transaction was rejected because the transaction cache is too full. A higher fee improves the chance that the transaction gets accepted.',
+			1262: 'Delegated harvesting account has non zero balance and cannot be used.',
+			1263: 'Importance transfer rejected. There is already pending importance transfer operation.',
+			1264: 'Delegated harvesting is already active.',
+			1265: 'Delegated harvesting is NOT active. Cannot deactivate.',
+			1266: 'Importance transfer transaction (delegated harvesting) conflicts with existing transaction.',
+			1271: 'Multisig signature transaction rejected. Current account is not a cosignatory of a multisig account.',
+			1273: 'Multisig signature transaction rejected. Associated multisig transaction is not known to NEM network',
+			1274: 'Transaction is not allowed for multisig account.',
+			1275: 'Multisig account modification rejected. One of added accounts is already a cosignatory.',
+			1321: 'Tài khoản không được biết đến. Một tài khoản cần phải tham gia vào ít nhất một giao dịch (là người gửi hoặc người nhận) để được mạng lưới biết đến.',
+
 		},
 		common: {
 			success: 'Thành công',
@@ -101,26 +102,51 @@ define({
 			publicLabel: 'Public label',
 			noCharge: 'Current account will <b>NOT</b> be charged any fees, multisig account covers them',
 			fee: 'Phí',
+			multisigFee: 'Multisig fee',
+			useMinimumFee: 'Sử dụng phí tối thiểu',
+			feeValidation: 'Phí không được thấp hơn phí tối thiểu',
 			justUse: 'Just use',
 			dueBy: 'Hết hạn',
+			minutes: 'minute(s)',
 			hours: 'giờ',
 			hoursDue: 'Hết hạn sau (giờ)',
 			hoursDueExplanation: 'If the transaction isn\'t included by the deadline, it is rejected.',
-			closeButton: 'Close'
+			closeButton: 'Close',
+			cancelButton: 'Huỷ',
+			sendButton: 'Gửi',
+			account: 'Tài khoản',
+			thisAccount: 'This account',
+			warning: 'Warning',
+			newBuild: 'NEW BUILD',
+			newBuildNumber: 'There is new build {{1}} available for download. Check <a class="hyperlink--default", href="http://blog.nem.io">blog.nem.io</a> for details',
+
 		},
-		transactionTypes: [
-			'TRANSFER TRANSACTION',
-			'IMPORTANCE TRANSFER',
-			'MODIFICATION OF MULTISIG ACCOUNT',
-			'MULTISIG TRANSACTION'
-		],
+		transactionTypes: {
+			20: 'TRANSFER TRANSACTION',
+			21: 'IMPORTANCE TRANSFER',
+			22: 'MODIFICATION OF MULTISIG ACCOUNT',
+			23: 'PROVISION NAMESPACE',
+			24: 'MOSAIC CREATION',
+			25: 'MOSAIC SUPPLY',
+			40: 'MULTISIG SIGNATURE',
+			50: 'MULTISIG TRANSACTION',
+			51: 'MULTISIG TRANSACTION',
+			52: 'MULTISIG TRANSACTION',
+			53: 'MULTISIG TRANSACTION',
+			54: 'MULTISIG TRANSACTION',
+			55: 'MULTISIG TRANSACTION',
+
+		},
 		transactionDirections: {
 			pending: 'Giao dịch đang chờ xác nhận',
 			outgoing: 'Giao dịch gửi đi',
 			incoming: 'Giao dịch gửi đến',
 			self: 'Giao dịch tự gửi',
 			importance: 'Importance transaction',
-			modification: 'Aggregate Modification of Multisig'
+			modification: 'Aggregate Modification of Multisig',
+			provision: 'Provision Namespace',
+			mosaicCreation: 'Mosaic Creation',
+			mosaicSupply: 'Mosaic Supply'
 		},
 		modals: {
 			error: {
@@ -161,12 +187,17 @@ define({
 				autoBoot: {
 					tabTitle: 'Tự boot node',
 					name: 'Tên node',
-					account: 'Tài khoản',
 					primaryAccount: 'Tài khoản chính',
 					auto: 'Tự động boot node khi ví được mở'
 				},
 				save: 'Lưu',
 				saveSuccess: 'Thiết lập đã được lưu thành công'
+			},
+			signToken: {
+				title: "Sign a token using account",
+				label: "Token (url, string, anything)",
+				signature: "Signed token",
+				sign: "Sign"
 			},
 			multisig: {
 				title: 'Convert account to multisig',
@@ -175,17 +206,18 @@ define({
 				labelDesc: 'Tài khoản này được dán nhãn là {{1}}',
 				nullLabelDesc: 'Tài khoản này không được dán nhãn',
 				addCosignatory: '+ Add Cosignatory',
-				cancel: 'Huỷ',
 				convert: 'Convert',
-				fee: 'Phí',
-				feeValidation: 'Phí không được thấp hơn phí tối thiểu',
-				useMinimumFee: 'Sử dụng phí tối thiểu',
 				txConfirm: {
 					title: 'Confirm Conversion to Multisig Account',
 					total: 'Tổng cộng',
 
 				},
-				warning: 'Multisig account is on the list of cosignatories. This will result in locking down the account cutting off access to the fund. Most likely you <b>DO NOT</b> want to do that.'
+				warning: 'Multisig account is on the list of cosignatories. This will result in locking down the account cutting off access to the fund. Most likely you <b>DO NOT</b> want to do that.',
+				minCosignatoriesDefaultLabel: 'Use default cosignatories number',
+				minCosignatoriesRelativeLabel: 'relative change',
+				minCosignatoriesLabel: 'Minimum number of cosignatories',
+				minCosignatoriesZero: 'Using zero would cause all cosignatories to be required',
+				minCosignatoriesOverflow: 'Specified number is larger than number of cosignatories'
 			},
 			signMultisig: {
 				title: 'Sign multisig transaction',
@@ -199,15 +231,8 @@ define({
 				multisigFees: 'Multisig Fees',
 				multisigTotal: 'Tổng cộng',
 				sender: 'Cosignatory',
-				fee: 'Phí',
-				feeValidation: 'Phí không được thấp hơn phí tối thiểu',
-				useMinimumFee: 'Sử dụng phí tối thiểu',
-				password: 'Mật khẩu',
 				passwordValidation: 'Mật khẩu không được để trống',
-				send: 'Gửi',
-				cancel: 'Huỷ',
 				sending: 'Đang gửi...',
-				successMessage: 'Giao dịch đã được gửi đi thành công!',
 				txConfirm: {
 					title: 'Confirm Multisig Transaction',
 					message: 'Thông điệp',
@@ -227,16 +252,8 @@ define({
 				recipientValidation: 'Địa chỉ tài khoản phải có đúng 40 ký tự trừ các dấu gạch ngang',
 				message: 'Thông điệp',
 				encrypt: 'Mã hoá thông điệp',
-				fee: 'Phí',
-				multisigFee: 'Multisig fee',
-				feeValidation: 'Phí không được thấp hơn phí tối thiểu',
-				useMinimumFee: 'Sử dụng phí tối thiểu',
-				password: 'Mật khẩu',
-				passwordValidation: 'Mật khẩu không được để trống',
-				send: 'Gửi',
-				cancel: 'Huỷ',
 				sending: 'Đang gửi...',
-				successMessage: 'Giao dịch đã được gửi đi thành công!',
+				successMessage: 'Your transaction has been sent successfully! <br><br>Transaction hash: {{1}}',
 				txConfirm: {
 					title: 'Xác nhận giao dịch',
 					amount: 'Số lượng',
@@ -245,7 +262,6 @@ define({
 					message: 'Thông điệp',
 					encrypted: 'Thông điệp được mã hoá',
 					noMessage: 'Không có thông điệp',
-					cancel: 'Huỷ',
 					confirm: 'Xác nhận',
 					sending: 'Đang gửi...'
 				},
@@ -296,14 +312,25 @@ define({
 				confirmations: 'Số xác nhận',
 				confirmationsUnknown: 'Không rõ',
 				amount: 'Số lượng',
-				fee: 'Phí',
 				innerFee: 'Inner Fee',
 				multisigFees: 'Multisig Fees',
-				cosignatory: 'Cosignatory'
+				cosignatory: 'Cosignatory',
+				namespace: 'Namespace',
+				rentalFee: 'Rental fee',
+				mosaicName: 'Mosaic Name',
+				description: 'Description',
+				propertiesLabel: 'Properties',
+				properties: {
+					divisibility: 'Divisibility',
+					quantity: 'Maximal quantity',
+					mutablequantity: 'Is quantity mutable',
+					transferable: 'Is transferable'
+				},
+				supplyType: 'Supply type',
+				supplyAmount: 'Supply amount'
 			},
 			accountDetails: {
 				title: 'Account details',
-				address: 'Address',
 				label: 'Label',
 				noLabel: 'No label',
 				add: 'Add to address book',
@@ -313,8 +340,7 @@ define({
 				importance: 'Importance',
 				publicKey: 'Public key',
 				noPublicKey: 'No public key',
-				harvestedBlocks: 'Harvested blocks',
-				close: 'Close'
+				harvestedBlocks: 'Harvested blocks'
 			},
 			bootLocalNode: {
 				title: 'Boot node cục bộ',
@@ -337,7 +363,6 @@ define({
 				title: 'Tạo tài khoản mới',
 				label: 'Nhãn cá nhân',
 				wallet: 'Ví',
-				password: 'Mật khẩu ví',
 				successMessage: 'Tài khoản {{1}} {{#2}}({{2}}){{/2}} đã được tạo!',
 				create: 'Tạo'
 			},
@@ -357,7 +382,6 @@ define({
 				title: 'Thêm tài khoản đã tồn tại',
 				privateKey: 'Khoá bí mật',
 				wallet: 'Ví',
-				password: 'Mật khẩu ví',
 				successMessage: 'Tài khoản {{1}} {{#2}}({{2}}){{/2}} đã được thêm vào ví!',
 				add: 'Thêm',
 				label: 'Nhãn'
@@ -367,7 +391,6 @@ define({
 				account: 'Tài khoản được đặt làm tài khoản chính',
 				noLabel: '<span class=\"null\">&lt;Không có nhãn&gt;</span>',
 				wallet: 'Ví',
-				password: 'Mật khẩu ví',
 				successMessage: 'Tài khoản {{1}} {{#2}}({{2}}){{/2}} đã được đặt làm tài khoản chính!',
 				set: 'Đặt làm tài khoản chính'
 			},
@@ -375,7 +398,6 @@ define({
 				title: 'Đổi tên ví',
 				wallet: 'Tên ví hiện tại',
 				newName: 'Tên ví mới',
-				password: 'Mật khẩu ví',
 				successMessage: 'Tên ví đã được đổi thành công từ <em>{{1}}</em> sang <em>{{2}}</em>',
 				change: 'Thay đổi'
 			},
@@ -394,16 +416,13 @@ define({
 				title: 'Đổi nhãn tài khoản',
 				label: 'Nhãn tài khoản',
 				wallet: 'Ví',
-				password: 'Mật khẩu ví',
 				successMessage: 'Tài khoản {{1}} giờ đây được dán nhãn là {{2}}',
 				change: 'Thay đổi'
 			},
 			removeAccount: {
 				title: 'Xoá tài khoản',
-				account: 'Tài khoản',
 				label: 'Nhãn tài khoản',
 				wallet: 'Ví',
-				password: 'Mật khẩu ví',
 				warning: 'Please ensure that your account has no XEM left before you remove it, or they would be lost forever.',
 				successMessage: 'Tài khoản {{1}} {{#2}}({{2}}){{/2}} đã được xoá!',
 				remove: 'Xoá'
@@ -416,36 +435,29 @@ define({
 				title: 'Đóng chương trình',
 				message: 'Bạn có chắc rằng bạn muốn đóng NEM Community Client không?'
 			},
-			activateRemote: {
+			activateDelegated: {
 				title: 'Activate Delegated Harvesting',
 				wallet: 'Ví',
-				account: 'Tài khoản',
-				password: 'Mật khẩu ví',
 				activate: 'Kích hoạt',
-				warning: 'Warning',
-				warningText: 'Activation will take 6 hours (360 blocks). Activation will NOT start harvesting automatically.'
+				warningText: 'Activation will take 6 hours (360 blocks). Activation will NOT start harvesting automatically.',
+				delegatedAccount: 'Delegated account public key',
+				builtIn: 'built into the wallet',
+
 			},
-			deactivateRemote: {
+			deactivateDelegated: {
 				title: 'Deactivate Delegated Harvesting',
 				wallet: 'Ví',
-				account: 'Tài khoản',
-				password: 'Mật khẩu ví',
 				deactivate: 'Vô hiệu hoá',
-				warning: 'Warning',
 				warningText: 'Deactivation will take 6 hours (360 blocks).'
 			},
 			startRemote: {
 				title: 'Start Delegated Harvesting',
 				wallet: 'Ví',
-				account: 'Tài khoản',
-				password: 'Mật khẩu ví',
 				start: 'Bắt đầu'
 			},
 			stopRemote: {
 				title: 'Stop Delegated Harvesting',
 				wallet: 'Ví',
-				account: 'Tài khoản',
-				password: 'Mật khẩu ví',
 				stop: 'Ngừng'
 			},
 			logoutWarning: {
@@ -607,6 +619,7 @@ define({
 				stop: 'Ngừng thu hoạch cục bộ',
 				description: 'tầm quan trọng của tài khoản với NEM cloud',
 				remoteHarvest: {
+					title: 'Delegated harvesting',
 					activate: 'Activate delegated harvesting',
 					activating: 'Activating delegated harvesting...',
 					active: 'Delegated harvesting is active',
@@ -614,7 +627,9 @@ define({
 					deactivating: 'Deactivating delegated harvesting...',
 					startRemoteHarvesting: 'Start delegated harvesting',
 					remotelyHarvesting: 'Đang thu hoạch từ xa',
-					stopRemoteHarvesting: 'Stop delegated harvesting'
+					stopRemoteHarvesting: 'Stop delegated harvesting',
+					multisigInfo: 'Activation or deactivation of a delegated harvesting for a multisig account must be done from one of cosignatory accounts',
+
 				}
 			},
 			transactions: {

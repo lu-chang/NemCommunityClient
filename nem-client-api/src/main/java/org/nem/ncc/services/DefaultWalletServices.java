@@ -1,10 +1,14 @@
 package org.nem.ncc.services;
 
+import org.apache.commons.io.IOUtils;
 import org.nem.core.model.Address;
+import org.nem.core.utils.ExceptionUtils;
 import org.nem.ncc.exceptions.NccException;
+import org.nem.ncc.storable.entity.storage.StorableEntityReadMode;
 import org.nem.ncc.wallet.*;
 import org.nem.ncc.wallet.storage.*;
 
+import java.io.*;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
@@ -112,5 +116,16 @@ public class DefaultWalletServices implements WalletServices {
 			this.wallets.remove(originalPair.getName());
 			originalWalletDescriptor.delete();
 		}
+	}
+
+	@Override
+	public void copyTo(final WalletNamePasswordPair pair, final OutputStream outputStream) {
+		final WalletDescriptor descriptor = this.descriptorFactory.openExisting(pair, new WalletFileExtension());
+
+		ExceptionUtils.propagateVoid(() -> {
+			try (InputStream inputStream = descriptor.openRead(StorableEntityReadMode.Raw)) {
+				IOUtils.copy(inputStream, outputStream);
+			}
+		});
 	}
 }

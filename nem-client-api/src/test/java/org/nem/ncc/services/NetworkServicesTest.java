@@ -62,7 +62,7 @@ public class NetworkServicesTest {
 
 		// Assert:
 		for (final Node node : originalNodes) {
-			Assert.assertThat(nodePeersMap.get(node).getActiveNodes(), IsEquivalent.equivalentTo(Arrays.asList(node)));
+			Assert.assertThat(nodePeersMap.get(node).getActiveNodes(), IsEquivalent.equivalentTo(Collections.singletonList(node)));
 		}
 
 		context.verifyNumPeerListRequests(3);
@@ -86,7 +86,7 @@ public class NetworkServicesTest {
 
 		// Assert:
 		Assert.assertThat(nodePeersMap.get(originalNodes.get(0)), IsNull.nullValue());
-		Assert.assertThat(nodePeersMap.get(originalNodes.get(1)).getActiveNodes(), IsEquivalent.equivalentTo(Arrays.asList(originalNodes.get(1))));
+		Assert.assertThat(nodePeersMap.get(originalNodes.get(1)).getActiveNodes(), IsEquivalent.equivalentTo(Collections.singletonList(originalNodes.get(1))));
 		Assert.assertThat(nodePeersMap.get(originalNodes.get(2)), IsNull.nullValue());
 
 		context.verifyNumPeerListRequests(3);

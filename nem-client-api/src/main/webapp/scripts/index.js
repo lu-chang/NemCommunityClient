@@ -68,7 +68,7 @@ require.config({
     }
 });
 
-define(['ncc', 'Utils'], function(ncc, Utils) {
+define(['ncc'], function(ncc) {
     ncc.getRequest('configuration/get', function(data) {
         ncc.set('settings', data);
         ncc.loadPage(entryPage, null, false, true);
@@ -79,9 +79,30 @@ define(['ncc', 'Utils'], function(ncc, Utils) {
     };
 
     ncc.refreshVersionStatus = function(complete) {
-        ncc.jsonpRequest('http://bob.nem.ninja/version_p.js', function(d){
-            if (('stable' in d) && d['stable'].match(/\d+\.\d+\.\d+/)) {
-                ncc.set('latestVersion', d['stable']);
+        ncc.getRequest('version', function(d){
+            var nisData = ncc.get('nis');
+            var currentVersion = (nisData && 'nodeInfo' in nisData) ? nisData.nodeInfo.nisInfo.version.match(/(\d+)\.(\d+)\.(\d+)/) : null;
+            var versionKey = 'latest';
+            if (versionKey in d) {
+                var remoteVersion = d[versionKey].match(/(\d+)\.(\d+)\.(\d+)/);
+                if (remoteVersion) {
+                    ncc.set('latestVersion', d[versionKey]);
+                    if (currentVersion != null) {
+                        var r = remoteVersion;
+                        var c = currentVersion;
+                        if (!ncc.get('displayed.newBuildMessage')) {
+                            if (r[1] > c[1] || (r[1] === c[1] && r[2] > c[2]) || (r[1] === c[1] && r[2] === c[2] && r[3] > c[3])) {
+                                ncc.showMessage(
+                                    ncc.get('texts.common.newBuild'),
+                                    ncc.fill(ncc.get('texts.common.newBuildNumber'), remoteVersion[0]),
+                                    null,
+                                    'modal--wide'
+                                );
+                                ncc.set('displayed.newBuildMessage', true);
+                            }
+                        }
+                    }
+                }
             }
         });
     };
@@ -98,7 +119,7 @@ define(['ncc', 'Utils'], function(ncc, Utils) {
             {
                 complete: function() {
                     if (!success) {
-                        ncc.set('nccStatus.code', Utils.config.STATUS_STOPPED);
+                        ncc.set('nccStatus.code', ncc.Status.STATUS_STOPPED);
                     }
 
                     if (complete) complete();
@@ -120,9 +141,9 @@ define(['ncc', 'Utils'], function(ncc, Utils) {
             {
                 complete: function(jqXHR) {
                     if (jqXHR.status === 0) {
-                        ncc.set('nccStatus.code', Utils.config.STATUS_STOPPED);
+                        ncc.set('nccStatus.code', ncc.Status.STATUS_STOPPED);
                     } else if (!success) {
-                        ncc.set('nisStatus.code', Utils.config.STATUS_STOPPED);
+                        ncc.set('nisStatus.code', ncc.Status.STATUS_STOPPED);
                     }
 
                     if (complete) complete();

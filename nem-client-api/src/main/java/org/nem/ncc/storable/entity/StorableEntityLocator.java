@@ -19,5 +19,5 @@ public interface StorableEntityLocator<
 	 *
 	 * @return A list of all storable entity descriptors.
 	 */
-	public List<TEntityDescriptor> getAll();
+	List<TEntityDescriptor> getAll();
 }

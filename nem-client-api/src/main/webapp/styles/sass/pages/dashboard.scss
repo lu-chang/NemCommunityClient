@@ -127,12 +127,17 @@
 	color: #453456;
 }
 
-.importanceTile-activateButton {
-	position: absolute;
-	top: 0;
-	right: 0;
+.importanceTile-activateStatus {
+	float: right;
 	padding: 6px 12px;
 	background-color: #6b577c;
+}
+
+.importanceTile-activateButton {
+    float: right;
+	padding: 6px 12px;
+	background-color: #6b577c;
+	border: 1px solid #f3fcf7;
 
 	&:not(:disabled):hover {
 		background-color: #7c6890;
@@ -186,6 +191,7 @@
 }
 
 .transactionsTile-sendNemButton,
+.transactionsTile-convertMultisigButton,
 .transactionsTile-signMultisigButton {
 	$bgColor: #41ce7d;
 	margin-left: 10px;

@@ -13,7 +13,7 @@ public class WalletStorageException extends StorableEntityStorageException {
 	/**
 	 * Wallet storage exception codes.
 	 */
-	public static enum Code implements ValueBasedEnum {
+	public enum Code implements ValueBasedEnum {
 		/**
 		 * The specified wallet file does not exist.
 		 */
@@ -69,7 +69,7 @@ public class WalletStorageException extends StorableEntityStorageException {
 
 		private final int value;
 
-		private Code(final int value) {
+		Code(final int value) {
 			this.value = value;
 		}
 

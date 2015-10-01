@@ -1,6 +1,6 @@
 package org.nem.ncc.controller.viewmodels;
 
-import net.minidev.json.JSONObject;
+import net.minidev.json.*;
 import org.hamcrest.core.*;
 import org.junit.*;
 import org.nem.core.crypto.Hash;
@@ -36,7 +36,7 @@ public class TransferTransactionViewModelTest {
 				sender,
 				recipient,
 				Amount.fromNem(576),
-				new PlainMessage(StringEncoder.getBytes("hello world")));
+				new TransferTransactionAttachment(new PlainMessage(StringEncoder.getBytes("hello world"))));
 		transaction.setFee(Amount.fromNem(23));
 		final Hash transactionHash = HashUtils.calculateHash(transaction);
 
@@ -69,7 +69,7 @@ public class TransferTransactionViewModelTest {
 				sender,
 				recipient,
 				Amount.fromNem(576),
-				new PlainMessage(StringEncoder.getBytes("hello world")));
+				new TransferTransactionAttachment(new PlainMessage(StringEncoder.getBytes("hello world"))));
 		transaction.setFee(Amount.fromNem(23));
 		final Hash transactionHash = HashUtils.calculateHash(transaction);
 
@@ -109,7 +109,7 @@ public class TransferTransactionViewModelTest {
 				sender,
 				recipient,
 				Amount.fromNem(576),
-				new PlainMessage(StringEncoder.getBytes("hello world")));
+				new TransferTransactionAttachment(new PlainMessage(StringEncoder.getBytes("hello world"))));
 		transaction.setFee(Amount.fromNem(23));
 		transaction.setDeadline(new TimeInstant(222));
 		final Hash transactionHash = HashUtils.calculateHash(transaction);
@@ -119,7 +119,7 @@ public class TransferTransactionViewModelTest {
 		final JSONObject jsonObject = JsonSerializer.serializeToJson(viewModel);
 
 		// Assert:
-		Assert.assertThat(jsonObject.size(), IsEqual.equalTo(15));
+		Assert.assertThat(jsonObject.size(), IsEqual.equalTo(16));
 		Assert.assertThat(jsonObject.get("type"), IsEqual.equalTo(TransactionViewModel.Type.Transfer.getValue()));
 		Assert.assertThat(jsonObject.get("id"), IsEqual.equalTo(transactionHash.getShortId()));
 		Assert.assertThat(jsonObject.get("hash"), IsEqual.equalTo(transactionHash.toString()));
@@ -135,6 +135,7 @@ public class TransferTransactionViewModelTest {
 		Assert.assertThat(jsonObject.get("blockHeight"), IsEqual.equalTo(0L));
 		Assert.assertThat(jsonObject.get("direction"), IsEqual.equalTo(1));
 		Assert.assertThat(jsonObject.get("deadline"), IsEqual.equalTo(SystemTimeProvider.getEpochTimeMillis() + 222 * 1000));
+		Assert.assertThat(jsonObject.get("mosaics"), IsEqual.equalTo(new JSONArray()));
 	}
 
 	@Test
@@ -147,7 +148,7 @@ public class TransferTransactionViewModelTest {
 				sender,
 				recipient,
 				Amount.fromNem(576),
-				new PlainMessage(StringEncoder.getBytes("hello world")));
+				new TransferTransactionAttachment(new PlainMessage(StringEncoder.getBytes("hello world"))));
 		transaction.setFee(Amount.fromNem(23));
 		transaction.setDeadline(new TimeInstant(222));
 		final Hash transactionHash = HashUtils.calculateHash(transaction);
@@ -160,7 +161,7 @@ public class TransferTransactionViewModelTest {
 		final JSONObject jsonObject = JsonSerializer.serializeToJson(viewModel);
 
 		// Assert:
-		Assert.assertThat(jsonObject.size(), IsEqual.equalTo(15));
+		Assert.assertThat(jsonObject.size(), IsEqual.equalTo(16));
 		Assert.assertThat(jsonObject.get("type"), IsEqual.equalTo(TransactionViewModel.Type.Transfer.getValue()));
 		Assert.assertThat(jsonObject.get("id"), IsEqual.equalTo(14L));
 		Assert.assertThat(jsonObject.get("hash"), IsEqual.equalTo(transactionHash.toString()));
@@ -176,6 +177,7 @@ public class TransferTransactionViewModelTest {
 		Assert.assertThat(jsonObject.get("blockHeight"), IsEqual.equalTo(7L));
 		Assert.assertThat(jsonObject.get("direction"), IsEqual.equalTo(2));
 		Assert.assertThat(jsonObject.get("deadline"), IsEqual.equalTo(SystemTimeProvider.getEpochTimeMillis() + 222 * 1000));
+		Assert.assertThat(jsonObject.get("mosaics"), IsEqual.equalTo(new JSONArray()));
 	}
 
 	@Test
@@ -188,7 +190,7 @@ public class TransferTransactionViewModelTest {
 				sender,
 				recipient,
 				Amount.fromNem(576),
-				SecureMessage.fromDecodedPayload(sender, recipient, StringEncoder.getBytes("hello world")));
+				new TransferTransactionAttachment(SecureMessage.fromDecodedPayload(sender, recipient, StringEncoder.getBytes("hello world"))));
 
 		// Act:
 		final TransactionViewModel viewModel = map(transaction, Address.fromEncoded("foo"));
@@ -233,7 +235,7 @@ public class TransferTransactionViewModelTest {
 				sender,
 				recipient,
 				Amount.fromNem(576),
-				new PlainMessage(StringEncoder.getBytes("hello world")));
+				new TransferTransactionAttachment(new PlainMessage(StringEncoder.getBytes("hello world"))));
 
 		// Act:
 		final TransferTransactionViewModel viewModel = map(transaction, Address.fromEncoded("foo"));
@@ -253,7 +255,7 @@ public class TransferTransactionViewModelTest {
 				sender,
 				recipient,
 				Amount.fromNem(576),
-				SecureMessage.fromDecodedPayload(sender, recipient, StringEncoder.getBytes("hello world")));
+				new TransferTransactionAttachment(SecureMessage.fromDecodedPayload(sender, recipient, StringEncoder.getBytes("hello world"))));
 
 		// Act:
 		final TransferTransactionViewModel viewModel = map(transaction, Address.fromEncoded("foo"));
@@ -277,10 +279,10 @@ public class TransferTransactionViewModelTest {
 				sender,
 				recipient,
 				Amount.fromNem(576),
-				SecureMessage.fromEncodedPayload(
+				new TransferTransactionAttachment(SecureMessage.fromEncodedPayload(
 						new Account(sender.getAddress()),
 						new Account(recipient.getAddress()),
-						secureMessagePayload));
+						secureMessagePayload)));
 
 		// Act:
 		final TransferTransactionViewModel viewModel = map(transaction, Address.fromEncoded("foo"));
@@ -383,7 +385,7 @@ public class TransferTransactionViewModelTest {
 				sender,
 				recipient,
 				Amount.fromNem(576),
-				new PlainMessage(StringEncoder.getBytes("hello world")));
+				new TransferTransactionAttachment(new PlainMessage(StringEncoder.getBytes("hello world"))));
 
 		// Act:
 		final TransactionViewModel viewModel = map(
@@ -399,6 +401,8 @@ public class TransferTransactionViewModelTest {
 	}
 
 	//endregion
+
+	// TODO 20150810 J-G: i guess we could add a small test for transaction with mosaics
 
 	private static TransactionMetaData createMetaData(final int height, final long id) {
 		return new TransactionMetaData(new BlockHeight(height), id, Hash.ZERO);

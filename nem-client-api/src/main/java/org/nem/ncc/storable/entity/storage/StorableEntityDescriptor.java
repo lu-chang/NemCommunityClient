@@ -19,14 +19,14 @@ public interface StorableEntityDescriptor<
 	 *
 	 * @return The entity's name.
 	 */
-	public TEntityName getName();
+	TEntityName getName();
 
 	/**
 	 * Gets the entity's file extension.
 	 *
 	 * @return The entity's file extension.
 	 */
-	public TEntityFileExtension getFileExtension();
+	TEntityFileExtension getFileExtension();
 
 	/**
 	 * Gets the entity deserializer.
@@ -34,24 +34,32 @@ public interface StorableEntityDescriptor<
 	 *
 	 * @return The entity deserializer.
 	 */
-	public ObjectDeserializer<TEntity> getDeserializer();
+	ObjectDeserializer<TEntity> getDeserializer();
 
 	/**
 	 * Opens a read stream that can be used to read the contents of the referenced storable entity.
 	 *
 	 * @return The input stream.
 	 */
-	public InputStream openRead();
+	InputStream openRead();
+
+	/**
+	 * Opens a read stream that can be used to read the contents of the referenced storable entity.
+	 *
+	 * @param mode The read mode.
+	 * @return The input stream.
+	 */
+	InputStream openRead(final StorableEntityReadMode mode);
 
 	/**
 	 * Opens a write stream that can be used to modify the contents of the referenced storable entity.
 	 *
 	 * @return The output stream.
 	 */
-	public OutputStream openWrite();
+	OutputStream openWrite();
 
 	/**
 	 * Deletes the referenced storable entity.
 	 */
-	public void delete();
+	void delete();
 }

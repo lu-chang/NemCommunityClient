@@ -11,12 +11,14 @@ import org.nem.core.serialization.Serializer;
  */
 public class ImportanceTransferTransactionViewModel extends TransactionViewModel {
 	private final Address remote;
+	private final ImportanceTransferMode activationType;
 
 	public ImportanceTransferTransactionViewModel(final TransactionMetaDataPair metaDataPair, final BlockHeight lastBlockHeight) {
 		super(Type.Importance_Transfer, metaDataPair, lastBlockHeight);
 
-		final ImportanceTransferTransaction importanceTransfer = (ImportanceTransferTransaction)metaDataPair.getTransaction();
+		final ImportanceTransferTransaction importanceTransfer = (ImportanceTransferTransaction)metaDataPair.getEntity();
 		this.remote = importanceTransfer.getRemote().getAddress();
+		this.activationType = importanceTransfer.getMode();
 	}
 
 	@Override
@@ -24,5 +26,6 @@ public class ImportanceTransferTransactionViewModel extends TransactionViewModel
 		super.serializeImpl(serializer);
 
 		Address.writeTo(serializer, "remote", this.remote);
+		serializer.writeString("activationType", this.activationType.toString());
 	}
 }

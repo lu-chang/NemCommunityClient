@@ -1,0 +1,3631 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "NCC - Client API",
+    "description": "The NEM Community Client (NCC) provides an RESTful API to the wallet functionality. Thus enabling alternative front-end implementations be provided by the community.",
+    "version": "0.6.37-BETA"
+  },
+  "host": "localhost:8989",
+  "schemes": [
+    "http"
+  ],
+  "basePath": "/ncc/api",
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/info/ncc": {
+      "get": {
+        "description": "Gets information about the NCC server.",
+        "tags": [
+          "Information"
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/NccInfoViewModel"
+            },
+            "description": "NCC info view model."
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/info/nis": {
+      "get": {
+        "description": "Gets information about the NIS server.",
+        "tags": [
+          "Information"
+        ],
+        "responses": {
+          "200": {
+            "description": "A string containing technical information about the current system.",
+            "schema": {
+              "$ref": "#/definitions/NisInfoViewModel"
+            }
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/info/nis/check": {
+      "get": {
+        "description": "Checks availability of NIS server.",
+        "tags": [
+          "Status"
+        ],
+        "responses": {
+          "200": {
+            "description": "Gets a boolean value indicating whether or not NIS is running.\n* 0 - NIS is not available\n* 1 - NIS is available.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/configuration/get": {
+      "get": {
+        "description": "Gets the current NCC configuration.",
+        "tags": [
+          "Configuration"
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of categories",
+            "schema": {
+              "$ref": "#/definitions/ConfigurationPatch"
+            }
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/configuration/update": {
+      "post": {
+        "description": "Updates the current configuration with the given values.",
+        "tags": [
+          "Configuration"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "config",
+            "in": "body",
+            "description": "New configuration data.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ConfigurationPatch"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully processed."
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/addressbook/create": {
+      "post": {
+        "description": "Creates a new, empty address book. The address book is stored encrypted in the configured address book directory. The name of the address book file is the encoded (URL encoded) version of the address book name. The provided password is used to encrypt the address book.",
+        "tags": [
+          "Address Book"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "addressbook",
+            "in": "body",
+            "description": "New address book data.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddressBookNamePasswordPair"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The new address book.",
+            "schema": {
+              "$ref": "#/definitions/AddressBookViewModel"
+            }
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/addressbook/open": {
+      "post": {
+        "description": "Open an address book. The address book is defined by the address book name. The address book has to be located in the address book storage location. The password must match the password of the given address book.",
+        "tags": [
+          "Address Book"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "addressbook",
+            "in": "body",
+            "description": "New address book data.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddressBookNamePasswordPair"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The content of the address book.",
+            "schema": {
+              "$ref": "#/definitions/AddressBookViewModel"
+            }
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/addressbook/info": {
+      "post": {
+        "description": "Returns information about an address book that is already open.",
+        "tags": [
+          "Address Book"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "addressbook",
+            "in": "body",
+            "description": "The address book name.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddressBookName"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The content of the address book.",
+            "schema": {
+              "$ref": "#/definitions/AddressBookViewModel"
+            }
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/addressbook/close": {
+      "post": {
+        "description": "Closes an address book by removing it from the list of opened address books.",
+        "tags": [
+          "Address Book"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "addressbook",
+            "in": "body",
+            "description": "The address book name.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddressBookName"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The address book is closed."
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/addressbook/password/change": {
+      "post": {
+        "description": "Changes the password of an address book.",
+        "tags": [
+          "Address Book"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "addressbook",
+            "in": "body",
+            "description": "The address book name, password and new password. Attribute \"newPassword\" is required.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddressBookNamePasswordBag"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The password of address book is changed."
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/addressbook/name/change": {
+      "post": {
+        "description": "Changes the name of an address book.",
+        "tags": [
+          "Address Book"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "addressbook",
+            "in": "body",
+            "description": "The address book name, password and new name. Attribute \"newName\" is required.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddressBookNamePasswordBag"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The name of address is changed."
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/addressbook/accountlabel/remove": {
+      "post": {
+        "description": "Removes an existing account label from an address book.",
+        "tags": [
+          "Address Book",
+          "Label"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "addressbook",
+            "in": "body",
+            "description": "The address book name, password and address to be removed. Attribute \"address\" is required.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddressBookNamePasswordBag"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The address book after removing the label.",
+            "schema": {
+              "$ref": "#/definitions/AddressBookViewModel"
+            }
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/addressbook/accountlabel/add": {
+      "post": {
+        "description": "Adds an account label to an address book.",
+        "tags": [
+          "Address Book",
+          "Label"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "addressbook",
+            "in": "body",
+            "description": "The address book name, password and address to be added. The attribute \"address\", and \"privateLabel\" are required.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddressBookNamePasswordBag"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The new account label.",
+            "schema": {
+              "$ref": "#/definitions/AccountLabel"
+            }
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/addressbook/accountlabel/change": {
+      "post": {
+        "description": "Changes an existing account label in an address book.",
+        "tags": [
+          "Address Book",
+          "Label"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "addressbook",
+            "in": "body",
+            "description": "The address book name, password and address to be added. The attribute \"address\", and \"privateLabel\" are required.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddressBookNamePasswordBag"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The changed account label.",
+            "schema": {
+              "$ref": "#/definitions/AccountLabel"
+            }
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/addressbook/accountlabel/find": {
+      "post": {
+        "description": "Gets an existing account label from an address book. The address parameter in the AddressBookNamePasswordBag must be supplied.",
+        "tags": [
+          "Address Book",
+          "Label"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "addressbook",
+            "in": "body",
+            "description": "The address book name, password and address to be added. The attribute \"address\" is required.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddressBookNamePasswordBag"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The account label of the given address.",
+            "schema": {
+              "$ref": "#/definitions/AccountLabel"
+            }
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/wallet/list": {
+      "get": {
+        "description": "Gets all wallets that are located at the configured storage location for wallets.",
+        "tags": [
+          "Wallet"
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of wallet names.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/WalletDescriptor"
+              }
+            }
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/wallet/create": {
+      "post": {
+        "description": "Creates a new wallet with one account in it. The wallet is stored encrypted in the configured wallet directory. The name of the wallet file is the encoded (URL encoded) version of the wallet name. The provided password is used to encrypt the wallet.",
+        "tags": [
+          "Wallet"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "wallet",
+            "in": "body",
+            "description": "The wallet name and password to be created.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WalletNamePasswordPair"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The content of the wallet created.",
+            "schema": {
+              "$ref": "#/definitions/WalletViewModel"
+            }
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/wallet/open": {
+      "post": {
+        "description": "Open a wallet. The wallet is defined by the wallet name. The wallet has to be located in the wallet storage location. The password must match the password of the given wallet. For opening a wallet at a different location the function importWallet has to be used.",
+        "tags": [
+          "Wallet"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "wallet",
+            "in": "body",
+            "description": "The wallet name and password to be opened.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WalletNamePasswordPair"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The content of the wallet opened.",
+            "schema": {
+              "$ref": "#/definitions/WalletViewModel"
+            }
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/wallet/info": {
+      "post": {
+        "description": "Returns information about a wallet that is already open.",
+        "tags": [
+          "Wallet"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "wallet",
+            "in": "body",
+            "description": "The wallet name.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WalletDescriptor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The content of the wallet.",
+            "schema": {
+              "$ref": "#/definitions/WalletViewModel"
+            }
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/wallet/export": {
+      "post": {
+        "description": "Exports a wallet as a zip file.",
+        "tags": [
+          "Wallet"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/zip"
+        ],
+        "parameters": [
+          {
+            "name": "wallet",
+            "in": "body",
+            "description": "The wallet name.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WalletDescriptor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A ZIP file containing the wallet and the address book.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/wallet/close": {
+      "post": {
+        "description": "Closes a wallet by removing it from the list of opened wallets.",
+        "tags": [
+          "Wallet"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "wallet",
+            "in": "body",
+            "description": "The wallet name.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WalletDescriptor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The wallet is closed."
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/wallet/password/change": {
+      "post": {
+        "description": "Changes the password of a wallet.",
+        "tags": [
+          "Wallet"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "wallet",
+            "in": "body",
+            "description": "The wallet name, password and the new password. The attribute \"newPassword\" is required.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WalletNamePasswordBag"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The password is changed."
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/wallet/name/change": {
+      "post": {
+        "description": "Changes the name of a wallet.",
+        "tags": [
+          "Wallet"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "wallet",
+            "in": "body",
+            "description": "The wallet name, password and the new name. The attribute \"newName\" is required.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WalletNamePasswordBag"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The wallet name is changed."
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/wallet/account/new": {
+      "post": {
+        "description": "Adds a new account to the wallet.",
+        "tags": [
+          "Wallet",
+          "Account"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "wallet",
+            "in": "body",
+            "description": "The wallet name and password.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WalletNamePasswordBag"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The information on the newly created account.",
+            "schema": {
+              "$ref": "#/definitions/AccountViewModel"
+            }
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/wallet/account/add": {
+      "post": {
+        "description": "Adds an existing account to the wallet.",
+        "tags": [
+          "Wallet",
+          "Account"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "wallet",
+            "in": "body",
+            "description": "The wallet name, password, and accountKey. The attribute \"accountKey\" is required.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WalletNamePasswordBag"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The information on the added account.",
+            "schema": {
+              "$ref": "#/definitions/AccountViewModel"
+            }
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/wallet/account/primary": {
+      "post": {
+        "description": "Sets an existing account to be the primary account.",
+        "tags": [
+          "Wallet"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "wallet",
+            "in": "body",
+            "description": "The wallet name, password, and account. The attribute \"account\" is required.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WalletNamePasswordBag"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The information of the changed wallet.",
+            "schema": {
+              "$ref": "#/definitions/WalletViewModel"
+            }
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/wallet/account/remove": {
+      "post": {
+        "description": "Removes an existing account from a wallet.",
+        "tags": [
+          "Wallet"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "wallet",
+            "in": "body",
+            "description": "The wallet name, password, and account. The attribute \"account\" is required.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WalletNamePasswordBag"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The information of the changed wallet.",
+            "schema": {
+              "$ref": "#/definitions/WalletViewModel"
+            }
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/wallet/account/reveal": {
+      "post": {
+        "description": "Reveals details about an account including the private key.",
+        "tags": [
+          "Wallet",
+          "Account",
+          "Information"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "wallet",
+            "in": "body",
+            "description": "The wallet name, password, and accountKey. The attribute \"accountKey\" is required.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WalletNamePasswordBag"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Details about the account.",
+            "schema": {
+              "$ref": "#/definitions/KeyPairViewModel"
+            }
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/wallet/account/remote/reveal": {
+      "post": {
+        "description": "Reveals details about an account including the remote key.",
+        "tags": [
+          "Wallet",
+          "Account",
+          "Information"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "wallet",
+            "in": "body",
+            "description": "The wallet name, password, and account. The attribute \"account\" is required.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WalletNamePasswordBag"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Details about the account.",
+            "schema": {
+              "$ref": "#/definitions/KeyPairViewModel"
+            }
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/wallet/account/signToken": {
+      "post": {
+        "description": "Signs the token specified by the request.",
+        "tags": [
+          "Wallet",
+          "Account",
+          "Multi-Signature"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "wallet",
+            "in": "body",
+            "description": "The wallet name, password, and account. The attributes \"account\" and \"token\" are required.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WalletNamePasswordBag"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Details about the account.",
+            "schema": {
+              "$ref": "#/definitions/SignatureViewModel"
+            }
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/account/find": {
+      "post": {
+        "description": "Gets information about the specified account. Looks-up an account which is known by its address id",
+        "tags": [
+          "Account"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "account",
+            "in": "body",
+            "description": "The address of the account to be found.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AccountId"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Details about the account.",
+            "schema": {
+              "$ref": "#/definitions/AccountViewModel"
+            }
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/account/transactions/unconfirmed": {
+      "post": {
+        "description": "Gets information about the specified account and unconfirmed transactions.",
+        "tags": [
+          "Account",
+          "Transaction"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "account",
+            "in": "body",
+            "description": "The account identifier.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AccountHashRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The account and transactions information.",
+            "schema": {
+              "$ref": "#/definitions/AccountTransactionsPair"
+            }
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/account/transactions/all": {
+      "post": {
+        "description": "Gets information about the specified account and incoming and outgoing confirmed and unconfirmed transactions.",
+        "tags": [
+          "Account",
+          "Transaction"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "account",
+            "in": "body",
+            "description": "The account (and optional) transaction identifier.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AccountDatabaseIdRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The account and transactions information.",
+            "schema": {
+              "$ref": "#/definitions/AccountTransactionsPair"
+            }
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/account/transactions/confirmed": {
+      "post": {
+        "description": "Gets information about the specified account and incoming and outgoing confirmed transactions.",
+        "tags": [
+          "Account",
+          "Transaction"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "account",
+            "in": "body",
+            "description": "The account (and optional) transaction identifier.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AccountDatabaseIdRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The account and transactions information.",
+            "schema": {
+              "$ref": "#/definitions/AccountTransactionsPair"
+            }
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/account/transactions/incoming": {
+      "post": {
+        "description": "Gets information about the specified account and incoming confirmed transactions.",
+        "tags": [
+          "Account",
+          "Transaction"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "account",
+            "in": "body",
+            "description": "The account (and optional) transaction identifier.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AccountDatabaseIdRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The account and transactions information.",
+            "schema": {
+              "$ref": "#/definitions/AccountTransactionsPair"
+            }
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/account/transactions/outgoing": {
+      "post": {
+        "description": "Gets information about the specified account and outgoing confirmed transactions.",
+        "tags": [
+          "Account",
+          "Transaction"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "account",
+            "in": "body",
+            "description": "The account (and optional) transaction identifier.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AccountDatabaseIdRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The account and transactions information.",
+            "schema": {
+              "$ref": "#/definitions/AccountTransactionsPair"
+            }
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/account/harvests": {
+      "post": {
+        "description": "Retrieves a list of infos on harvested blocks for an account.",
+        "tags": [
+          "Account",
+          "Harvest"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "account",
+            "in": "body",
+            "description": "The account (and optional) transaction identifier.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AccountDatabaseIdRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The account and transactions information.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/HarvestInfoViewModel"
+              }
+            }
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/wallet/account/unlock": {
+      "post": {
+        "description": "Unlock the account on the connected NIS server (start harvesting).",
+        "tags": [
+          "Wallet",
+          "Account",
+          "Harvest"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "account",
+            "in": "body",
+            "description": "The account / wallet view model",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AccountWalletRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The account is unlocked."
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/wallet/account/lock": {
+      "post": {
+        "description": "Lock the account on the connected NIS server (stop harvesting).",
+        "tags": [
+          "Wallet",
+          "Account",
+          "Harvest"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "account",
+            "in": "body",
+            "description": "The account / wallet view model",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AccountWalletRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The account is locked."
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/wallet/account/remote/unlock": {
+      "post": {
+        "description": "Unlock the account on the remote NIS server (start delegated harvesting). Remote address being used has to be announced previously.",
+        "tags": [
+          "Wallet",
+          "Account",
+          "Harvest"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "account",
+            "in": "body",
+            "description": "The remote harvester view model",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AccountWalletPasswordRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The account is unlocked on the remote server."
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/wallet/account/remote/lock": {
+      "post": {
+        "description": "Lock the account on the remote NIS server (stop delegated harvesting).",
+        "tags": [
+          "Wallet",
+          "Account",
+          "Harvest"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "account",
+            "in": "body",
+            "description": "The remote harvester view model",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AccountWalletRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The account is locked on the remote server."
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/wallet/account/remote/status": {
+      "post": {
+        "description": "Checks if account is unlocked on remote server.",
+        "tags": [
+          "Wallet",
+          "Account",
+          "Information"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "account",
+            "in": "body",
+            "description": "The remote harvester view model",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AccountWalletRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The account and transactions information.",
+            "schema": {
+              "$ref": "#/definitions/AccountStatusViewModel"
+            }
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/wallet/account/transaction/send": {
+      "post": {
+        "description": "Sends a new transaction (i.e., sending NEM, messages, assets).",
+        "tags": [
+          "Wallet"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "transaction",
+            "in": "body",
+            "description": "The transaction information.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TransferSendRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The account and transactions information."
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/wallet/account/signature/send": {
+      "post": {
+        "description": "ends a new multisig signature.",
+        "tags": [
+          "Wallet",
+          "Account",
+          "Multi-Signature"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "account",
+            "in": "body",
+            "description": "The multisig signature transaction information.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MultisigSignatureRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sending was successfull."
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/wallet/account/modification/send": {
+      "post": {
+        "description": "Sends a new multisig modification",
+        "tags": [
+          "Wallet",
+          "Account",
+          "Multi-Signature"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "account",
+            "in": "body",
+            "description": "The multisig account modification transaction information.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MultisigSignatureRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Modification was successfull."
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/wallet/account/transaction/validate": {
+      "post": {
+        "description": "Requests inspecting the transaction for validation purposes. The returned result will include:\n* The minimum fee for sending the transaction.\n* - A value indicating whether or not the recipient can receive encrypted messages.",
+        "tags": [
+          "Wallet",
+          "Account"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "transaction",
+            "in": "body",
+            "description": "The transaction information.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PartialTransferInformationRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Modification was successfull.",
+            "schema": {
+              "$ref": "#/definitions/PartialTransferInformationViewModel"
+            }
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/wallet/account/signature/validate": {
+      "post": {
+        "description": "Request inspecting the multisig signature transaction for validation purposes. The returned result will include:\n* A minimum fee for creating the transaction.",
+        "tags": [
+          "Wallet",
+          "Account",
+          "Multi-Signature"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "transaction",
+            "in": "body",
+            "description": "The transaction information.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PartialSignatureInformationRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Modification was successfull.",
+            "schema": {
+              "$ref": "#/definitions/PartialFeeInformationViewModel"
+            }
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/wallet/account/modification/validate": {
+      "post": {
+        "description": "Request inspecting the multisig modification transaction for validation purposes. The returned result will include:\n* A minimum fee for creating modification transaction.",
+        "tags": [
+          "Wallet",
+          "Account",
+          "Multi-Signature"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "transaction",
+            "in": "body",
+            "description": "The transaction information.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PartialSignatureInformationRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Modification was successfull.",
+            "schema": {
+              "$ref": "#/definitions/PartialTransferInformationViewModel"
+            }
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/wallet/account/remote/activate": {
+      "post": {
+        "description": "Announces activation of delegated harvesting account to the network (FEE: 1)",
+        "tags": [
+          "Wallet",
+          "Account",
+          "Harvest"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "transaction",
+            "in": "body",
+            "description": "The transaction information.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TransferImportanceRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Activation was successfull."
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/wallet/account/remote/deactivate": {
+      "post": {
+        "description": "Announces deactivation of delegated harvesting account to the network (FEE: 1)",
+        "tags": [
+          "Wallet",
+          "Account",
+          "Harvest"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "transaction",
+            "in": "body",
+            "description": "The transaction information.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TransferImportanceRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deactivation was successfull."
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/wallet/account/remote/validate": {
+      "post": {
+        "description": "Requests inspecting the importance transfer transaction for validation purposes. The returned result will include:\n* The minimum fee for sending the transaction.",
+        "tags": [
+          "Wallet",
+          "Account",
+          "Multi-Signature"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "transaction",
+            "in": "body",
+            "description": "The transaction information.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PartialTransferInformationRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The validation information.",
+            "schema": {
+              "$ref": "#/definitions/PartialTransferInformationViewModel"
+            }
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/node/boot": {
+      "post": {
+        "description": "Boots the local node.",
+        "tags": [
+          "Node"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "node",
+            "in": "body",
+            "description": "Information about the node to boot.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BootNodeRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Booting was successfull."
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/node/status": {
+      "get": {
+        "description": "Checks the status of the local node.",
+        "tags": [
+          "Node"
+        ],
+        "responses": {
+          "200": {
+            "description": "Booting was successfull.",
+            "schema": {
+              "$ref": "#/definitions/NemRequestResult"
+            }
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/network": {
+      "post": {
+        "description": "Requests a view model for the peers to which the specified peers are connected.",
+        "tags": [
+          "Graph"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "node",
+            "in": "body",
+            "description": "Information about the node to boot.",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/NodeEndpoint"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The graph view.",
+            "schema": {
+              "$ref": "#/definitions/GraphViewModel"
+            }
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/network/local": {
+      "get": {
+        "description": "Requests a view model for the peers to which the local NIS is connected.",
+        "tags": [
+          "Graph"
+        ],
+        "responses": {
+          "200": {
+            "description": "The graph view.",
+            "schema": {
+              "$ref": "#/definitions/GraphViewModel"
+            }
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/shutdown": {
+      "get": {
+        "description": "Stops the NCC server. After that, NCC GUI does not respond to any clicks.",
+        "tags": [
+          "Server"
+        ],
+        "responses": {
+          "200": {
+            "description": "The server shuts down."
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    },
+    "/status": {
+      "get": {
+        "description": "Gets the current status of the NCC server.",
+        "tags": [
+          "Status"
+        ],
+        "responses": {
+          "200": {
+            "description": "The status of NCC.",
+            "schema": {
+              "$ref": "#/definitions/NemRequestResult"
+            }
+          },
+          "400": {
+            "description": "A bad request was sent.",
+            "schema": {
+              "$ref": "#/responses/BadRequest"
+            }
+          },
+          "default": {
+            "description": "Any other exception occured.",
+            "schema": {
+              "$ref": "#/responses/Error"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "NccInfoViewModel": {
+      "properties": {
+        "metaData": {
+          "$ref": "#/definitions/MetaModel"
+        },
+        "remoteServer": {
+          "type": "string",
+          "description": "Remote NIS server."
+        },
+        "language": {
+          "type": "string",
+          "description": "Language for UI."
+        }
+      },
+      "example": {
+        "metaData": {
+          "currentTime": 4971396,
+          "application": "NEM Community Client - NCC",
+          "startTime": 3955295,
+          "version": "0.6.25-BETA",
+          "signer": "CN=VeriSign Class 3 Code Signing 2010 CA,OU=Terms of use at https:\/\/www.verisign.com\/rpa (c)10,OU=VeriSign Trust Network,O=VeriS"
+        },
+        "remoteServer": "http:\/\/ncc.publicnem.eu:7890\/",
+        "language": "en"
+      }
+    },
+    "MetaModel": {
+      "properties": {
+        "currentTime": {
+          "type": "integer",
+          "format": "int32",
+          "description": "time in milli seconds."
+        },
+        "application": {
+          "type": "string",
+          "description": "name of application."
+        },
+        "startTime": {
+          "type": "string",
+          "description": "time in milli seconds, when application was started."
+        },
+        "version": {
+          "type": "string",
+          "description": "version of application."
+        },
+        "signer": {
+          "type": "string",
+          "description": "name of the signer of the code."
+        }
+      }
+    },
+    "ErrorResponseHttp": {
+      "properties": {
+        "timeStamp": {
+          "type": "integer",
+          "description": "Point in time when error happened. Time is based on NEM epoch time."
+        },
+        "error": {
+          "type": "string",
+          "description": "Error message."
+        },
+        "message": {
+          "type": "string",
+          "description": "Additional message about the error."
+        },
+        "status": {
+          "$ref": "#/definitions/HttpErrorCodes",
+          "description": "Status of the error."
+        }
+      },
+      "example": {
+        "timeStamp": 4978518,
+        "error": "Not Found",
+        "message": null,
+        "status": 404
+      }
+    },
+    "ErrorResponseNcc": {
+      "properties": {
+        "timeStamp": {
+          "type": "integer",
+          "description": "Point in time when error happened. Time is based on NEM epoch time."
+        },
+        "error": {
+          "type": "string",
+          "description": "Error message."
+        },
+        "message": {
+          "type": "string",
+          "description": "Additional message about the error."
+        },
+        "status": {
+          "$ref": "#/definitions/NccErrorCodes",
+          "description": "Status of the error."
+        }
+      },
+      "example": {
+        "timeStamp": 4978518,
+        "error": "Not Found",
+        "message": null,
+        "status": 404
+      }
+    },
+    "NccErrorCodes": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Error codes that indicate the reason for failing:  \n* 106 - WALLET_IS_NOT_OPEN, The specified wallet is not open.\n* 126 - ADDRESS_BOOK_IS_NOT_OPEN, The specified address book is not open.\n* 202 - NO_PUBLIC_KEY, The recipient public key is unknown.\n* 203 - COSIGNATORY_NO_PUBLIC_KEY, The cosignatory's public key is unknown.\n* 901 - ACCOUNT_CACHE_ERROR, There was a problem with the account cache.\n* 1000 - PRIVATE_KEY_PUBLIC_KEY_MISMATCH, The public key derived from the private key does not match the given public key.\n* 1001 - PUBLIC_KEY_ADDRESS_MISMATCH, The address derived from the public key does not match the given address.\n* 1002 - NOT_MAIN_NETWORK_ADDRESS, The address does not belong to the main network.\n* 305 - NIS_NOT_AVAILABLE, NCC is disconnected from the network.",
+      "enum": [
+        106,
+        126,
+        202,
+        203,
+        305,
+        901,
+        1000,
+        1001,
+        1002
+      ]
+    },
+    "HttpErrorCodes": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Error codes that indicate the reason for failing:  \n* 400 - Bad request, e.g., mandatory parameter is missing or value is not correct.\n* 401 - Unauthorized, Request must be authorized.\n* 404 - Not Found, requested resource not found.",
+      "enum": [
+        400,
+        401,
+        404,
+        500
+      ]
+    },
+    "NisInfoViewModel": {
+      "properties": {
+        "nodeInfo": {
+          "$ref": "#/definitions/NisNodeInfo",
+          "description": "Information on the NIS node."
+        },
+        "nodeMetaData": {
+          "$ref": "#/definitions/NisMetaData",
+          "description": "Meta-data about the NIS node."
+        }
+      },
+      "description": "Information about a NIS node."
+    },
+    "NisNodeInfo": {
+      "properties": {
+        "node": {
+          "$ref": "#/definitions/Node",
+          "description": "Node addressing information."
+        },
+        "nisInfo": {
+          "$ref": "#/definitions/MetaModel",
+          "description": "Information about NIS server."
+        }
+      }
+    },
+    "Node": {
+      "properties": {
+        "identity": {
+          "$ref": "#/definitions/NodeIdentity",
+          "description": "The identity of the node."
+        },
+        "endpoint": {
+          "$ref": "#/definitions/NodeEndpoint",
+          "description": "The endpoint of the node."
+        },
+        "metaData": {
+          "$ref": "#/definitions/NodeMetaData",
+          "description": "The meta-data of the node."
+        }
+      }
+    },
+    "NodeIdentity": {
+      "properties": {
+        "public-key": {
+          "type": "string",
+          "description": "The public key."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the node."
+        }
+      },
+      "description": "Identity information on the NIS node."
+    },
+    "NodeEndpoint": {
+      "properties": {
+        "protocol": {
+          "type": "string",
+          "description": "Protocol used to access the node."
+        },
+        "host": {
+          "type": "string",
+          "description": "Host address of the node."
+        },
+        "port": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The port of the node."
+        }
+      },
+      "description": "Information on the access data for a node."
+    },
+    "NodeMetaData": {
+      "properties": {
+        "version": {
+          "type": "string",
+          "description": "Version of the NIS software running on the node."
+        },
+        "platform": {
+          "type": "string",
+          "description": "The platform of the node."
+        },
+        "application": {
+          "type": "string",
+          "description": "Name of the application."
+        },
+        "features": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The features available."
+        },
+        "networkId": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The network id of the node."
+        }
+      },
+      "description": "Meta-data about a node."
+    },
+    "NisMetaData": {
+      "properties": {
+        "activePeers": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Number of active peers connected to the NIS node."
+        },
+        "maxBlockChainHeight": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Height of the NEM blockchain."
+        },
+        "nodeBlockChainHeight": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Height of the NEM blockchain read by the NIS node."
+        }
+      },
+      "description": ""
+    },
+    "ConfigurationPatch": {
+      "properties": {
+        "language": {
+          "type": "string",
+          "description": "Language of the NIS server."
+        },
+        "remoteServer": {
+          "$ref": "#/definitions/NodeEndpoint",
+          "description": "Definition of the remote sever to be used."
+        },
+        "nisBootInfo": {
+          "$ref": "#/definitions/BootInfo"
+        },
+        "firstStart": {
+          "type": "integer",
+          "format": "int32",
+          "description": ""
+        }
+      },
+      "example": {
+        "firstStart": 1,
+        "remoteServer": {
+          "protocol": "http",
+          "port": 7890,
+          "host": "nis.publicnem.eu"
+        },
+        "language": "en",
+        "nisBootInfo": {
+          "nodeName": "<b>Loog4<\/b>",
+          "bootNis": 1,
+          "account": null
+        }
+      }
+    },
+    "BootInfo": {
+      "properties": {
+        "bootNis": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The boot status of the node. \n* 0 - not booted\n* 1 - booted."
+        },
+        "account": {
+          "type": "string",
+          "description": ""
+        },
+        "nodeName": {
+          "type": "string",
+          "description": "Name of the booted node."
+        }
+      },
+      "description": "Information about the boot status of the NIS node."
+    },
+    "AddressBookNamePasswordPair": {
+      "properties": {
+        "addressBook": {
+          "type": "string",
+          "description": "The name of the address book."
+        },
+        "password": {
+          "type": "string",
+          "description": "The password used for encrypting the address book."
+        }
+      },
+      "description": "Holds the information about an address book to open, create or update an address book."
+    },
+    "AddressBookViewModel": {
+      "properties": {
+        "addressBook": {
+          "type": "string",
+          "description": "The name of the address book."
+        },
+        "accountLabels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AccountLabel"
+          },
+          "description": "The list of accounts within the address book and their labels."
+        }
+      },
+      "description": "Holds the information about an address book to open, create or update an address book."
+    },
+    "AccountLabel": {
+      "properties": {
+        "address": {
+          "type": "string",
+          "description": "The address of the account."
+        },
+        "publicLabel": {
+          "type": "string",
+          "description": "The public label of the account (given by the owner of the account)."
+        },
+        "privateLabel": {
+          "type": "string",
+          "description": "The private label of the account (given by the owner of the address book)."
+        }
+      },
+      "description": "Holds the label information about an account within an address book."
+    },
+    "AddressBookName": {
+      "properties": {
+        "addressBook": {
+          "type": "string",
+          "description": "The name of the address book."
+        }
+      },
+      "description": "The name of the address book."
+    },
+    "AddressBookNamePasswordBag": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/AddressBookNamePasswordPair"
+        },
+        {
+          "properties": {
+            "newName": {
+              "type": "string",
+              "description": "The new name of the address book."
+            },
+            "newPassword": {
+              "type": "string",
+              "description": "The new password of the address book."
+            },
+            "address": {
+              "type": "string",
+              "description": "The address of an account."
+            },
+            "privateLabel": {
+              "type": "string",
+              "description": "The private label of an account."
+            }
+          }
+        }
+      ],
+      "description": "A bag containing additional attributes."
+    },
+    "WalletDescriptor": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the wallet."
+        }
+      },
+      "description": "The name of the wallet."
+    },
+    "WalletNamePasswordPair": {
+      "properties": {
+        "wallet": {
+          "type": "string",
+          "description": "The name of the wallet."
+        },
+        "password": {
+          "type": "string",
+          "description": "The password used for encrypting the wallet."
+        }
+      },
+      "description": "The name and password of a wallet."
+    },
+    "WalletNamePasswordBag": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/WalletNamePasswordPair"
+        },
+        {
+          "properties": {
+            "newName": {
+              "type": "string",
+              "description": "The new name for the wallet."
+            },
+            "newPassword": {
+              "type": "string",
+              "description": "The new password for the wallet."
+            },
+            "account": {
+              "type": "string",
+              "description": "The address of an account."
+            },
+            "label": {
+              "type": "string",
+              "description": "The private label of an account."
+            },
+            "accountKey": {
+              "type": "string",
+              "description": "The private key of an account."
+            },
+            "token": {
+              "type": "string",
+              "description": "The token if it was specified."
+            }
+          }
+        }
+      ],
+      "description": "A bag containing additional attributes."
+    },
+    "WalletViewModel": {
+      "properties": {
+        "wallet": {
+          "type": "string",
+          "description": "The name of the wallet."
+        },
+        "lastRefresh": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The time of the last refresh."
+        },
+        "primaryAccount": {
+          "$ref": "#/definitions/AccountViewModel",
+          "description": "The primary account of the wallet."
+        },
+        "otherAccounts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AccountViewModel"
+          },
+          "description": "The primary account of the wallet."
+        }
+      },
+      "description": "The content of the wallet."
+    },
+    "AccountViewModel": {
+      "properties": {
+        "address": {
+          "type": "string",
+          "description": "The address of the account."
+        },
+        "remoteStatus": {
+          "type": "string",
+          "description": "The remote status of the account.\n* REMOTE - The account is remote one, and therefore RemoteStatus is not applicable for it.\n* REMOTE - The account has activated remote harvesting (but not yet active).\n* ACTIVE - The account has activated remote harvesting and remote harvesting is active.\n* DEACTIVATING - The account has deactivated remote harvesting (but remote harvesting is still active).\n* INACTIVE - The account has inactive remote harvesting, or it has deactivated remote harvesting and deactivation is operational."
+        },
+        "publicKey": {
+          "type": "string",
+          "description": "The public key of the account."
+        },
+        "balance": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The amount of NEMs (in uNEM) of the account."
+        },
+        "vestedBalance": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The vested balance of the account (in uNEM: 1.000.000uNEM = 1 NEM)."
+        },
+        "importance": {
+          "type": "number",
+          "format": "double",
+          "description": "The importance of the account to the NEM network."
+        },
+        "harvestedBlocks": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The number of harvested blocks."
+        },
+        "status": {
+          "type": "string",
+          "description": "The status of the account.\n*UNKNOWN - The account status is unknown (needed for ncc).\n*LOCKED - The account is locked.\n*UNLOCKED - The account is unlocked"
+        },
+        "multisigAccounts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AccountInfo"
+          },
+          "description": "list of accounts (info) that this account is cosignatory of."
+        },
+        "cosignatories": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AccountInfo"
+          },
+          "description": "List of accounts (info) that are cosignatories of this account."
+        },
+        "remotePublicKey": {
+          "type": "string",
+          "description": "The account's remote public key (optional)."
+        },
+        "remoteAddress": {
+          "type": "string",
+          "description": "The account's remote address (optional)."
+        }
+      },
+      "description": "The content of the wallet."
+    },
+    "AccountInfo": {
+      "properties": {
+        "address": {
+          "type": "string",
+          "description": "The address of the account."
+        },
+        "publicKey": {
+          "type": "string",
+          "description": "The public key of the account."
+        },
+        "balance": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The amount of NEMs (in uNEM) of the account."
+        },
+        "vestedBalance": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The vested balance of the account (in uNEM: 1.000.000uNEM = 1 NEM)."
+        },
+        "importance": {
+          "type": "number",
+          "format": "double",
+          "description": "The importance of the account to the NEM network."
+        },
+        "harvestedBlocks": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The number of harvested blocks."
+        },
+        "label": {
+          "type": "string",
+          "description": "The label of the account (public label)."
+        }
+      },
+      "description": "list of accounts (info) that this account is cosignatory of."
+    },
+    "NccInfoViewModel": {
+      "description": "NCC info view model.",
+      "properties": {
+        "applicationMetaData": {
+          "type": "string"
+        },
+        "remoteServer": {
+          "type": "string"
+        },
+        "language": {
+          "type": "string"
+        }
+      }
+    },
+    "KeyPairViewModel": {
+      "description": "A simple key pair view model.",
+      "properties": {
+        "privateKey": {
+          "type": "string"
+        },
+        "publicKey": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        }
+      }
+    },
+    "AccountId": {
+      "description": "View model that represents an account id information.",
+      "properties": {
+        "account": {
+          "type": "string"
+        }
+      }
+    },
+    "AccountHashRequest": {
+      "description": "A request representing an account and an optional hash.",
+      "properties": {
+        "hash": {
+          "type": "string"
+        }
+      }
+    },
+    "AccountTransactionsPair": {
+      "description": "A request representing an account and an optional hash.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/AccountViewModel"
+        },
+        {
+          "properties": {
+            "transactions": {
+              "description": "The transactions.",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TransactionViewModel"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "TransactionViewModel": {
+      "description": "A view model representing a transfer transaction.",
+      "properties": {
+        "type": {
+          "description": "The transactions.\n* 0 - Unknown\n* 1 - Transfer\n* 2 - Importance_Transfer\n* 3 - Multisig_Modification\n* 4 - Multisig_Transfer\n* 5 - Multisig_Signature\n* 6 - Multisig_Multisig_Modification\n* 7 - Multisig_Importance_Transfer",
+          "type": "integer",
+          "format": "int32"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The transaction id."
+        },
+        "hash": {
+          "type": "string",
+          "description": "The transaction hash."
+        },
+        "sender": {
+          "type": "string",
+          "description": "The signer address."
+        },
+        "timeStamp": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The timestamp (unix time)."
+        },
+        "deadline": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The timestamp (unix time)."
+        },
+        "fee": {
+          "type": "integer",
+          "format": "int64",
+          "description": "TThe fee."
+        },
+        "confirmed": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Value indicating whether or not the transaction is confirmed.\n* 0 - not confirmed\n* 1 - confirmed."
+        },
+        "confirmations": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The number of confirmations."
+        },
+        "blockHeight": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The height of the block that includes the transaction."
+        }
+      }
+    },
+    "AccountDatabaseIdRequest": {
+      "description": "A request representing an account and an optional database id.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/AccountId"
+        },
+        {
+          "properties": {
+            "id": {
+              "description": "The database id.",
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        }
+      ]
+    },
+    "HarvestInfoViewModel": {
+      "description": "A view model representing harvest information.",
+      "properties": {
+        "id": {
+          "description": "The block id.",
+          "type": "integer",
+          "format": "int64"
+        },
+        "message": {
+          "type": "string",
+          "description": "A text stating the block height."
+        },
+        "timeStamp": {
+          "description": "The time stamp.",
+          "type": "integer",
+          "format": "int64"
+        },
+        "fee": {
+          "description": "The total fee.",
+          "type": "integer",
+          "format": "int64"
+        },
+        "height": {
+          "description": "The block height.",
+          "type": "integer",
+          "format": "int64"
+        },
+        "difficulty": {
+          "description": "The block difficulty.",
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "AccountWalletRequest": {
+      "description": "A request representing an account and a wallet.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/AccountId"
+        },
+        {
+          "properties": {
+            "wallet": {
+              "description": "The wallet name.",
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "AccountWalletPasswordRequest": {
+      "description": "A request representing an account and a wallet + password.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/AccountId"
+        },
+        {
+          "$ref": "#/definitions/WalletNamePasswordPair"
+        }
+      ]
+    },
+    "AccountStatusViewModel": {
+      "description": "A view model representing harvest information.",
+      "properties": {
+        "status": {
+          "type": "string",
+          "description": "The status of the account.\n*UNKNOWN - The account status is unknown (needed for ncc).\n*LOCKED - The account is locked.\n*UNLOCKED - The account is unlocked"
+        }
+      }
+    },
+    "TransferSendRequest": {
+      "description": "A request containing all information necessary to create a transfer.",
+      "properties": {
+        "wallet": {
+          "type": "string",
+          "description": "The wallet name."
+        },
+        "type": {
+          "type": "string",
+          "description": "The type of transfer (multisig or normal)."
+        },
+        "multisigAccount": {
+          "type": "string",
+          "description": "The multisig account address."
+        },
+        "account": {
+          "type": "string",
+          "description": "The sender account address."
+        },
+        "recipient": {
+          "type": "string",
+          "description": "The recipient account address."
+        },
+        "amount": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The amount."
+        },
+        "message": {
+          "type": "string",
+          "description": "The message."
+        },
+        "encrypt": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Indicates whether the message is encrypted.\n* 0 - not encrypted.\n* 1 - encrypted."
+        },
+        "hoursDue": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The hours due."
+        },
+        "password": {
+          "type": "string",
+          "description": "The password."
+        },
+        "fee": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The fee."
+        },
+        "multisigFee": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The multisig transaction fee."
+        }
+      }
+    },
+    "TransferTransactionViewModel": {
+      "description": "A transfer transaction view model.",
+      "required": [
+        "recipient",
+        "amount",
+        "direction"
+      ],
+      "properties": {
+        "recipient": {
+          "type": "string",
+          "description": "The recipient address."
+        },
+        "amount": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The amount."
+        },
+        "message": {
+          "type": "string",
+          "description": "The message."
+        },
+        "encrypted": {
+          "type": "integer",
+          "format": "int32",
+          "description": "A value indicating whether or not the message is encrypted.\n* 0 - not encrypted\n* 1 - encrypted."
+        },
+        "direction": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The transaction direction.\n* 1 - Incoming\n* 2 outgoing\n* 3 self"
+        }
+      }
+    },
+    "MultisigSignatureRequest": {
+      "description": "A request containing all information necessary to create a transfer.",
+      "properties": {
+        "wallet": {
+          "type": "string",
+          "description": "The wallet name."
+        },
+        "password": {
+          "type": "string",
+          "description": "The password."
+        },
+        "account": {
+          "type": "string",
+          "description": "The sender address."
+        },
+        "multisigAddress": {
+          "type": "string",
+          "description": "The multi signature address."
+        },
+        "innerHash": {
+          "type": "string",
+          "description": "The inner transaction hash."
+        },
+        "hoursDue": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The hours due."
+        },
+        "fee": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The fee."
+        }
+      }
+    },
+    "MultisigModificationRequest": {
+      "description": "A request containing all information necessary to create a multisig aggregate modification transaction.",
+      "properties": {
+        "wallet": {
+          "type": "string",
+          "description": "The wallet name."
+        },
+        "type": {
+          "type":"integer",
+          "format":"int32",
+          "description": "The modification type (multisig or not)."
+        },
+        "password": {
+          "type": "string",
+          "description": "The password."
+        },
+        "account": {
+          "type": "string",
+          "description": "The sender address."
+        },
+        "issuer": {
+          "type": "array",
+          "description": "The multi signature address.",
+          "items": {
+            "$ref": "#/definitions/Address"
+          }
+        },
+        "addedCosignatories": {
+          "description":"The list of cosignatory addresses to add.",
+          "type":"array",
+          "items":{
+            "$ref":"#definitions/Address"
+          }
+        },
+        "removedCosignatories": {
+          "description":"The list of cosignatory addresses to remove.",
+          "type":"array",
+          "items":{
+            "$ref":"#definitions/Address"
+          }
+        },
+        "minCosignatories": {
+          "$ref": "#/definitions/MultisigMinCosignatoriesModification",
+          "description": "The min cosignatories modification."
+        },
+        "hoursDue": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The hours due."
+        },
+        "fee": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The fee."
+        },
+        "multisigFee": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The multisig fee."
+        }
+      }
+    },
+    "MultisigAggregateViewModel": {
+      "description": "A multisig aggregate view model around a multisig aggregate modification transaction.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/TransactionViewModel"
+        },
+        {
+          "properties": {
+            "modifications": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ModificationWrapper"
+              },
+              "description": "The multisig account id. Maybe null."
+            },
+            "minCosignatories": {
+              "$ref": "#/definitions/MultisigMinCosignatoriesModification",
+              "description": "The type of transfer (multisig or normal)."
+            }
+          }
+        }
+      ]
+    },
+    "ModificationWrapper": {
+      "description": "A modification wrapper around a cosignatory modification.",
+      "properties": {
+        "address": {
+          "type": "string",
+          "description": "The co-signers address."
+        },
+        "type": {
+          "type": "string",
+          "description": "The type of modification.\n* Add - When adding cosignatory to multisig account.\n* Del - Removal summary:\n# Removal will only be allowed in multisig transactions\n# There can be only one Del per MultisigAggregateModificationTransaction\n# There will be N-2 signatures required. (1 that gets removed, and 1 for person issuing MultisigTransaction)"
+        }
+      }
+    },
+    "MultisigMinCosignatoriesModification": {
+      "description": "Represents a multisig minimum cosignatories modification.",
+      "properties": {
+        "relativeChange": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The relative change in the minimum number of cosignatories."
+        }
+      }
+    },
+    "MultisigTransactionViewModel": {
+      "description": "",
+      "allOf": [
+        {
+          "$ref": "#/definitions/TransactionViewModel"
+        },
+        {
+          "properties": {
+            "issuer": {
+              "type": "string",
+              "description": ""
+            },
+            "inner": {
+              "$ref": "#/definitions/TransactionViewModel",
+              "description": ""
+            },
+            "innerHash": {
+              "$ref": "#/definitions/Hash",
+              "description": ""
+            },
+            "signatures": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TransactionViewModel"
+              }
+            },
+            "requiresSignature": {
+              "type": "integer",
+              "format": "int32",
+              "description": "* 0 - does not require signature.\n* 1 - requires signature."
+            }
+          }
+        }
+      ]
+    },
+    "SignatureViewModel": {
+      "description": "A Signature view model.",
+      "properties": {
+        "signature": {
+          "type": "string",
+          "description": "The signature."
+        }
+      }
+    },
+    "PartialTransferInformationRequest": {
+      "description": "A request to get information about a partially created transfer.",
+      "properties": {
+        "recipient": {
+          "type": "string",
+          "description": "The recipient address."
+        },
+        "amount": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The amount."
+        },
+        "message": {
+          "type": "string",
+          "description": "The message."
+        },
+        "encrypt": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Indicates whether the message is encrypted.\n* 0 - not encrypted.\n* 1 - encrypted."
+        }
+      }
+    },
+    "PartialTransferInformationViewModel": {
+      "description": "A request containing all information necessary to create a transfer.",
+      "properties": {
+        "fee": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The fee."
+        },
+        "multisigFee": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The fee."
+        },
+        "encryptionSupported": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Indicates whether the message is encrypted.\n* 0 - not encrypted.\n* 1 - encrypted."
+        }
+      }
+    },
+    "PartialSignatureInformationRequest": {
+      "description": "A request containing all information necessary to create a transfer.",
+      "properties": {
+        "multisig": {
+          "type": "string",
+          "description": "he multisig account address."
+        },
+        "cosignatory": {
+          "type": "string",
+          "description": "The cosignatory account address."
+        }
+      }
+    },
+    "PartialModificationInformationRequest": {
+      "description": "A request to get information about a partially created multisig modification.",
+      "properties": {
+        "multisig": {
+          "type": "string",
+          "description": "The multisig address."
+        },
+        "cosignatories": {
+          "type": "array",
+          "description": "The list of cosignatory address.",
+          "items": {
+            "$ref": "#/definitions/Address"
+          }
+        },
+        "minCosignatories": {
+          "$ref": "#/definitions/MultisigMinCosignatoriesModification",
+          "description": "The min cosignatories modification."
+        }
+      }
+    },
+    "PartialFeeInformationViewModel": {
+      "description": "A request containing all information necessary to create a transfer.",
+      "properties": {
+        "fee": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The fee."
+        }
+      }
+    },
+    "TransferImportanceRequest": {
+      "description": "A request containing all information necessary to create importance transfer.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/AccountWalletPasswordRequest"
+        },
+        {
+          "properties": {
+            "multisigAddress": {
+              "type": "string",
+              "description": "The multisig account id. Maybe null."
+            },
+            "type": {
+              "type": "integer",
+              "format": "int32",
+              "description": "The type of transfer (multisig or normal)."
+            },
+            "hoursDue": {
+              "type": "integer",
+              "format": "int64",
+              "description": "The hours due."
+            },
+            "fee": {
+              "type": "integer",
+              "format": "int64",
+              "description": "The fee."
+            },
+            "multisigFee": {
+              "type": "integer",
+              "format": "int64",
+              "description": "the multisig transaction fee."
+            },
+            "publicKey": {
+              "type": "string",
+              "description": "The (delegated account) public key. Maybe null."
+            }
+          }
+        }
+      ]
+    },
+    "Address": {
+      "description": "An address.",
+      "properties": {
+        "address": {
+          "type": "string",
+          "description": "The address of an account."
+        }
+      }
+    },
+    "Hash": {
+      "description": "A Hash code",
+      "properties": {
+        "data": {
+          "type": "string",
+          "description": "The hash code."
+        }
+      }
+    },
+    "BootNodeRequest": {
+      "description": "A request containing all information necessary to create importance transfer.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/AccountWalletRequest"
+        },
+        {
+          "properties": {
+            "nodeName": {
+              "type": "string",
+              "description": "The node name."
+            }
+          }
+        }
+      ]
+    },
+    "NemRequestResult": {
+      "description": "Result for NEM request.",
+      "properties": {
+        "type": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The result type.\n* 1 - Result type indicating a validation result\n* 2 - Result type indicating a heartbeat.\n* 4 - Result type indicating the status."
+        },
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The result code.\n* 0 - Special code representing a neutral result.\n* 1 - Special code representing a successful result."
+        },
+        "message": {
+          "type": "string",
+          "description": "The message."
+        }
+      }
+    },
+    "NodeEndpoint": {
+      "description": "Result for NEM request.",
+      "properties": {
+        "protocol": {
+          "type": "string",
+          "description": "The protocol (http / https)"
+        },
+        "host": {
+          "type": "string",
+          "description": "The host of the node."
+        },
+        "port": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The port number."
+        }
+      }
+    },
+    "GraphViewModel": {
+      "description": "A view of a NIS node graph.",
+      "properties": {
+        "graph": {
+          "$ref": "#/definitions/Graph",
+          "description": "The graph."
+        },
+        "meta": {
+          "$ref": "#/definitions/MetaGraph",
+          "description": "The meta data."
+        }
+      }
+    },
+    "Graph": {
+      "description": "A view of a NIS node graph.",
+      "properties": {
+        "nodes": {
+          "description": "The graph.",
+          "$ref": "#/definitions/GraphNode"
+        },
+        "edges": {
+          "description": "The meta data.",
+          "$ref": "#/definitions/GraphEdge"
+        }
+      }
+    },
+    "MetaGraph": {
+      "description": "A view of a NIS node graph.",
+      "properties": {
+        "graph": {
+          "type": "string",
+          "description": "The graph."
+        },
+        "meta": {
+          "type": "string",
+          "description": "The meta data."
+        }
+      }
+    },
+    "GraphNode": {
+      "description": "A node within the graph.",
+      "properties": {
+        "id": {
+          "description": "The identifier.",
+          "type": "string"
+        },
+        "label": {
+          "type": "string",
+          "description": "The label."
+        }
+      }
+    },
+    "GraphEdge": {
+      "description": "An edge within the graph.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique id for the graph edge."
+        },
+        "source": {
+          "description": "The source node of the edge.",
+          "$ref": "#/definitions/GraphNode"
+        },
+        "target": {
+          "description": "The target node of the edge.",
+          "$ref": "#/definitions/GraphNode"
+        }
+      }
+    },
+    "Error": {
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "fields": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "responses": {
+    "BadRequest": {
+      "description": "Bad request, further information within error response object.",
+      "schema": {
+        "$ref": "#/definitions/ErrorResponseNcc"
+      }
+    },
+    "Error": {
+      "description": "Unexpected error occured.",
+      "schema": {
+        "$ref": "#/definitions/ErrorResponseHttp"
+      }
+    }
+  }
+}

@@ -192,7 +192,7 @@ public abstract class AddressBookTest {
 
 		// Assert:
 		Assert.assertThat(addressBook.getAccountLabels().size(), IsEqual.equalTo(1));
-		Assert.assertThat(addressBook.getAccountLabels(), IsEquivalent.equivalentTo(Arrays.asList(accountLabels.get(2))));
+		Assert.assertThat(addressBook.getAccountLabels(), IsEquivalent.equivalentTo(Collections.singletonList(accountLabels.get(2))));
 	}
 
 	@Test

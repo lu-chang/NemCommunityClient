@@ -1,8 +1,8 @@
 package org.nem.monitor;
 
 import org.nem.core.connect.*;
-import org.nem.deploy.LoggingBootstrapper;
 import org.nem.core.utils.LockFile;
+import org.nem.deploy.LoggingBootstrapper;
 import org.nem.monitor.config.*;
 import org.nem.monitor.launcher.*;
 import org.nem.monitor.node.*;
@@ -118,7 +118,7 @@ public class NemMonitor {
 		LOGGER.info(String.format("Acquiring exclusive lock to lock file: %s", lockFile));
 		fileLockHandle = LockFile.tryAcquireLock(lockFile);
 		if (null == fileLockHandle) {
-			LOGGER.severe(String.format("Could not acquire exclusive lock to lock file"));
+			LOGGER.severe("Could not acquire exclusive lock to lock file");
 			return false;
 		}
 

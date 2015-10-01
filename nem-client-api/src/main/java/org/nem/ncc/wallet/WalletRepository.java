@@ -13,7 +13,7 @@ public interface WalletRepository {
 	 * @param descriptor The output descriptor.
 	 * @param wallet The wallet.
 	 */
-	public void save(final WalletDescriptor descriptor, final StorableWallet wallet);
+	void save(final WalletDescriptor descriptor, final StorableWallet wallet);
 
 	/**
 	 * Loads a wallet from the specified descriptor.
@@ -21,5 +21,5 @@ public interface WalletRepository {
 	 * @param descriptor The input descriptor.
 	 * @return The wallet.
 	 */
-	public StorableWallet load(final WalletDescriptor descriptor);
+	StorableWallet load(final WalletDescriptor descriptor);
 }

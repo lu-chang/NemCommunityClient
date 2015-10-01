@@ -17,7 +17,12 @@ define(['NccModal', 'Utils'], function(NccModal, Utils) {
                 self.closeModal();
             	ncc.getModal('signMultisig').closeModal();
 
-                ncc.showMessage(ncc.get('texts.modals.common.success'), ncc.get('texts.modals.sendNem.successMessage'));
+                ncc.showMessage(
+                    ncc.get('texts.common.success'),
+                    ncc.fill(ncc.get('texts.modals.sendNem.successMessage'), data['transactionHash']['data']),
+                    function(){},
+                    'modal--wide'
+                );
                 ncc.refreshInfo();
             },
             {

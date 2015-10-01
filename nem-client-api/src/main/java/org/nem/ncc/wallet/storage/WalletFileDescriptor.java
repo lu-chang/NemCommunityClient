@@ -40,6 +40,11 @@ public class WalletFileDescriptor extends StorableEntityFileDescriptor<StorableW
 	}
 
 	@Override
+	public String getWalletLocation() {
+		return super.getStorableEntityLocation();
+	}
+
+	@Override
 	protected StorableEntityStorageException getException(final int value, final Exception ex) {
 		return null == ex ? new WalletStorageException(value) : new WalletStorageException(value, ex);
 	}

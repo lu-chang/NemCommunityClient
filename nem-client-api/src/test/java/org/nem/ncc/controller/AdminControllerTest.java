@@ -4,10 +4,10 @@ import net.minidev.json.JSONObject;
 import org.hamcrest.core.IsEqual;
 import org.junit.*;
 import org.mockito.Mockito;
-import org.nem.deploy.CommonStarter;
 import org.nem.core.model.NemStatus;
 import org.nem.core.model.ncc.NemRequestResult;
 import org.nem.core.serialization.*;
+import org.nem.deploy.CommonStarter;
 import org.nem.ncc.cache.*;
 
 import java.util.ArrayList;

@@ -1,0 +1,43 @@
+{{! FIELD ICON }}
+{{#if .confirmed}}
+    <td class="txList-cell txList-col--type {{#if (.real.activationType === 'Deactivate')}}neutral{{else}}txList-col--type--incoming{{/if}} icon-upload" title="{{texts.transactionDirections.importance}}" on-mouseover="registerToolTip">{{#.isMultisig}}M{{/}}</td>
+{{else}}
+	<td class="txList-cell txList-col--type txList-col--type--pending icon-clock" title="{{texts.transactionDirections.pending}}" on-mouseover="registerToolTip">{{#.isMultisig}}M{{/}}</td>
+{{/if}}
+
+{{! FIELD DATE }}
+<td class="txList-cell txList-col--date">{{.formattedDate}}</td>
+
+{{! FIELD SENDER OR RECIPIENT }}
+{{! for aggregate modification we always show remote }}
+<td class="txList-cell txList-col--sender" title="{{.real.formattedRemote}}" on-mouseover="registerToolTip">
+    {{#if (.real.activationType === 'Activate')}}
+    <a class="hyperlink--default" href="javascript:;" on-click="viewAccount(.real.remote)">
+        {{#if privateLabels[.real.remote]}}
+            {{privateLabels[.real.remote]}}
+        {{else}}
+            {{.real.formattedRemote}}
+        {{/if}}
+    </a>
+    {{else}}
+        {{.real.activationType}}
+    {{/if}}
+</td>
+
+{{! FIELD MESSAGE }}
+<td class="txList-cell txList-col--message">
+	<span class="dimmed">n/a</span>
+</td>
+
+{{! FIELD AMOUNT }}
+<td class="txList-cell txList-col--amount">
+{{#if .isMultisig}}
+	{{#if .requiresSignature}}
+		<button type="button" class="transactionsTile-signMultisigButton icon-paper-plane-empty" disabled="{{nisUnavailable}}" on-click="openSignMultisig(.)">{{texts.dashboard.transactions.signMultisig}}</button>
+	{{else}}
+        <span style='font-style:italic;'>{{.cosignatoriesCount}}</span>
+	{{/if}}
+{{else}}
+	<span class='dimmed'>n/a</span>
+{{/if}}
+</td>

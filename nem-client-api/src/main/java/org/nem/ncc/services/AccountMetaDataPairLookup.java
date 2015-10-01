@@ -15,7 +15,7 @@ public interface AccountMetaDataPairLookup extends SimpleAccountLookup {
 	 * @param id The account id.
 	 * @return The account with the specified id.
 	 */
-	public AccountMetaDataPair findPairByAddress(final Address id);
+	AccountMetaDataPair findPairByAddress(final Address id);
 
 	/**
 	 * Force refresh of account inside lookup object.

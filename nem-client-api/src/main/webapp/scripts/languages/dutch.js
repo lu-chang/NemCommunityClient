@@ -3,76 +3,77 @@ define({
 	name: 'Nederlands',
 	texts: {
 		preferences: {
-			thousandSeparator: '\u2009',
+			thousandSeparator: ' ',
 			decimalSeparator: '.'
 		},
 		faults: {
-			101: 'Wallet bestaat niet.',
-			102: 'Wallet is niet aangemaakt.',
-			103: 'Wallet is corrupt. Herstel de wallet met een backup die als het goed is wel is gemaakt.',
+			101: 'Portefeuille bestaat niet.',
+			102: 'Portefeuille is niet aangemaakt.',
+			103: 'Portefeuille is corrupt. Herstel de portefeuille van een reservekopie die u als het goed is hebt gemaakt.',
 			104: 'Opgegeven wachtwoord is niet correct.',
-			105: 'Geen wachtwoord opgegeven voor de wallet.',
-			106: 'Voordat je met je wallet kan beginnen, moet hij worden geopend. Om er zeker van te zijn dat jij de rechtmatige eigenaar bent, moet je het wachtwoord opgeven.',
-			107: 'Accountnummer komt niet voor in de wallet.',
-			108: 'De account kan niet worden verwijderd. Waarschijnlijk komt dit omdat er nog XEM in zit. Het kan ook zijn dat de account de primaire account is van de wallet.',
-			109: 'Een andere wallet met dezelfde naam bestaat al, kies een andere wallet-naam.',
-			110: 'Account komt al voor in de wallet.',
-			111: 'De naam van de wallet is een mapnaam.',
-			112: 'De bestandextensie van de wallet is niet correct.',
-			113: 'De wallet kon niet worden verwijderd.',
+			105: 'Geen wachtwoord opgegeven voor de portefeuille.',
+			106: 'Voordat u met uw portefeuille aan de slag kan, moet hij worden geopend. Om er zeker van te zijn dat u de rechtmatige eigenaar bent moet u het wachtwoord opgeven.',
+			107: 'Rekeningnummer komt niet voor in de portefeuille.',
+			108: 'De rekening kan niet worden verwijderd. Waarschijnlijk komt dit omdat de balans op de rekening hoger is dan 0 XEM. Het kan ook zijn dat deze rekening de primaire rekening is van de portefeuille.',
+			109: 'Een andere portefeuille met dezelfde naam bestaat al, kies een andere portefeuille naam.',
+			110: 'Account komt al voor in de portefeuille.',
+			111: 'De naam van de portemonnee is een mapnaam.',
+			112: 'De bestandextensie van de portemonnee is niet correct.',
+			113: 'De portemonnee kon niet worden verwijderd.',
 			121: 'Het adresboek bestand bestaat niet.',
 			122: 'Adresboek is niet aangemaakt. ',
-			123: 'Het adresboekbestand is helaas corrupt. Herstel het bestand van een backup.',
+			123: 'Het adresboekbestand is helaas corrupt. Herstel het bestand van een reservekopie.',
 			124: 'Het opgegeven wachtwoord van het adresboekbestand is niet correct.',
-			125: 'Geen wachtwoord was opgegeven voor het adresboek.',
-			127: 'Het opgegeven adres komt niet voor in het Adresboek.',
+			125: 'Er was geen wachtwoord opgegeven voor het adresboek.',
+			127: 'Het opgegeven adres komt niet voor in het adresboek.',
 			128: 'Het opgegeven adres is niet valide.',
-			129: 'Een adresboek met dezelfde naam bestaat reeds, kies een andere naam.',
+			129: 'Another address book with the same name exists already. Please choose another address book name.',
 			130: 'Adres komt al voor in het adresboek.',
 			131: 'Het adresboek is een mapnaam.',
 			132: 'De extensie van het adresboekbestand is niet correct.',
 			133: 'Het adresboek kon niet worden verwijderd.',
-			202: 'Een beveiligd bericht kan niet worden verstuurd naar de ontvanger omdat hij of zij nog nooit een transactie heeft gemaakt met dit accountnummer.',
-			203: 'The account cannot be converted because not all cosignatories are known. They either need to be in the same wallet or have made at least one transaction.',
-			305: 'The NEM Infrastructure Server (NIS) is not available.\n\nTry to restart the NEM software.\n\nIf you are using a remote NIS, check your configured host for typing errors or use another remote NIS.',
-			306: 'Een fout is opgetreden wat het ontwikkelteam niet heeft voorzien. Onze verontschuldiging hiervoor, misschien helpt het om nog een keer te proberen. Als dat ook niet lukt is het wijs om een ticket te openen binnen de NEM NIS/NCC community.',
-			400: 'Een parameter is missend of niet goed.',
+			202: 'Er kan geen beveiligd bericht worden verstuurd naar de ontvanger omdat hij/zij nog nooit een transactie heeft gemaakt met dit rekeningnummer.',
+			203: 'De rekening kan niet worden geconverteerd, omdat niet alle ondertekenaars bekend zijn. Ze moeten ofwel in dezelfde portefeuille of er moet ten minste één transactie worden gemaakt.',
+			305: 'De NEM Infrastructuur Server (NIS) is niet beschikbaar. Probeer de NEM software opnieuw te starten. \nAls u gebruik maakt van een externe NIS, controleer uw geconfigureerde gastheer op typefouten of gebruik een andere NOS afstandsbediening.',
+			306: 'Er is een fout opgetreden wat het ontwikkelingsteam niet heeft voorzien. Onze verontschuldigingen hiervoor, misschien helpt het om het nog een keer te proberen. Als dat ook niet lukt, is het wijs om een ticket te openen binnen de NEM NIS/NCC gemeenschap.',
+			400: 'Er mist een parameter of er is een parameter niet goed.',
 			401: 'Deze actie is niet toegestaan, omdat er een privé sleutel naar een remote NIS kan worden verstuurd.',
-			404: 'De opgevraagde bron kom niet worden gevonden..',
-			500: 'Een fout is opgetreden wat het ontwikkelteam niet heeft voorzien. Onze verontschuldiging hiervoor, misschien helpt het om nog een keer te proberen. Als dat ook niet lukt is het wijs om een ticket te openen binnen de NEM NIS/NCC community.',
-			600: 'Voor de NCC (Nem Community Client) is het vereist om de NIS (Network Infrastructure Server) het starten voor het verzenden en ontvangen van transacties van de NEM cloud. Gebruik de NCC menu optie om lokaal te starten.',
+			404: 'De opgevraagde bron kon niet worden gevonden..',
+			500: 'Er is een fout opgetreden wat het ontwikkelingsteam niet heeft voorzien. Onze verontschuldigingen hiervoor, misschien helpt het om het nog een keer te proberen. Als dat ook niet lukt, is het wijs om een ticket te openen binnen de NEM NIS/NCC gemeenschap.',
+			600: 'Voor de NCC (Nem Gemeenschaps Cliënt) is het vereist om de NIS (Network Infrastructuur Server) te starten voor het verzenden en ontvangen van transacties van de NEM cloud. Gebruik de NCC menu optie om lokaal te starten.',
 			601: 'De NIS node is al gestart. Een tweede poging om te starten is niet mogelijk.',
-			602: 'Almost ready. NEM Infrastructure Server is currently loading blocks. Wallet will be functional when db is fully loaded.',
-			699: 'Maximaal aantal harvesters toegestaan op deze server is reeds bereikt.',
-			700: 'De opgegeven account voldoet niet aan de basis criteria om te harvesten/oogsten. Waarschijnlijk heeft dat te maken met het aantal XEM wat zich in de account bevindt. Harvesten begint bij tenminste 1000 XEM.',
-			701: 'De termijn ligt in het verleden en kan alleen geldig zijn binnen een periode van 1 dag.',
-			702: 'De termijn ligt te ver in de toekomst en kan alleen geldig zijn binnen een periode van 1 dag.',
-			703: 'Your account does not have the right balance to make this transaction.',
-			704: 'De tekst is te groot om het te verzenden via NEM. Reduceer de tekst en probeer opnieuw te verzenden.',
-			705: 'De hash van de transactie bestaat al in de database van onbevestigde transacties.',
-			706: 'De handtekening van de transactie kon niet worden geverifieerd.',
-			707: 'De timestamp van de transactie ligt te ver in het verleden.',
-			708: 'De timestamp van de transactie ligt te ver in de toekomst.',
-			709: 'Het accountnummer is onbekend.  Een account wordt pas bekend op het netwerk als deze deel heeft uitgemaakt van een transactie als verzender of ontvanger.',
-			710: 'De transactie is geweigerd omdat de transactie cache vol zit. Een hogere toeslag bevordert de kans dat de transactie wordt geaccepteerd.',
-			730: 'Importance transfer transaction (delegated harvesting) conflicts with existing transaction.',
-			731: 'Delegated harvesting account has non zero balance and cannot be used.',
-			732: 'Prioriteits transfer geweigerd. Er is al een wachtende  prioriteits transfer.',
-			733: 'Delegated harvesting is already active.',
-			734: 'Delegated harvesting is NOT active. Cannot deactivate.',
-			740: 'Transactie niet toegestaan voor de multisig account.',
-			741: 'Multisig handtekening transactie geweigerd. Geselecteerde account is geen handtekeninghouder van een multisig account.',
-			742: 'Multisig handtekenaar transactie geweigerd. Geassocieerde multisig transactie niet bekend bij het NEM netwerk.',
-			743: 'Multisig account aanpassing geweigerd. Een van de toegevoegde accounts is al een handtekeninghouder.',
+			602: 'Bijna klaar. NEM Infrastructure Server is momenteel blokken aan het laden. De portefeuille is functioneel als de volledige db is geladen.',
+			699: 'Het maximaal aantal oogsters wat is toegestaan op deze server, is reeds bereikt.',
+			700: 'Het opgegeven account voldoet niet aan de basis criteria om te harvesten/oogsten. Waarschijnlijk heeft dat te maken met het aantal XEM wat zich in het account bevindt. Oogsten begint bij tenminste 1000 XEM.',
 			901: 'Er is een fout opgetreden bij het instellen van de offline modus.',
-			1000: 'De privésleutel en publiekesleutel komen niet overeen.',
-			1001: 'De publiekesleutel en het adres komen niet overeen.',
-			1002: 'Het adres klopt niet en hoort niet bij het netwerk.'
+			1000: 'De privé sleutel en de publieke sleutel komen niet overeen.',
+			1001: 'De publieke sleutel en het adres komen niet overeen.',
+			1002: 'Het adres klopt niet en hoort niet bij het netwerk.',
+			1203: 'Het termijn ligt in het verleden en is alleen geldig binnen het tijdsbestek van 1 dag.',
+			1204: 'Het termijn ligt te ver in de toekomst en is alleen geldig binnen het tijdsbestek van 1 dag.',
+			1205: 'Uw rekening heeft niet genoeg balans om deze transactie te maken.',
+			1206: 'De tekst is te groot om het via NEM te verzenden. Reduceer de tekst en probeer het opnieuw te verzenden.',
+			1207: 'De kluts (hash) van de transactie bestaat al in de database van onbevestigde transacties.',
+			1208: 'De handtekening van de transactie kon niet worden geverifieerd.',
+			1209: 'De tijdsaanduiding van de transactie ligt te ver in het verleden.',
+			1210: 'De tijdsaanduiding van de transactie ligt te ver in de toekomst.',
+			1219: 'De transactie is geweigerd omdat het transactie cache vol zit. Een hogere toeslag bevordert de kans dat de transactie geaccepteerd wordt.',
+			1262: 'De rekening van gedelegeerd oogsten heeft een saldo van nul en kan niet worden gebruikt.',
+			1263: 'Prioriteit overdracht geweigerd. Er is al een prioriteit overdracht in afwachting.',
+			1264: 'Gedelegeerd oogsten is al geactiveerd.',
+			1265: 'Gedelegeerd oogsten is NIET actief. Kan niet gedeactiveerd worden.',
+			1266: 'Belang overdrachtstransactie (gedelegeerd oogsten) komt in conflict met bestaande transactie.',
+			1271: 'De handtekening van deze multisig transactie is geweigerd. Geselecteerde rekening is geen handtekeninghouder van een multisig rekening.',
+			1273: 'De handtekening van deze multisig transactie is geweigerd. Geassocieerde multisig transactie is niet bekend bij het NEM netwerk.',
+			1274: 'Transactie niet toegestaan voor multisig rekening.',
+			1275: 'Aanpassing van multisig rekening is geweigerd. Een van de toegevoegde rekeningen is al handtekeninghouder.',
+			1321: 'Het rekeningnummer is onbekend.  Een rekening wordt pas bekend op het netwerk als dit deel heeft uitgemaakt van een transactie (als verzender of ontvanger).',
+
 		},
 		common: {
 			success: 'Gelukt!',
 			unknown: 'Onbekende status',
-			unknownMessage: 'Ncc did not get response in a timely manner. Transaction might have been sent to the network.<br /><br />Please, check transactions before attempting to make it again.',
+			unknownMessage: 'NCC heeft niet tijdig antwoord gekregen. Transactie kan gestuurd zijn naar het netwerk.<br /><br />Controleer alstublieft de transactie voordat u het nog eens probeert.',
 			appStatus: {
 				nccUnknown: 'NCC status is onbekend',
 				nccUnavailable: 'NCC is niet beschikbaar',
@@ -80,55 +81,80 @@ define({
 				nisUnknown: 'NIS status is onbekend',
 				nisUnavailable: 'NIS is niet beschikbaar',
 				nisStarting: 'NIS is aan het starten...',
-				notBooted: 'Het is vereist om NIS te (her)starten. Open een wallet en start een lokale bij het popup dialoog.',
-				loading: 'Aan het laden van blocks van database, nu bij block: ',
+				notBooted: 'Het is vereist om NIS te (her)starten. Open een portemonnee en start een lokaal station bij het popup dialoog of configureer de automatische opstart instellingen.',
+				loading: 'Blokken aan het laden uit de database, momenteel bij blok: ',
 				booting: 'Starten van de NIS...',
-				nisInfoNotAvailable: 'NIS info is nog niet beschikbaar. Nu aan het ophalen van NIS info...',
-				synchronizing: 'NIS is aan het synchronizeren. Bij block {{1}}, ong. {{2}} achter.',
+				nisInfoNotAvailable: 'NIS info is nog niet beschikbaar. NIS info nu aan het ophalen...',
+				synchronizing: 'NIS is aan het synchronizeren. Bij block {{1}}, loopt ong. {{2}} achter.',
 				daysBehind: {
 					0: 'minder dan 1 dag',
 					1: '1 dag',
 					many: '{{1}} dagen'
 				},
 				synchronized: 'NIS is gesynchroniseerd!',
-				noRemoteNisAvailable: 'Geen remote NIS gevonden in the network, misschien is er geen internet connectie?'
+				noRemoteNisAvailable: 'Geen afgelegen NIS gevonden in het netwerk. Heeft u een werkende internet verbinding?'
 			},
 			addressBook: 'Adresboek',
 			password: 'Wachtwoord',
 			passwordValidation: 'Wachtwoord moet worden ingevuld',
 			address: 'Adres',
 			privateLabel: 'Privé label',
-			publicLabel: 'Public label',
-			noCharge: 'Over de Huidige account zullen <b>GEEN</b> toeslagkosten komen, dit wordt afgehandeld met multisig accounts',
+			publicLabel: 'Publiek label',
+			noCharge: 'Over de huidige rekening zullen <b>GEEN</b> toeslagen berekend worden, dit wordt afgehandeld met multisig rekeningen',
 			fee: 'Toeslag',
+			multisigFee: 'Multisig toeslag',
+			useMinimumFee: 'Gebruik minimale toeslag',
+			feeValidation: 'Toeslag mag niet lager zijn dan het minimum',
 			justUse: 'Gewoon gebruiken',
 			dueBy: 'Verzenden voor',
-			hours: 'uur',
+			minutes: 'minute(s)',
+			hours: '(uur(en)',
 			hoursDue: 'Binnen (uren)',
-			hoursDueExplanation: 'If the transaction isn\'t included by the deadline, it is rejected.',
-			closeButton: 'Close'
+			hoursDueExplanation: 'Als de transactie niet is voldaan binnen de tijdslimiet, dan is de transactie afgewezen.',
+			closeButton: 'Sluiten',
+			cancelButton: 'Annuleer',
+			sendButton: 'Verstuur',
+			account: 'Rekening',
+			thisAccount: 'Deze rekening',
+			warning: 'Waarschuwing',
+			newBuild: 'NEW BUILD',
+			newBuildNumber: 'There is new build {{1}} available for download. Check <a class="hyperlink--default", href="http://blog.nem.io">blog.nem.io</a> for details',
+
 		},
-		transactionTypes: [
-			'NORMALE TRANSACTIE',
-			'IMPORTANCE TRANSACTIER',
-			'AANPASSING VAN EEN MULTISIG ACCOUNT',
-			'MULTISIG TRANSACTIE'
-		],
+		transactionTypes: {
+			20: 'NORMALE TRANSACTIE',
+			21: 'BELANGRIJKE TRANSACTIE',
+			22: 'AANPASSING VAN EEN MULTISIG REKENING',
+			23: 'PROVISION NAMESPACE',
+			24: 'MOSAIC CREATION',
+			25: 'MOSAIC SUPPLY',
+			40: 'MULTISIG SIGNATURE',
+			50: 'MULTISIG TRANSACTIE',
+			51: 'MULTISIG TRANSACTIE',
+			52: 'MULTISIG TRANSACTIE',
+			53: 'MULTISIG TRANSACTIE',
+			54: 'MULTISIG TRANSACTIE',
+			55: 'MULTISIG TRANSACTIE',
+
+		},
 		transactionDirections: {
-			pending: 'Wachtende transactie',
+			pending: 'In afwachting van transactie',
 			outgoing: 'Uitgaande transactie',
 			incoming: 'Inkomende transactie',
 			self: 'Eigen transactie',
 			importance: 'Prioriteits transactie',
-			modification: '(Geaggregeerde) aanpassing van Multisig'
+			modification: '(Geaggregeerde) aanpassing van multisig',
+			provision: 'Provision Namespace',
+			mosaicCreation: 'Mosaic Creation',
+			mosaicSupply: 'Mosaic Supply'
 		},
 		modals: {
 			error: {
 				title: 'Oeps!',
-				caption: 'ERROR {{1}}'
+				caption: 'FOUT {{1}}'
 			},
 			yikes: {
-				title: 'Yikes!',
+				title: 'Oeps!',
 				caption: 'info code {{1}}'
 			},
 			confirmDefault: {
@@ -149,65 +175,64 @@ define({
 					label: 'Taal'
 				},
 				remoteServer: {
-					tabTitle: 'Remote Server',
+					tabTitle: 'Afgelegen Server',
 					protocol: 'Protocol',
 					protocolOptions: {
 						http: 'HTTP'
 					},
 					host: 'Host',
-					port: 'Port',
-					defaultPort: 'Use default port.'
+					port: 'Poort',
+					defaultPort: 'Gebruik standaard poort.'
 				},
 				autoBoot: {
-					tabTitle: 'Auto-start',
-					name: 'Node naam',
-					account: 'Account',
-					primaryAccount: 'Primaire account',
-					auto: 'Auto starten als een wallet is geopend'
+					tabTitle: 'Automatische start',
+					name: 'Station naam',
+					primaryAccount: 'Primair account',
+					auto: 'Automatisch starten als er een portefeuille geopend is'
 				},
 				save: 'Opslaan',
-				saveSuccess: 'Instelling zijn met succes opgeslagen'
+				saveSuccess: 'Instellingen zijn met succes opgeslagen'
+			},
+			signToken: {
+				title: "Sign a token using account",
+				label: "Token (url, string, anything)",
+				signature: "Signed token",
+				sign: "Sign"
 			},
 			multisig: {
-				title: 'Converteer een account naar een multisig account',
-				multisigAccount: 'Multisig account',
-				cosignatories: 'Handtekeninghouder\' adressen',
+				title: 'Converteer een rekening naar een multisig rekening',
+				multisigAccount: 'Multisig rekening',
+				cosignatories: 'Handtekeninghouders adressen',
 				labelDesc: 'Deze account is als {{1}} gelabeld',
-				nullLabelDesc: 'Deze account heeft geen label',
-				addCosignatory: '+ Handtekeninghouder\'toevoegen',
-				cancel: 'Annuleer',
+				nullLabelDesc: 'Deze rekening heeft geen label',
+				addCosignatory: '+ Handtekeninghouder toevoegen',
 				convert: 'Converteer',
-				fee: 'Toeslag',
-				feeValidation: 'Toeslag mag niet lager zijn dan het minimum',
-				useMinimumFee: 'Gebruik minimale toeslag',
 				txConfirm: {
-					title: 'Bevestig Conversie naar Multisig Account',
+					title: 'Bevestig conversie naar Multisig Rekening',
 					total: 'Totaal',
 
 				},
-				warning: 'Multisig account is on the list of cosignatories. This will result in locking down the account cutting off access to the fund. Most likely you <b>DO NOT</b> want to do that.'
+				warning: 'Multisig rekening staat op de lijst van co ondertekenaars. Dit zal resulteren in vergrendeling van de rekening, wat de toegang tot het fonds zal blokkeren. Grote kans dat u dit <b>NIET</b> wilt doen.',
+				minCosignatoriesDefaultLabel: 'Use default cosignatories number',
+				minCosignatoriesRelativeLabel: 'relative change',
+				minCosignatoriesLabel: 'Minimum number of cosignatories',
+				minCosignatoriesZero: 'Using zero would cause all cosignatories to be required',
+				minCosignatoriesOverflow: 'Specified number is larger than number of cosignatories'
 			},
 			signMultisig: {
 				title: 'Signeer multisig transactie',
 				original: {
-					from: 'Multisig account',
+					from: 'Multisig rekening',
 					to: 'Ontvanger',
 					amount: 'Bedrag',
 					fee: 'Toeslag',
-					deadline: 'Deadline'
+					deadline: 'Uiterste leverdatum'
 				},
 				multisigFees: 'Multisig toeslagen',
 				multisigTotal: 'Totaal',
 				sender: 'Handtekeninghouder',
-				fee: 'Toeslag',
-				feeValidation: 'Toeslag mag niet lager zijn dan het minimum',
-				useMinimumFee: 'Gebruik minimale toeslag',
-				password: 'Wachtwoord',
 				passwordValidation: 'Wachwoord moet worden ingevuld',
-				send: 'Verstuur',
-				cancel: 'Annuleer',
 				sending: 'Verzenden...',
-				successMessage: 'Transactie is verzonden!',
 				txConfirm: {
 					title: 'Bevestig Multisig Transactie',
 					message: 'Bericht',
@@ -219,55 +244,46 @@ define({
 			sendNem: {
 				title: 'XEM versturen',
 				sender: 'Afzender',
-				thisAccount: 'Deze account',
-				labelDesc: 'Deze account is als {{1}} gelabeld',
-				nullLabelDesc: 'Deze account heeft geen label',
+				thisAccount: 'Deze rekening',
+				labelDesc: 'Deze rekening is als {{1}} gelabeld',
+				nullLabelDesc: 'Deze rekening heeft geen label',
 				amount: 'Bedrag',
-				recipient: 'Account van ontvanger',
-				recipientValidation: 'Accounten moeten een lengte hebben van 40 karakters en/of spaties',
+				recipient: 'Rekening van ontvanger',
+				recipientValidation: 'Rekening moet een lengte hebben van 40 karakters en/of spaties',
 				message: 'Bericht',
-				encrypt: 'Beveilig bericht',
-				fee: 'Toeslag',
-				multisigFee: 'Multisig toeslag',
-				feeValidation: 'Toeslag mag niet lager zijn dan het minimum',
-				useMinimumFee: 'Gebruik minimale toeslag',
-				password: 'Wachtwoord',
-				passwordValidation: 'Wachtwoord moet worden ingevuld',
-				send: 'Verstuur',
-				cancel: 'Afbreken',
+				encrypt: 'Beveilig dit bericht',
 				sending: 'Versturen...',
-				successMessage: 'Transactie is verzonden!',
+				successMessage: 'Your transaction has been sent successfully! <br><br>Transaction hash: {{1}}',
 				txConfirm: {
 					title: 'Bevestig transactie',
 					amount: 'Hoeveelheid',
 					to: 'Naar',
 					total: 'Totaal',
 					message: 'Bericht',
-					encrypted: 'Bericht is geencrypt',
+					encrypted: 'Bericht is versleuteld',
 					noMessage: 'Geen bericht',
-					cancel: 'Annuleer',
 					confirm: 'Bevestig',
 					sending: 'Verzenden...'
 				},
 				notBootedWarning: {
-					title: 'Node is niet gestart!',
-					message: 'Een lokale node moet eerst gestart worden om XEM te versturen!'
+					title: 'Station is niet gestart!',
+					message: 'Een lokaal station moet eerst gestart worden om XEM te versturen!'
 				},
 				bootingWarning: {
-					title: 'Node wordt opgestart',
-					message: 'Even wachten a.u.b. tot het opstartproces klaar is om je transactie te verzenden.'
+					title: 'Station wordt opgestart',
+					message: 'Wacht a.u.b. tot het opstartproces klaar is om uw transactie te verzenden.'
 				},
 				loadingWarning: {
-					title: 'Aan het laden van database'
+					title: 'Aan het laden van de databank'
 				}
 			},
 			clientInfo: {
-				title: 'Client informatie',
-				ncc: 'NEM Community Client - NCC',
-				signer: 'signer',
-				remoteServer: 'Remote Server',
+				title: 'Cliënt informatie',
+				ncc: 'NEM Gemeenschaps Cliënt - NCC',
+				signer: 'Ondertekenaar',
+				remoteServer: 'Afgelegen Server',
 				local: 'Lokale Server',
-				nis: 'NEM Infrastructure Server - NIS',
+				nis: 'NEM Infrastructuur Server - NIS',
 				sync: 'Gesynchroniseerd',
 				notSync: 'Niet gesynchroniseerd',
 				notConnected: 'Kan geen verbinding maken met de NEM Cloud',
@@ -276,197 +292,193 @@ define({
 			transactionDetails: {
 				title: 'Transactie details',
 				id: 'ID',
-				hash: 'Hash',
+				hash: 'Kluts (hash)',
 				type: 'Type transactie',
-				direction: 'Transaction Direction',
+				direction: 'Richting van transactie',
 				pending: 'Wachten',
 				outgoing: 'Uitgaand',
 				incoming: 'Inkomend',
 				self: 'Zelf',
 				sender: 'Afzender',
-				multisigAccount: 'Multisig Account',
+				multisigAccount: 'Multisig Rekening',
 				issuer: 'Uitgever',
 				recipient: 'Ontvanger',
-				remote: 'Remote',
-				multisigMessage: 'Signatures present',
+				remote: 'Afgelegen',
+				multisigMessage: 'Handtekeningen aanwezig',
 				message: 'Bericht',
 				noMessage: 'Geen bericht',
 				encrypted: 'Bericht is beveiligd',
-				time: 'Timestamp',
+				time: 'Tijdsaanduiding',
 				confirmations: 'Confirmaties',
 				confirmationsUnknown: 'Onbekend',
 				amount: 'Bedrag',
-				fee: 'Toeslag',
-				innerFee: 'Inner Fee',
+				innerFee: 'Interne toeslagen',
 				multisigFees: 'Multisig toeslagen',
-				cosignatory: 'Handtekeninghouder'
+				cosignatory: 'Handtekeninghouder',
+				namespace: 'Namespace',
+				rentalFee: 'Rental fee',
+				mosaicName: 'Mosaic Name',
+				description: 'Description',
+				propertiesLabel: 'Properties',
+				properties: {
+					divisibility: 'Divisibility',
+					quantity: 'Maximal quantity',
+					mutablequantity: 'Is quantity mutable',
+					transferable: 'Is transferable'
+				},
+				supplyType: 'Supply type',
+				supplyAmount: 'Supply amount'
 			},
 			accountDetails: {
-				title: 'Account details',
-				address: 'Adres',
+				title: 'Rekening details',
 				label: 'Label',
 				noLabel: 'Geen label',
-				add: 'Toevoegen to het adresboek',
-				remove: 'Verwijderen van adresboek',
+				add: 'Toevoegen aan het adresboek',
+				remove: 'Verwijderen van het adresboek',
 				balance: 'Balans',
-				vested: 'vested',
-				importance: 'Belangrijks waardering',
+				vested: 'gevestigd',
+				importance: 'Waardering van importantie',
 				publicKey: 'Publieke sleutel',
 				noPublicKey: 'Geen publieke sleutel',
-				harvestedBlocks: 'Geharvestede blocks',
-				close: 'Sluiten'
+				harvestedBlocks: 'Geoogste blokken'
 			},
 			bootLocalNode: {
-				title: 'Start lokale node',
-				account: 'Account voor het starten van de lokale node',
-				noLabel: '<span class="null">&lt;Geen label&gt;</span>',
-				wallet: 'Wallet',
-				node: 'Node naam',
+				title: 'Start lokaal station',
+				account: 'Rekening voor het starten van het lokale station',
+				noLabel: '<span class=\"null\">&lt;Geen label&gt;</span>',
+				wallet: 'Portefeuille',
+				node: 'Naam van het station',
 				boot: 'Start',
-				booting: 'Starten...',
-				warning: 'Boot node warning',
-				warningText: 'You\'re trying to boot a node <u>{{2}}</u><br/><br/>Booting remote node is currently impossible from within NCC.',
-				warningStatement: 'You have auto-boot set to true and you\'re using remote node {{3}}.<br/><br/>Booting remote node is currently impossible from within NCC',
-				warningQuestion: 'Are you sure you want to boot node <u>{{3}}</u> using private key of account {{1}} ({{2}} XEM)?<br><br>This will reveal this account\'s <span class="sublabelWarning">private key</span> to node: <u>{{3}}</u>.'
+				booting: 'Opstarten...',
+				warning: 'Waarschuwing bij starten van het station',
+				warningText: 'U probeert een station te starten <u>{{2}}</u><br/><br/> Opstarten van een afgelegen station is momenteel onmogelijk vanuit NCC. ',
+				warningStatement: 'U moet automatisch starten naar waarheid als u het afgelegen station {{3}} gebruikt.<br/><br/>Starten van een station op afstand is momenteel onmogelijk vanuit NCC',
+				warningQuestion: 'Weet u zeker dat u het station <u>{{3}}</u> wilt starten met gebruik van een privé sleutel van de rekening {{1}} ({{2}} XEM)?<br><br>Dit zal de <span class=\"sublabelWarning\">privé sleutel</span> naar station: <u>{{3}}</u> onthullen.'
 			},
 			closeWallet: {
-				title: 'Wallet sluiten',
-				message: 'Weet je het zeker om terug te keren naar de openingspagina?'
+				title: 'Portefeuille sluiten',
+				message: 'Weet u het zeker dat u wilt terugkeren naar de openingspagina?'
 			},
 			createAccount: {
-				title: 'Nieuwe account aanmaken',
+				title: 'Nieuwe rekening aanmaken',
 				label: 'Privé label',
-				wallet: 'Wallet',
-				password: 'Wallet wachtwoord',
-				successMessage: 'Account {{1}} {{#2}}({{2}}){{/2}} is aangemaakt.!',
+				wallet: 'Portefeuille',
+				successMessage: 'Rekening {{1}} {{#2}}({{2}}){{/2}} is aangemaakt!',
 				create: 'Aanmaken'
 			},
 			showPrivateKey: {
-				title: 'Show Account\'s PRIVATE Key',
-				message: 'This will display account\'s private key on the screen, as a text. In case of any malware present in the system, this might be hazardous operation. Are you sure you want to do that?',
+				title: 'Laat de privésleutel van deze rekening zien.',
+				message: 'Dit zal de privé sleutel onthullen in tekst op deze pagina. Als er malware is geïnstalleerd op deze computer kan dit uw gegevens in gevaar brengen, weet u zeker dat u dit wilt doen?',
 				publicKey: 'Publieke sleutel',
-				privateKey: 'Prive sleutel',
-				show: 'Show the key'
+				privateKey: 'Privé sleutel',
+				show: 'Laat de sleutel zien'
 			},
 			showRemotePrivateKey: {
-				title: 'Show Remote Account\'s PRIVATE Key',
-				message: 'This will display remote account\'s private key on the screen, as a text. In case of any malware present in the system, this might be hazardous operation. Are you sure you want to do that?',
+				title: 'Laat de privé sleutel van de afgelegen rekening zien',
+				message: 'Dit zal de privé sleutel van de afgelegen rekening op het scherm tonen. Als er malware op uw computer geïnstalleerd is, dan kan dit uw gegevens in gevaar brengen. Weet u zeker dat u dat wilt doen?',
 
 			},
 			addAccount: {
-				title: 'Voeg een bestaande account toe',
-				privateKey: 'Privésleutel van account',
-				wallet: 'Wallet',
-				password: 'Wallet wachtwoord',
-				successMessage: 'Account {{1}} {{#2}}({{2}}){{/2}} is toegevoegd aan wallet!',
+				title: 'Voeg een bestaande rekening toe',
+				privateKey: 'Privé sleutel van de rekening',
+				wallet: 'Portefeuille',
+				successMessage: 'Rekening {{1}} {{#2}}({{2}}){{/2}} is toegevoegd aan portefeuille!',
 				add: 'Voeg toe',
 				label: 'Label'
 			},
 			setPrimary: {
-				title: 'Primaire account instellen',
-				account: 'Account die primair wordt ingesteld.',
-				noLabel: '<span class="null">&lt;Geen label&gt;</span>',
-				wallet: 'Wallet',
-				password: 'Wallet wachtwoord',
-				successMessage: 'Account {{1}} {{#2}}({{2}}){{/2}} als primair ingesteld!',
-				set: 'Stel primaire account in'
+				title: 'Primaire rekening instellen',
+				account: 'Rekening die primair wordt ingesteld.',
+				noLabel: '<span class=\"null\">&lt;Geen label&gt;</span>',
+				wallet: 'Portefeuille',
+				successMessage: 'Rekening {{1}} {{#2}}({{2}}){{/2}} is als primaire rekening ingesteld!',
+				set: 'Stel als primaire rekening in'
 			},
 			changeWalletName: {
-				title: 'Verander naam van wallet',
-				wallet: 'Huidige wallet naam',
-				newName: 'Nieuwe wallet naam',
-				password: 'Wallet wachtwoord',
-				successMessage: 'Naam van wallet is gewijzigd van <em>{{1}}</em> naar <em>{{2}}</em>',
-				change: 'Change'
+				title: 'Verander naam van portefeuille',
+				wallet: 'Huidige naam van de portefeuille',
+				newName: 'Nieuwe naam van de portefeuille',
+				successMessage: 'Naam van portefeuille is gewijzigd van <em>{{1}}</em> naar <em>{{2}}</em>',
+				change: 'Aanpassen'
 			},
 			changeWalletPassword: {
-				title: 'Verander het Wallet wachtwoord ',
-				wallet: 'Wallet',
+				title: 'Verander het wachtwoord van de portefeuille',
+				wallet: 'Portefeuille',
 				password: 'Huidig wachtwoord',
 				newPassword: 'Nieuw wachtwoord',
-				confirmPassword: 'Bevestig nieuw wachtwoord',
-				successMessage: 'Wallet wachtwoord is aangepast.',
+				confirmPassword: 'Bevestig het nieuwe wachtwoord',
+				successMessage: 'Wachtwoord van de portefeuille is aangepast.',
 				change: 'Aanpassen',
 				passwordNotMatchTitle: 'Oeps!',
 				passwordNotMatchMessage: 'Het wachtwoord komt niet overeen.'
 			},
 			changeAccountLabel: {
-				title: 'Verander het label van de account',
-				label: 'Account label',
-				wallet: 'Wallet',
-				password: 'Wallet wachtwoord',
-				successMessage: 'Account {{1}} is gelabeld als {{2}}',
+				title: 'Verander het label van de rekening',
+				label: 'Label van rekening',
+				wallet: 'Portefeuille',
+				successMessage: 'Rekening {{1}} is gelabeld als {{2}}',
 				change: 'Aanpassen'
 			},
 			removeAccount: {
-				title: 'Account verwijderen',
-				account: 'Account',
-				label: 'Account label',
-				wallet: 'Wallet',
-				password: 'Wallet wachtwoord',
-				warning: 'Let op! Wees er zeker van dat er geen XEM saldo opstaat. Eventueel saldo wordt voor altijd verwijderd.',
-				successMessage: 'Account {{1}} {{#2}}({{2}}){{/2}} is verwijderd!',
+				title: 'Rekening verwijderen',
+				label: 'Label rekening',
+				wallet: 'Portefeuille',
+				warning: 'Let op! Wees er zeker van dat er geen saldo in XEM opstaat. Eventueel saldo wordt voor altijd verwijderd.',
+				successMessage: 'Rekening {{1}} {{#2}}({{2}}){{/2}} is verwijderd!',
 				remove: 'Verwijderen'
 			},
 			nisUnavailable: {
-				title: 'NIS niet beschikbaar',
-				message: 'NIS connectie onderbroken, wachten op verbinding'
+				title: 'NIS is niet beschikbaar',
+				message: 'Connectie van NIS is onderbroken, wachten op verbinding'
 			},
 			shutdown: {
 				title: 'Afsluiten',
-				message: 'Weet je zeker dat je de NEM Community Client wil afsluiten?'
+				message: 'Weet u zeker dat u de NEM Gemeenschaps Cliënt wil afsluiten?'
 			},
-			activateRemote: {
-				title: 'Activate Delegated Harvesting',
-				wallet: 'Wallet',
-				account: 'Account',
-				password: 'Wallet wachtwoord',
+			activateDelegated: {
+				title: 'Activeren van gedelegeerd oogsten',
+				wallet: 'Portefeuille',
 				activate: 'Activeren',
-				warning: 'Warning',
-				warningText: 'Activation will take 6 hours (360 blocks). Activation will NOT start harvesting automatically.'
+				warningText: 'Activeren zal ongeveer 6 uur duren (360 blokken).  Activeren zal oogsten NIET automatisch laten starten.',
+				delegatedAccount: 'Delegated account public key',
+				builtIn: 'built into the wallet',
+
 			},
-			deactivateRemote: {
-				title: 'Deactivate Delegated Harvesting',
-				wallet: 'Wallet',
-				account: 'Account',
-				password: 'Wallet wachtwoord',
+			deactivateDelegated: {
+				title: 'Deactiveren Gedelegeerd Oogsten',
+				wallet: 'Portefeuille',
 				deactivate: 'Deactiveer',
-				warning: 'Warning',
-				warningText: 'Deactivation will take 6 hours (360 blocks).'
+				warningText: 'Deactiveren zal 6 uur duren (360 blokken).'
 			},
 			startRemote: {
-				title: 'Start Delegated Harvesting',
-				wallet: 'Wallet',
-				account: 'Account',
-				password: 'Wallet wachtwoord',
+				title: 'Starten Gedelegeerd Oogsten',
+				wallet: 'Portefeuille',
 				start: 'Start'
 			},
 			stopRemote: {
-				title: 'Stop Delegated Harvesting',
-				wallet: 'Wallet',
-				account: 'Account',
-				password: 'Wallet\'s password',
+				title: 'Stop Gedelegeerd Oogsten',
+				wallet: 'Portefeuille',
 				stop: 'Stop'
 			},
 			logoutWarning: {
-				leavePage: "You're leaving your wallet. Remember that if you leave your wallet this way, some others may still be able to access your wallet from this computer. To prevent that from happening, please log out using the \"Close wallet\" menu item in the top-right dropdown menu before you close the browser tab or navigate away."
+				leavePage: 'U verlaat uw portefeuille. Als u op deze manier uw portefeuille verlaat, zullen anderen nog in staat zijn om toegang te krijgen tot uw portefeuille vanaf deze computer. Om te voorkomen dat dit gebeurd kunt u uitloggen door gebruik te maken van het menu-item \"Sluit Portefuille\" in de rechterbovenhoek voordat u het tablad of de browser sluit.'
 			},
 			addContact: {
-				title: 'Add contact',
+				title: 'Contact toevoegen',
 				add: 'Voeg toe'
 			},
 			editContact: {
-				title: 'Edit contact',
+				title: 'Wijzig contact',
 				saveChanges: 'Opslaan'
 			},
 			removeContact: {
-				title: 'Remove contact',
+				title: 'Verwijder contact',
 				remove: 'Verwijderen'
 			}
 		},
 		landing: {
 			logo: 'images/nem_logo.png',
-			importSuccess: 'Wallet is met succes geimporteerd!',
+			importSuccess: 'Portefeuille is met succes geïmporteerd!',
 			nav: {
 				start: 'Aan de slag',
 				about: 'Over NEM',
@@ -474,27 +486,27 @@ define({
 			},
 			main: {
 				leftTitle: 'Nieuw bij <em>NEM</em>?',
-				leftButton: 'Maak een nieuwe wallet',
-				walletNamePlh: 'Naam van de wallet',
+				leftButton: 'Maak een nieuwe portefeuille ',
+				walletNamePlh: 'Naam van de portefeuille ',
 				passwordPlh: 'Wachtwoord',
-				confirmPasswordPlh: 'Confirm password',
+				confirmPasswordPlh: 'Bevestig nieuw paswoord',
 				create: 'Aanmaken',
 				creating: 'Aanmaken...',
 				rightTitle: 'Al een <em>NEM</em>ber?',
-				rightButton: 'Open je wallet',
+				rightButton: 'Open uw portefeuille ',
 				openButton: 'Open',
-				walletsFound: '<strong>{{1}}</strong> <em>wallets gevonden</em>',
+				walletsFound: '<strong>{{1}}</strong> <em>Portefeuille(s) gevonden</em>',
 				copyright: 'Fotografie door <em>Cas Cornelissen</em>'
 			},
 			carousel: {
 				items: [
 					{
-						title: 'NCC beveiligt je wallet',
-						description: '<em>Veiligheid</em> is heel belangrijk voor NEM om diefstal van XEM&amp; assets te voorkomen.'
+						title: 'NCC beveiligt uw portefeuille ',
+						description: '<em>Veiligheid</em> is heel belangrijk voor NEM om diefstal van XEM &amp; activa te voorkomen.'
 					},
 					{
-						title: 'Remote NEM Infrastructure Server',
-						description: 'By using a remote NIS you don\'t have to synchronise the blockchain at start-up.',
+						title: 'Afgelegen NEM Infrastructuur Server',
+						description: 'Door gebruik van een externe NIS moet u de blokken opnieuw synchroniseren bij het opstarten.',
 
 					},
 					{
@@ -523,111 +535,114 @@ define({
 					{
 						title: 'Hoe werkt NCC?',
 						paragraphs: [
-							'<strong>NCC</strong> zorgt voor toegang tot je Assets en XEM zoals een traditionele Wallet, of portomonnee, dat doet.',
-							'<strong>NCC</strong> heeft toegang to de <strong>NIS</strong> server nodig om te kunnen werken. Standaard is een lokale service actief. Deze wordt geinstalleerd met de community client (NCC)',
-							'Je kan NCC ook configureren om toegang te krijgen tot een remote <strong>NIS</strong>.'
+							'<strong>NCC</strong> zorgt voor toegang tot uw activa en XEM zoals een traditionele portefeuille, of portomonnee dat doet.',
+							'<strong>NCC</strong> heeft toegang tot de <strong>NIS</strong> server nodig om te kunnen functioneren. Er is een standaard lokale service actief. Deze wordt geïnstalleerd met de gemeenschaps cliënt (NCC)',
+							'U kunt de NCC ook configureren om toegang te krijgen tot een afgelegen <strong>NIS</strong>.'
 						],
 						listItems: [
-							'Meerdere accounten',
-							'Definieer meerdere accountingen in een wallet'
+							'Hebben van meerdere rekeningen',
+							'Definieer meerdere rekeningen die u wilt toevoegen aan een portefeuille'
 						]
 					},
 					{
 						title: 'Wat is &#42;NIS?',
 						paragraphs: [
 							'Dit component is verantwoordelijk om de <strong>NEM</strong> cloud in de lucht te houden.',
-							'The more <strong>NIS</strong> there are in the network, the better the security.,',
+							'Des de meer <strong>NIS’</strong> er zijn in het netwerk, des de beter de beveiliging.,',
 							'<strong>NIS</strong> is het toegangspunt voor de <strong>NEM</strong> cloud.'
 						],
-						legend: '<strong>&#42;NIS</strong> staat voor <strong>NEM Infrastructure Server</strong>'
+						legend: '<strong>&#42;NIS</strong> staat voor <strong>NEM Infrastructuur Server</strong>'
 					}
 				]
 			},
 			footer: {
-				copyright: '&copy; Copyright 2015. NEM Community Client.'
+				copyright: '&copy; Copyright 2015. NEM Gemeenschaps Cliënt.'
 			}
 		},
 		wallet: {
-			logo: 'images/nem_logo.png',
-			lastAccess: 'Ongeveer {{1}} dagen geleden',
+			logo: 'afbeeldingen/nem_logo.png',
+			lastAccess: 'Ongeveer {{1}} dag(en) geleden',
 			lastAccessJustNow: 'Zojuist',
 			lastAccessTooltip: 'Laatste toegang was {{1}}',
 			primary: 'Primaire',
 			primaryShort: 'P',
 			noLabel: '<Geen label>',
-			copiedToClipboard: 'Account is gekopieerd naar het clipboard!',
+			copiedToClipboard: 'Account is gekopieerd naar het klembord!',
 			actions: {
-				refreshInfo: 'Ververs informatie',
-				bootLocalNode: 'Start Lokale Node',
-				changeWalletName: 'Verander naam  van Wallet',
-				changeWalletPassword: 'Verander Wallet Wachtwoord',
-				mergeWallets: 'Wallets samenvoegen',
-				exportWallet: 'Exporteer Wallet',
-				createAccount: 'Maak een nieuwe Account',
-				createRealAccountData: 'Maak echte Account (wanneer NEM live is!)',
-				verifyRealAccountData: 'Verify real account data',
-				showPrivateKey: 'Show Account\'s PRIVATE key',
-				showRemotePrivateKey: 'Show Remote Account\'s PRIVATE key',
-				viewDetails: 'View Account Details',
-				addAccount: 'Voor een Bestaande Account toe',
-				changeAccountLabel: 'Verander het label van de Account',
-				setPrimary: 'Stel in als Primaire Account',
-				removeAccount: 'Verwijder account',
-				clientInfo: 'Client Informatie',
-				closeWallet: 'Sluit Wallet',
+				refreshInfo: 'Hernieuw informatie',
+				bootLocalNode: 'Start Lokaal Station',
+				changeWalletName: 'Verander naam van de portefeuille',
+				changeWalletPassword: 'Verander het wachtwoord van de portefeuille',
+				mergeWallets: 'Portefeuilles samenvoegen',
+				exportWallet: 'Exporteer de portefeuille',
+				createAccount: 'Maak een nieuwe rekening',
+				createRealAccountData: 'Maak een echte rekening',
+				verifyRealAccountData: 'Controleer of de rekening gegevens juist zijn.',
+				showPrivateKey: 'Onthul PRIVÉ sleutel',
+				showRemotePrivateKey: 'Onthul PRIVÉ sleutel van afgelegen rekening',
+				viewDetails: 'Laat details van de rekening zien',
+				addAccount: 'Voor een bestaande rekening toe',
+				changeAccountLabel: 'Verander het label van de rekening',
+				setPrimary: 'Stel in als Primaire Rekening',
+				removeAccount: 'Verwijder rekening',
+				clientInfo: 'Cliënt Informatie',
+				closeWallet: 'Sluit Portefeuille',
 				closeProgram: 'Programma Afsluiten',
-				copyClipboard: 'Kopieer accountnummer naar het clipboard.',
-				copyDisabled: 'Copying an address requires flash',
-				convertMultisig: 'Converteer andere account naar multisig'
+				copyClipboard: 'Kopieer rekeningnummer naar het klembord.',
+				copyDisabled: 'Voor het kopieren van een adres is Flash vereist',
+				convertMultisig: 'Converteer andere rekening naar multisig'
 			},
 			nav: [
-				'Dashboard',
+				'Instrumentenpaneel',
 				'Berichten',
-				'Addresboek',
+				'Adresboek',
 				'Transacties',
-				'Geharveste Blocks',
-				'Asset Exchange',
+				'Geoogste Blokken',
+				'Activa Beurs',
 				'Nieuws',
 				'Applicaties',
-				'Accounts',
+				'Rekeningen',
 				'Instellingen',
 				'Afsluiten'
 			],
-			bootNodeWarning: 'Een lokale node moet gestart zijn om alle functionaliteiten van NCC te gebruiken.'
+			bootNodeWarning: 'Een lokaal station moet gestart zijn om alle functionaliteiten van de NCC te gebruiken.'
 		},
 		dashboard: {
 			assets: {
-				title: 'Je Assets'
+				title: 'Uw Activa'
 			},
 			importance: {
 				title: 'Score',
 				unknown: 'Onbekende status',
-				start: 'Start harvesten',
-				harvesting: 'Harvesten',
-				stop: 'Stop harvesten',
-				description: 'Status-score van deze account op  to the NEM cloud',
+				start: 'Start oogsten',
+				harvesting: 'Oogsten',
+				stop: 'Stop oogsten',
+				description: 'Status-score van deze rekening op de NEM-cloud',
 				remoteHarvest: {
-					activate: 'Activate delegated harvesting',
-					activating: 'Activating delegated harvesting...',
-					active: 'Delegated harvesting is active',
-					deactivate: 'Deactivate delegated harvesting',
-					deactivating: 'Deactivating delegated harvesting...',
-					startRemoteHarvesting: 'Start delegated harvesting',
-					remotelyHarvesting: 'Harvesten op afstand',
-					stopRemoteHarvesting: 'Stop delegated harvesting'
+					title: 'Delegated harvesting',
+					activate: 'Activeer gedelegeerd oogsten',
+					activating: 'Activeren van gedelegeerd oogsten...',
+					active: 'Gedelegeerd oogsten is geactiveerd',
+					deactivate: 'Deactiveer gedelegeerd oogsten',
+					deactivating: 'Deactiveren van gedelegeerd oogsten...',
+					startRemoteHarvesting: 'Start gedelegeerd oogsten',
+					remotelyHarvesting: 'Oogsten op afstand',
+					stopRemoteHarvesting: 'Stop gedelegeerd oogsten',
+					multisigInfo: 'Activation or deactivation of a delegated harvesting for a multisig account must be done from one of cosignatory accounts',
+
 				}
 			},
 			transactions: {
 				title: 'Recente Transacties',
 				sendNem: 'Verstuur XEM',
-				signMultisig: 'SIGN',
+				signMultisig: 'SIGNEER',
 				balance: 'Huidige balans',
-				loading: 'Loading balance',
-				accountCosignatories: 'Multisig account',
-				accountCosignatoriesView: 'view cosignatories',
-				vestedBalance: 'Vested Balance',
-				syncStatus: '(bij block {{1}}{{#2}} : ong. {{3}} dagen achter{{/2}})',
-				notSynced: 'might be inaccurate, NIS not synchronized yet',
+				loading: 'Laden van balans',
+				accountCosignatories: 'Multisig rekening',
+				accountCosignatoriesView: 'bekijk gezamenlijke ondertekenaars',
+				vestedBalance: 'Verworven Balans',
+				syncStatus: '(bij blok {{1}}{{#2}} : ong. {{3}} dagen achter{{/2}})',
+				notSynced: 'zou onjuist kunnen zijn, NIS is nog niet gesynchroniseerd',
 				unknown: 'onbekend',
 				columns: [
 					'',
@@ -644,9 +659,9 @@ define({
 				encrypted: 'Bericht is beveiligd',
 				view: 'Bekijk',
 				confirmationsUnknown: 'Onbekend',
-				pending: 'Wachtend',
+				pending: 'In afwachting',
 				seeAll: 'Bekijk alle transacties',
-				noTransactions: 'Nog geen transacties zijn uitgevoerd'
+				noTransactions: 'Er zijn nog geen transacties uitgevoerd'
 			},
 			nemValue: {
 				title: 'XEM statistieken'
@@ -657,7 +672,7 @@ define({
 			news: {
 				titleTooltip: 'Nieuws'
 			},
-			notAvailable: 'Nog niet beschikbaar in deze release'
+			notAvailable: 'Nog niet beschikbaar bij test versie'
 		},
 		transactions: {
 			title: 'Transacties',
@@ -685,50 +700,50 @@ define({
 				encrypted: 'Bericht is versleuteld',
 				view: 'Bekijk',
 				confirmationsUnknown: 'Onbekend',
-				pending: 'Wachtend',
-				noTransactions: 'Nog geen transacties zijn uitgevoerd',
+				pending: 'In afwachting',
+				noTransactions: 'Er zijn nog geen transacties uitgevoerd',
 				loading: 'Meer transacties laden...'
 			}
 		},
 		harvestedBlocks: {
-			title: 'Geharveste Blocks',
-			feeEarned: 'Toeslagen verdiend van de laatste 25 geharveste blocks',
-			unknown: 'Unknown',
+			title: 'Geoogste Blokken',
+			feeEarned: 'Toeslagen verdient van de laatste 25 geoogste blokken',
+			unknown: 'Onbekend',
 			table: {
 				columns: [
-					'Blockhoogte',
+					'Blokhoogte',
 					'Tijd',
-					'Block difficulty',
+					'Moeilijkheid blok',
 					'Toeslag'
 				],
-				noBlocks: 'Geen geharveste blocks ',
-				loading: 'Bekijk oudere blocks die geharvest zijn'
+				noBlocks: 'Geen geoogste blokken',
+				loading: 'Bekijk blokken die voorafgaand geoogst zijn'
 			},
 			harvesting: {
 				unknown: 'Onbekende status',
-				start: 'Start harvesten',
-				harvesting: 'Harvesten',
-				stop: 'Stop harvesten',
+				start: 'Start oogsten',
+				harvesting: 'Oogsten',
+				stop: 'Stop oogsten',
 				remoteHarvest: {
-					startRemoteHarvesting: 'Start delegated harvesting',
-					stopRemoteHarvesting: 'Stop delegated harvesting'
+					startRemoteHarvesting: 'Start gedelegeerd oogsten',
+					stopRemoteHarvesting: 'Stop gedelegeerd oogsten'
 				}
 			}
 		},
 		addressBook: {
-			title: 'Address book',
-			addContact: 'Add contact',
+			title: 'Adresboek',
+			addContact: 'Voeg contact toe',
 			table: {
 				columns: [
-					'Account adres',
-					'Prive Label',
-					'Publieke Label'
+					'Adres van rekening',
+					'Prive label',
+					'Publiek Label'
 				],
-				noContacts: 'Er staan geen contacten in je adresboek'
+				noContacts: 'Er staan geen contacten in uw adresboek'
 			},
 			noLabel: 'Geen label',
 			sendNem: 'Verstuur XEM',
-			edit: 'Edit',
+			edit: 'Aanpassen',
 			remove: 'Verwijderen'
 		},
 		settings: {

@@ -10,11 +10,11 @@ NCC Packages
 There are two NCC maven packages:
 
 - nem-client-api: Contains all NCC functionality as well as the web UX.
-- nem-client-download: Used by WebStart to download NCC and NIS.
+- nem-monitor: Monitors NCC and local NIS, provides visual feedback on actual status of those apps.
 
-If the maven goal "install" is processed, a JNLP file is generated, all dependent libs are signed with the 
-self-signed certificate which is included in the project. This will be replaced by an official CA-authority certificate in
-the near future.
+There two more packages
+- nem-client-download: Used by WebStart to download NCC and NIS. (deprecated, switched to installer version)
+- nem-console: A command-line tool providing utility functionality.
 
 Building
 --------
@@ -25,16 +25,21 @@ nem.core documentation can be found [here](http://bob.nem.ninja/org.nem.core/)
 Running NCC Locally
 -------------------
 
-In order to run the client with full functionality, a NEM Infrastructure Server (NIS) instance should be running on the local machine.
+In order to run the client with full functionality, a NEM Infrastructure Server (NIS) instance should be running 
+on the local machine.
 
 The NCC client can be started by running the org.nem.deploy.CommonStarter class.
 
-For debugging purposes, it is recommended to turn off WebStart functionality by setting nem.isWebStart to false in the config.properties file.
+The monitor programm is started via org.nem.monitor.NemMonitor
 
 NCC REST API
 ------------
 
-The original version of the NCC REST API can be found [here](docs/api.md).
+The NCC API is available as a swagger.json file [here](docs/ncc-api-swagger.json). 
+
+A rendered version is available [here](http://nem.pucchiwerk.eu/ncc/api/). 
+
+(The deprecated version of the NCC REST API can be found [here](docs/api.md)).
 
 Generating JavaDoc Documentation
 --------------------------------

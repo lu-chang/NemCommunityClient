@@ -74,7 +74,7 @@
 							<input type="text" class="form-input form-input--textbox" value="{{settings.nisBootInfo.nodeName}}" />
 						</div>
 						<div class="form-field">
-							<p class="form-label">{{texts.modals.settings.autoBoot.account}}</p>
+							<p class="form-label">{{texts.common.account}}</p>
 							<div class="form-dropdownbox">
 								<input class="form-input form-input--textbox form-dropdownbox-textbox {{#bootAccountDropdownActive}}form-dropdownbox-textbox--selecting{{/}} js-settingsModal-account-textbox" on-focus="set('bootAccountDropdownActive', true)" on-blur="set('bootAccountDropdownActive', false)" value="{{displayedAccount}}" />
 								<ul class="form-dropdownbox-dropdown {{^bootAccountDropdownActive}}hidden{{/}}">
@@ -104,10 +104,11 @@
 						<div class="form-field">
 							<p class="form-label">{{.label.content}}</p>
 							{{#.type === 'text' || .type === 'password'}}
-								<input type="{{.type}}" class="form-input form-input--textbox {{#unimportant}}form-input--unimportant{{/}}" readonly="{{.readonly}}" value="{{values[.name]}}" on-keyup="inputKeyup" />
+
+								<input type="{{.type}}" id="{{.name}}" class="form-input form-input--textbox {{#if (!!isValid && !isValid()) }}form-input--error{{/if}} {{#unimportant}}form-input--unimportant{{/}}" readonly="{{.readonly}}" value="{{values[.name]}}" on-keyup="inputKeyup" />
 							{{/}}
 							{{#.type === 'textarea'}}
-								<textarea class="form-input {{#unimportant}}form-input--unimportant{{/}}" readonly="{{.readonly}}" value="{{values[.name]}}"></textarea>
+								<textarea id="{{.name}}" class="form-input form-input--textarea {{#unimportant}}form-input--unimportant{{/}}" readonly="{{.readonly}}" value="{{values[.name]}}"></textarea>
 							{{/}}
 							{{#.sublabel}}
 								<p class="form-sublabel {{#nullContent}}form-sublabel-nullContent{{/}}">
@@ -150,7 +151,7 @@
 					<img src="images/sad-face.png" alt="Sadly"/>
 				</div>
 				<h1 class="errorModal-title">{{texts.modals.error.title}}</h1>
-				<p class="errorModal-caption"><em>{{fill(texts.modals.error.caption, errorId)}}</em></p>
+				<p class="errorModal-caption"><em>{{fill && fill(texts.modals.error.caption, errorId)}}</em></p>
 				<p class="errorModal-message">{{message}}</p>
 			</errorModal>
 
@@ -159,7 +160,7 @@
 					<img src="images/happy-face.png" alt="Happy"/>
 				</div>
 				<h1 class="yikesModal-title">{{texts.modals.yikes.title}}</h1>
-				<p class="yikesModal-caption"><em>{{fill(texts.modals.yikes.caption, errorId)}}</em></p>
+				<p class="yikesModal-caption"><em>{{fill && fill(texts.modals.yikes.caption, errorId)}}</em></p>
 				<p class="yikesModal-message">{{message}}</p>
 			</yikesModal>
 		</script>
@@ -174,7 +175,7 @@
 						{{>content}}
 					</div>
 					{{^noCloseButton}}
-						<button type="button" class="modal-closeBtn icon-close-plain" on-click="closeModal()"></button>
+						<button type="button" class="modal-closeBtn icon-cancel-circled" on-click="closeModal()"></button>
 					{{/}}
 				</article>
 			</div>

@@ -112,7 +112,7 @@ public class TransactionControllerTest {
 		Mockito.when(context.connector.post(Mockito.any(), Mockito.any())).thenReturn(deserializer);
 
 		// Act:
-		context.controller.remoteUnlock(context.harvestRequest);
+		context.controller.delegatedActivate(context.harvestRequest);
 
 		// Assert:
 		Mockito.verify(context.transactionMapper, Mockito.times(1)).toModel(context.harvestRequest, ImportanceTransferMode.Activate);
@@ -128,7 +128,7 @@ public class TransactionControllerTest {
 		Mockito.when(context.connector.post(Mockito.any(), Mockito.any())).thenReturn(deserializer);
 
 		// Act:
-		context.controller.remoteUnlock(context.harvestRequest);
+		context.controller.delegatedActivate(context.harvestRequest);
 
 		final ArgumentCaptor<HttpPostRequest> requestCaptor = ArgumentCaptor.forClass(HttpPostRequest.class);
 		Mockito.verify(context.connector, Mockito.times(1)).post(Mockito.eq(NisApiId.NIS_REST_TRANSACTION_ANNOUNCE), requestCaptor.capture());
@@ -152,7 +152,7 @@ public class TransactionControllerTest {
 		Mockito.when(context.connector.post(Mockito.any(), Mockito.any())).thenReturn(deserializer);
 
 		// Act:
-		context.controller.remoteLock(context.harvestRequest);
+		context.controller.delegatedDeactivate(context.harvestRequest);
 
 		final ArgumentCaptor<HttpPostRequest> requestCaptor = ArgumentCaptor.forClass(HttpPostRequest.class);
 		Mockito.verify(context.connector, Mockito.times(1)).post(Mockito.eq(NisApiId.NIS_REST_TRANSACTION_ANNOUNCE), requestCaptor.capture());

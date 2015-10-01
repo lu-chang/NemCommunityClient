@@ -1,0 +1,21 @@
+{{#transaction}}
+    <tr>
+        <td class="table-cell table-cell--label">
+            {{texts.modals.transactionDetails.remote}}
+        </td>
+        <td class="table-cell table-cell--content">
+            {{#if (.real.activationType === 'Activate')}}
+            <a class="hyperlink--default" href="javascript:;" on-click="viewAccount(.real.remote)">
+                {{.real.activationType}}
+                {{#if privateLabels[.real.remote]}}
+                {{privateLabels[.real.remote]}}
+                {{else}}
+                {{.real.formattedRemote}}
+                {{/if}}
+            </a>
+            {{else}}
+                {{.real.activationType}}
+            {{/if}}
+        </td>
+    </tr>
+{{/}}

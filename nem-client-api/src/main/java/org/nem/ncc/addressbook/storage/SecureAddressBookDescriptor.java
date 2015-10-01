@@ -33,6 +33,11 @@ public class SecureAddressBookDescriptor
 	}
 
 	@Override
+	public String getAddressBookLocation() {
+		return this.getDescriptor().getAddressBookLocation();
+	}
+
+	@Override
 	protected StorableEntityStorageException getException(final int value, final Exception ex) {
 		return null == ex
 				? new AddressBookStorageException(value + AddressBookStorageException.OFFSET)

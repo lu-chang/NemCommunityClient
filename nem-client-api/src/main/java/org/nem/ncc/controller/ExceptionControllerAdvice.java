@@ -107,7 +107,7 @@ public class ExceptionControllerAdvice {
 		// treat all expected NCC exceptions as BAD_REQUEST
 		return new ResponseEntity<>(
 				new ErrorResponse(this.timeProvider.getCurrentTime(), code.toString(), code.value()),
-				org.springframework.http.HttpStatus.BAD_REQUEST);
+				asSpringHttpStatus(HttpStatus.BAD_REQUEST));
 	}
 
 	/**
@@ -118,7 +118,12 @@ public class ExceptionControllerAdvice {
 	 * @return The response entity.
 	 */
 	private ResponseEntity<ErrorResponse> createResponse(final Exception e, final HttpStatus status) {
-		return new ResponseEntity<>(new ErrorResponse(this.timeProvider.getCurrentTime(), e, status),
-				org.springframework.http.HttpStatus.valueOf(status.value()));
+		return new ResponseEntity<>(
+				new ErrorResponse(this.timeProvider.getCurrentTime(), e, status),
+				asSpringHttpStatus(status));
+	}
+
+	private static org.springframework.http.HttpStatus asSpringHttpStatus(final HttpStatus status) {
+		return org.springframework.http.HttpStatus.valueOf(status.value());
 	}
 }

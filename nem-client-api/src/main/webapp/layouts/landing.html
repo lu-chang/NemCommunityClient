@@ -12,15 +12,15 @@
 				<a href="javascript:;" on-click="openModal('settings')"><strong>{{texts.landing.nav.settings}}</strong></a>
 			</li>
 			<li class="scrollHeader-nav-item">
-				<a href="javascript:;" on-click="toggleOn('landing-languageDropdown')">
+				<a href="javascript:;" on-click="toggleOn('landingLanguageDropdown')">
 					{{#languages}}
 						{{# .id === settings.language}}
 							{{.name}}
 						{{/}}
 					{{/}}
-					<span class="icon-arrow-down-thin"></span>
+					<span class="icon-down-open"></span>
 				</a>
-				<ul class="scrollHeader-languageDropdown {{# active['landing-languageDropdown'] && landingPage.scrollHeader}}active{{/}}">
+				<ul class="scrollHeader-languageDropdown {{# active.landingLanguageDropdown && landingPage.scrollHeader}}active{{/}}">
 					{{#languages}}
 						<li class="scrollHeader-languageDropdown-item" on-click="switchLanguage:{{.id}}">{{.name}}</li>
 					{{/}}
@@ -58,7 +58,7 @@
 					<button class="ctaButton ctaButton-createWallet {{#landingPage.activeSection === 'left'}}ctaButton--active{{/}}" on-click="switchLeft">{{texts.landing.main.leftButton}}</button>
 					<div class="ctaSection-form createWalletForm expandable">
 						<div class="js-expand-content createWalletForm-content">
-							<input class="createWalletForm-textbox {{#lcwNameValid}}createWalletForm-textbox--valid{{/}} js-textbox-createWallet-name" type="text" placeholder="{{texts.landing.main.walletNamePlh}}" value="{{landingPage.createWalletForm.wallet}}" on-keypress="createWalletKeypress" />
+							<input class="createWalletForm-textbox {{^lcwNameValid}}createWalletForm-textbox--invalid{{/}}{{#lcwNameValid}}createWalletForm-textbox--valid{{/}} js-textbox-createWallet-name" type="text" placeholder="{{texts.landing.main.walletNamePlh}}" value="{{landingPage.createWalletForm.wallet}}" on-keypress="createWalletKeypress" />
 							<input class="createWalletForm-textbox {{^lcwPasswordValid}}createWalletForm-textbox--invalid{{/}}{{#lcwPasswordValid}}createWalletForm-textbox--valid{{/}} createWalletForm-textbox" type="password" placeholder="{{texts.landing.main.passwordPlh}}" value="{{landingPage.createWalletForm.password}}" on-keypress="createWalletKeypress" />
 							<input class="createWalletForm-textbox {{^lcwConfirmPasswordValid}}createWalletForm-textbox--invalid{{/}}{{#lcwConfirmPasswordValid}}createWalletForm-textbox--valid{{/}} createWalletForm-textbox" type="password" placeholder="{{texts.landing.main.confirmPasswordPlh}}" value="{{landingPage.confirmPassword}}" on-keypress="createWalletKeypress" />
 							<div class="createWalletForm-submit">
@@ -105,7 +105,7 @@
 											<label class="openWalletList-label" for="openWallet-wallet{{i}}" on-click="walletSelected">{{wallet}}</label>
 											<div class="openWalletList-passwordPrompt">
 												<input class="openWalletList-password" type="password" placeholder="{{texts.landing.main.passwordPlh}}" value="{{landingPage.openWalletPasswords[.wallet]}}" on-keypress="passwordKeypress:{{.wallet}}" />
-                                                <input class="openWalletList-submitButton landing-submitButton" type="button" on-click="openExistingWallet(.wallet)" value="{{texts.landing.main.openButton}}" disabled="{{!landingPage.openWalletPasswords[.wallet]}}"/>
+                                                <input class="openWalletList-submitButton landing-submitButton" type="button" on-click="openExistingWallet(.wallet)" value="{{texts.landing.main.openButton}}" disabled="{{landingPage.openWalletPasswords && !landingPage.openWalletPasswords[.wallet]}}"/>
 											</div>
 										</li>
 									{{/wallets}}
@@ -140,15 +140,15 @@
 							<a href="javascript:;" on-click="openModal('settings')">{{texts.landing.nav.settings}}</a>
 						</li>
 						<li class="staticHeader-nav-item">
-							<a href="javascript:;" on-click="toggleOn('landing-languageDropdown')">
+							<a href="javascript:;" on-click="toggleOn('landingLanguageDropdown')">
 								{{#languages}}
 									{{# .id === settings.language}}
 										{{.name}}
 									{{/}}
 								{{/}}
-								<span class="icon-arrow-down-thin"></span>
+								<span class="icon-down-open"></span>
 							</a>
-							<ul class="staticHeader-languageDropdown {{# active['landing-languageDropdown'] && !landingPage.scrollHeader}}active{{/}}">
+							<ul class="staticHeader-languageDropdown {{# active.landingLanguageDropdown && !landingPage.scrollHeader}}active{{/}}">
 								{{#languages}}
 									<li class="staticHeader-languageDropdown-item" on-click="switchLanguage:{{.id}}">{{.name}}</li>
 								{{/}}
@@ -162,7 +162,7 @@
 	</div>
 	<div id="tipsCarousel">
 		<div class="tipsCarousel-container container">
-			<a href="javascript:;" class="tipsCarousel-button tipsCarousel-button--prev icon-arrow-left buttons prev"></a>
+			<a href="javascript:;" class="tipsCarousel-button tipsCarousel-button--prev icon-left-dir buttons prev"></a>
 			<div class="tipsCarousel-viewport viewport">
 				{{#texts.landing.carousel}}
 					<ul class="tipsCarousel-overview overview">
@@ -177,7 +177,7 @@
 					</ul>
 				{{/}}
 			</div>
-			<a href="javascript:;" class="tipsCarousel-button tipsCarousel-button--next icon-arrow-right buttons next"></a>
+			<a href="javascript:;" class="tipsCarousel-button tipsCarousel-button--next icon-right-dir buttons next"></a>
 		</div>
 	</div>
 	<section id="landingAbout">
@@ -221,10 +221,21 @@
 		<div class="landing-footer-social">
 			<div class="vmiddle-container">
 				<div class="landing-socialLinks vmiddle">
-					<a href="https://plus.google.com/111473125648226690421/about" class="landing-socialLinks-icon landing-socialLinks-googlePlus"></a>
-					<a href="https://www.facebook.com/ourNEM" class="landing-socialLinks-icon landing-socialLinks-facebook"></a>
-					<a href="https://twitter.com/NEMofficial" class="landing-socialLinks-icon landing-socialLinks-twitter"></a>
-					<a href="http://www.reddit.com/r/nem/" class="landing-socialLinks-icon landing-socialLinks-reddit"></a>
+					<a href="https://plus.google.com/111473125648226690421/about" class="landing-socialLinks-icon">
+                        <i class="icon-gplus-squared"></i>
+                    </a>
+					<a href="https://www.facebook.com/ourNEM" class="landing-socialLinks-icon">
+                        <i class="icon-facebook-squared"></i>
+                    </a>
+					<a href="https://twitter.com/NEMofficial" class="landing-socialLinks-icon">
+                        <i class="icon-twitter-squared"></i>
+                    </a>
+					<a href="http://www.reddit.com/r/ournem/" class="landing-socialLinks-icon">
+                        <i class="icon-reddit-squared"></i>
+                    </a>
+                    <a href="https://github.com/NewEconomyMovement/" class="landing-socialLinks-icon">
+                        <i class="icon-github-squared"></i>
+                    </a>
 				</div>
 			</div>
 		</div>

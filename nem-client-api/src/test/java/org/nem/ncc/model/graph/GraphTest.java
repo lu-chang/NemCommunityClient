@@ -29,11 +29,11 @@ public class GraphTest {
 		final GraphEdge edge = GraphUtils.createGraphEdge(node1, node2);
 
 		// Act
-		final Graph graph = new Graph(Arrays.asList(node1, node2), Arrays.asList(edge));
+		final Graph graph = new Graph(Arrays.asList(node1, node2), Collections.singletonList(edge));
 
 		// Assert:
 		Assert.assertThat(graph.getNodes(), IsEquivalent.equivalentTo(Arrays.asList(node1, node2)));
-		Assert.assertThat(graph.getEdges(), IsEquivalent.equivalentTo(Arrays.asList(edge)));
+		Assert.assertThat(graph.getEdges(), IsEquivalent.equivalentTo(Collections.singletonList(edge)));
 	}
 
 	// endregion
@@ -67,7 +67,7 @@ public class GraphTest {
 		graph.addEdge(edge);
 
 		// Assert:
-		Assert.assertThat(graph.getEdges(), IsEquivalent.equivalentTo(Arrays.asList(edge)));
+		Assert.assertThat(graph.getEdges(), IsEquivalent.equivalentTo(Collections.singletonList(edge)));
 	}
 
 	// endregion
@@ -80,7 +80,7 @@ public class GraphTest {
 		final GraphNode node1 = GraphUtils.createGraphNode();
 		final GraphNode node2 = GraphUtils.createGraphNode();
 		final GraphEdge edge = GraphUtils.createGraphEdge(node1, node2);
-		final Graph originalGraph = new Graph(Arrays.asList(node1, node2), Arrays.asList(edge));
+		final Graph originalGraph = new Graph(Arrays.asList(node1, node2), Collections.singletonList(edge));
 
 		// Act
 		final Deserializer deserializer = Utils.roundtripSerializableEntity(originalGraph, null);

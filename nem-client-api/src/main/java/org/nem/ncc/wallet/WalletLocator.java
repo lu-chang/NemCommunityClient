@@ -14,5 +14,5 @@ public interface WalletLocator {
 	 *
 	 * @return A list of all wallet descriptors.
 	 */
-	public List<WalletDescriptor> getAllWallets();
+	List<WalletDescriptor> getAllWallets();
 }

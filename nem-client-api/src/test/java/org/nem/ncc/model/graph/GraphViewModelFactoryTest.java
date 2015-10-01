@@ -114,7 +114,7 @@ public class GraphViewModelFactoryTest {
 	@Test
 	public void buildGraphReturnsCorrectGraphViewModelForUrlListConsistingOfA11() {
 		// Arrange
-		final List<NodeEndpoint> endpoints = Arrays.asList(NodeEndpoint.fromHost("127.0.0.11"));
+		final List<NodeEndpoint> endpoints = Collections.singletonList(NodeEndpoint.fromHost("127.0.0.11"));
 		final TestContext context = new TestContext(endpoints);
 		final GraphViewModelFactory factory = new GraphViewModelFactory();
 
@@ -138,7 +138,7 @@ public class GraphViewModelFactoryTest {
 	@Test
 	public void buildGraphReturnsCorrectGraphViewModelForUrlListConsistingOfA12() {
 		// Arrange
-		final List<NodeEndpoint> endpoints = Arrays.asList(NodeEndpoint.fromHost("127.0.0.12"));
+		final List<NodeEndpoint> endpoints = Collections.singletonList(NodeEndpoint.fromHost("127.0.0.12"));
 		final TestContext context = new TestContext(endpoints);
 		final GraphViewModelFactory factory = new GraphViewModelFactory();
 
@@ -148,7 +148,7 @@ public class GraphViewModelFactoryTest {
 		final Set<GraphNode> expectedNodes = Collections.newSetFromMap(new ConcurrentHashMap<>());
 		expectedNodes.addAll(this.getGraphNodes(Arrays.asList(1, 2)));
 		final Set<GraphEdge> expectedEdges = Collections.newSetFromMap(new ConcurrentHashMap<>());
-		expectedEdges.addAll(this.getGraphEdges(Arrays.asList(6)));
+		expectedEdges.addAll(this.getGraphEdges(Collections.singletonList(6)));
 		final Graph expectedGraph = new Graph(expectedNodes, expectedEdges);
 		final Collection<GraphNodeMetaData> expectedGraphNodeMetaData = this.getGraphNodeMetaData(Arrays.asList(1, 2));
 		final GraphMetaData expectedGraphMetaData = new GraphMetaData();
@@ -221,7 +221,7 @@ public class GraphViewModelFactoryTest {
 
 	private void assertCreateViewModelReturnsCorrectGraphViewModel(final boolean useConstructedEndpoints) {
 		// Arrange
-		final List<NodeEndpoint> endpoints = Arrays.asList(NodeEndpoint.fromHost("127.0.0.1"));
+		final List<NodeEndpoint> endpoints = Collections.singletonList(NodeEndpoint.fromHost("127.0.0.1"));
 		final TestContext context = new TestContext(endpoints);
 		final GraphViewModelFactory factory = new GraphViewModelFactory();
 
@@ -328,19 +328,19 @@ public class GraphViewModelFactoryTest {
 			this.addNodeWithNeighbors(
 					"127.0.0.1",
 					Arrays.asList(createNode("127.0.0.11"), createNode("127.0.0.13")),
-					Arrays.asList(createNode("127.0.0.14")));
+					Collections.singletonList(createNode("127.0.0.14")));
 
 			// A11
 			this.addNodeWithNeighbors(
 					"127.0.0.11",
 					Arrays.asList(createNode("127.0.0.12"), createNode("127.0.0.13")),
-					Arrays.asList(createNode("127.0.0.15")));
+					Collections.singletonList(createNode("127.0.0.15")));
 
 			// A12
-			this.addNodeWithNeighbors("127.0.0.12", Arrays.asList(createNode("127.0.0.11")), Arrays.asList());
+			this.addNodeWithNeighbors("127.0.0.12", Collections.singletonList(createNode("127.0.0.11")), Collections.emptyList());
 
 			// A13
-			this.addNodeWithNeighbors("127.0.0.13", Arrays.asList(createNode("127.0.0.1")), Arrays.asList());
+			this.addNodeWithNeighbors("127.0.0.13", Collections.singletonList(createNode("127.0.0.1")), Collections.emptyList());
 
 			// I14
 			this.addNodeWithoutNeighbors("127.0.0.14");

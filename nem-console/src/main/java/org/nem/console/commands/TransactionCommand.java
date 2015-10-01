@@ -5,7 +5,6 @@ import org.nem.console.models.AliasedKeyPair;
 import org.nem.console.utils.*;
 import org.nem.core.crypto.*;
 import org.nem.core.model.*;
-import org.nem.core.model.primitive.BlockHeight;
 import org.nem.core.time.TimeInstant;
 import org.nem.core.utils.HexEncoder;
 
@@ -91,7 +90,8 @@ public abstract class TransactionCommand implements Command {
 	}
 
 	private static void prepareAndSign(final Transaction transaction) {
-		transaction.setFee(TransactionFeeCalculator.calculateMinimumFee(transaction, BlockHeight.MAX));
+		final DefaultTransactionFeeCalculator calculator = new DefaultTransactionFeeCalculator();
+		transaction.setFee(calculator.calculateMinimumFee(transaction));
 		transaction.setDeadline(transaction.getTimeStamp().addHours(12));
 		transaction.sign();
 	}

@@ -2,11 +2,10 @@ package org.nem.specific.deploy.appconfig;
 
 import org.nem.core.connect.*;
 import org.nem.core.connect.client.AsyncNisConnector;
-import org.nem.deploy.*;
 import org.nem.core.metadata.ApplicationMetaData;
 import org.nem.core.model.NetworkInfos;
 import org.nem.core.time.TimeProvider;
-import org.nem.specific.deploy.NccConfigurationPolicy;
+import org.nem.deploy.*;
 import org.nem.ncc.*;
 import org.nem.ncc.addressbook.*;
 import org.nem.ncc.addressbook.storage.SecureAddressBookDescriptorFactory;
@@ -17,10 +16,11 @@ import org.nem.ncc.services.*;
 import org.nem.ncc.time.synchronization.NccTimeSynchronizer;
 import org.nem.ncc.wallet.*;
 import org.nem.ncc.wallet.storage.SecureWalletDescriptorFactory;
+import org.nem.specific.deploy.NccConfigurationPolicy;
 import org.springframework.context.annotation.*;
 
 import java.io.File;
-import java.util.Arrays;
+import java.util.Collections;
 
 /**
  * Class supplying Spring beans.
@@ -91,7 +91,7 @@ public class NccAppConfig {
 	public NccScheduler nccScheduler() {
 		final NccScheduler scheduler = new NccScheduler(this.timeProvider());
 		scheduler.addTimeSynchronizationTask(new NccTimeSynchronizer(this.timeSynchronizationServices(), this.timeProvider(), this.primaryNisConnector()));
-		scheduler.addAccountCacheUpdateTask(this.accountCache());
+		scheduler.addAccountCacheUpdateTask(this.accountCache(), this.accountsFileRepository());
 		return scheduler;
 	}
 
@@ -120,6 +120,17 @@ public class NccAppConfig {
 				this.walletServices(),
 				this.accountLookup(),
 				this.timeProvider());
+	}
+
+	@Bean
+	public VersionServices versionServices() {
+		final int CONNECTION_TIMEOUT = 2000;
+		final int SOCKET_TIMEOUT = 2000;
+		final int REQUEST_TIMEOUT = 4000;
+		return new VersionServices(
+				new VersionProvider(new HttpMethodClient<>(CONNECTION_TIMEOUT, SOCKET_TIMEOUT, REQUEST_TIMEOUT)),
+				this.timeProvider()
+		);
 	}
 
 	@Bean
@@ -172,8 +183,7 @@ public class NccAppConfig {
 
 	@Bean
 	public WalletServices walletServices() {
-		final WalletRepository walletRepository = new AutoFallbackRepository(Arrays.asList(
-				new BinaryWalletRepository()));
+		final WalletRepository walletRepository = new AutoFallbackRepository(Collections.singletonList(new BinaryWalletRepository()));
 
 		return new DefaultWalletServices(
 				walletRepository,

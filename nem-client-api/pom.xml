@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.nem.ncc</groupId>
     <artifactId>nem-client-api</artifactId>
-    <version>0.6.27-BETA</version>
+    <version>0.6.56-BETA</version>
     <name>NEM Community Client - NCC</name>
 
     <organization>
@@ -31,9 +31,9 @@
         <nem-code-base>http://bob.nem.ninja/webstart</nem-code-base>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- http://central.maven.org/maven2/org/eclipse/jetty/jetty-maven-plugin/ -->
-        <jetty.version>9.2.9.v20150224</jetty.version>
+        <jetty.version>9.2.11.v20150529</jetty.version>
         <spring.version>4.0.0.RELEASE</spring.version>
-        <nemcore.version>0.6.27-BETA</nemcore.version>
+        <nemcore.version>0.6.56-BETA</nemcore.version>
     </properties>
 
     <dependencies>
@@ -185,9 +185,11 @@
             </plugins>
         </pluginManagement>
         <resources>
+            <!--
             <resource>
                 <directory>${project.basedir}/src/main/webapp</directory>
             </resource>
+            -->
             <resource>
                 <directory>${project.basedir}/src/main/resources</directory>
             </resource>
@@ -210,6 +212,29 @@
                             <overWriteSnapshots>false</overWriteSnapshots>
                             <overWriteIfNewer>true</overWriteIfNewer>
                             <includeScope>runtime</includeScope>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.7</version>
+                <executions>
+                    <execution>
+                        <id>copy-web-resources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/web</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/webapp</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>
                         </configuration>
                     </execution>
                 </executions>

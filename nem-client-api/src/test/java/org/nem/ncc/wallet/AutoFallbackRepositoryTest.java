@@ -6,7 +6,7 @@ import org.mockito.Mockito;
 import org.nem.ncc.test.ExceptionAssert;
 import org.nem.ncc.wallet.storage.*;
 
-import java.util.Arrays;
+import java.util.*;
 
 public class AutoFallbackRepositoryTest {
 
@@ -16,14 +16,14 @@ public class AutoFallbackRepositoryTest {
 	public void cannotBeCreatedAroundZeroRepositories() {
 		// Assert:
 		ExceptionAssert.assertThrows(v -> new AutoFallbackRepository(null), IllegalArgumentException.class);
-		ExceptionAssert.assertThrows(v -> new AutoFallbackRepository(Arrays.asList()), IllegalArgumentException.class);
+		ExceptionAssert.assertThrows(v -> new AutoFallbackRepository(Collections.emptyList()), IllegalArgumentException.class);
 	}
 
 	@Test
 	public void canCreatedAroundSingleChildRepository() {
 		// Act:
 		final WalletRepository childRepository1 = Mockito.mock(WalletRepository.class);
-		new AutoFallbackRepository(Arrays.asList(childRepository1));
+		new AutoFallbackRepository(Collections.singletonList(childRepository1));
 	}
 
 	@Test

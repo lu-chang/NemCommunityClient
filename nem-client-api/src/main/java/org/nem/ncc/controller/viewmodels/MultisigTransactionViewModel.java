@@ -20,43 +20,52 @@ public class MultisigTransactionViewModel extends TransactionViewModel {
 	private final Hash innerTransactionHash;
 	private final Address issuer;
 
-	public MultisigTransactionViewModel(final TransactionMetaDataPair metaDataPair, final AccountMetaDataPair relativeAccoundData, final BlockHeight lastBlockHeight) {
+	private static Type innerTypeToViewModelType(final int innerType) {
+		switch (innerType) {
+			case TransactionTypes.MULTISIG_AGGREGATE_MODIFICATION:
+				return Type.Multisig_Aggregate_Modification;
+			case TransactionTypes.IMPORTANCE_TRANSFER:
+				return Type.Multisig_Importance_Transfer;
+			case TransactionTypes.TRANSFER:
+				return Type.Multisig_Transfer;
+			case TransactionTypes.PROVISION_NAMESPACE:
+				return Type.Multisig_Provision_Namespace;
+			case TransactionTypes.MOSAIC_DEFINITION_CREATION:
+				return Type.Multisig_Mosaic_Creation;
+			case TransactionTypes.MOSAIC_SUPPLY_CHANGE:
+				return Type.Multisig_Mosaic_Supply;
+			default:
+				return Type.Unknown;
+		}
+	}
 
-		super(((MultisigTransaction)metaDataPair.getTransaction()).getOtherTransaction().getType() == TransactionTypes.MULTISIG_AGGREGATE_MODIFICATION ?
-						Type.Multisig_Multisig_Modification :
-						Type.Multisig_Transfer,
+	public MultisigTransactionViewModel(final TransactionMetaDataPair metaDataPair, final AccountMetaDataPair relativeAccountData, final BlockHeight lastBlockHeight) {
+
+		super(innerTypeToViewModelType(((MultisigTransaction)metaDataPair.getEntity()).getOtherTransaction().getType()),
 				metaDataPair,
 				lastBlockHeight);
-		final MultisigTransaction multisigTransaction = (MultisigTransaction)metaDataPair.getTransaction();
+		final MultisigTransaction multisigTransaction = (MultisigTransaction)metaDataPair.getEntity();
 		final Transaction other = multisigTransaction.getOtherTransaction();
-		final Address relativeAccountAddress = relativeAccoundData.getAccount().getAddress();
+		final Address relativeAccountAddress = relativeAccountData.getEntity().getAddress();
 		final TransactionMetaData innerMetaData = metaDataPair.getMetaData() == null
 				? null
 				: new TransactionMetaData(metaDataPair.getMetaData().getHeight(), 0L, Hash.ZERO);
 
 		this.issuer = multisigTransaction.getSigner().getAddress();
 
-		if (other.getType() == TransactionTypes.TRANSFER) {
-			this.otherTransactionViewModel = new TransferTransactionViewModel(
-					new TransactionMetaDataPair(other, innerMetaData), relativeAccountAddress, lastBlockHeight);
-		} else if (other.getType() == TransactionTypes.MULTISIG_AGGREGATE_MODIFICATION) {
-			this.otherTransactionViewModel = new MultisigAggregateViewModel(
-					new TransactionMetaDataPair(other, innerMetaData), lastBlockHeight);
-		} else {
-			throw new IllegalArgumentException("MultisigTransactionViewModel can handle only Transfers at the moment");
-		}
+		final TransactionMetaDataPair innerMetaDataPair = new TransactionMetaDataPair(other, innerMetaData);
+		this.otherTransactionViewModel = TransactionToViewModelMapper.map(innerMetaDataPair, relativeAccountAddress, lastBlockHeight);
 
 		this.innerTransactionHash = multisigTransaction.getOtherTransactionHash();
 		this.signatureViewModel = multisigTransaction.getCosignerSignatures().stream()
 				.map(t -> new MultisigSignatureViewModel(new TransactionMetaDataPair(t, innerMetaData), lastBlockHeight))
 				.collect(Collectors.toList());
 
-		// TODO 20150131 J-G: accound -> account
-		this.requiresSignature = this.requiresSignature(metaDataPair, relativeAccountAddress, relativeAccoundData);
+		this.requiresSignature = this.requiresSignature(metaDataPair, relativeAccountAddress, relativeAccountData);
 	}
 
 	private int requiresSignature(final TransactionMetaDataPair metaDataPair, final Address relativeAccountAddress, final AccountMetaDataPair relativeAccoundData) {
-		final MultisigTransaction multisigTransaction = (MultisigTransaction)metaDataPair.getTransaction();
+		final MultisigTransaction multisigTransaction = (MultisigTransaction)metaDataPair.getEntity();
 		if (metaDataPair.getMetaData() != null) {
 			return 0;
 		}

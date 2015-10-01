@@ -5,7 +5,7 @@ import org.junit.*;
 import org.mockito.Mockito;
 import org.nem.core.time.TimeProvider;
 import org.nem.core.utils.ExceptionUtils;
-import org.nem.ncc.cache.NccAccountCache;
+import org.nem.ncc.cache.*;
 import org.nem.ncc.time.synchronization.NccTimeSynchronizer;
 
 public class NccSchedulerTest {
@@ -39,7 +39,7 @@ public class NccSchedulerTest {
 		// Arrange:
 		try (final NccScheduler scheduler = new NccScheduler(Mockito.mock(TimeProvider.class))) {
 			// Act:
-			scheduler.addAccountCacheUpdateTask(Mockito.mock(NccAccountCache.class));
+			scheduler.addAccountCacheUpdateTask(Mockito.mock(NccAccountCache.class), Mockito.mock(AccountsFileRepository.class));
 
 			// Assert:
 			Assert.assertThat(scheduler.getNumScheduledTimers(), IsEqual.equalTo(1));
@@ -77,6 +77,6 @@ public class NccSchedulerTest {
 
 	private static void addAllTasks(final NccScheduler scheduler) {
 		scheduler.addTimeSynchronizationTask(Mockito.mock(NccTimeSynchronizer.class));
-		scheduler.addAccountCacheUpdateTask(Mockito.mock(NccAccountCache.class));
+		scheduler.addAccountCacheUpdateTask(Mockito.mock(NccAccountCache.class), Mockito.mock(AccountsFileRepository.class));
 	}
 }

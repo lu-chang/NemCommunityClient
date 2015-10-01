@@ -46,6 +46,9 @@
 .dimmed {
 	color: #d1d1d1;
 }
+.sort-inactive:before {
+	color: #d1d1d1;
+}
 
 .variation {
 	@include inline-block();
@@ -167,6 +170,10 @@ $bulletTab-hoverBgColor: #f0f0f0;
 	}
 }
 
+.neutral {
+	color: #f1c40f;
+}
+
 .encryptedIcon {
 	color: #f1c40f;
 }
@@ -258,6 +265,14 @@ $form-input-hPadding: 12px;
 	&.form-input--error {
 		border-color: #c0392b;
 	}
+
+	&.form-input--strike {
+	    text-decoration:line-through;
+	}
+}
+
+#signedToken.form-input--textarea {
+    height: 6em;
 }
 
 .form-input-end {
@@ -760,6 +775,7 @@ $modal-transitionDuration: .3s;
 	$bgColor: #41ce7d;
 	background-color: $bgColor;
 	margin-right: 10px;
+	margin-bottom: 10px;
 
 	&:hover {
 		background-color: lighten($bgColor, 15%);

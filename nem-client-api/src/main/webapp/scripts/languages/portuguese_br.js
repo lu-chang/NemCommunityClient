@@ -44,30 +44,31 @@ define({
 			601: 'O NIS já foi inicializado.',
 			602: 'Quase pronto. O cliente NEM está carregando os blocos. A carteira se tornará funcional quando tiver o banco de dados completamente carregado.',
 			699: 'O número de máximo de colheitadores no servidor foi atingido.',
-			700: 'Falha na colheita. Geralmente esse problema está relacionado com o saldo de NEMs na conta. Para colheitar são necessários,  pelo menos, 1000 XEMs.',
-			701: 'O prazo final fornecido está no passado. O prazo limite deve estar dentro do período de um dia.',
-			702: 'O prazo final fornecido está no futuro. O prazo limite deve estar dentro do período de um dia.',
-			703: 'A sua conta não tem o saldo suficiente para realizar essa transação.',
-			704: 'Texto muito longo. Por favor, reduza o tamanho da mensagem.',
-			705: 'O Hash de transação já existe no banco de dados, na lista de transações não confirmadas.',
-			706: 'A assinatura da transação não pôde ser verificada.',
-			707: 'A data da ID de transação está muito no passado.',
-			708: 'A data da ID de transação está muito no futuro.',
-			709: 'Conta desconhecida, Por favor, faça uma transação para conseguir uma chave pública.',
-			710: 'A transação foi rejeitada pois o cache está muito cheio. Aumentando a taxa de transação, aumenta a possibilidade dessa transação  ser aceita.',
-			730: 'Transação de transferência de importância (Colheita delegada) conflita com uma transação existente.',
-			731: 'A conta de colheita segura não possue saldo igual a zero e não pode ser utilizada.',
-			732: 'Transferencia de importância foi rejeitada. Já existe uma operação de transferencia de importancia em andamento.',
-			733: 'Colheita delegada já está ativa.',
-			734: 'Colheita delegada NÃO está ativa e não pode ser desativada.',
-			740: 'Não é permitido transação para contas Multisig.',
-			741: 'Assinatura Multisig rejeitada. A conta atual não é uma conta consignatária de uma conta tipo Multisig.',
-			742: 'Assinatura de transação de conta Multisig rejeitada. Transaçao Multisig associada não é reconhecida pela rede Nem.',
-			743: 'Modificação de conta do tipo Multisig foi rejeitada. Uma das contas adicionadas já é consignatária.',
+			700: 'Falha na colheita. Geralmente esse problema está relacionado com o saldo de NEMs na conta. Para colheitar são necessários,  pelo menos, 10000 adquirido XEMs.',
 			901: 'Erro na configuração do modo off-line.',
 			1000: 'Chave privada e pública não combinam.',
 			1001: 'Chave publica e endereço não combinam.',
-			1002: 'O endereço não pertence a rede principal de peers.'
+			1002: 'O endereço não pertence a rede principal de peers.',
+			1203: 'O prazo final fornecido está no passado. O prazo limite deve estar dentro do período de um dia.',
+			1204: 'O prazo final fornecido está no futuro. O prazo limite deve estar dentro do período de um dia.',
+			1205: 'A sua conta não tem o saldo suficiente para realizar essa transação.',
+			1206: 'Texto muito longo. Por favor, reduza o tamanho da mensagem.',
+			1207: 'O Hash de transação já existe no banco de dados, na lista de transações não confirmadas.',
+			1208: 'A assinatura da transação não pôde ser verificada.',
+			1209: 'A data da ID de transação está muito no passado.',
+			1210: 'A data da ID de transação está muito no futuro.',
+			1219: 'A transação foi rejeitada pois o cache está muito cheio. Aumentando a taxa de transação, aumenta a possibilidade dessa transação  ser aceita.',
+			1262: 'A conta de colheita segura não possue saldo igual a zero e não pode ser utilizada.',
+			1263: 'Transferencia de importância foi rejeitada. Já existe uma operação de transferencia de importancia em andamento.',
+			1264: 'Colheita delegada já está ativa.',
+			1265: 'Colheita delegada NÃO está ativa e não pode ser desativada.',
+			1266: 'Transação de transferência de importância (Colheita delegada) conflita com uma transação existente.',
+			1271: 'Assinatura Multisig rejeitada. A conta atual não é uma conta consignatária de uma conta tipo Multisig.',
+			1273: 'Assinatura de transação de conta Multisig rejeitada. Transaçao Multisig associada não é reconhecida pela rede Nem.',
+			1274: 'Não é permitido transação para contas Multisig.',
+			1275: 'Modificação de conta do tipo Multisig foi rejeitada. Uma das contas adicionadas já é consignatária.',
+			1321: 'Conta desconhecida, Por favor, faça uma transação para conseguir uma chave pública.',
+
 		},
 		common: {
 			success: 'Successo',
@@ -101,26 +102,51 @@ define({
 			publicLabel: 'Identificação pública',
 			noCharge: 'A conta atual <b>NÃO</b> pode receber taxas de transações, uma conta do tipo Multisig a acoberta',
 			fee: 'Taxa',
+			multisigFee: 'Taxa Multisig',
+			useMinimumFee: 'Usar taxa minima',
+			feeValidation: 'A taxa de transação não deve ser inferior a taxa mínima',
 			justUse: 'Usar apenas',
 			dueBy: 'Tempo de espera',
+			minutes: 'minute(s)',
 			hours: 'hora(s)',
 			hoursDue: 'Tempo para desativar',
 			hoursDueExplanation: 'Se a transação não estiver incluida até a data limite, ela será rejeitada.',
-			closeButton: 'Close'
+			closeButton: 'Close',
+			cancelButton: 'Cancelar',
+			sendButton: 'Enviar',
+			account: 'Conta',
+			thisAccount: 'Esta conta',
+			warning: 'Aviso',
+			newBuild: 'NEW BUILD',
+			newBuildNumber: 'There is new build {{1}} available for download. Check <a class="hyperlink--default", href="http://blog.nem.io">blog.nem.io</a> for details',
+
 		},
-		transactionTypes: [
-			'TRANSAÇÕES DE VALORES',
-			'ITRANSFERENCIAS DE IMPORTANCIA',
-			'MODIFICAÇÃO DE UMA CONTA MULTISIG',
-			'TRANSAÇÃO MULTISIG'
-		],
+		transactionTypes: {
+			20: 'TRANSAÇÕES DE VALORES',
+			21: 'ITRANSFERENCIAS DE IMPORTANCIA',
+			22: 'MODIFICAÇÃO DE UMA CONTA MULTISIG',
+			23: 'PROVISION NAMESPACE',
+			24: 'MOSAIC CREATION',
+			25: 'MOSAIC SUPPLY',
+			40: 'MULTISIG SIGNATURE',
+			50: 'TRANSAÇÃO MULTISIG',
+			51: 'TRANSAÇÃO MULTISIG',
+			52: 'TRANSAÇÃO MULTISIG',
+			53: 'TRANSAÇÃO MULTISIG',
+			54: 'TRANSAÇÃO MULTISIG',
+			55: 'TRANSAÇÃO MULTISIG',
+
+		},
 		transactionDirections: {
 			pending: 'Pendente',
 			outgoing: 'Enviada',
 			incoming: 'Recebida',
 			self: 'Enviada para si mesmo',
 			importance: 'Transação de importância',
-			modification: 'Agregação de modificação Multisig'
+			modification: 'Agregação de modificação Multisig',
+			provision: 'Provision Namespace',
+			mosaicCreation: 'Mosaic Creation',
+			mosaicSupply: 'Mosaic Supply'
 		},
 		modals: {
 			error: {
@@ -161,12 +187,17 @@ define({
 				autoBoot: {
 					tabTitle: 'Inicialização automática',
 					name: 'Nome do nó',
-					account: 'Carteira',
 					primaryAccount: 'Conta primária',
 					auto: 'Inicialização automática quando abrir a carteira'
 				},
 				save: 'Salvar',
 				saveSuccess: 'As configurações foram salvas!'
+			},
+			signToken: {
+				title: "Sign a token using account",
+				label: "Token (url, string, anything)",
+				signature: "Signed token",
+				sign: "Sign"
 			},
 			multisig: {
 				title: 'Converter conta para Multisig',
@@ -175,17 +206,18 @@ define({
 				labelDesc: 'Esta conta está identificada como {{1}}',
 				nullLabelDesc: 'Esta conta não tem uma identificação',
 				addCosignatory: '+ Adicinar um consignatário',
-				cancel: 'Cancelar',
 				convert: 'Converter',
-				fee: 'Taxa',
-				feeValidation: 'A taxa de transação não deve ser inferior a taxa mínima',
-				useMinimumFee: 'Usar taxa minima',
 				txConfirm: {
 					title: 'Confirmar Conversão para conta Multisig',
 					total: 'Total',
 
 				},
-				warning: 'A conta do tipo Multisig está na lista dos consignatários. Isso resultará no corte de acesso ao dinheiro da conta. Muito provavelmente você <b>NÃO QUER</b> fazer isso.'
+				warning: 'A conta do tipo Multisig está na lista dos consignatários. Isso resultará no corte de acesso ao dinheiro da conta. Muito provavelmente você <b>NÃO QUER</b> fazer isso.',
+				minCosignatoriesDefaultLabel: 'Use default cosignatories number',
+				minCosignatoriesRelativeLabel: 'relative change',
+				minCosignatoriesLabel: 'Minimum number of cosignatories',
+				minCosignatoriesZero: 'Using zero would cause all cosignatories to be required',
+				minCosignatoriesOverflow: 'Specified number is larger than number of cosignatories'
 			},
 			signMultisig: {
 				title: 'Assinar transação Multisig',
@@ -199,15 +231,8 @@ define({
 				multisigFees: 'Taxas Multisig',
 				multisigTotal: 'Total',
 				sender: 'Cosignatário',
-				fee: 'Taxa',
-				feeValidation: 'A taxa de transação não deve ser inferior a taxa mínima',
-				useMinimumFee: 'Usar taxa minima',
-				password: 'Senha',
 				passwordValidation: 'A senha não deve ser vazia',
-				send: 'Enviar',
-				cancel: 'Cancelar',
 				sending: 'Enviando...',
-				successMessage: 'A transação foi enviada!',
 				txConfirm: {
 					title: 'Confirmar transação Multisig',
 					message: 'Mensagem',
@@ -227,16 +252,8 @@ define({
 				recipientValidation: 'Endereços de contas devem ter pelo menos 40 caracteres, excluindo o caractere - .',
 				message: 'Mensagem',
 				encrypt: 'Criptografar mensagem',
-				fee: 'Taxa',
-				multisigFee: 'Taxa Multisig',
-				feeValidation: 'A taxa de transação não deve ser inferior a taxa mínima',
-				useMinimumFee: 'Usar taxa minima',
-				password: 'Senha',
-				passwordValidation: 'A senha não deve ser vazia',
-				send: 'Enviar',
-				cancel: 'Cancelar',
 				sending: 'Enviando...',
-				successMessage: 'A transação foi enviada!',
+				successMessage: 'Your transaction has been sent successfully! <br><br>Transaction hash: {{1}}',
 				txConfirm: {
 					title: 'Confirmar Transação',
 					amount: 'Quantidade',
@@ -245,7 +262,6 @@ define({
 					message: 'Mensagem',
 					encrypted: 'Mensagem está criptografada',
 					noMessage: 'Sem mensagem',
-					cancel: 'Cancelar',
 					confirm: 'Confirmar',
 					sending: 'Enviando...'
 				},
@@ -296,14 +312,25 @@ define({
 				confirmations: 'Confirmações',
 				confirmationsUnknown: 'Desconhecida(o)',
 				amount: 'Quantidade',
-				fee: 'Taxa',
 				innerFee: 'Taxas internas',
 				multisigFees: 'Taxas Multisig',
-				cosignatory: 'Cosignatário'
+				cosignatory: 'Cosignatário',
+				namespace: 'Namespace',
+				rentalFee: 'Rental fee',
+				mosaicName: 'Mosaic Name',
+				description: 'Description',
+				propertiesLabel: 'Properties',
+				properties: {
+					divisibility: 'Divisibility',
+					quantity: 'Maximal quantity',
+					mutablequantity: 'Is quantity mutable',
+					transferable: 'Is transferable'
+				},
+				supplyType: 'Supply type',
+				supplyAmount: 'Supply amount'
 			},
 			accountDetails: {
 				title: 'Account details',
-				address: 'Endereço',
 				label: 'Identificação',
 				noLabel: 'Sem identificação',
 				add: 'Adicionar ao arquivo de contatos',
@@ -313,8 +340,7 @@ define({
 				importance: 'Importancia',
 				publicKey: 'Chave Publica',
 				noPublicKey: 'Sem chave públida',
-				harvestedBlocks: 'Blocos colheitados',
-				close: 'Fechar'
+				harvestedBlocks: 'Blocos colheitados'
 			},
 			bootLocalNode: {
 				title: 'Inicializar nó local',
@@ -337,7 +363,6 @@ define({
 				title: 'Criar nova conta',
 				label: 'Identificação',
 				wallet: 'Carteira',
-				password: 'Senha',
 				successMessage: 'A conta {{1}} {{#2}}({{2}}){{/2}} foi criada! Por favor, guarde uma cópia em um local seguro.',
 				create: 'Criar'
 			},
@@ -350,14 +375,13 @@ define({
 			},
 			showRemotePrivateKey: {
 				title: 'Mostrar a chave PRIVADA da conta remota',
-			message: 'Será exibido a chave privada da conta remota na tela, como texto. No caso de qualquer tipo de infecção digital presente no sistema, essa ação poderá  ser perigosa. Você tem certeza que você quer mesmo fazer isso?',
+				message: 'Será exibido a chave privada da conta remota na tela, como texto. No caso de qualquer tipo de infecção digital presente no sistema, essa ação poderá  ser perigosa. Você tem certeza que você quer mesmo fazer isso?',
 
 			},
 			addAccount: {
 				title: 'Adicionar uma Carteira existente',
 				privateKey: 'Chave privada',
 				wallet: 'Carteira',
-				password: 'Senha',
 				successMessage: 'A conta {{1}} {{#2}}({{2}}){{/2}} foi criada! Por favor, realize um backup e guarde-o em local seguro!',
 				add: 'Criar',
 				label: 'Identificação'
@@ -367,7 +391,6 @@ define({
 				account: 'Conta que será definida como primária',
 				noLabel: '<span class=\'null\'>&lt;Sem identificação&gt;</span>',
 				wallet: 'Carteira',
-				password: 'Senha',
 				successMessage: 'Conta {{1}} {{#2}}({{2}}){{/2}} foi definida como primária!',
 				set: 'Definir como conta primária'
 			},
@@ -375,7 +398,6 @@ define({
 				title: 'Renomear Carteira',
 				wallet: 'Nome atual',
 				newName: 'Novo nome',
-				password: 'Senha',
 				successMessage: 'O nome <em>{{1}}</em> foi alterado para <em>{{2}}</em>',
 				change: 'Renomear'
 			},
@@ -394,16 +416,13 @@ define({
 				title: 'Trocar identificação da conta',
 				label: 'Nova identificação',
 				wallet: 'Carteira',
-				password: 'Senha',
 				successMessage: 'A Identificação {{1}} foi alterada para {{2}}',
 				change: 'Trocar'
 			},
 			removeAccount: {
 				title: 'Remover conta',
-				account: 'Conta',
 				label: 'Nova identificação',
 				wallet: 'Carteira',
-				password: 'Senha',
 				warning: 'Esta operacao não pode ser desfeita.',
 				successMessage: 'A conta {{1}} {{#2}}({{2}}){{/2}} foi removida!',
 				remove: 'Remover'
@@ -416,36 +435,29 @@ define({
 				title: 'Fechar programa',
 				message: 'Tem certeza que quer fechar o programa (NCC)?'
 			},
-			activateRemote: {
+			activateDelegated: {
 				title: 'Ativar colheita delegada',
 				wallet: 'Carteira',
-				account: 'Conta',
-				password: 'Senha',
 				activate: 'Ativar',
-				warning: 'Aviso',
-				warningText: 'A ativação leverá 6 houras (360 blocos). A ativação não vaiiniciar automaticamente a colheita.'
+				warningText: 'A ativação leverá 6 houras (360 blocos). A ativação não vaiiniciar automaticamente a colheita.',
+				delegatedAccount: 'Delegated account public key',
+				builtIn: 'built into the wallet',
+
 			},
-			deactivateRemote: {
+			deactivateDelegated: {
 				title: 'Desativar colheita delegada',
 				wallet: 'Carteira',
-				account: 'Conta',
-				password: 'Senha',
 				deactivate: 'Desativar',
-				warning: 'Aviso',
 				warningText: 'A Desativação levará 6 houras (360 blocos).'
 			},
 			startRemote: {
 				title: 'Começar colheita delegada',
 				wallet: 'Carteira',
-				account: 'Conta',
-				password: 'Senha',
 				start: 'Iniciar'
 			},
 			stopRemote: {
 				title: 'Parar colheita delegada',
 				wallet: 'Carteira',
-				account: 'Conta',
-				password: 'Senha',
 				stop: 'Parar'
 			},
 			logoutWarning: {
@@ -607,6 +619,7 @@ define({
 				stop: 'Parar colheita local',
 				description: 'Importância para a nuvem de peers',
 				remoteHarvest: {
+					title: 'Colheita Delegada',
 					activate: 'Ativar colheita delegada',
 					activating: 'Ativando a colheita delegada...',
 					active: 'A colheita delegada está ativa',
@@ -614,7 +627,9 @@ define({
 					deactivating: 'Desativando a colheita delegada...',
 					startRemoteHarvesting: 'Iniciar a colheita delegada',
 					remotelyHarvesting: 'Colheitando remotamente!',
-					stopRemoteHarvesting: 'Parar a colheita delegada'
+					stopRemoteHarvesting: 'Parar a colheita delegada',
+					multisigInfo: 'Activation or deactivation of a delegated harvesting for a multisig account must be done from one of cosignatory accounts',
+
 				}
 			},
 			transactions: {

@@ -1,0 +1,36 @@
+{{#transaction}}
+    {{#.real.minCosignatories.relativeChange}}
+        {{#if .confirmed}}
+            <tr>
+                <td class="table-cell table-cell--label">{{texts.modals.multisig.minCosignatoriesLabel}}</td>
+                <td class="table-cell table-cell--content">
+                    {{.real.minCosignatories.relativeChange}}
+                    ({{texts.modals.multisig.minCosignatoriesRelativeLabel}})
+                </td>
+            </tr>
+        {{else}}
+            <tr>
+                <td class="table-cell table-cell--label">{{texts.modals.multisig.minCosignatoriesLabel}}</td>
+                <td class="table-cell table-cell--content">
+                    {{.real.minCosignatories.oldMin}} -> {{.real.minCosignatories.newMin}}
+                </td>
+            </tr>
+        {{/if}}
+    {{/}}
+    {{#each .modifications}}
+    <tr>
+        <td class="table-cell table-cell--label">{{texts.modals.transactionDetails.cosignatory}}
+            {{.type}}
+        </td>
+        <td class="table-cell table-cell--content">
+            <a class="hyperlink--default" href="javascript:;" on-click="viewAccount(.address)">
+                {{#if privateLabels[.address]}}
+                {{privateLabels[.address]}}
+                {{else}}
+                {{.address}}
+                {{/if}}
+            </a>
+        </td>
+    </tr>
+    {{/each}}
+{{/}}

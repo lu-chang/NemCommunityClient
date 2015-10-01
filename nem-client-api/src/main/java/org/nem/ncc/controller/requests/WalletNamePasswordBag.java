@@ -68,4 +68,14 @@ public class WalletNamePasswordBag extends WalletNamePasswordPair {
 		final String label = this.deserializer.readOptionalString("label");
 		return null == label ? "" : label;
 	}
+
+	/**
+	 * Gets the token if it was specified.
+	 *
+	 * @return The token.
+	 */
+	public String getToken() {
+		final String token = this.deserializer.readOptionalString("token", 1024);
+		return null == token ? "" : token;
+	}
 }

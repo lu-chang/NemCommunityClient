@@ -4,11 +4,13 @@ import org.hamcrest.core.*;
 import org.junit.*;
 import org.mockito.Mockito;
 import org.nem.ncc.exceptions.NccException;
+import org.nem.ncc.storable.entity.storage.StorableEntityReadMode;
 import org.nem.ncc.test.*;
 import org.nem.ncc.wallet.*;
 import org.nem.ncc.wallet.storage.*;
 
-import java.util.Arrays;
+import java.io.*;
+import java.util.Collections;
 
 public class DefaultWalletServicesTest {
 	private static final WalletFileExtension FILE_EXTENSION = new WalletFileExtension();
@@ -94,7 +96,7 @@ public class DefaultWalletServicesTest {
 		Assert.assertThat(wallet.getName(), IsEqual.equalTo(context.originalWallet.getName()));
 		Assert.assertThat(
 				context.walletServices.getOpenWalletNames(),
-				IsEquivalent.equivalentTo(Arrays.asList(context.originalWallet.getName())));
+				IsEquivalent.equivalentTo(Collections.singletonList(context.originalWallet.getName())));
 		Mockito.verify(context.descriptorFactory, Mockito.times(1)).openExisting(context.pair, FILE_EXTENSION);
 		Mockito.verify(context.repository, Mockito.times(1)).load(context.descriptor);
 	}
@@ -111,7 +113,7 @@ public class DefaultWalletServicesTest {
 		// Assert:
 		Assert.assertThat(
 				context.walletServices.getOpenWalletNames(),
-				IsEquivalent.equivalentTo(Arrays.asList(context.originalWallet.getName())));
+				IsEquivalent.equivalentTo(Collections.singletonList(context.originalWallet.getName())));
 		Assert.assertThat(wallet.getName(), IsEqual.equalTo(context.originalWallet.getName()));
 		Mockito.verify(context.descriptorFactory, Mockito.times(2)).openExisting(context.pair, FILE_EXTENSION);
 		Mockito.verify(context.repository, Mockito.times(2)).load(context.descriptor);
@@ -159,7 +161,7 @@ public class DefaultWalletServicesTest {
 		// Assert:
 		Assert.assertThat(
 				context.walletServices.getOpenWalletNames(),
-				IsEquivalent.equivalentTo(Arrays.asList(context.originalWallet.getName())));
+				IsEquivalent.equivalentTo(Collections.singletonList(context.originalWallet.getName())));
 		Assert.assertThat(wallet.getName(), IsEqual.equalTo(context.originalWallet.getName()));
 		Mockito.verify(context.descriptorFactory, Mockito.times(1)).createNew(context.pair, FILE_EXTENSION);
 		Mockito.verify(context.repository, Mockito.times(0)).load(context.descriptor);
@@ -244,7 +246,6 @@ public class DefaultWalletServicesTest {
 		// TODO BR: Fix this
 		//Mockito.verify(context.repository, Mockito.times(1)).save(descriptor2, updatedWallet);
 		Mockito.verify(context.repository, Mockito.times(1)).save(Mockito.any(), Mockito.any());
-		Mockito.verify(context.repository, Mockito.times(1)).save(Mockito.any(), Mockito.any());
 
 		// - the original wallet is deleted
 		Mockito.verify(context.descriptor, Mockito.times(1)).delete();
@@ -274,7 +275,6 @@ public class DefaultWalletServicesTest {
 		Assert.assertThat(updatedWallet.getName(), IsEqual.equalTo(new WalletName("n")));
 		// TODO BR: Fix this
 		//Mockito.verify(context.repository, Mockito.times(1)).save(descriptor2, updatedWallet);
-		Mockito.verify(context.repository, Mockito.times(1)).save(Mockito.any(), Mockito.any());
 		Mockito.verify(context.repository, Mockito.times(1)).save(Mockito.any(), Mockito.any());
 
 		// - nothing is deleted
@@ -306,7 +306,6 @@ public class DefaultWalletServicesTest {
 		// TODO BR: Fix this
 		//Mockito.verify(context.repository, Mockito.times(1)).save(descriptor2, updatedWallet);
 		Mockito.verify(context.repository, Mockito.times(1)).save(Mockito.any(), Mockito.any());
-		Mockito.verify(context.repository, Mockito.times(1)).save(Mockito.any(), Mockito.any());
 
 		// - the original wallet is deleted
 		Mockito.verify(context.descriptor, Mockito.times(1)).delete();
@@ -337,7 +336,6 @@ public class DefaultWalletServicesTest {
 		Assert.assertThat(updatedWallet.getName(), IsEqual.equalTo(new WalletName("n2")));
 		// TODO BR: Fix this
 		//Mockito.verify(context.repository, Mockito.times(1)).save(descriptor2, updatedWallet);
-		Mockito.verify(context.repository, Mockito.times(1)).save(Mockito.any(), Mockito.any());
 		Mockito.verify(context.repository, Mockito.times(1)).save(Mockito.any(), Mockito.any());
 
 		// - the original wallet is deleted
@@ -381,6 +379,42 @@ public class DefaultWalletServicesTest {
 		final Wallet updatedWallet = context.walletServices.get(new WalletName("n2"));
 		Assert.assertThat(updatedWallet.getPrimaryAccount(), IsEqual.equalTo(context.originalWallet.getPrimaryAccount()));
 		Assert.assertThat(updatedWallet.getOtherAccounts(), IsEquivalent.equivalentTo(context.originalWallet.getOtherAccounts()));
+	}
+
+	//endregion
+
+	//region copyTo
+
+	@Test
+	public void copyToDelegatesToDescriptorFactoryAndUsesReturnedDescriptor() {
+		// Arrange:
+		final TestContext context = new TestContext();
+		final WalletNamePasswordPair pair = createPair("n", "p");
+		final OutputStream outputStream = Mockito.mock(OutputStream.class);
+		Mockito.when(context.descriptor.openRead(StorableEntityReadMode.Raw)).thenReturn(new ByteArrayInputStream("test".getBytes()));
+
+		// Act:
+		context.walletServices.copyTo(pair, outputStream);
+
+		// Assert:
+		Mockito.verify(context.descriptorFactory, Mockito.only()).openExisting(pair, new WalletFileExtension());
+		Mockito.verify(context.descriptor, Mockito.only()).openRead(StorableEntityReadMode.Raw);
+	}
+
+	@Test
+	public void copyToCopiesBytesToGivenOutputStream() {
+		// Arrange:
+		final TestContext context = new TestContext();
+		final WalletNamePasswordPair pair = createPair("n", "p");
+		final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+		Mockito.when(context.descriptor.openRead(StorableEntityReadMode.Raw)).thenReturn(new ByteArrayInputStream("test".getBytes()));
+
+		// Act:
+		context.walletServices.copyTo(pair, outputStream);
+
+		// Assert:
+		Assert.assertThat(outputStream.size(), IsEqual.equalTo(4));
+		Assert.assertThat(outputStream.toString(), IsEqual.equalTo("test"));
 	}
 
 	//endregion

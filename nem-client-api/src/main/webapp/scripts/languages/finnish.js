@@ -44,30 +44,31 @@ define({
 			601: 'NIS on jo käynnistetty uudelleen.',
 			602: 'Melkein valmista. NIS lataa lohkoja. Lompakko on käytettävissä, kun tietokanta on täysin ladattu.',
 			699: 'Louhijoiden maksimimäärä palvelimella on saavutettu.',
-			700: 'Louhintaa ei voida aloittaa. Toiminto on mahdollista, kun tilisi saldo on vähintään 1000 XEM.',
-			701: 'Aikaraja on ylitetty. Aikaraja on oltava yhden päivän sisällä.',
-			702: 'Valittu aikaraja on liian kaukana tulevaisuudessa. Aikaraja täytyy olla yhden päivän sisällä.',
-			703: 'Tilisi saldo ei ole oikea tälle siirrolle.',
-			704: 'Teksti on liian pitkä lähetettäväksi siirron mukana. Yritä lyhentää viestiä.',
-			705: 'Hash on jo tietokannassa tai siirtoja on vahvistamatta.',
-			706: 'Siirron allekirjoitusta ei voida varmistaa.',
-			707: 'Siirron aikamerkintä on liian kaukana menneisyydessä.',
-			708: 'Siirron aikamerkintä on liian kaukana tulevaisuudessa.',
-			709: 'Tili on tuntematon. Tilin täytyy olla tehnyt ainakin yksi siirto (joko lähettäjänä tai vastaanottajana), jotta se voidaan tunnistaa verkossa.',
-			710: 'Siirtoa ei hyväksytty, koska siirtojen välimuisti on täynnä. Korkeampi palkkio parantaaa mahdollisuutta siirron hyväksymiseen.',
-			730: 'Merkityksen siirto (valtuutettu louhinta) on ristiriidassa olemassa olevan siirron kanssa.',
-			731: 'Valtuutetulla louhintatilillä ei ole saldoa, joten sitä ei voida käyttää.',
-			732: 'Siirtoa ei hyväksytty, viivästynyt siirto on vielä käynnissä.',
-			733: 'Valtuutettu louhinta on jo käytössä.',
-			734: 'Ei voida deaktivoida, koska valtuutettu louhinta ei ole käytössä.',
-			740: 'Siirtoa ei sallita multisig-tilille.',
-			741: 'Multisig allekirjoitettu siirto hylättiin. Nykyinen tili ei ole multisig-tilin allekirjoittaja.',
-			742: 'Multisig allekirjoitettu siirto hylättiin. Allekirjoittajakumppania ei tunneta NEM verkossa.',
-			743: 'Multisig-tilin muutos hylätty. Yksi lisätty tili on jo allekirjoittaja.',
+			700: 'Louhintaa ei voida aloittaa. Toiminto on mahdollista, kun tilisi saldo on vähintään 10000 louhittu XEM.',
 			901: 'Offline-moden käynnistyksessä tapahtui virhe.',
 			1000: 'Private key ja public key eivät vastaa toisiaan.',
 			1001: 'Public key ja osoite eivät vastaa toisiaan.',
-			1002: 'Osoite ei kuulu varsinaiseen verkkoon.'
+			1002: 'Osoite ei kuulu varsinaiseen verkkoon.',
+			1203: 'Aikaraja on ylitetty. Aikaraja on oltava yhden päivän sisällä.',
+			1204: 'Valittu aikaraja on liian kaukana tulevaisuudessa. Aikaraja täytyy olla yhden päivän sisällä.',
+			1205: 'Tilisi saldo ei ole oikea tälle siirrolle.',
+			1206: 'Teksti on liian pitkä lähetettäväksi siirron mukana. Yritä lyhentää viestiä.',
+			1207: 'Hash on jo tietokannassa tai siirtoja on vahvistamatta.',
+			1208: 'Siirron allekirjoitusta ei voida varmistaa.',
+			1209: 'Siirron aikamerkintä on liian kaukana menneisyydessä.',
+			1210: 'Siirron aikamerkintä on liian kaukana tulevaisuudessa.',
+			1219: 'Siirtoa ei hyväksytty, koska siirtojen välimuisti on täynnä. Korkeampi palkkio parantaaa mahdollisuutta siirron hyväksymiseen.',
+			1262: 'Valtuutetulla louhintatilillä ei ole saldoa, joten sitä ei voida käyttää.',
+			1263: 'Siirtoa ei hyväksytty, viivästynyt siirto on vielä käynnissä.',
+			1264: 'Valtuutettu louhinta on jo käytössä.',
+			1265: 'Ei voida deaktivoida, koska valtuutettu louhinta ei ole käytössä.',
+			1266: 'Merkityksen siirto (valtuutettu louhinta) on ristiriidassa olemassa olevan siirron kanssa.',
+			1271: 'Multisig allekirjoitettu siirto hylättiin. Nykyinen tili ei ole multisig-tilin allekirjoittaja.',
+			1273: 'Multisig allekirjoitettu siirto hylättiin. Allekirjoittajakumppania ei tunneta NEM verkossa.',
+			1274: 'Siirtoa ei sallita multisig-tilille.',
+			1275: 'Multisig-tilin muutos hylätty. Yksi lisätty tili on jo allekirjoittaja.',
+			1321: 'Tili on tuntematon. Tilin täytyy olla tehnyt ainakin yksi siirto (joko lähettäjänä tai vastaanottajana), jotta se voidaan tunnistaa verkossa.',
+
 		},
 		common: {
 			success: 'Onnistui',
@@ -101,26 +102,51 @@ define({
 			publicLabel: 'Julkinen merkintä',
 			noCharge: 'Olemassa olevaa tiliä <b>ei</b> veloiteta, se katetaan multisig-tililtä.',
 			fee: 'Palkkio',
+			multisigFee: 'Multisig-palkkio',
+			useMinimumFee: 'Käytä minimipalkkiota',
+			feeValidation: 'Palkkio ei voi olla minimipalkkiota pienempi.',
 			justUse: 'Käytä',
 			dueBy: 'Maksettava',
+			minutes: 'minute(s)',
 			hours: 'Tunnit',
 			hoursDue: 'Erääntyy (tunneissa)',
 			hoursDueExplanation: 'Siirto hylätään, jos sitä ei tehdä ennen erääntymistä.',
-			closeButton: 'Sulje'
+			closeButton: 'Sulje',
+			cancelButton: 'Peruuta',
+			sendButton: 'Lähetä',
+			account: 'Tili',
+			thisAccount: 'Tämä tili',
+			warning: 'Varoitus',
+			newBuild: 'NEW BUILD',
+			newBuildNumber: 'There is new build {{1}} available for download. Check <a class="hyperlink--default", href="http://blog.nem.io">blog.nem.io</a> for details',
+
 		},
-		transactionTypes: [
-			'SIIRTO LÄHETYS',
-			'IMPORTANCE LÄHETYS',
-			'MULTISIG TILIN MUOKKAUS',
-			'MULTISIG SIIRTO'
-		],
+		transactionTypes: {
+			20: 'SIIRTO LÄHETYS',
+			21: 'IMPORTANCE LÄHETYS',
+			22: 'MULTISIG TILIN MUOKKAUS',
+			23: 'PROVISION NAMESPACE',
+			24: 'MOSAIC CREATION',
+			25: 'MOSAIC SUPPLY',
+			40: 'MULTISIG SIGNATURE',
+			50: 'MULTISIG SIIRTO',
+			51: 'MULTISIG SIIRTO',
+			52: 'MULTISIG SIIRTO',
+			53: 'MULTISIG SIIRTO',
+			54: 'MULTISIG SIIRTO',
+			55: 'MULTISIG SIIRTO',
+
+		},
 		transactionDirections: {
 			pending: 'Vireillä oleva siirto',
 			outgoing: 'Lähtevä siirto',
 			incoming: 'Tuleva siirto',
 			self: 'Siirto itselle',
 			importance: 'Importance siirto',
-			modification: 'Multisig-tilin muokkaus'
+			modification: 'Multisig-tilin muokkaus',
+			provision: 'Provision Namespace',
+			mosaicCreation: 'Mosaic Creation',
+			mosaicSupply: 'Mosaic Supply'
 		},
 		modals: {
 			error: {
@@ -161,12 +187,17 @@ define({
 				autoBoot: {
 					tabTitle: 'Auto-boot',
 					name: 'Noden nimi',
-					account: 'Tili',
 					primaryAccount: 'Ensisijainen tili',
 					auto: 'Automaattinen uudelleenkäynnistys, kun lompakko on avattu'
 				},
 				save: 'Tallenna',
 				saveSuccess: 'Asetukset on tallennettu onnistuneesti'
+			},
+			signToken: {
+				title: "Sign a token using account",
+				label: "Token (url, string, anything)",
+				signature: "Signed token",
+				sign: "Sign"
 			},
 			multisig: {
 				title: 'Muunna tili multisig-tiliksi',
@@ -175,17 +206,18 @@ define({
 				labelDesc: 'Tämä tili on nimetty {{1}}',
 				nullLabelDesc: 'Tällä tilillä ei ole nimeä',
 				addCosignatory: '+ Lisää allekirjoittaja',
-				cancel: 'Peruuta',
 				convert: 'Muunna',
-				fee: 'Palkkio',
-				feeValidation: 'Palkkio ei voi olla minimipalkkiota pienempi',
-				useMinimumFee: 'Käytä minimipalkkiota',
 				txConfirm: {
 					title: 'Vahvista multisig-tilin muunto',
 					total: 'Yhteensä',
 
 				},
-				warning: 'Multisig-tili on allekirjoittajien listalla. Tämä aiheuttaa tilin lukkiutumisen ja estää pääsyn varoihin. Todennäköisesti <b>ET</b> halua tehdä sitä!'
+				warning: 'Multisig-tili on allekirjoittajien listalla. Tämä aiheuttaa tilin lukkiutumisen ja estää pääsyn varoihin. Todennäköisesti <b>ET</b> halua tehdä sitä!',
+				minCosignatoriesDefaultLabel: 'Use default cosignatories number',
+				minCosignatoriesRelativeLabel: 'relative change',
+				minCosignatoriesLabel: 'Minimum number of cosignatories',
+				minCosignatoriesZero: 'Using zero would cause all cosignatories to be required',
+				minCosignatoriesOverflow: 'Specified number is larger than number of cosignatories'
 			},
 			signMultisig: {
 				title: 'Allekirjoita multisig-siirto',
@@ -199,15 +231,8 @@ define({
 				multisigFees: 'Multisig-palkkiot',
 				multisigTotal: 'Yhteensä',
 				sender: 'Allekirjoittaja',
-				fee: 'Palkkio',
-				feeValidation: 'Palkkio ei voi olla minimipalkkiota pienempi',
-				useMinimumFee: 'Käytä minimipalkkiota',
-				password: 'Salasana',
 				passwordValidation: 'Salasanakenttä ei voi olla tyhjä',
-				send: 'Lähetä',
-				cancel: 'Peruuta',
 				sending: 'Lähetetään...',
-				successMessage: 'Siirto on suoritettu onnistuneesti!',
 				txConfirm: {
 					title: 'Vahvista multisig-siirto',
 					message: 'Viesti',
@@ -227,16 +252,8 @@ define({
 				recipientValidation: 'Tilin osoite on oltava 40 merkkiä pitkä (viivoja ei lasketa merkeiksi)',
 				message: 'Viesti',
 				encrypt: 'Salaa viesti',
-				fee: 'Palkkio',
-				multisigFee: 'Multisig-palkkio',
-				feeValidation: 'Palkkio ei voi olla minimipalkkiota pienempi.',
-				useMinimumFee: 'Käytä minimipalkkiota',
-				password: 'Salasana',
-				passwordValidation: 'Salasanakenttä ei voi olla tyhjä',
-				send: 'Lähetä',
-				cancel: 'Peruuta',
 				sending: 'Lähetetään...',
-				successMessage: 'Siirto on lähetetty onnistuneesti!',
+				successMessage: 'Your transaction has been sent successfully! <br><br>Transaction hash: {{1}}',
 				txConfirm: {
 					title: 'Vahvista siirto',
 					amount: 'Summa',
@@ -245,7 +262,6 @@ define({
 					message: 'Viesti',
 					encrypted: 'Viesti on salattu',
 					noMessage: 'Ei viestiä',
-					cancel: 'Peruuta',
 					confirm: 'Vahvista',
 					sending: 'Lähetetään...'
 				},
@@ -296,14 +312,25 @@ define({
 				confirmations: 'Vahvistuksia',
 				confirmationsUnknown: 'Tuntemaon',
 				amount: 'Summa',
-				fee: 'Palkkio',
 				innerFee: 'Sisäinen palkkio',
 				multisigFees: 'Multisig-palkkio',
-				cosignatory: 'Allekirjoittaja'
+				cosignatory: 'Allekirjoittaja',
+				namespace: 'Namespace',
+				rentalFee: 'Rental fee',
+				mosaicName: 'Mosaic Name',
+				description: 'Description',
+				propertiesLabel: 'Properties',
+				properties: {
+					divisibility: 'Divisibility',
+					quantity: 'Maximal quantity',
+					mutablequantity: 'Is quantity mutable',
+					transferable: 'Is transferable'
+				},
+				supplyType: 'Supply type',
+				supplyAmount: 'Supply amount'
 			},
 			accountDetails: {
 				title: 'Tilin tiedot',
-				address: 'Osoite',
 				label: 'Merkki',
 				noLabel: 'Ei merkkiä',
 				add: 'Lisää osoitekirjaan',
@@ -313,8 +340,7 @@ define({
 				importance: 'Merkitys',
 				publicKey: 'Julkinen avain',
 				noPublicKey: 'Ei julkista avainta',
-				harvestedBlocks: 'Louhitut lohkot',
-				close: 'Sulje'
+				harvestedBlocks: 'Louhitut lohkot'
 			},
 			bootLocalNode: {
 				title: 'Käynnistä local node uudelleen',
@@ -337,7 +363,6 @@ define({
 				title: 'Luo uusi lompakko',
 				label: 'Yksityinen merkintä',
 				wallet: 'Lompakko',
-				password: 'Lompakon salasana',
 				successMessage: 'Tili {{1}} {{#2}}({{2}}){{/2}} on luotu!',
 				create: 'Luo'
 			},
@@ -357,7 +382,6 @@ define({
 				title: 'Lisää olemassaoleva tili',
 				privateKey: 'Tilin Private Key',
 				wallet: 'Lompakko',
-				password: 'Lompakon salasana',
 				successMessage: 'Tili {{1}} {{#2}}({{2}}){{/2}} on lisätty lompakkoon!',
 				add: 'Lisää',
 				label: 'Merkki'
@@ -367,7 +391,6 @@ define({
 				account: 'Tili on asetettu ensisijaiseksi',
 				noLabel: '<span class=\'null\'>&lt;Ei merkkiä&gt;</span>',
 				wallet: 'Lompakko',
-				password: 'Lompakon salasana',
 				successMessage: 'Tili {{1}} {{#2}}({{2}}){{/2}} on asetettu ensisijaiseksi!',
 				set: 'Aseta ensisijaiseksi'
 			},
@@ -375,7 +398,6 @@ define({
 				title: 'Vaihda lompakon nimi',
 				wallet: 'Nykyisen lompakon nimi',
 				newName: 'Uusi lompakon nimi',
-				password: 'Lompakon salasana',
 				successMessage: 'Lompakon nimi on vaihdetttu onnistuneesti<em>{{1}}</em> - <em>{{2}}</em>',
 				change: 'Vaihda'
 			},
@@ -394,16 +416,13 @@ define({
 				title: 'Vaihda tilin nimi',
 				label: 'Tilin nimi',
 				wallet: 'Lompakko',
-				password: 'Lompakon salasana',
 				successMessage: 'Tili {{1}} on nimetty {{2}}',
 				change: 'Vaihda'
 			},
 			removeAccount: {
 				title: 'Poista tili',
-				account: 'Tili',
 				label: 'Tilin nimi',
 				wallet: 'Lompakko',
-				password: 'Lompakon salasana',
 				warning: 'Varmista, että tilisi on tyhjä ennen kuin poistat sen, tai muuten menetät kaikki tilille jääneet XEM:t.',
 				successMessage: 'Tili {{1}} {{#2}}({{2}}){{/2}} on poistettu',
 				remove: 'Poista'
@@ -416,36 +435,29 @@ define({
 				title: 'Sulje ohjelma',
 				message: 'Haluatko varmasti sulkea NEM Community Client -sovelluksen?'
 			},
-			activateRemote: {
+			activateDelegated: {
 				title: 'Aktivoi valtuutettu louhinta',
 				wallet: 'Lompakko',
-				account: 'Tili',
-				password: 'Lompakon salasana',
 				activate: 'Aktivoi',
-				warning: 'Varoitus',
-				warningText: 'Aktivointi kestää 6 tuntia (360 lohkoa). Aktivointi EI aloita louhintaa automaattisesti.'
+				warningText: 'Aktivointi kestää 6 tuntia (360 lohkoa). Aktivointi EI aloita louhintaa automaattisesti.',
+				delegatedAccount: 'Delegated account public key',
+				builtIn: 'built into the wallet',
+
 			},
-			deactivateRemote: {
+			deactivateDelegated: {
 				title: 'Deaktivoi valtuutettu louhinta',
 				wallet: 'Lompakko',
-				account: 'Tili',
-				password: 'Lompakon salasana',
 				deactivate: 'Katkaise yhteys',
-				warning: 'Varoitus',
 				warningText: 'Deaktivointi kestää 6 tuntia (360 lohkoa).'
 			},
 			startRemote: {
 				title: 'Käynnistä valtuutettu louhinta',
 				wallet: 'Lompakko',
-				account: 'Tili',
-				password: 'Lompakon salasana',
 				start: 'Käynnistä'
 			},
 			stopRemote: {
 				title: 'Lopeta valtuutettu louhinta',
 				wallet: 'Lompakko',
-				account: 'Tili',
-				password: 'Lompakon salasana',
 				stop: 'Pysäytä'
 			},
 			logoutWarning: {
@@ -607,6 +619,7 @@ define({
 				stop: 'Lopeta paikallinen louhinta',
 				description: 'Tilin merkitys NEM-cloud -palvelussa',
 				remoteHarvest: {
+					title: 'Valtuutettu louhinta',
 					activate: 'Aktivoi valtuutettu louhinta',
 					activating: 'Aktivoidaan valtuutettua louhintaa...',
 					active: 'Valtuutettu louhinta on aktiivinen',
@@ -614,7 +627,9 @@ define({
 					deactivating: 'Deaktivoidaan valtuutettua louhintaa...',
 					startRemoteHarvesting: 'Aloita valtuutettu louhinta',
 					remotelyHarvesting: 'Etälouhinta',
-					stopRemoteHarvesting: 'Lopeta valtuutettu louhinta'
+					stopRemoteHarvesting: 'Lopeta valtuutettu louhinta',
+					multisigInfo: 'Activation or deactivation of a delegated harvesting for a multisig account must be done from one of cosignatory accounts',
+
 				}
 			},
 			transactions: {

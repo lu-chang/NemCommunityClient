@@ -42,6 +42,11 @@ public class AddressBookFileDescriptor
 	}
 
 	@Override
+	public String getAddressBookLocation() {
+		return super.getStorableEntityLocation();
+	}
+
+	@Override
 	protected StorableEntityStorageException getException(final int value, final Exception ex) {
 		return null == ex
 				? new AddressBookStorageException(value + AddressBookStorageException.OFFSET)

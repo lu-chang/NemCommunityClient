@@ -46,9 +46,7 @@ public class JarNodeLauncher implements NodeLauncher {
 				"-cp",
 				Arrays.asList(".", "./*", "../libs/*").stream().collect(Collectors.joining(File.pathSeparator)),
 				"org.nem.deploy.CommonStarter"));
-		ExceptionUtils.propagateVoid(() -> {
-			this.launcher.launch(arguments, directory.toFile());
-		});
+		ExceptionUtils.propagateVoid(() -> this.launcher.launch(arguments, directory.toFile()));
 	}
 
 	private NodeConfiguration getNodeConfig(final NemNodeType nodeType) {

@@ -9,7 +9,7 @@ public class WalletException extends NccException {
 	/**
 	 * Wallet storage exception codes.
 	 */
-	public static enum Code implements ValueBasedEnum {
+	public enum Code implements ValueBasedEnum {
 		/**
 		 * An account can not be added to the wallet multiple times.
 		 */
@@ -27,7 +27,7 @@ public class WalletException extends NccException {
 
 		private final int value;
 
-		private Code(final int value) {
+		Code(final int value) {
 			this.value = value;
 		}
 

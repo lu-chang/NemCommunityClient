@@ -22,19 +22,23 @@ public class AccountViewModel implements SerializableEntity {
 	private final AccountStatus status;
 	private final List<AccountInfo> multisigAccounts;
 	private final List<AccountInfo> cosignatories;
+	private final PublicKey remotePublicKey;
 
 	/**
 	 * Creates a new account view model around an account metadata pair.
 	 *
 	 * @param accountMetaDataPair The account metadata pair.
 	 */
-	public AccountViewModel(final AccountMetaDataPair accountMetaDataPair) {
+	public AccountViewModel(
+			final AccountMetaDataPair accountMetaDataPair,
+			final PublicKey remotePublicKey) {
 		this(
-				accountMetaDataPair.getAccount(),
+				accountMetaDataPair.getEntity(),
 				accountMetaDataPair.getMetaData().getStatus(),
 				accountMetaDataPair.getMetaData().getRemoteStatus(),
 				accountMetaDataPair.getMetaData().getCosignatoryOf(),
-				accountMetaDataPair.getMetaData().getCosignatories());
+				accountMetaDataPair.getMetaData().getCosignatories(),
+				remotePublicKey);
 	}
 
 	/**
@@ -50,7 +54,8 @@ public class AccountViewModel implements SerializableEntity {
 			final AccountStatus status,
 			final AccountRemoteStatus remoteStatus,
 			final List<AccountInfo> multisigAccounts,
-			final List<AccountInfo> cosignatories) {
+			final List<AccountInfo> cosignatories,
+			final PublicKey remotePublicKey) {
 		this.address = info.getAddress();
 		this.remoteStatus = remoteStatus;
 
@@ -65,6 +70,7 @@ public class AccountViewModel implements SerializableEntity {
 		this.status = status;
 		this.multisigAccounts = multisigAccounts;
 		this.cosignatories = cosignatories;
+		this.remotePublicKey = remotePublicKey;
 	}
 
 	/**
@@ -157,6 +163,15 @@ public class AccountViewModel implements SerializableEntity {
 		return this.cosignatories;
 	}
 
+	/**
+	 * Gets the account's remote public key.
+	 *
+	 * @return The public key.
+	 */
+	public PublicKey getRemotePublicKey() {
+		return this.remotePublicKey;
+	}
+
 	@Override
 	public void serialize(final Serializer serializer) {
 		Address.writeTo(serializer, "address", this.address);
@@ -169,5 +184,10 @@ public class AccountViewModel implements SerializableEntity {
 		AccountStatus.writeTo(serializer, "status", this.status);
 		serializer.writeObjectArray("multisigAccounts", this.multisigAccounts);
 		serializer.writeObjectArray("cosignatories", this.cosignatories);
+
+		if (this.remotePublicKey != null) {
+			serializer.writeBytes("remotePublicKey", this.remotePublicKey.getRaw());
+			Address.writeTo(serializer, "remoteAddress", Address.fromPublicKey(this.remotePublicKey));
+		}
 	}
 }

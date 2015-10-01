@@ -4,6 +4,7 @@ import org.nem.core.connect.HttpJsonPostRequest;
 import org.nem.core.connect.client.NisApiId;
 import org.nem.core.crypto.*;
 import org.nem.core.model.Address;
+import org.nem.core.model.mosaic.MosaicDefinition;
 import org.nem.core.model.ncc.*;
 import org.nem.core.model.primitive.BlockHeight;
 import org.nem.core.serialization.*;
@@ -68,6 +69,18 @@ public class AccountController {
 		return this.accountMapper.toViewModel(address);
 	}
 
+	//endregion
+
+	//region additional data
+
+	@RequestMapping(value = "/account/mosaic/owned/definition/batch", method = RequestMethod.POST)
+	public SerializableList<MosaicDefinition> accountMosaicDefinitionsBatch(@RequestBody final Deserializer deserializerIn) {
+		final SerializableList<SerializableAccountId> accountIds = new SerializableList<>(deserializerIn, SerializableAccountId::new);
+		final Deserializer deserializerOut = this.nisConnector.post(
+				NisApiId.NIS_REST_ACCOUNT_MOSAIC_DEFINITIONS_BATCH_LOOK_UP,
+				new HttpJsonPostRequest(accountIds));
+		return new SerializableList<>(deserializerOut, MosaicDefinition::new);
+	}
 	//endregion
 
 	//region transactions/unconfirmed

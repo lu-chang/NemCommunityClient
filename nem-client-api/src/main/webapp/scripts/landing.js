@@ -28,7 +28,7 @@
 
 	        ncc.openWallet = function(wallet, password, walletData) {
 	        	var setWalletData = function(data) {
-	        		ncc.set('wallet', Utils.processWallet(data));
+	        		Utils.processWallet(data)
 	            	ncc.set('activeAccount', Utils.processAccount(data.primaryAccount));
 	            	ncc.set('TransactionType', TransactionType);
 	                ncc.loadPage('dashboard', {

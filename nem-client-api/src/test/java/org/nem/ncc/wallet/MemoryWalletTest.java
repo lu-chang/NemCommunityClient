@@ -57,7 +57,7 @@ public class MemoryWalletTest extends WalletTest {
 		// Act:
 		// Assert: that other accounts are validated as part of deserialization
 		assertThrowsWalletException(
-				v -> createWalletFromJson("bar", account, Arrays.asList(account)),
+				v -> createWalletFromJson("bar", account, Collections.singletonList(account)),
 				WalletException.Code.WALLET_ALREADY_CONTAINS_ACCOUNT);
 	}
 
@@ -65,7 +65,7 @@ public class MemoryWalletTest extends WalletTest {
 	public void walletCannotBeDeserializedWithMissingRequiredParameters() {
 		// Arrange:
 		final WalletAccount account = new WalletAccount();
-		final List<WalletAccount> otherAccounts = Arrays.asList(new WalletAccount());
+		final List<WalletAccount> otherAccounts = Collections.singletonList(new WalletAccount());
 		final List<Consumer<Void>> actions = Arrays.asList(
 				v -> createWalletFromJson(null, account, otherAccounts),
 				v -> createWalletFromJson("bar", null, otherAccounts),

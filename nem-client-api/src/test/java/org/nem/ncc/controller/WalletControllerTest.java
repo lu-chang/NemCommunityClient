@@ -1,15 +1,22 @@
 package org.nem.ncc.controller;
 
 import net.minidev.json.JSONObject;
-import org.hamcrest.core.IsEqual;
+import org.apache.commons.io.IOUtils;
+import org.hamcrest.core.*;
 import org.junit.*;
 import org.mockito.Mockito;
+import org.nem.core.utils.ExceptionUtils;
 import org.nem.ncc.addressbook.*;
 import org.nem.ncc.controller.requests.WalletNamePasswordBag;
 import org.nem.ncc.controller.viewmodels.WalletViewModel;
 import org.nem.ncc.services.*;
 import org.nem.ncc.test.Utils;
 import org.nem.ncc.wallet.*;
+import org.nem.specific.deploy.OctetStream;
+
+import java.io.*;
+import java.util.Arrays;
+import java.util.zip.*;
 
 public class WalletControllerTest {
 
@@ -147,6 +154,120 @@ public class WalletControllerTest {
 				.move(new WalletNamePasswordPair("w1", "p1"), new WalletNamePasswordPair("w2", "p1"));
 		Mockito.verify(context.addressBookServices, Mockito.only())
 				.move(new AddressBookNamePasswordPair("w1", "p1"), new AddressBookNamePasswordPair("w2", "p1"));
+	}
+
+	//endregion
+
+	//region export
+
+	@Test
+	public void exportWalletDelegatesToServices() {
+		// Arrange:
+		final WalletName request = new WalletName("wal");
+		final TestContext context = new TestContext();
+
+		// Act:
+		context.controller.exportWallet(request);
+
+		// Assert:
+		Mockito.verify(context.walletServices, Mockito.only()).copyTo(Mockito.any(), Mockito.any());
+		Mockito.verify(context.addressBookServices, Mockito.only()).copyTo(Mockito.any(), Mockito.any());
+	}
+
+	@Test
+	public void exportWalletReturnsExpectedOctetStream() {
+		// Arrange:
+		final WalletName request = new WalletName("wal");
+		final TestContext context = new TestContext();
+
+		Mockito.doAnswer(invocationOnMock -> {
+			final OutputStream outputStream = (OutputStream)invocationOnMock.getArguments()[1];
+			return ExceptionUtils.propagate(() -> {
+				IOUtils.copy(new ByteArrayInputStream("wallet".getBytes()), outputStream);
+				return null;
+			});
+		}).when(context.walletServices).copyTo(Mockito.any(), Mockito.any());
+
+		Mockito.doAnswer(invocationOnMock -> {
+			final OutputStream outputStream = (OutputStream)invocationOnMock.getArguments()[1];
+			return ExceptionUtils.propagate(() -> {
+				IOUtils.copy(new ByteArrayInputStream("addressBook".getBytes()), outputStream);
+				return null;
+			});
+		}).when(context.addressBookServices).copyTo(Mockito.any(), Mockito.any());
+
+		// Act:
+		final OctetStream octetStream = context.controller.exportWallet(request);
+		final InputStream inputStream = new ByteArrayInputStream(octetStream.toByteArray());
+		final ZipInputStream zipInputStream = new ZipInputStream(inputStream);
+		final ZipEntry[] entries = new ZipEntry[3];
+		final String[] contents = new String[2];
+		ExceptionUtils.propagateVoid(() -> {
+			entries[0] = zipInputStream.getNextEntry();
+			contents[0] = this.readString(zipInputStream);
+			entries[1] = zipInputStream.getNextEntry();
+			contents[1] = this.readString(zipInputStream);
+			entries[2] = zipInputStream.getNextEntry();
+		});
+
+		// Assert:
+		Assert.assertThat(entries[0].toString(), IsEqual.equalTo("wal.wlt"));
+		Assert.assertThat(contents[0], IsEqual.equalTo("wallet"));
+		Assert.assertThat(entries[1].toString(), IsEqual.equalTo("wal.adb"));
+		Assert.assertThat(contents[1], IsEqual.equalTo("addressBook"));
+		Assert.assertThat(entries[2], IsNull.nullValue());
+	}
+
+	@Test
+	public void exportWalletProperlyEncodesWalletFileNames() {
+		// Arrange:
+		final WalletName request = new WalletName("ßomething in the 真 way");
+		final TestContext context = new TestContext();
+
+		Mockito.doAnswer(invocationOnMock -> {
+			final OutputStream outputStream = (OutputStream)invocationOnMock.getArguments()[1];
+			return ExceptionUtils.propagate(() -> {
+				IOUtils.copy(new ByteArrayInputStream("wallet".getBytes()), outputStream);
+				return null;
+			});
+		}).when(context.walletServices).copyTo(Mockito.any(), Mockito.any());
+
+		Mockito.doAnswer(invocationOnMock -> {
+			final OutputStream outputStream = (OutputStream)invocationOnMock.getArguments()[1];
+			return ExceptionUtils.propagate(() -> {
+				IOUtils.copy(new ByteArrayInputStream("addressBook".getBytes()), outputStream);
+				return null;
+			});
+		}).when(context.addressBookServices).copyTo(Mockito.any(), Mockito.any());
+
+		// Act:
+		final OctetStream octetStream = context.controller.exportWallet(request);
+		final InputStream inputStream = new ByteArrayInputStream(octetStream.toByteArray());
+		final ZipInputStream zipInputStream = new ZipInputStream(inputStream);
+		final ZipEntry[] entries = new ZipEntry[3];
+		final String[] contents = new String[2];
+		ExceptionUtils.propagateVoid(() -> {
+			entries[0] = zipInputStream.getNextEntry();
+			contents[0] = this.readString(zipInputStream);
+			entries[1] = zipInputStream.getNextEntry();
+			contents[1] = this.readString(zipInputStream);
+			entries[2] = zipInputStream.getNextEntry();
+		});
+
+		// Assert:
+		Assert.assertThat(entries[0].toString(), IsEqual.equalTo("%C3%9Fomething+in+the+%E7%9C%9F+way.wlt"));
+		Assert.assertThat(contents[0], IsEqual.equalTo("wallet"));
+		Assert.assertThat(entries[1].toString(), IsEqual.equalTo("%C3%9Fomething+in+the+%E7%9C%9F+way.adb"));
+		Assert.assertThat(contents[1], IsEqual.equalTo("addressBook"));
+		Assert.assertThat(entries[2], IsNull.nullValue());
+	}
+
+	private String readString(final ZipInputStream zipInputStream) {
+		return ExceptionUtils.propagate(() -> {
+			byte[] bytesIn = new byte[12];
+			int length = zipInputStream.read(bytesIn, 0, 12);
+			return new String(Arrays.copyOf(bytesIn, length));
+		});
 	}
 
 	//endregion

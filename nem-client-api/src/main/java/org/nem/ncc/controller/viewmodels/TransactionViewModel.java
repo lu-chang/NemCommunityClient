@@ -13,17 +13,27 @@ import org.nem.core.time.UnixTime;
 public class TransactionViewModel implements SerializableEntity {
 	// This enum needs to be kept in sync with JS TransactionType
 	public enum Type {
-		Unknown(0),
-		Transfer(1),
-		Importance_Transfer(2),
-		Multisig_Modification(3),
-		Multisig_Transfer(4),
-		Multisig_Signature(5),
-		Multisig_Multisig_Modification(6);
+		Unknown(0)
+		, Transfer(20)
+		, Importance_Transfer(21)
+		, Aggregate_Modification(22)
+		, Provision_Namespace(23)
+		, Mosaic_Creation(24)
+		, Mosaic_Supply(25)
+
+		, Multisig_Signature(40)
+
+		, Multisig_Transfer(50)
+		, Multisig_Importance_Transfer(51)
+		, Multisig_Aggregate_Modification(52)
+		, Multisig_Provision_Namespace(53)
+		, Multisig_Mosaic_Creation(54)
+		, Multisig_Mosaic_Supply(55)
+		;
 
 		private final int value;
 
-		private Type(final int value) {
+		Type(final int value) {
 			this.value = value;
 		}
 
@@ -61,15 +71,7 @@ public class TransactionViewModel implements SerializableEntity {
 			final Type transactionViewModelType,
 			final TransactionMetaDataPair metaDataPair,
 			final BlockHeight lastBlockHeight) {
-		final Transaction transaction = metaDataPair.getTransaction();
-		// TODO 20150131 J-G: do we really need this check?
-		if (TransactionTypes.TRANSFER != transaction.getType() &&
-				TransactionTypes.IMPORTANCE_TRANSFER != transaction.getType() &&
-				TransactionTypes.MULTISIG != transaction.getType() &&
-				TransactionTypes.MULTISIG_SIGNATURE != transaction.getType() &&
-				TransactionTypes.MULTISIG_AGGREGATE_MODIFICATION != transaction.getType()) {
-			throw new IllegalArgumentException("TransactionViewModel cannot be created around passed transaction");
-		}
+		final Transaction transaction = metaDataPair.getEntity();
 
 		this.transactionViewModelType = transactionViewModelType;
 		this.transactionHash = HashUtils.calculateHash(transaction);
@@ -94,6 +96,15 @@ public class TransactionViewModel implements SerializableEntity {
 			this.transactionId = metaDataPair.getMetaData().getId();
 			this.isConfirmed = true;
 		}
+	}
+
+	/**
+	 * Gets the transaction type.
+	 *
+	 * @return The transaction type.
+	 */
+	public Type getTransactionViewModelType() {
+		return this.transactionViewModelType;
 	}
 
 	/**

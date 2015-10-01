@@ -1,17 +1,18 @@
 package org.nem.ncc.controller;
 
-import org.nem.core.serialization.*;
+import org.eclipse.jetty.util.UrlEncoded;
 import org.nem.core.utils.ExceptionUtils;
-import org.nem.specific.deploy.OctetStream;
 import org.nem.ncc.addressbook.*;
 import org.nem.ncc.controller.requests.WalletNamePasswordBag;
 import org.nem.ncc.controller.viewmodels.WalletViewModel;
 import org.nem.ncc.services.*;
 import org.nem.ncc.wallet.*;
+import org.nem.specific.deploy.OctetStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.*;
+import java.util.function.*;
 import java.util.zip.*;
 
 /**
@@ -100,31 +101,37 @@ public class WalletController {
 	 */
 	@RequestMapping(value = "/wallet/export", method = RequestMethod.POST)
 	public OctetStream exportWallet(@RequestBody final WalletName name) {
-		// TODO 20150312 J-G: a test would be nice, but i'm not expecting it ;)
-		final Wallet wallet = this.walletServices.get(name);
-		final AddressBook addressBook = this.addressBookServices.get(new AddressBookName(name.toString()));
-
 		return ExceptionUtils.propagate(() -> {
 			final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 			try (final ZipOutputStream zipOutputStream = new ZipOutputStream(byteArrayOutputStream)) {
-				addToZip(zipOutputStream, name, ".wlt", wallet);
-				addToZip(zipOutputStream, name, ".adb", addressBook);
+				this.addToZip(
+						zipOutputStream,
+						name.toString(),
+						WalletFileExtension.DEFAULT_FILE_EXTENSION,
+						this.walletServices::copyTo,
+						n -> new WalletNamePasswordPair(n, "???"));
+
+				this.addToZip(
+						zipOutputStream,
+						name.toString(),
+						AddressBookFileExtension.DEFAULT_FILE_EXTENSION,
+						this.addressBookServices::copyTo,
+						n -> new AddressBookNamePasswordPair(n, "???"));
 			}
 
 			return new OctetStream(byteArrayOutputStream.toByteArray());
 		});
 	}
 
-	private static void addToZip(
+	private <TEntityNamePasswordPair> void addToZip(
 			final ZipOutputStream zipOutputStream,
-			final WalletName name,
+			final String name,
 			final String extension,
-			final SerializableEntity entity) throws IOException {
-		final ZipEntry zipEntry = new ZipEntry(name.toString() + extension);
-
-		final byte[] entityBytes = BinarySerializer.serializeToBytes(entity);
+			final BiConsumer<TEntityNamePasswordPair, OutputStream> copyTo,
+			final Function<String, TEntityNamePasswordPair> nameToPair) throws IOException {
+		final ZipEntry zipEntry = new ZipEntry(UrlEncoded.encodeString(name) + extension);
 		zipOutputStream.putNextEntry(zipEntry);
-		zipOutputStream.write(entityBytes);
+		copyTo.accept(nameToPair.apply(name), zipOutputStream);
 		zipOutputStream.closeEntry();
 	}
 

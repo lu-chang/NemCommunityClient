@@ -798,7 +798,7 @@ $tipsCarousel-lineHeight: 68px;
 	line-height: $tipsCarousel-lineHeight;
 	top: ($carousel-height - $tipsCarousel-lineHeight) / 2;
 	text-align: center;
-	font-size: 55px;
+	font-size: 68px;
 	background-color: #444444;
 	overflow: hidden;
 	@include border-radius(4px);
@@ -806,8 +806,12 @@ $tipsCarousel-lineHeight: 68px;
 	$zIndex-background: -1;
 
 	&:before {
-		position: relative;
-		vertical-align: -6px;
+    		display: block;
+    		position: absolute;
+    		top: 0;
+    		left:-13px;
+    		width: 100%;
+    		height: 100%;
 	}
 
 	&:after {
@@ -961,69 +965,16 @@ $socialLinkIcon-size: 24px;
 }
 
 .landing-socialLinks-icon {
-	float: left;
-	margin-right: 10px;
-	position: relative;
-	display: block;
-	width: $socialLinkIcon-size;
-	height: $socialLinkIcon-size;
-	@include transform-style(preserve-3d);
-	@include transition-property(transform);
-	@include transition-duration(.3s);
-	@include transform-origin(50%, 0);
-
-	&:before, 
-	&:after {
-		content: '';
-		display: block;
-		width: $socialLinkIcon-size;
-		height: $socialLinkIcon-size;
-		@include transition-property(opacity, background-color);
-		@include transition-duration(.3s);
-		@include transform-origin(50%, 0);
-	}
-
-	&:after {
-		position: absolute;
-		top: 100%;
-		left: 0;
-		@include transform(rotateX(-90deg));
-		@include border-radius(2px);
-		background-color: #444444;
-	}
-
+    font-size: 36px;
 	&:hover {
-		@include transform(rotateX(90deg) translateY(-$socialLinkIcon-size / 2));
-		&:before {
-			opacity: 0.2;
-		}
-		&:after {
-			background-color: #fff;
-		}
-	}
-}
-
-.landing-socialLinks-googlePlus {
-	&:before, &:after {
-		background-image: url(../../images/gp.png);
-	}
-}
-
-.landing-socialLinks-facebook {
-	&:before, &:after {
-		background-image: url(../../images/fb.png);
-	}
-}
-
-.landing-socialLinks-twitter {
-	&:before, &:after {
-		background-image: url(../../images/twitter.png);
-	}
-}
-
-.landing-socialLinks-reddit {
-	&:before, &:after {
-		background-image: url(../../images/reddit.png);
+	    color:#666;
+	    text-shadow: 0 0 2px rgba(255,255,255,1),
+	    0 0 4px rgba(255,255,255,1),
+	    0 0 6px rgba(255,255,255,1),
+	    0 0 8px #000,
+	    0 0 10px #000,
+	    0 0 12px #000,
+	    0 0 14px #000;
 	}
 }
 

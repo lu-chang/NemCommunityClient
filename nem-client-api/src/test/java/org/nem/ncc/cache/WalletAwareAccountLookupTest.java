@@ -135,7 +135,7 @@ public class WalletAwareAccountLookupTest {
 
 		// Act:
 		final AccountMetaDataPair result = context.accountLookup.findPairByAddress(address);
-		final AccountInfo resultInfo = result.getAccount();
+		final AccountInfo resultInfo = result.getEntity();
 
 		// Assert:
 		Assert.assertThat(resultInfo.getAddress().getPublicKey(), IsEqual.equalTo(address.getPublicKey()));

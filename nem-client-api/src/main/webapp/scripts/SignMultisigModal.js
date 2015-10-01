@@ -4,7 +4,7 @@ define(['NccModal', 'Utils'], function(NccModal, Utils) {
 	return NccModal.extend({
         data: {
             isFeeAutofilled: true,
-            dueBy: 1
+            dueBy: 24
         },
         computed: {
             hoursDue: function() {
@@ -67,13 +67,16 @@ define(['NccModal', 'Utils'], function(NccModal, Utils) {
             this.set('sender', Utils.format.address.format(ncc.get('activeAccount.address')));
             this.set('fee', 0);
             this.set('minimumFee', 0);
-            this.set('dueBy', '1');
+            this.set('dueBy', '24');
             this.set('password', '');
             this.set('useMinimumFee', true);
 
             this.set('feeChanged', false);
             this.set('passwordChanged', true);
             this.resetFee({ silent: true });
+        },
+        viewTransaction: function(txdata) {
+            ncc.viewTransaction(txdata);
         },
         sendTransaction: function() {
             var requestData = {

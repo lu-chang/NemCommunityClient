@@ -5,25 +5,25 @@
 				<h1 class="listingPage-title">{{texts.harvestedBlocks.title}}</h1>
 				{{#if activeAccount.remoteStatus === 'ACTIVE'}}
 					{{#if walletPage.remoteUnlocked}}
-						<button type="button" class="listingPage-mainButton harvestedBlocksPage-harvestButton harvestedBlocksPage-harvestButton--harvesting icon-pause" on-click="stopRemoteHarvesting" disabled="{{walletPage.harvestButtonProcessing}}">
+						<button type="button" class="listingPage-mainButton harvestedBlocksPage-harvestButton harvestedBlocksPage-harvestButton--harvesting icon-pause-circled" on-click="stopRemoteHarvesting" disabled="{{walletPage.harvestButtonProcessing}}">
 							{{texts.harvestedBlocks.harvesting.remoteHarvest.stopRemoteHarvesting}}
 						</button>
 					{{else}}
-						<button type="button" class="listingPage-mainButton harvestedBlocksPage-harvestButton harvestedBlocksPage-harvestButton--notHarvesting icon-play" on-click="startRemoteHarvesting" disabled="{{walletPage.harvestButtonProcessing}}">{{texts.harvestedBlocks.harvesting.remoteHarvest.startRemoteHarvesting}}</button>
+						<button type="button" class="listingPage-mainButton harvestedBlocksPage-harvestButton harvestedBlocksPage-harvestButton--notHarvesting icon-play-circled" on-click="startRemoteHarvesting" disabled="{{walletPage.harvestButtonProcessing}}">{{texts.harvestedBlocks.harvesting.remoteHarvest.startRemoteHarvesting}}</button>
 					{{/if}}
 				{{else}}
 					{{#if status.lostConnection || nisUnavailable || activeAccount.status === 'UNKNOWN'}}
-						<button type="button" class="listingPage-mainButton harvestedBlocksPage-harvestButton harvestedBlocksPage-harvestButton--unknown icon-question-circle" disabled>
+						<button type="button" class="listingPage-mainButton harvestedBlocksPage-harvestButton harvestedBlocksPage-harvestButton--unknown icon-help-circled" disabled>
 							<span>{{texts.harvestedBlocks.harvesting.unknown}}</span>
 						</button>
 					{{else}}
 						{{#if activeAccount.status === 'LOCKED'}}
-							<button type="button" class="listingPage-mainButton harvestedBlocksPage-harvestButton harvestedBlocksPage-harvestButton--notHarvesting icon-play" on-click="startHarvesting" disabled="{{walletPage.harvestButtonProcessing}}">
+							<button type="button" class="listingPage-mainButton harvestedBlocksPage-harvestButton harvestedBlocksPage-harvestButton--notHarvesting icon-play-circled" on-click="startHarvesting" disabled="{{walletPage.harvestButtonProcessing}}">
 								<span>{{texts.harvestedBlocks.harvesting.start}}</span>
 							</button>
 						{{/if}}
 						{{#if activeAccount.status === 'UNLOCKED'}}
-							<button type="button" class="listingPage-mainButton harvestedBlocksPage-harvestButton harvestedBlocksPage-harvestButton--harvesting icon-pause" on-click="stopHarvesting" disabled="{{walletPage.harvestButtonProcessing}}">
+							<button type="button" class="listingPage-mainButton harvestedBlocksPage-harvestButton harvestedBlocksPage-harvestButton--harvesting icon-pause-circled" on-click="stopHarvesting" disabled="{{walletPage.harvestButtonProcessing}}">
 								{{texts.harvestedBlocks.harvesting.stop}}
 							</button>
 						{{/if}}

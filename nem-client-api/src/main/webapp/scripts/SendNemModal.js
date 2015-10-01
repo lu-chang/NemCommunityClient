@@ -65,7 +65,7 @@ define(['NccModal', 'Utils', 'TransactionType', 'handlebars', 'typeahead'], func
                 return !this.get('passwordValid') && this.get('passwordChanged');
             },
             formValid: function() {
-                return this.get('recipientValid') && this.get('feeValid') && this.get('passwordValid');
+                return this.get('recipientValid') && this.get('feeValid') && this.get('passwordValid') && this.get('messageValid');
             }
         },
         validateTx: function() {
@@ -77,6 +77,8 @@ define(['NccModal', 'Utils', 'TransactionType', 'handlebars', 'typeahead'], func
             this.set('formattedAmount', '0');
             this.set('formattedRecipient', '');
             this.set('rawMessage', '');
+            this.set('messageValid', true);
+            this.set('messageHexBased', false);
             this.set('encrypted', false);
             this.set('fee', 0);
             this.set('multisigFee', 0);
@@ -130,35 +132,37 @@ define(['NccModal', 'Utils', 'TransactionType', 'handlebars', 'typeahead'], func
             );
         },
         sendTransaction: function() {
-            if (this.get('sender') == null) {
-                var requestData = {
-                    wallet: ncc.get('wallet.wallet'),
-                    type: TransactionType.Transfer,
-                    account: ncc.get('activeAccount.address'),
-                    password: this.get('password'),
-                    amount: this.get('amount'),
-                    recipient: this.get('recipient'),
-                    message: this.get('message') || undefined,
-                    fee: this.get('fee'),
-                    multisigFee: 0,
-                    encrypt: this.get('encrypt'),
-                    hoursDue: this.get('hoursDue')
-                };
-            } else {
-                var requestData = {
-                    wallet: ncc.get('wallet.wallet'),
+            var requestData;
+            requestData = {
+                wallet: ncc.get('wallet.wallet'),
+                type: TransactionType.Transfer,
+                account: ncc.get('activeAccount.address'),
+                password: this.get('password'),
+                amount: this.get('amount'),
+                recipient: this.get('recipient'),
+                message: this.get('message') || undefined,
+                hexMessage: this.get('messageHexBased') ? 1 : 0,
+
+                fee: this.get('fee'),
+                multisigFee: 0,
+                encrypt: this.get('encrypt'),
+                hoursDue: this.get('hoursDue')
+            };
+            if (this.get('sender') !== null) {
+                $.extend(requestData, {
                     type: TransactionType.Multisig_Transfer,
                     multisigAccount: this.get('sender'),
-                    account: ncc.get('activeAccount.address'),
-                    password: this.get('password'),
-                    amount: this.get('amount'),
-                    recipient: this.get('recipient'),
-                    message: this.get('message') || undefined,
-                    fee: this.get('fee'),
                     multisigFee: this.get('multisigFee'),
-                    encrypt: this.get('encrypt'),
-                    hoursDue: this.get('hoursDue')
-                };
+                });
+            }
+
+            // distinguish test net from main net via first char of address
+            var Fork_2_Height = (requestData.recipient && requestData.recipient.length && requestData.recipient[0] === 'T') ? 180000 : 243000;
+            if (ncc.get('blockchainHeight') > Fork_2_Height) {
+                // for now we deliberately set it to 1, as we don't add any attachments anyway
+                requestData['version'] = 1;
+            } else {
+                requestData['version'] = 1;
             }
 
             var txConfirm = ncc.getModal('transactionConfirm');
@@ -187,6 +191,19 @@ define(['NccModal', 'Utils', 'TransactionType', 'handlebars', 'typeahead'], func
                 minimumFee: function(minimumFee) {
                     if (this.get('useMinimumFee')) {
                         this.set('fee', minimumFee);
+                    }
+                }
+            });
+            this.observe({
+                'messageHexBased message': function() {
+                    var isHex = this.get('messageHexBased');
+                    this.set('messageValid', true);
+                    if (isHex) {
+                        var s = this.get('message');
+                        if (s.match(/^[0-9a-fA-F]*$/) && s.length % 2 == 0) {}
+                        else {
+                            this.set('messageValid', false);
+                        }
                     }
                 }
             });
@@ -239,6 +256,8 @@ define(['NccModal', 'Utils', 'TransactionType', 'handlebars', 'typeahead'], func
 
             var $dueBy = $('.js-sendNem-dueBy-textbox');
             $dueBy.on('keypress', function(e) { Utils.mask.keypress(e, 'number', self) });
+            $dueBy.on('paste', function(e) { Utils.mask.paste(e, 'number', self); });
+            $dueBy.on('keydown', function(e) { Utils.mask.keydown(e, 'number', self); });
 
             var $recipient = $('.js-sendNem-recipient-textbox');
             $recipient.on('keypress', function(e) { Utils.mask.keypress(e, 'address', self); });

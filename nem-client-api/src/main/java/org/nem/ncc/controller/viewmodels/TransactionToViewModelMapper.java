@@ -22,16 +22,22 @@ public class TransactionToViewModelMapper {
 		return map(metaDataPair, new AccountMetaDataPair(new AccountInfo(address, Amount.ZERO, Amount.ZERO, BlockAmount.ZERO, "", 0.0), null), blockHeight);
 	}
 
-	private static TransactionViewModel map(final TransactionMetaDataPair metaDataPair, final AccountMetaDataPair accountData, final BlockHeight blockHeight) {
-		switch (metaDataPair.getTransaction().getType()) {
+	static TransactionViewModel map(final TransactionMetaDataPair metaDataPair, final AccountMetaDataPair accountData, final BlockHeight blockHeight) {
+		switch (metaDataPair.getEntity().getType()) {
 			case TransactionTypes.TRANSFER:
-				return new TransferTransactionViewModel(metaDataPair, accountData.getAccount().getAddress(), blockHeight);
+				return new TransferTransactionViewModel(metaDataPair, accountData.getEntity().getAddress(), blockHeight);
 			case TransactionTypes.IMPORTANCE_TRANSFER:
 				return new ImportanceTransferTransactionViewModel(metaDataPair, blockHeight);
 			case TransactionTypes.MULTISIG:
 				return new MultisigTransactionViewModel(metaDataPair, accountData, blockHeight);
 			case TransactionTypes.MULTISIG_AGGREGATE_MODIFICATION:
 				return new MultisigAggregateViewModel(metaDataPair, blockHeight);
+			case TransactionTypes.PROVISION_NAMESPACE:
+				return new ProvisionNamespaceTransactionViewModel(metaDataPair, blockHeight);
+			case TransactionTypes.MOSAIC_DEFINITION_CREATION:
+				return new MosaicCreationTransactionViewModel(metaDataPair, blockHeight);
+			case TransactionTypes.MOSAIC_SUPPLY_CHANGE:
+				return new MosaicSupplyTransactionViewModel(metaDataPair, blockHeight);
 			default:
 				throw new IllegalArgumentException("transaction type is not handled inside TransactionToViewModelMapper");
 		}

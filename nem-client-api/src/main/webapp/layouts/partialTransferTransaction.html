@@ -1,0 +1,65 @@
+{{#transaction}}
+    <tr>
+        <td class="table-cell table-cell--label">{{texts.modals.transactionDetails.direction}}</td>
+        <td class="table-cell table-cell--content">
+            {{#if .isPending}}
+                {{texts.modals.transactionDetails.pending}}
+            {{else}}
+                {{#if (.isSelf || .isOutgoing || .isIncoming)}}
+                    {{#.isSelf}}{{texts.transactionDirections.self}}{{/}}
+                    {{#.isOutgoing}}{{texts.transactionDirections.outgoing}}{{/}}
+                    {{#.isIncoming}}{{texts.transactionDirections.incoming}}{{/}}
+                {{else}}
+                    Multisig
+                {{/if}}
+            {{/if}}
+        </td>
+    </tr>
+    <tr>
+        <td class="table-cell table-cell--label">
+            {{texts.modals.transactionDetails.recipient}}
+        </td>
+        <td class="table-cell table-cell--content">
+            <a class="hyperlink--default" href="javascript:;" on-click="viewAccount(.real.recipient)">
+                {{#if privateLabels[.real.recipient]}}
+                    {{privateLabels[.real.recipient]}}
+                {{else}}
+                    {{.real.formattedRecipient}}
+                {{/if}}
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td class="table-cell table-cell--label">
+            {{texts.modals.transactionDetails.message}}
+        </td>
+        <td class="table-cell table-cell--content">
+            {{.real.message}}
+            {{^.real.message}}<span class="dimmed">{{texts.modals.transactionDetails.noMessage}}</span>{{/}}
+            {{#.real.encrypted}}
+            &nbsp;<span class="icon-lock encryptedIcon" title="{{texts.modals.transactionDetails.encrypted}}" on-mouseover="registerToolTip"></span>
+            {{/}}
+        </td>
+    </tr>
+    <tr>
+        <td class="table-cell table-cell--label">{{texts.modals.transactionDetails.amount}}</td>
+        <td class="table-cell table-cell--content">{{{.formattedFullAmount}}} XEM</td>
+    </tr>
+
+
+    <tr><td colspan="2">Mosaics present:</td></tr>
+    {{#.real.mosaics}}
+            <tr>
+                <td class="table-cell table-cell--label">{{texts.modals.transactionDetails.mosaicName}}</td>
+                <td class="table-cell table-cell--content">
+                    <span class="dimmed">{{.mosaicId.namespaceId}} * </span>
+                    {{.mosaicId.name}}
+                </td>
+            </tr>
+            <tr>
+                <td class="table-cell table-cell--label">{{texts.modals.transactionDetails.mosaicQuantity}}</td>
+                <td class="table-cell table-cell--content">{{{.formattedQuantity}}} (raw: <span class="dimmed">{{.quantity}}</span>)</td>
+            </tr>
+    {{/}}
+
+{{/}}

@@ -55,6 +55,8 @@ lex.lex()
 def indent(fun, level):
 	fun.d("\t"*level)
 
+debugMode = False
+
 class Field:
 	def __init__(self, name, value):
 		self.name = name
@@ -166,11 +168,14 @@ def p_object_empty(p):
 
 def p_object(p):
 	'object : LBRACE fields RBRACE'
-	#print "OBJECT END:", p[2].fields[0].name
+	if debugMode:
+		print "OBJECT END:", p[2], p[2].fields[0].name
 	p[0] = JsObject(p[2])
 
 def p_object_value(p):
 	'object : VALUE'
+	if debugMode:
+		print "value", p[1]
 	p[0] = Value(p[1])
 
 def p_object_value_empty(p):
@@ -277,6 +282,7 @@ baseAst = baseParser.parse(baseIn)
 baseData = Printer(baseAst)
 baseData.process()
 
+debugMode=True
 currIn = open('english.js').read()
 currParser = yacc.yacc()
 currAst = currParser.parse(currIn)

@@ -17,7 +17,7 @@ public interface StorableEntityDescriptorFactory<
 	 * @param fileExtension The storable entity file extension.
 	 * @return The descriptor.
 	 */
-	public TEntityDescriptor createNew(final TEntityNamePasswordPair pair, TEntityFileExtension fileExtension);
+	TEntityDescriptor createNew(final TEntityNamePasswordPair pair, TEntityFileExtension fileExtension);
 
 	/**
 	 * Opens a storable entity descriptor corresponding to en existing storable entity.
@@ -26,5 +26,5 @@ public interface StorableEntityDescriptorFactory<
 	 * @param fileExtension The storable entity file extension.
 	 * @return The descriptor.
 	 */
-	public TEntityDescriptor openExisting(final TEntityNamePasswordPair pair, TEntityFileExtension fileExtension);
+	TEntityDescriptor openExisting(final TEntityNamePasswordPair pair, TEntityFileExtension fileExtension);
 }

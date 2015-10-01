@@ -20,7 +20,7 @@ public class JarNodeLauncherTest {
 		testContext.launch(NemNodeType.NIS);
 
 		// Assert:
-		testContext.assertLaunched(Arrays.asList(), "nis-jar-path");
+		testContext.assertLaunched(Collections.emptyList(), "nis-jar-path");
 	}
 
 	@Test
@@ -44,7 +44,7 @@ public class JarNodeLauncherTest {
 		testContext.launch(NemNodeType.NCC);
 
 		// Assert:
-		testContext.assertLaunched(Arrays.asList(), "ncc-jar-path");
+		testContext.assertLaunched(Collections.emptyList(), "ncc-jar-path");
 	}
 
 	@Test

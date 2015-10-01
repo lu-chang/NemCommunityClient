@@ -17,6 +17,7 @@ public class PartialTransferInformationRequestTest {
 				Address.fromEncoded("r"),
 				Amount.fromMicroNem(7),
 				"m",
+				false,
 				true);
 
 		// Assert:

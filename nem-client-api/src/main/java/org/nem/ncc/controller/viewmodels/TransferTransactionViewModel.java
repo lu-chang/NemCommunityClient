@@ -1,10 +1,13 @@
 package org.nem.ncc.controller.viewmodels;
 
 import org.nem.core.model.*;
+import org.nem.core.model.mosaic.Mosaic;
 import org.nem.core.model.ncc.TransactionMetaDataPair;
 import org.nem.core.model.primitive.*;
 import org.nem.core.serialization.Serializer;
-import org.nem.core.utils.StringEncoder;
+import org.nem.core.utils.*;
+
+import java.util.*;
 
 /**
  * TODO 20150131 J-G: fix empty comments
@@ -19,7 +22,13 @@ public class TransferTransactionViewModel extends TransactionViewModel {
 	private final Address recipient;
 	private final Amount amount;
 	private final String message;
+	private final Collection<Mosaic> mosaics;
+
 	private final boolean isEncrypted;
+	private final boolean hexMessage;
+	// TODO 20150524 J-G: you don't appear to be using this, not sure if it's for this release or not
+	// TODO 20150525 G-J: it is used in isHexMessage, not sure why idea shows it as unused,
+	// anyway, you're right that it's currently not used, but I've added it in case we'd like to use it in UI
 	private final int direction; // 1 - incoming, 2 - outgoing, 3 - self
 
 	/**
@@ -32,13 +41,16 @@ public class TransferTransactionViewModel extends TransactionViewModel {
 	public TransferTransactionViewModel(final TransactionMetaDataPair metaDataPair, final Address relativeAccountAddress, final BlockHeight lastBlockHeight) {
 		super(Type.Transfer, metaDataPair, lastBlockHeight);
 
-		final TransferTransaction transfer = (TransferTransaction)metaDataPair.getTransaction();
+		final TransferTransaction transfer = (TransferTransaction)metaDataPair.getEntity();
 		this.recipient = transfer.getRecipient().getAddress();
 		this.amount = transfer.getAmount();
 
 		final Message message = transfer.getMessage();
 		this.message = getMessageText(message);
+		this.hexMessage = getMessageHexFlag(message);
 		this.isEncrypted = isEncrypted(message);
+
+		this.mosaics = transfer.getAttachment().getMosaics();
 
 		this.direction = (this.getSigner().equals(relativeAccountAddress) ? OUTGOING_FLAG : 0)
 				+ (this.recipient.equals(relativeAccountAddress) ? INCOMING_FLAG : 0);
@@ -53,6 +65,10 @@ public class TransferTransactionViewModel extends TransactionViewModel {
 		if (this.message != null) {
 			serializer.writeString("message", this.message);
 			serializer.writeInt("encrypted", this.isEncrypted ? 1 : 0);
+		}
+
+		if (this.mosaics != null) {
+			serializer.writeObjectArray("mosaics", this.mosaics);
 		}
 
 		serializer.writeInt("direction", this.direction);
@@ -103,7 +119,7 @@ public class TransferTransactionViewModel extends TransactionViewModel {
 		return this.direction;
 	}
 
-	//region helper funcions
+	//region helper functions
 	private static boolean isEncrypted(final Message message) {
 		return null != message && MessageTypes.SECURE == message.getType();
 	}
@@ -113,9 +129,28 @@ public class TransferTransactionViewModel extends TransactionViewModel {
 			return null;
 		}
 
-		return message.canDecode()
-				? StringEncoder.getString(message.getDecodedPayload())
-				: "Warning: message cannot be decoded!";
+		if (!message.canDecode()) {
+			return "Warning: message cannot be decoded!";
+		}
+
+		final byte[] payload = message.getDecodedPayload();
+		if (payload.length > 1 && payload[0] == (byte)0xfe) {
+			return HexEncoder.getString(Arrays.copyOfRange(payload, 1, payload.length));
+		} else {
+			return StringEncoder.getString(payload);
+		}
+	}
+
+	private static boolean getMessageHexFlag(final Message message) {
+		if (null == message) {
+			return false;
+		}
+
+		if (!message.canDecode()) {
+			return false;
+		}
+		final byte[] payload = message.getDecodedPayload();
+		return (payload.length > 1 && payload[0] == (byte)0xfe);
 	}
 	//endregion
 }

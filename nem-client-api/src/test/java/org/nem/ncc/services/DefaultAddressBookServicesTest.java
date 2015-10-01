@@ -6,9 +6,10 @@ import org.mockito.Mockito;
 import org.nem.ncc.addressbook.*;
 import org.nem.ncc.addressbook.storage.*;
 import org.nem.ncc.exceptions.NccException;
-import org.nem.ncc.storable.entity.storage.StorableEntityStorageException;
+import org.nem.ncc.storable.entity.storage.*;
 import org.nem.ncc.test.*;
 
+import java.io.*;
 import java.util.*;
 
 public class DefaultAddressBookServicesTest {
@@ -60,7 +61,7 @@ public class DefaultAddressBookServicesTest {
 		Assert.assertThat(addressBook.getName(), IsEqual.equalTo(context.originalAddressBook.getName()));
 		Assert.assertThat(
 				context.addressBookServices.getOpenAddressBookNames(),
-				IsEquivalent.equivalentTo(Arrays.asList(context.originalAddressBook.getName())));
+				IsEquivalent.equivalentTo(Collections.singletonList(context.originalAddressBook.getName())));
 		Mockito.verify(context.descriptorFactory, Mockito.times(1)).openExisting(context.pair, FILE_EXTENSION);
 		Mockito.verify(context.repository, Mockito.times(1)).load(context.descriptor);
 	}
@@ -77,7 +78,7 @@ public class DefaultAddressBookServicesTest {
 		// Assert:
 		Assert.assertThat(
 				context.addressBookServices.getOpenAddressBookNames(),
-				IsEquivalent.equivalentTo(Arrays.asList(context.originalAddressBook.getName())));
+				IsEquivalent.equivalentTo(Collections.singletonList(context.originalAddressBook.getName())));
 		Assert.assertThat(addressBook.getName(), IsEqual.equalTo(context.originalAddressBook.getName()));
 		Mockito.verify(context.descriptorFactory, Mockito.times(2)).openExisting(context.pair, FILE_EXTENSION);
 		Mockito.verify(context.repository, Mockito.times(2)).load(context.descriptor);
@@ -125,7 +126,7 @@ public class DefaultAddressBookServicesTest {
 		// Assert:
 		Assert.assertThat(
 				context.addressBookServices.getOpenAddressBookNames(),
-				IsEquivalent.equivalentTo(Arrays.asList(context.originalAddressBook.getName())));
+				IsEquivalent.equivalentTo(Collections.singletonList(context.originalAddressBook.getName())));
 		Assert.assertThat(addressBook.getName(), IsEqual.equalTo(context.originalAddressBook.getName()));
 		Mockito.verify(context.descriptorFactory, Mockito.times(1)).createNew(context.pair, FILE_EXTENSION);
 		Mockito.verify(context.repository, Mockito.times(0)).load(context.descriptor);
@@ -346,6 +347,42 @@ public class DefaultAddressBookServicesTest {
 		// Assert:
 		final AddressBook updatedAddressBook = context.addressBookServices.get(new AddressBookName("n2"));
 		Assert.assertThat(updatedAddressBook.getAccountLabels(), IsEquivalent.equivalentTo(context.originalAddressBook.getAccountLabels()));
+	}
+
+	//endregion
+
+	//region copyTo
+
+	@Test
+	public void copyToDelegatesToDescriptorFactoryAndUsesReturnedDescriptor() {
+		// Arrange:
+		final TestContext context = new TestContext();
+		final AddressBookNamePasswordPair pair = createPair("n", "p");
+		final OutputStream outputStream = Mockito.mock(OutputStream.class);
+		Mockito.when(context.descriptor.openRead(StorableEntityReadMode.Raw)).thenReturn(new ByteArrayInputStream("test".getBytes()));
+
+		// Act:
+		context.addressBookServices.copyTo(pair, outputStream);
+
+		// Assert:
+		Mockito.verify(context.descriptorFactory, Mockito.only()).openExisting(pair, new AddressBookFileExtension());
+		Mockito.verify(context.descriptor, Mockito.only()).openRead(StorableEntityReadMode.Raw);
+	}
+
+	@Test
+	public void copyToCopiesBytesToGivenOutputStream() {
+		// Arrange:
+		final TestContext context = new TestContext();
+		final AddressBookNamePasswordPair pair = createPair("n", "p");
+		final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+		Mockito.when(context.descriptor.openRead(StorableEntityReadMode.Raw)).thenReturn(new ByteArrayInputStream("test".getBytes()));
+
+		// Act:
+		context.addressBookServices.copyTo(pair, outputStream);
+
+		// Assert:
+		Assert.assertThat(outputStream.size(), IsEqual.equalTo(4));
+		Assert.assertThat(outputStream.toString(), IsEqual.equalTo("test"));
 	}
 
 	//endregion

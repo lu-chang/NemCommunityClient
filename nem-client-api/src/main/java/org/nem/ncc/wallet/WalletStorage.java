@@ -14,12 +14,12 @@ public interface WalletStorage {
 	 *
 	 * @return A list of all wallet descriptors.
 	 */
-	public List<WalletDescriptor> getAllWallets();
+	List<WalletDescriptor> getAllWallets();
 
 	/**
 	 * Gets a wallet descriptor given a wallet name.
 	 *
 	 * @return The wallet descriptor.
 	 */
-	public WalletDescriptor getWallet(final WalletName walletName);
+	WalletDescriptor getWallet(final WalletName walletName);
 }

@@ -2,10 +2,11 @@ package org.nem.ncc;
 
 import org.nem.core.async.*;
 import org.nem.core.time.TimeProvider;
-import org.nem.ncc.cache.NccAccountCache;
+import org.nem.ncc.cache.*;
 import org.nem.ncc.time.synchronization.NccTimeSynchronizer;
 
 import java.util.*;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * Scheduler that keeps track of all scheduled, recurring timers.
@@ -75,11 +76,14 @@ public class NccScheduler implements AutoCloseable {
 	 * Adds the NCC account cache update task.
 	 *
 	 * @param cache The ncc account cache.
+	 * @param repository The ncc account file repository.
 	 */
-	public void addAccountCacheUpdateTask(final NccAccountCache cache) {
+	public void addAccountCacheUpdateTask(final NccAccountCache cache, final AccountsFileRepository repository) {
 		final AsyncTimerVisitor timerVisitor = this.createNamedVisitor("CACHE UPDATE");
 		final AsyncTimerOptions options = new AsyncTimerOptionsBuilder()
-				.setRecurringFutureSupplier(cache::updateCache)
+				.setRecurringFutureSupplier(
+						() -> cache.updateCache()
+								.thenCompose(v -> CompletableFuture.runAsync(() -> repository.save(cache.getAccounts()))))
 				.setInitialDelay(this.customInitialDelay.orElse(CACHE_UPDATE_INITIAL_DELAY))
 				.setDelayStrategy(new UniformDelayStrategy(CACHE_UPDATE_INTERVAL))
 				.setVisitor(timerVisitor)

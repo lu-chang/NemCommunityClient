@@ -87,6 +87,17 @@ public abstract class StorableEntityFileDescriptor<
 	}
 
 	@Override
+	public InputStream openRead(final StorableEntityReadMode mode) {
+		// TODO 20150526 J-B: i think in this case it would make more sense for raw and decode to return the same stream
+		// > (since there is no encoding the raw stream is already decoded)
+		if (!StorableEntityReadMode.Raw.equals(mode)) {
+			throw new IllegalArgumentException("file descriptor cannot decode the stream");
+		}
+
+		return this.openRead();
+	}
+
+	@Override
 	public OutputStream openWrite() {
 		LOGGER.info(String.format("Opening storable entity for writing located at <%s>", this.getStorableEntityLocation()));
 		return ExceptionUtils.propagate(
